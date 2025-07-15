@@ -8,91 +8,41 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-cover bg-center bg-fixed"
-      style={{
-        backgroundImage: `url(${heroImage})`,
-      }}
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-muted/20"
     >
-      {/* Theme-aware overlay */}
-      <div className="absolute inset-0 bg-background/70 dark:bg-background/80" />
-      {/* Radial lines starburst background */}
+      {/* Simple floating orbs background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Central radial lines */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          {[...Array(80)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent dark:via-portfolio-accent/30"
-              style={{
-                height: '150vh',
-                transformOrigin: 'center center',
-                transform: `rotate(${(i * 360) / 80}deg)`,
-              }}
-              initial={{ scaleY: 0, opacity: 0 }}
-              animate={{ scaleY: 1, opacity: 1 }}
-              transition={{
-                duration: 2,
-                delay: i * 0.01,
-                ease: "easeOut"
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Scattered geometric elements */}
-        {[...Array(25)].map((_, i) => {
-          const shapes = ['square', 'circle', 'triangle'];
-          const shape = shapes[i % 3];
-          const size = Math.random() * 8 + 4;
-          
-          return (
-            <motion.div
-              key={i}
-              className={`absolute opacity-60 ${
-                shape === 'circle' 
-                  ? 'rounded-full bg-portfolio-accent/40 dark:bg-portfolio-accent/60' 
-                  : shape === 'triangle'
-                  ? 'bg-primary/40 dark:bg-primary/60'
-                  : 'bg-secondary/40 dark:bg-secondary/60'
-              }`}
-              style={{
-                width: `${size}px`,
-                height: `${size}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                clipPath: shape === 'triangle' ? 'polygon(50% 0%, 0% 100%, 100% 100%)' : undefined,
-              }}
-              initial={{ 
-                opacity: 0, 
-                scale: 0,
-                rotate: 0 
-              }}
-              animate={{ 
-                opacity: [0, 0.6, 0.3, 0.6],
-                scale: [0, 1, 1.2, 1],
-                rotate: 360,
-                x: [0, Math.random() * 20 - 10],
-                y: [0, Math.random() * 20 - 10]
-              }}
-              transition={{
-                duration: Math.random() * 8 + 12,
-                repeat: Infinity,
-                delay: Math.random() * 5,
-                ease: "easeInOut"
-              }}
-            />
-          );
-        })}
-
-        {/* Central glow effect */}
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 3 }}
-        >
-          <div className="w-32 h-32 rounded-full bg-portfolio-accent/20 dark:bg-portfolio-accent/30 blur-3xl" />
-        </motion.div>
+        {/* Subtle floating elements */}
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full opacity-20 bg-gradient-to-br from-primary/30 to-portfolio-accent/30"
+            style={{
+              width: `${Math.random() * 100 + 50}px`,
+              height: `${Math.random() * 100 + 50}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            initial={{ 
+              opacity: 0,
+              scale: 0,
+              x: 0,
+              y: 0
+            }}
+            animate={{ 
+              opacity: [0, 0.2, 0.1, 0.2],
+              scale: [0, 1, 1.1, 1],
+              x: [0, Math.random() * 30 - 15],
+              y: [0, Math.random() * 30 - 15]
+            }}
+            transition={{
+              duration: Math.random() * 10 + 8,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
       </div>
 
       <div className="container mx-auto px-6 text-center relative z-10">
@@ -103,7 +53,7 @@ const Hero = () => {
           className="max-w-4xl mx-auto"
         >
           <motion.h1
-            className="text-6xl md:text-8xl font-bold text-white mb-6"
+            className="text-6xl md:text-8xl font-bold text-foreground mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -112,7 +62,7 @@ const Hero = () => {
           </motion.h1>
 
           <motion.p
-            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -121,7 +71,7 @@ const Hero = () => {
           </motion.p>
 
           <motion.p
-            className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto"
+            className="text-lg text-muted-foreground/80 mb-12 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -145,13 +95,13 @@ const Hero = () => {
             </Button>
             
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="icon" className="text-white hover:text-portfolio-accent">
+              <Button variant="ghost" size="icon" className="text-foreground hover:text-portfolio-accent">
                 <Github className="h-6 w-6" />
               </Button>
-              <Button variant="ghost" size="icon" className="text-white hover:text-portfolio-accent">
+              <Button variant="ghost" size="icon" className="text-foreground hover:text-portfolio-accent">
                 <Linkedin className="h-6 w-6" />
               </Button>
-              <Button variant="ghost" size="icon" className="text-white hover:text-portfolio-accent">
+              <Button variant="ghost" size="icon" className="text-foreground hover:text-portfolio-accent">
                 <Mail className="h-6 w-6" />
               </Button>
             </div>
@@ -164,7 +114,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             <ArrowDown 
-              className="h-6 w-6 text-white mx-auto cursor-pointer hover:text-portfolio-accent transition-colors"
+              className="h-6 w-6 text-foreground mx-auto cursor-pointer hover:text-portfolio-accent transition-colors"
               onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
             />
           </motion.div>

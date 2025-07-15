@@ -15,81 +15,84 @@ const Hero = () => {
     >
       {/* Theme-aware overlay */}
       <div className="absolute inset-0 bg-background/70 dark:bg-background/80" />
-      {/* Animated gradient mesh background */}
+      {/* Radial lines starburst background */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Primary gradient blob */}
+        {/* Central radial lines */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          {[...Array(80)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent dark:via-portfolio-accent/30"
+              style={{
+                height: '150vh',
+                transformOrigin: 'center center',
+                transform: `rotate(${(i * 360) / 80}deg)`,
+              }}
+              initial={{ scaleY: 0, opacity: 0 }}
+              animate={{ scaleY: 1, opacity: 1 }}
+              transition={{
+                duration: 2,
+                delay: i * 0.01,
+                ease: "easeOut"
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Scattered geometric elements */}
+        {[...Array(25)].map((_, i) => {
+          const shapes = ['square', 'circle', 'triangle'];
+          const shape = shapes[i % 3];
+          const size = Math.random() * 8 + 4;
+          
+          return (
+            <motion.div
+              key={i}
+              className={`absolute opacity-60 ${
+                shape === 'circle' 
+                  ? 'rounded-full bg-portfolio-accent/40 dark:bg-portfolio-accent/60' 
+                  : shape === 'triangle'
+                  ? 'bg-primary/40 dark:bg-primary/60'
+                  : 'bg-secondary/40 dark:bg-secondary/60'
+              }`}
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                clipPath: shape === 'triangle' ? 'polygon(50% 0%, 0% 100%, 100% 100%)' : undefined,
+              }}
+              initial={{ 
+                opacity: 0, 
+                scale: 0,
+                rotate: 0 
+              }}
+              animate={{ 
+                opacity: [0, 0.6, 0.3, 0.6],
+                scale: [0, 1, 1.2, 1],
+                rotate: 360,
+                x: [0, Math.random() * 20 - 10],
+                y: [0, Math.random() * 20 - 10]
+              }}
+              transition={{
+                duration: Math.random() * 8 + 12,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+                ease: "easeInOut"
+              }}
+            />
+          );
+        })}
+
+        {/* Central glow effect */}
         <motion.div
-          className="absolute w-96 h-96 rounded-full opacity-30 bg-gradient-to-br from-portfolio-accent via-primary to-portfolio-accent blur-3xl"
-          initial={{ x: "10%", y: "20%" }}
-          animate={{ 
-            x: ["10%", "60%", "10%"],
-            y: ["20%", "70%", "20%"],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        
-        {/* Secondary gradient blob */}
-        <motion.div
-          className="absolute w-80 h-80 rounded-full opacity-20 bg-gradient-to-br from-primary via-portfolio-accent to-secondary blur-2xl"
-          initial={{ x: "70%", y: "60%" }}
-          animate={{ 
-            x: ["70%", "20%", "70%"],
-            y: ["60%", "10%", "60%"],
-            scale: [1, 0.8, 1]
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
-        
-        {/* Tertiary gradient blob */}
-        <motion.div
-          className="absolute w-72 h-72 rounded-full opacity-25 bg-gradient-to-br from-secondary via-portfolio-accent to-primary blur-xl"
-          initial={{ x: "40%", y: "80%" }}
-          animate={{ 
-            x: ["40%", "80%", "40%"],
-            y: ["80%", "30%", "80%"],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 5
-          }}
-        />
-        
-        {/* Additional small floating elements */}
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-32 h-32 rounded-full opacity-10 bg-gradient-radial from-portfolio-accent to-transparent blur-sm"
-            initial={{
-              x: Math.random() * 100 + "%",
-              y: Math.random() * 100 + "%",
-            }}
-            animate={{
-              x: [null, (Math.random() * 100) + "%"],
-              y: [null, (Math.random() * 100) + "%"],
-              scale: [1, 1.5, 1],
-              opacity: [0.1, 0.2, 0.1]
-            }}
-            transition={{
-              duration: Math.random() * 15 + 15,
-              repeat: Infinity,
-              repeatType: 'reverse',
-              delay: Math.random() * 5
-            }}
-          />
-        ))}
+          className="absolute inset-0 flex items-center justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 3 }}
+        >
+          <div className="w-32 h-32 rounded-full bg-portfolio-accent/20 dark:bg-portfolio-accent/30 blur-3xl" />
+        </motion.div>
       </div>
 
       <div className="container mx-auto px-6 text-center relative z-10">

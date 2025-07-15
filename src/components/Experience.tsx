@@ -147,31 +147,49 @@ const Experience = () => {
               return (
                 <motion.div
                   key={event.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   className={`relative flex items-center mb-12 ${
                     index % 2 === 0 ? 'md:flex-row-reverse' : ''
                   }`}
                 >
                   {/* Timeline marker */}
-                  <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 top-1/2">
+                  <motion.div 
+                    className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 top-1/2"
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <div className={`w-4 h-4 rounded-full ${getStatusColor(event.status)} border-4 border-background`}></div>
-                  </div>
+                  </motion.div>
 
                   {/* Content */}
                   <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'} ml-16 md:ml-0`}>
                     <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      className="portfolio-card p-6"
+                      whileHover={{ 
+                        scale: 1.02,
+                        boxShadow: "0 20px 40px rgba(0,0,0,0.1)"
+                      }}
+                      transition={{ duration: 0.3 }}
+                      className="portfolio-card p-6 hover:border-portfolio-accent/50 transition-colors duration-300"
                     >
                       <div className="flex items-start mb-4">
-                        <div className="flex-shrink-0 w-12 h-12 bg-portfolio-accent/20 rounded-lg flex items-center justify-center mr-4">
+                        <motion.div 
+                          className="flex-shrink-0 w-12 h-12 bg-portfolio-accent/20 rounded-lg flex items-center justify-center mr-4"
+                          whileHover={{ rotate: 5 }}
+                          transition={{ duration: 0.2 }}
+                        >
                           <IconComponent className="h-6 w-6 text-portfolio-accent" />
-                        </div>
+                        </motion.div>
                         <div className="flex-1">
-                          <h3 className="text-xl font-bold text-foreground mb-1">{event.title}</h3>
+                          <motion.h3 
+                            className="text-xl font-bold text-foreground mb-1"
+                            whileHover={{ x: 5 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            {event.title}
+                          </motion.h3>
                           <p className="text-portfolio-accent font-semibold mb-2">{event.organization}</p>
                           <div className="flex items-center text-muted-foreground text-sm mb-3 space-x-4">
                             <div className="flex items-center">
@@ -186,28 +204,53 @@ const Experience = () => {
                         </div>
                       </div>
 
-                      <p className="text-muted-foreground mb-4 leading-relaxed">
+                      <motion.p 
+                        className="text-muted-foreground mb-4 leading-relaxed"
+                        initial={{ opacity: 0.8 }}
+                        whileHover={{ opacity: 1 }}
+                        transition={{ duration: 0.2 }}
+                      >
                         {event.description}
-                      </p>
+                      </motion.p>
 
                       {event.highlights && (
                         <div className="space-y-2">
                           <h4 className="font-semibold text-foreground text-sm mb-2">Key Highlights:</h4>
                           <ul className="space-y-1">
                             {event.highlights.map((highlight, idx) => (
-                              <li key={idx} className="flex items-start text-sm text-muted-foreground">
+                              <motion.li 
+                                key={idx} 
+                                className="flex items-start text-sm text-muted-foreground"
+                                initial={{ opacity: 0, x: -10 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.3, delay: idx * 0.1 }}
+                                viewport={{ once: true }}
+                              >
                                 <span className="w-1.5 h-1.5 bg-portfolio-accent rounded-full mr-3 mt-2 flex-shrink-0" />
                                 {highlight}
-                              </li>
+                              </motion.li>
                             ))}
                           </ul>
                         </div>
                       )}
 
                       {event.status === 'current' && (
-                        <div className="mt-4 inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-medium">
+                        <motion.div 
+                          className="mt-4 inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-medium"
+                          animate={{ 
+                            boxShadow: [
+                              "0 0 0 0 rgba(59, 130, 246, 0.4)",
+                              "0 0 0 10px rgba(59, 130, 246, 0)",
+                            ]
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        >
                           Currently Active
-                        </div>
+                        </motion.div>
                       )}
                     </motion.div>
                   </div>

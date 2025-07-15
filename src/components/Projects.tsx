@@ -146,29 +146,43 @@ const Projects = () => {
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group portfolio-card overflow-hidden"
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              className="group portfolio-card overflow-hidden hover:shadow-xl hover:shadow-portfolio-accent/10 transition-all duration-500"
             >
               <div className="relative overflow-hidden">
-                <img
+                <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-48 object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.6 }}
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center space-x-4"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                >
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button
-                        size="sm"
-                        variant="secondary"
-                        onClick={() => setSelectedProject(project)}
+                      <motion.div
+                        initial={{ y: 20, opacity: 0 }}
+                        whileHover={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.1 }}
                       >
-                        <Eye className="h-4 w-4 mr-2" />
-                        View Details
-                      </Button>
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          onClick={() => setSelectedProject(project)}
+                          className="backdrop-blur-sm bg-white/20 border-white/30 text-white hover:bg-white/30"
+                        >
+                          <Eye className="h-4 w-4 mr-2" />
+                          View Details
+                        </Button>
+                      </motion.div>
                     </DialogTrigger>
                     <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                       <DialogHeader>
@@ -222,7 +236,7 @@ const Projects = () => {
                       </div>
                     </DialogContent>
                   </Dialog>
-                </div>
+                </motion.div>
                 
                 <div className="absolute top-4 right-4">
                   <Badge 
@@ -240,16 +254,26 @@ const Projects = () => {
               </div>
 
               <div className="p-6">
-                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-portfolio-accent transition-colors">
+                <motion.h3 
+                  className="text-xl font-bold text-foreground mb-3 group-hover:text-portfolio-accent transition-colors duration-300"
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
                   {project.title}
-                </h3>
+                </motion.h3>
                 <p className="text-muted-foreground mb-4">{project.description}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.slice(0, 3).map((tag, idx) => (
-                    <Badge key={idx} variant="outline" className="text-xs">
-                      {tag}
-                    </Badge>
+                    <motion.div
+                      key={idx}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Badge variant="outline" className="text-xs hover:border-portfolio-accent hover:text-portfolio-accent transition-colors">
+                        {tag}
+                      </Badge>
+                    </motion.div>
                   ))}
                   {project.tags.length > 3 && (
                     <Badge variant="outline" className="text-xs">
@@ -260,24 +284,30 @@ const Projects = () => {
 
                 <div className="flex items-center justify-between">
                   <div className="flex space-x-2">
-                    <Button size="sm" variant="ghost" className="p-2">
-                      <Github className="h-4 w-4" />
-                    </Button>
-                    <Button size="sm" variant="ghost" className="p-2">
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
+                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                      <Button size="sm" variant="ghost" className="p-2 hover:bg-portfolio-accent/10 hover:text-portfolio-accent">
+                        <Github className="h-4 w-4" />
+                      </Button>
+                    </motion.div>
+                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                      <Button size="sm" variant="ghost" className="p-2 hover:bg-portfolio-accent/10 hover:text-portfolio-accent">
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                    </motion.div>
                   </div>
                   
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button 
-                        size="sm" 
-                        variant="link" 
-                        className="text-portfolio-accent"
-                        onClick={() => setSelectedProject(project)}
-                      >
-                        Learn More →
-                      </Button>
+                      <motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+                        <Button 
+                          size="sm" 
+                          variant="link" 
+                          className="text-portfolio-accent hover:text-portfolio-accent/80"
+                          onClick={() => setSelectedProject(project)}
+                        >
+                          Learn More →
+                        </Button>
+                      </motion.div>
                     </DialogTrigger>
                   </Dialog>
                 </div>

@@ -10,35 +10,60 @@ const Hero = () => {
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-muted/20"
     >
-      {/* Simple floating orbs background */}
+      {/* Shooting stars animation */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Subtle floating elements */}
-        {[...Array(12)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute rounded-full opacity-20 bg-gradient-to-br from-primary/30 to-portfolio-accent/30"
+            className="absolute w-1 h-1 bg-portfolio-accent rounded-full"
             style={{
-              width: `${Math.random() * 100 + 50}px`,
-              height: `${Math.random() * 100 + 50}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
             initial={{ 
-              opacity: 0,
               scale: 0,
-              x: 0,
-              y: 0
+              opacity: 0
             }}
-            animate={{ 
-              opacity: [0, 0.2, 0.1, 0.2],
-              scale: [0, 1, 1.1, 1],
-              x: [0, Math.random() * 30 - 15],
-              y: [0, Math.random() * 30 - 15]
+            animate={{
+              scale: [0, 1, 0],
+              opacity: [0, 1, 0],
+              x: [0, Math.random() * 200 - 100],
+              y: [0, Math.random() * 200 - 100],
             }}
             transition={{
-              duration: Math.random() * 10 + 8,
+              duration: Math.random() * 3 + 2,
               repeat: Infinity,
-              delay: Math.random() * 3,
+              delay: Math.random() * 5,
+              ease: "easeOut"
+            }}
+          />
+        ))}
+        
+        {/* Shooting star trails */}
+        {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={`trail-${i}`}
+            className="absolute h-px bg-gradient-to-r from-transparent via-portfolio-accent to-transparent"
+            style={{
+              width: `${Math.random() * 100 + 50}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              transform: `rotate(${Math.random() * 360}deg)`,
+            }}
+            initial={{ 
+              scaleX: 0,
+              opacity: 0
+            }}
+            animate={{
+              scaleX: [0, 1, 0],
+              opacity: [0, 0.8, 0],
+              x: [0, Math.random() * 300 - 150],
+              y: [0, Math.random() * 300 - 150],
+            }}
+            transition={{
+              duration: Math.random() * 4 + 3,
+              repeat: Infinity,
+              delay: Math.random() * 6,
               ease: "easeInOut"
             }}
           />

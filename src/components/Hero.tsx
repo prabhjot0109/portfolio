@@ -8,14 +8,13 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-cover bg-center bg-fixed"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${heroImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
+        backgroundImage: `url(${heroImage})`,
       }}
     >
+      {/* Theme-aware overlay */}
+      <div className="absolute inset-0 bg-background/70 dark:bg-background/80" />
       {/* Animated particles */}
       <div className="absolute inset-0">
         {[...Array(20)].map((_, i) => (

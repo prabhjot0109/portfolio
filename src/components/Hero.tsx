@@ -15,24 +15,78 @@ const Hero = () => {
     >
       {/* Theme-aware overlay */}
       <div className="absolute inset-0 bg-background/70 dark:bg-background/80" />
-      {/* Animated particles */}
-      <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
+      {/* Animated gradient mesh background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Primary gradient blob */}
+        <motion.div
+          className="absolute w-96 h-96 rounded-full opacity-30 bg-gradient-to-br from-portfolio-accent via-primary to-portfolio-accent blur-3xl"
+          initial={{ x: "10%", y: "20%" }}
+          animate={{ 
+            x: ["10%", "60%", "10%"],
+            y: ["20%", "70%", "20%"],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
+        {/* Secondary gradient blob */}
+        <motion.div
+          className="absolute w-80 h-80 rounded-full opacity-20 bg-gradient-to-br from-primary via-portfolio-accent to-secondary blur-2xl"
+          initial={{ x: "70%", y: "60%" }}
+          animate={{ 
+            x: ["70%", "20%", "70%"],
+            y: ["60%", "10%", "60%"],
+            scale: [1, 0.8, 1]
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+        
+        {/* Tertiary gradient blob */}
+        <motion.div
+          className="absolute w-72 h-72 rounded-full opacity-25 bg-gradient-to-br from-secondary via-portfolio-accent to-primary blur-xl"
+          initial={{ x: "40%", y: "80%" }}
+          animate={{ 
+            x: ["40%", "80%", "40%"],
+            y: ["80%", "30%", "80%"],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 5
+          }}
+        />
+        
+        {/* Additional small floating elements */}
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 rounded-full opacity-60 bg-foreground/30 dark:bg-portfolio-accent"
+            className="absolute w-32 h-32 rounded-full opacity-10 bg-gradient-radial from-portfolio-accent to-transparent blur-sm"
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * 100 + "%",
+              y: Math.random() * 100 + "%",
             }}
             animate={{
-              y: [null, Math.random() * window.innerHeight],
-              x: [null, Math.random() * window.innerWidth],
+              x: [null, (Math.random() * 100) + "%"],
+              y: [null, (Math.random() * 100) + "%"],
+              scale: [1, 1.5, 1],
+              opacity: [0.1, 0.2, 0.1]
             }}
             transition={{
-              duration: Math.random() * 10 + 10,
+              duration: Math.random() * 15 + 15,
               repeat: Infinity,
               repeatType: 'reverse',
+              delay: Math.random() * 5
             }}
           />
         ))}

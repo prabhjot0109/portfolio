@@ -8,37 +8,37 @@ const About = () => {
     {
       icon: Award,
       title: "SIH 2024 Winner",
-      description: "🥇 Smart India Hackathon Winner - AI Sign Language Translator",
+      description: "Smart India Hackathon Winner - AI Sign Language Translator",
       details: "MoE's IC & AICTE | 2024"
     },
     {
       icon: Target,
       title: "IEEE Tech4Good Grant",
-      description: "💰 $4000 IEEE Tech4Good Grant Recipient for Krishi Platform",
+      description: "$4000 IEEE Tech4Good Grant Recipient for Krishi Platform",
       details: "IEEE HTB | 2024"
     },
     {
       icon: Zap,
       title: "HackWave Winner",
-      description: "🏆 HackWave Hackathon Winner - Urban Transport ML Model",
+      description: "HackWave Hackathon Winner - Urban Transport ML Model",
       details: "CDGI, Indore | 2024"
     },
     {
       icon: BookOpen,
       title: "Prayatna Runner-up",
-      description: "🥉 3rd Runner-up for Med.AI Healthcare Platform",
+      description: "3rd Runner-up for Med.AI Healthcare Platform",
       details: "AITR, Indore | 2024"
     },
     {
       icon: Award,
       title: "Codespire Runner-up",
-      description: "🥈 Runner-up for Innovative Software Solution",
+      description: "Runner-up for Innovative Software Solution",
       details: "AITR, Indore | 2023"
     },
     {
       icon: Target,
       title: "Research & Innovation",
-      description: "📖 AI in Healthcare Research & Patent Exploration",
+      description: "AI in Healthcare Research & Patent Exploration",
       details: "In Progress | 2024"
     }
   ];
@@ -61,50 +61,36 @@ const About = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-20 items-start lg:items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="flex justify-center order-2 lg:order-1"
           >
-            <div className="relative">
+            <div className="relative w-full max-w-lg">
               <motion.div 
-                className="w-80 h-80 mx-auto rounded-2xl overflow-hidden portfolio-glow"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.5 }}
+                className="w-full h-[500px] mx-auto rounded-3xl overflow-hidden shadow-2xl bg-card border border-border"
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: "0 25px 50px rgba(0,0,0,0.15)"
+                }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  background: 'linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--card)) 100%)'
+                }}
               >
-                <img
-                  src={profileImage}
-                  alt="Prabhjot"
-                  className="w-full h-full object-cover"
-                />
+                <div className="w-full h-full relative overflow-hidden">
+                  <img
+                    src={profileImage}
+                    alt="Prabhjot Singh Assi - Software Developer & AI Engineer"
+                    className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
+                  />
+                  {/* Professional overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                </div>
               </motion.div>
-              <motion.div 
-                className="absolute -top-4 -right-4 w-24 h-24 bg-portfolio-accent rounded-full"
-                animate={{ 
-                  y: [0, -10, 0],
-                  rotate: [0, 180, 360]
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.div 
-                className="absolute -bottom-4 -left-4 w-16 h-16 bg-portfolio-accent/60 rounded-full"
-                animate={{ 
-                  y: [0, 10, 0],
-                  x: [0, 5, 0]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1
-                }}
-              />
             </div>
           </motion.div>
 
@@ -113,7 +99,7 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-6 order-1 lg:order-2"
           >
             <motion.h3 
               className="text-3xl font-bold text-foreground mb-6"
@@ -144,7 +130,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
             >
-              🏆 <strong>Achievements:</strong> SIH'24 Winner, HackWave Hackathon Winner, and IEEE Tech4Good Grant Recipient.
+              <strong>Achievements:</strong> SIH'24 Winner, HackWave Hackathon Winner, and IEEE Tech4Good Grant Recipient.
               From developing an Indian Sign Language translator to creating smart agricultural solutions, 
               I believe in technology's power to bridge gaps and create inclusive experiences.
             </motion.p>

@@ -323,33 +323,6 @@ const Experience = () => {
             })}
           </div>
         </div>
-
-        {/* Statistics */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-20 grid md:grid-cols-2 lg:grid-cols-5 gap-6 text-center"
-        >
-          {[
-            { number: "3+", label: "Years of Experience", icon: "📅" },
-            { number: "8+", label: "Projects Completed", icon: "💻" },
-            { number: "5", label: "Hackathon Wins", icon: "🏆" },
-            { number: "$4000", label: "Grant Received", icon: "💰" },
-            { number: "10k+", label: "People Impacted", icon: "🌍" }
-          ].map((stat, index) => (
-            <motion.div 
-              key={index} 
-              className="portfolio-card p-6 hover:scale-105 transition-transform duration-300"
-              whileHover={{ y: -5 }}
-            >
-              <div className="text-2xl mb-2">{stat.icon}</div>
-              <div className="text-3xl font-bold text-portfolio-accent mb-2">{stat.number}</div>
-              <div className="text-muted-foreground text-sm">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

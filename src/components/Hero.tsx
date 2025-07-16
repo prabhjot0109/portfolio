@@ -10,62 +10,145 @@ const Hero = () => {
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-muted/20"
     >
-      {/* Shooting Stars Animation */}
+      {/* Enhanced Shooting Stars & Cosmic Background */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
+        {/* Shooting Stars */}
+        {[...Array(8)].map((_, i) => {
+          const startX = Math.random() * 120 + 80; // Start from right side
+          const startY = Math.random() * 60 + 10; // Top portion
+          const endX = Math.random() * 40 - 20; // End towards left
+          const endY = Math.random() * 40 + 60; // End towards bottom
+          const duration = Math.random() * 4 + 6; // 6-10 seconds
+          const delay = Math.random() * 12; // Random delay up to 12 seconds
+          
+          return (
+            <motion.div
+              key={`star-${i}`}
+              className="absolute pointer-events-none"
+              style={{
+                left: `${startX}%`,
+                top: `${startY}%`,
+              }}
+              initial={{
+                opacity: 0,
+                scale: 0,
+                x: 0,
+                y: 0,
+              }}
+              animate={{
+                opacity: [0, 0, 1, 1, 1, 0],
+                scale: [0, 0, 1, 1.2, 1, 0],
+                x: [`0%`, `0%`, `${(endX - startX) * 2}vw`, `${(endX - startX) * 4}vw`],
+                y: [`0%`, `0%`, `${(endY - startY) * 2}vh`, `${(endY - startY) * 4}vh`],
+              }}
+              transition={{
+                duration: duration,
+                repeat: Infinity,
+                delay: delay,
+                ease: [0.23, 1, 0.32, 1], // Custom easing for realistic motion
+                times: [0, 0.1, 0.3, 0.7, 0.9, 1]
+              }}
+            >
+              <div className="relative">
+                {/* Star core */}
+                <motion.div 
+                  className="w-1.5 h-1.5 bg-white rounded-full shadow-lg"
+                  animate={{
+                    boxShadow: [
+                      "0 0 6px rgba(255,255,255,0.8)",
+                      "0 0 12px rgba(255,255,255,1)",
+                      "0 0 6px rgba(255,255,255,0.8)"
+                    ]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                {/* Dynamic tail */}
+                <motion.div
+                  className="absolute top-1/2 left-1/2 h-0.5 bg-gradient-to-r from-white via-white/60 to-transparent origin-left transform -translate-y-1/2"
+                  style={{ 
+                    width: '60px',
+                    transform: 'translateY(-50%) rotate(25deg)'
+                  }}
+                  animate={{
+                    scaleX: [0, 0, 1, 1.2, 0.8, 0],
+                    opacity: [0, 0, 0.8, 1, 0.6, 0],
+                  }}
+                  transition={{
+                    duration: duration,
+                    repeat: Infinity,
+                    delay: delay,
+                    ease: [0.23, 1, 0.32, 1],
+                    times: [0, 0.1, 0.3, 0.5, 0.8, 1]
+                  }}
+                />
+              </div>
+            </motion.div>
+          );
+        })}
+
+        {/* Floating Particles */}
+        {[...Array(20)].map((_, i) => (
           <motion.div
-            key={`star-${i}`}
-            className="absolute"
+            key={`particle-${i}`}
+            className="absolute w-1 h-1 bg-accent/30 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
-            initial={{
-              opacity: 0,
-              scale: 0,
-            }}
             animate={{
-              opacity: [0, 1, 1, 0],
-              scale: [0, 1, 1, 0],
-              x: [0, -200, -400],
-              y: [0, 100, 200],
+              y: [-20, 20],
+              x: [-10, 10],
+              opacity: [0.3, 0.7, 0.3],
+              scale: [0.5, 1, 0.5],
             }}
             transition={{
-              duration: 3,
+              duration: Math.random() * 6 + 8,
               repeat: Infinity,
-              delay: Math.random() * 8,
-              ease: "easeOut",
+              delay: Math.random() * 5,
+              ease: "easeInOut",
             }}
-          >
-            {/* Star body */}
-            <div className="relative">
-              <div className="w-1 h-1 bg-accent rounded-full" />
-              {/* Tail */}
-              <motion.div
-                className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-accent to-transparent origin-left"
-                style={{ width: '30px' }}
-                animate={{
-                  scaleX: [0, 1, 0],
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: Math.random() * 8,
-                  ease: "easeOut",
-                }}
-              />
-            </div>
-          </motion.div>
+          />
         ))}
 
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
+        {/* Gradient Orbs */}
+        <motion.div
+          className="absolute top-20 left-20 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-20 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Enhanced grid pattern */}
+        <div className="absolute inset-0 opacity-[0.015]" style={{
           backgroundImage: `
+            radial-gradient(circle at 25% 25%, hsl(var(--foreground)) 1px, transparent 1px),
+            radial-gradient(circle at 75% 75%, hsl(var(--foreground)) 1px, transparent 1px),
             linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
             linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)
           `,
-          backgroundSize: '80px 80px'
+          backgroundSize: '100px 100px, 100px 100px, 50px 50px, 50px 50px'
         }} />
       </div>
 
@@ -82,8 +165,11 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Hi There! 👋<br />
-            I'm <span className="text-accent">Prabhjot Singh Assi!</span>
+            <span className="text-muted-foreground text-lg sm:text-xl md:text-2xl font-normal block mb-2">Hello, I'm</span>
+            <span className="text-accent">Prabhjot Singh Assi</span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-foreground mt-2">
+              Software Developer & AI Engineer
+            </span>
           </motion.h1>
 
           <motion.p
@@ -92,7 +178,8 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            👨‍💻 Developer by work, 🎨 Designer by heart
+            Passionate about creating innovative technology solutions that bridge the gap between 
+            artificial intelligence and real-world applications.
           </motion.p>
 
           <motion.p
@@ -101,8 +188,8 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            A computer science & engineering student and passionate software developer from India, 
-            focused on creating innovative tech solutions.
+            Computer Science & Engineering student specializing in AI/ML, with expertise in 
+            full-stack development, mobile applications, and cutting-edge AI technologies.
           </motion.p>
 
           <motion.div
@@ -111,14 +198,14 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <div className="bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full">
-              🏆 SIH'24 Winner
+            <div className="bg-card border border-green-200 dark:border-green-800 text-green-700 dark:text-green-300 px-3 sm:px-4 py-2 rounded-lg font-medium">
+              SIH 2024 Winner
             </div>
-            <div className="bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full">
-              💰 IEEE Tech4Good Grant
+            <div className="bg-card border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 px-3 sm:px-4 py-2 rounded-lg font-medium">
+              IEEE Tech4Good Grant
             </div>
-            <div className="bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full">
-              🥈 HackWave Winner
+            <div className="bg-card border border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300 px-3 sm:px-4 py-2 rounded-lg font-medium">
+              Multiple Hackathon Winner
             </div>
           </motion.div>
 

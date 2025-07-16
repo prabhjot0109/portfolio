@@ -43,8 +43,8 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "prabhjot@example.com",
-      link: "mailto:prabhjot@example.com"
+      value: "prabhjotassi16@gmail.com",
+      link: "mailto:prabhjotassi16@gmail.com"
     },
     {
       icon: Phone,
@@ -55,7 +55,7 @@ const Contact = () => {
     {
       icon: MapPin,
       label: "Location",
-      value: "Punjab, India",
+      value: "India 🇮🇳",
       link: "#"
     }
   ];
@@ -64,19 +64,19 @@ const Contact = () => {
     {
       icon: Github,
       label: "GitHub",
-      url: "https://github.com/prabhjot",
+      url: "https://github.com/prabhjot0109",
       color: "hover:text-gray-600"
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      url: "https://linkedin.com/in/prabhjot",
+      url: "https://linkedin.com/in/prabhjotsinghassi",
       color: "hover:text-blue-600"
     },
     {
       icon: Mail,
       label: "Email",
-      url: "mailto:prabhjot@example.com",
+      url: "mailto:prabhjotassi16@gmail.com",
       color: "hover:text-red-600"
     }
   ];
@@ -91,29 +91,30 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Let's Connect
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 px-4">
+            🌐 Connect & Collaborate
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Ready to collaborate on innovative projects or discuss opportunities? 
-            I'd love to hear from you!
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+            💬 Ask me about AI, Winning SIH and hackathons, or impactful projects.<br />
+            🤝 I'm looking to collaborate on AI/ML and Flutter projects.<br />
+            📫 Ready to discuss innovative solutions? Let's connect!
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 max-w-6xl mx-auto px-4">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 md:space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-6">
+              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">
                 Get In Touch
               </h3>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+              <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6 md:mb-8">
                 I'm always interested in discussing new projects, creative ideas, 
                 or opportunities to be part of your vision. Whether you're a 
                 fellow developer, a startup looking for technical expertise, or 
@@ -122,7 +123,7 @@ const Contact = () => {
             </div>
 
             {/* Contact Details */}
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {contactInfo.map((item, index) => (
                 <motion.a
                   key={index}
@@ -131,25 +132,25 @@ const Contact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="flex items-center space-x-4 p-4 portfolio-card hover:scale-105 transition-transform duration-300 group"
+                  className="flex items-center space-x-3 md:space-x-4 p-3 md:p-4 portfolio-card hover:scale-105 transition-transform duration-300 group"
                 >
-                  <div className="w-12 h-12 bg-portfolio-accent/20 rounded-lg flex items-center justify-center group-hover:bg-portfolio-accent/30 transition-colors">
-                    <item.icon className="h-6 w-6 text-portfolio-accent" />
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-accent/20 rounded-lg flex items-center justify-center group-hover:bg-accent/30 transition-colors">
+                    <item.icon className="h-5 w-5 md:h-6 md:w-6 text-accent-foreground" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">{item.label}</p>
-                    <p className="text-foreground font-semibold">{item.value}</p>
+                    <p className="text-xs md:text-sm text-muted-foreground">{item.label}</p>
+                    <p className="text-foreground font-semibold text-sm md:text-base">{item.value}</p>
                   </div>
                 </motion.a>
               ))}
             </div>
 
             {/* Social Links */}
-            <div className="pt-8">
-              <h4 className="text-lg font-semibold text-foreground mb-4">
+            <div className="pt-6 md:pt-8">
+              <h4 className="text-base md:text-lg font-semibold text-foreground mb-3 md:mb-4">
                 Follow Me
               </h4>
-              <div className="flex space-x-4">
+              <div className="flex space-x-3 md:space-x-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={index}
@@ -160,9 +161,9 @@ const Contact = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className={`w-12 h-12 bg-portfolio-accent/20 rounded-lg flex items-center justify-center transition-colors duration-300 ${social.color}`}
+                    className={`w-10 h-10 md:w-12 md:h-12 bg-accent/20 rounded-lg flex items-center justify-center transition-colors duration-300 hover:bg-accent/30 text-foreground`}
                   >
-                    <social.icon className="h-6 w-6" />
+                    <social.icon className="h-5 w-5 md:h-6 md:w-6" />
                   </motion.a>
                 ))}
               </div>
@@ -174,12 +175,12 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="portfolio-card p-6 bg-portfolio-accent/10 border-l-4 border-portfolio-accent"
+              className="portfolio-card p-4 md:p-6 bg-accent/10 border-l-4 border-accent"
             >
-              <p className="text-foreground italic">
+              <p className="text-foreground italic text-sm md:text-base">
                 "Technology is best when it brings people together and solves real problems."
               </p>
-              <p className="text-muted-foreground text-sm mt-2">- My Development Philosophy</p>
+              <p className="text-muted-foreground text-xs md:text-sm mt-2">- My Development Philosophy</p>
             </motion.div>
           </motion.div>
 
@@ -189,14 +190,14 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="portfolio-card p-8"
+            className="portfolio-card p-4 md:p-6 lg:p-8"
           >
-            <h3 className="text-2xl font-bold text-foreground mb-6">
+            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">
               Send Me a Message
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+              <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Name *</Label>
                   <Input

@@ -12,9 +12,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/prabhjot', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/prabhjot', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:prabhjot@example.com', label: 'Email' }
+    { icon: Github, href: 'https://github.com/prabhjot0109', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://linkedin.com/in/prabhjotsinghassi', label: 'LinkedIn' },
+    { icon: Mail, href: 'mailto:prabhjotassi16@example.com', label: 'Email' }
   ];
 
   return (
@@ -65,9 +65,9 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-semibold text-foreground">Get In Touch</h4>
             <div className="space-y-2 text-muted-foreground">
-              <p>📧 prabhjot@example.com</p>
-              <p>📱 +91 98765 43210</p>
-              <p>📍 Punjab, India</p>
+              <p>📧 prabhjotassi16@example.com</p>
+              <p>📱 +91-9770082399</p>
+              <p>📍 Indore, India</p>
             </div>
             <div className="portfolio-card p-4">
               <p className="text-sm text-muted-foreground">

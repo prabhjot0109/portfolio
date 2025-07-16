@@ -7,23 +7,39 @@ const About = () => {
   const achievements = [
     {
       icon: Award,
-      title: "Smart India Hackathon 2024",
-      description: "Winner - Developed innovative Indian Sign Language translator"
-    },
-    {
-      icon: Zap,
-      title: "Hackwave 2024",
-      description: "Runner-up - Created urban transport optimization solution"
+      title: "SIH 2024 Winner",
+      description: "🥇 Smart India Hackathon Winner - AI Sign Language Translator",
+      details: "MoE's IC & AICTE | 2024"
     },
     {
       icon: Target,
-      title: "IEEE SIGHT Grant",
-      description: "Recipient of prestigious engineering grant (Dec 2024)"
+      title: "IEEE Tech4Good Grant",
+      description: "💰 $4000 IEEE Tech4Good Grant Recipient for Krishi Platform",
+      details: "IEEE HTB | 2024"
+    },
+    {
+      icon: Zap,
+      title: "HackWave Winner",
+      description: "🏆 HackWave Hackathon Winner - Urban Transport ML Model",
+      details: "CDGI, Indore | 2024"
     },
     {
       icon: BookOpen,
-      title: "Edunet Foundation",
-      description: "Virtual Internship in AI/ML (Apr-May 2025)"
+      title: "Prayatna Runner-up",
+      description: "🥉 3rd Runner-up for Med.AI Healthcare Platform",
+      details: "AITR, Indore | 2024"
+    },
+    {
+      icon: Award,
+      title: "Codespire Runner-up",
+      description: "🥈 Runner-up for Innovative Software Solution",
+      details: "AITR, Indore | 2023"
+    },
+    {
+      icon: Target,
+      title: "Research & Innovation",
+      description: "📖 AI in Healthcare Research & Patent Exploration",
+      details: "In Progress | 2024"
     }
   ];
 
@@ -116,9 +132,9 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              I'm a third-year B.Tech student specializing in Computer Science & Engineering 
-              with a focus on Artificial Intelligence and Machine Learning. My journey in tech 
-              is driven by a passion for solving real-world problems through innovative solutions.
+              🔭 I'm currently working on Med.ai, an AI-powered healthcare webapp.
+              <br />🌱 I'm currently learning Advanced Machine Learning and Deep Learning.
+              <br />👯 I'm looking to collaborate on AI/ML and Flutter projects.
             </motion.p>
             
             <motion.p 
@@ -128,10 +144,9 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
             >
-              From developing an Indian Sign Language translator to creating smart agricultural 
-              solutions, I believe in technology's power to bridge gaps and create inclusive 
-              experiences. My work spans machine learning, computer vision, full-stack development, 
-              and signal processing.
+              🏆 <strong>Achievements:</strong> SIH'24 Winner, HackWave Hackathon Winner, and IEEE Tech4Good Grant Recipient.
+              From developing an Indian Sign Language translator to creating smart agricultural solutions, 
+              I believe in technology's power to bridge gaps and create inclusive experiences.
             </motion.p>
             
             <motion.p 
@@ -141,11 +156,12 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              When I'm not coding, you'll find me participating in hackathons, exploring new 
-              technologies, or working on projects that can make a meaningful impact in people's lives.
+              💬 Ask me about AI, Winning SIH and hackathons, or impactful projects.
+              📫 How to reach me: <a href="mailto:prabhjotassi16@gmail.com" className="text-portfolio-accent hover:underline">prabhjotassi16@gmail.com</a>
+              <br />⚡ Fun fact: What did the spider do on the computer? Made a website! 🕷️💻
             </motion.p>
 
-            <div className="grid md:grid-cols-2 gap-4 mt-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
               {achievements.map((achievement, index) => (
                 <motion.div
                   key={index}
@@ -166,7 +182,8 @@ const About = () => {
                     <achievement.icon className="h-8 w-8 text-portfolio-accent mb-3" />
                   </motion.div>
                   <h4 className="font-semibold text-foreground mb-2">{achievement.title}</h4>
-                  <p className="text-sm text-muted-foreground">{achievement.description}</p>
+                  <p className="text-sm text-muted-foreground mb-2">{achievement.description}</p>
+                  <p className="text-xs text-muted-foreground/70">{achievement.details}</p>
                 </motion.div>
               ))}
             </div>

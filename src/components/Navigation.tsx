@@ -20,6 +20,7 @@ const Navigation = () => {
     { href: '#home', label: 'Home' },
     { href: '#about', label: 'About' },
     { href: '#skills', label: 'Skills' },
+    { href: '#achievements', label: 'Achievements' },
     { href: '#projects', label: 'Projects' },
     { href: '#experience', label: 'Experience' },
     { href: '#contact', label: 'Contact' },
@@ -36,7 +37,7 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <a href="#home" className="text-2xl font-bold text-portfolio-dark">
-            Prabhjot
+            Portfolio
           </a>
 
           {/* Desktop Navigation */}

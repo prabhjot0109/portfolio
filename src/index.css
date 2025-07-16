@@ -9,118 +9,113 @@ All colors MUST be HSL.
 */
 
 @layer base {
+  /* Custom Portfolio Colors - Black & White Theme */
   :root {
     /* Portfolio Color Palette */
-    --background: 0 0% 98%;
-    --foreground: 0 0% 12%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 12%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 12%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 0 0% 12%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 12%;
+    --secondary-foreground: 0 0% 0%;
 
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
-    --accent: 35 15% 86%;
-    --accent-foreground: 0 0% 12%;
+    --accent: 0 0% 0%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 0 0% 12%;
+    --ring: 0 0% 0%;
 
     --radius: 0.75rem;
 
     /* Portfolio specific colors */
-    --portfolio-dark: 0 0% 12%;
-    --portfolio-accent: 35 15% 86%;
-    --portfolio-glow: 35 15% 86%;
+    --portfolio-dark: 0 0% 0%;
+    --portfolio-accent: 0 0% 0%;
+    --portfolio-glow: 0 0% 20%;
     
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--background)), hsl(var(--accent)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--background)), hsl(var(--muted)));
     --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted)));
-    --gradient-accent: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--portfolio-glow)));
+    --gradient-accent: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--foreground)));
     
     /* Shadows */
-    --shadow-card: 0 4px 6px -1px hsl(var(--portfolio-dark) / 0.1);
-    --shadow-hover: 0 10px 25px -3px hsl(var(--portfolio-dark) / 0.1);
-    --shadow-glow: 0 0 20px hsl(var(--portfolio-glow) / 0.3);
+    --shadow-card: 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-hover: 0 10px 25px -3px hsl(0 0% 0% / 0.1);
+    --shadow-glow: 0 0 20px hsl(0 0% 0% / 0.1);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
     /* Dark Mode Portfolio Colors */
-    --background: 0 0% 12%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 14%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 14%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 12%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 16%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 16%;
+    --muted: 0 0% 10%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 35 15% 86%;
-    --accent-foreground: 0 0% 12%;
+    --accent: 0 0% 100%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 35 15% 86%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 100%;
     
     /* Dark mode specific */
-    --portfolio-dark: 0 0% 98%;
-    --portfolio-accent: 35 15% 86%;
-    --portfolio-glow: 35 15% 86%;
+    --portfolio-dark: 0 0% 100%;
+    --portfolio-accent: 0 0% 100%;
+    --portfolio-glow: 0 0% 80%;
     
     /* Dark gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--background)), hsl(0 0% 16%));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--background)), hsl(0 0% 5%));
     --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted)));
-    --gradient-accent: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--portfolio-glow)));
+    --gradient-accent: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--foreground)));
     
     /* Dark shadows */
     --shadow-card: 0 4px 6px -1px hsl(0 0% 0% / 0.3);
     --shadow-hover: 0 10px 25px -3px hsl(0 0% 0% / 0.3);
-    --shadow-glow: 0 0 20px hsl(var(--portfolio-glow) / 0.4);
+    --shadow-glow: 0 0 20px hsl(0 0% 100% / 0.1);
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -145,6 +140,38 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
   }
+
+  /* Custom Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, hsl(var(--portfolio-accent)), hsl(var(--portfolio-glow)));
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, hsl(var(--portfolio-glow)), hsl(var(--portfolio-accent)));
+    box-shadow: 0 0 10px hsl(var(--portfolio-accent) / 0.5);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: hsl(var(--muted));
+  }
+
+  /* Firefox Scrollbar */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--portfolio-accent)) hsl(var(--muted));
+  }
 }
 
 @layer components {
@@ -163,6 +190,10 @@ All colors MUST be HSL.
   
   .animate-fade-in {
     animation: fade-in 1s ease-out forwards;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
   
   /* Interactive elements */
@@ -191,6 +222,102 @@ All colors MUST be HSL.
   
   .portfolio-glow {
     box-shadow: var(--shadow-glow);
+  }
+
+  /* Enhanced scrollbar for dialog content */
+  .dialog-scrollable {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--portfolio-accent)) hsl(var(--muted));
+  }
+
+  .dialog-scrollable::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .dialog-scrollable::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 3px;
+  }
+
+  .dialog-scrollable::-webkit-scrollbar-thumb {
+    background: hsl(var(--portfolio-accent));
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+  }
+
+  .dialog-scrollable::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--portfolio-glow));
+  }
+
+  /* Button styling utilities */
+  .btn-primary {
+    @apply bg-foreground text-background hover:bg-foreground/90 transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border-2 border-foreground text-foreground hover:bg-foreground hover:text-background transition-all duration-300;
+  }
+
+  .btn-icon {
+    @apply p-2 rounded-lg bg-card border border-border text-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-300;
+  }
+
+  /* Icon color utilities */
+  .icon-primary {
+    @apply text-foreground;
+  }
+
+  .icon-secondary {
+    @apply text-muted-foreground;
+  }
+
+  .icon-accent {
+    @apply text-accent-foreground;
+  }
+
+  .dialog-scrollable::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, hsl(var(--portfolio-accent)), hsl(var(--portfolio-glow)));
+    border-radius: 3px;
+  }
+
+  .dialog-scrollable::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, hsl(var(--portfolio-glow)), hsl(var(--portfolio-accent)));
+  }
+
+  /* Gradient text effect */
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--portfolio-accent)), hsl(var(--portfolio-glow)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass morphism effect */
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Animated border */
+  .animated-border {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(var(--portfolio-accent)), transparent);
+    transition: left 0.5s;
+  }
+
+  .animated-border:hover::before {
+    left: 100%;
   }
 }
 

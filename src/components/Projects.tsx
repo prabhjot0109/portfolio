@@ -14,108 +14,160 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "Indian Sign Language Translator",
-      description: "AI-powered solution for converting text to sign language and vice versa, making communication more accessible.",
+      title: "🔥 Signify - AI Sign Language Translator",
+      description: "🏆 SIH 2024 Winner | Revolutionary AI-driven Indian Sign Language translation system bridging communication gaps.",
       image: islImage,
-      tags: ["Python", "TensorFlow", "Computer Vision", "NLP", "Flask"],
-      longDescription: "Developed a comprehensive solution with separate Text-to-Sign and Sign-to-Text pages. Utilizes deep learning models for accurate gesture recognition and translation. Won Smart India Hackathon 2024 for its innovative approach to accessibility.",
+      tags: ["Flutter", "Python", "MediaPipe", "Computer Vision", "ML"],
+      longDescription: "Revolutionary AI-driven Indian Sign Language translation system that bridges communication gaps for the hearing-impaired community. Won Smart India Hackathon 2024 for Problem Statement 1716.",
       features: [
-        "Real-time gesture recognition",
-        "Text-to-sign animation generation",
-        "Multi-language support",
-        "Mobile-responsive interface"
+        "Real-time gesture recognition of 40+ ISL gestures",
+        "Multi-modal output: Text and speech conversion", 
+        "Cross-platform Flutter application",
+        "MediaPipe integration for precise hand tracking",
+        "National recognition as SIH 2024 winning solution"
       ],
-      achievements: "🏆 Smart India Hackathon 2024 Winner",
+      achievements: "🏆 Smart India Hackathon 2024 Winner | National Media Coverage",
+      impact: "40+ ISL Gestures Recognition",
       demoUrl: "#",
       githubUrl: "#",
       status: "Completed"
     },
     {
       id: 2,
-      title: "Harvesting Hope",
-      description: "Smart agriculture app analyzing soil conditions and providing actionable insights for farmers.",
+      title: "🏥 Med.AI - Healthcare Intelligence System",
+      description: "🥉 Prayatna 3rd Runner-up | AI-powered medical diagnostic assistant enhancing healthcare decision-making.",
       image: harvestImage,
-      tags: ["Flutter", "IoT", "Machine Learning", "Firebase", "Dart"],
-      longDescription: "A comprehensive soil analysis application that helps farmers make data-driven decisions. Integrates with IoT sensors to collect real-time soil data and provides personalized recommendations.",
+      tags: ["PyTorch", "Scikit-learn", "Computer Vision", "Medical AI", "X-Ray Analysis"],
+      longDescription: "AI-powered medical diagnostic assistant that enhances healthcare decision-making through advanced analytics. Secured 3rd Runner-up position at Prayatna Hackathon.",
       features: [
-        "Real-time soil monitoring",
-        "Crop recommendation system",
-        "Weather integration",
-        "Farmer community platform"
+        "Intelligent symptom analysis with data-driven insights",
+        "X-Ray image recognition with 15% accuracy improvement",
+        "Medical expert assistance for diagnostic support",
+        "Deep learning models for pattern recognition",
+        "Scalable architecture for clinical deployment"
       ],
-      achievements: "🌱 Impact: 500+ farmers reached",
+      achievements: "🥉 Prayatna Hackathon 3rd Runner-up | 15% Accuracy Improvement",
+      impact: "+15% Accuracy Improvement",
       demoUrl: "#",
       githubUrl: "#",
-      status: "In Development"
+      status: "Live"
     },
     {
       id: 3,
-      title: "Solar Tracker Control System",
-      description: "PID-controlled solar tracking system for optimizing energy capture efficiency.",
-      image: solarImage,
-      tags: ["MATLAB", "Simulink", "Control Systems", "IoT", "C++"],
-      longDescription: "Designed and simulated a sophisticated solar tracking system using PID control algorithms. The system automatically adjusts solar panel orientation to maximize energy capture throughout the day.",
+      title: "🌾 Krishi - Smart Agriculture Platform",
+      description: "💰 $4000 IEEE Tech4Good Grant | IoT-enabled agricultural intelligence system empowering farmers.",
+      image: harvestImage,
+      tags: ["Flutter", "Arduino", "IoT", "OpenWeather API", "Gemini AI"],
+      longDescription: "IoT-enabled agricultural intelligence system empowering farmers with data-driven crop management. Awarded $4000 IEEE Tech4Good Grant for impactful technology.",
       features: [
-        "Dual-axis solar tracking",
-        "PID controller optimization",
-        "Weather-adaptive positioning",
-        "Energy efficiency monitoring"
+        "Real-time soil analysis with IoT sensor integration",
+        "Weather-based recommendations via OpenWeather API", 
+        "AI-powered insights using Gemini API",
+        "20% crop yield improvement in field trials",
+        "10+ farmers impacted in Indore region"
       ],
-      achievements: "⚡ 35% efficiency improvement",
+      achievements: "💰 $4000 IEEE Tech4Good Grant Recipient",
+      impact: "10+ Farmers Impacted | 20% Yield Improvement",
       demoUrl: "#",
       githubUrl: "#",
-      status: "Prototype"
+      status: "Live"
     },
     {
       id: 4,
-      title: "PARAS - Urban Transport Solution",
-      description: "Smart transportation app optimizing urban mobility and reducing congestion.",
+      title: "🚨 Kavach - Emergency SOS System",
+      description: "🛡️ Safety Innovation | Intelligent emergency response application with advanced speech recognition.",
       image: parasImage,
-      tags: ["React", "Node.js", "MongoDB", "Google Maps API", "Socket.io"],
-      longDescription: "A comprehensive urban transport optimization solution that provides real-time route planning, traffic management, and public transport integration. Runner-up at Hackwave 2024.",
+      tags: ["Java", "Android Native", "XML", "Speech Recognition", "Voice AI"],
+      longDescription: "Intelligent emergency response application with advanced speech recognition capabilities for critical safety situations.",
       features: [
-        "Real-time route optimization",
-        "Multi-modal transport integration",
-        "Traffic prediction algorithms",
-        "Carbon footprint tracking"
+        "Voice-activated SOS with predefined trigger words",
+        "Locked-screen functionality for emergency access",
+        "80% accuracy in noisy environments", 
+        "Non-suspicious activation for user safety",
+        "Native Android implementation"
       ],
-      achievements: "🥈 Hackwave 2024 Runner-up",
+      achievements: "🌟 80% Accuracy in Noisy Environments",
+      impact: "80% Accuracy in Noisy Env",
       demoUrl: "#",
       githubUrl: "#",
       status: "Completed"
     },
     {
       id: 5,
-      title: "Samvidhan Saga",
-      description: "Interactive educational game teaching Indian constitutional principles and laws.",
+      title: "🚗 PARAS - Urban Transport Solution",
+      description: "🥈 Hackwave Runner-up | Smart transportation app optimizing urban mobility and reducing congestion.",
+      image: parasImage,
+      tags: ["React", "Node.js", "MongoDB", "Google Maps API", "ML Model"],
+      longDescription: "A comprehensive urban transport optimization solution that provides real-time route planning, traffic management, and public transport integration. Runner-up at Hackwave 2024.",
+      features: [
+        "Real-time route optimization algorithms",
+        "Multi-modal transport integration",
+        "Traffic prediction using machine learning",
+        "Carbon footprint tracking",
+        "48-hour intensive development"
+      ],
+      achievements: "🥈 Hackwave 2024 Runner-up | Prize: ₹50,000",
+      impact: "Traffic Congestion Reduction",
+      demoUrl: "#",
+      githubUrl: "#",
+      status: "Completed"
+    },
+    {
+      id: 6,
+      title: "⚡ Solar Tracker Control System",
+      description: "🔧 Engineering Innovation | PID-controlled solar tracking system for optimizing energy capture efficiency.",
+      image: solarImage,
+      tags: ["MATLAB", "Simulink", "Control Systems", "IoT", "C++"],
+      longDescription: "Designed and simulated a sophisticated solar tracking system using PID control algorithms. The system automatically adjusts solar panel orientation to maximize energy capture throughout the day.",
+      features: [
+        "Dual-axis solar tracking mechanism",
+        "PID controller optimization algorithms",
+        "Weather-adaptive positioning system",
+        "Energy efficiency monitoring dashboard",
+        "MATLAB/Simulink simulation environment"
+      ],
+      achievements: "⚡ 35% Energy Efficiency Improvement",
+      impact: "35% Efficiency Improvement",
+      demoUrl: "#",
+      githubUrl: "#",
+      status: "Prototype"
+    },
+    {
+      id: 7,
+      title: "🎓 Samvidhan Saga - Constitutional Game",
+      description: "📚 Educational Tech | Interactive game teaching Indian constitutional principles through gamification.",
       image: islImage,
-      tags: ["Unity", "C#", "Game Development", "Educational Tech"],
+      tags: ["Unity", "C#", "Game Development", "Educational Tech", "UI/UX"],
       longDescription: "An engaging game-based learning platform that makes understanding the Indian Constitution fun and interactive. Features quiz modes, story-driven scenarios, and progress tracking.",
       features: [
-        "Interactive constitution lessons",
-        "Gamified learning experience",
-        "Progress tracking",
-        "Multiplayer quiz modes"
+        "Interactive constitution lessons with animations",
+        "Gamified learning experience with rewards",
+        "Progress tracking and achievement system",
+        "Multiplayer quiz modes for competition",
+        "Story-driven constitutional scenarios"
       ],
-      achievements: "🎓 10k+ students engaged",
+      achievements: "🎓 10k+ Students Engaged",
+      impact: "10k+ Students Engaged",
       demoUrl: "#",
       githubUrl: "#",
       status: "Live"
     },
     {
-      id: 6,
-      title: "Sahayak - Career Guidance",
-      description: "AI-powered career guidance platform providing personalized recommendations and resources.",
+      id: 8,
+      title: "💼 Sahayak - AI Career Guidance",
+      description: "🤖 Career Tech | AI-powered career guidance platform with personalized recommendations and learning paths.",
       image: harvestImage,
       tags: ["Python", "Django", "Machine Learning", "React", "PostgreSQL"],
       longDescription: "A comprehensive career guidance platform that uses AI to analyze user skills, interests, and market trends to provide personalized career recommendations and learning paths.",
       features: [
-        "Personality assessment",
-        "Skill gap analysis",
-        "Industry trend insights",
-        "Personalized learning paths"
+        "AI-powered personality assessment",
+        "Comprehensive skill gap analysis",
+        "Real-time industry trend insights",
+        "Personalized learning path recommendations",
+        "Career trajectory visualization"
       ],
-      achievements: "💼 1000+ career paths mapped",
+      achievements: "💼 1000+ Career Paths Mapped",
+      impact: "1000+ Career Paths Mapped",
       demoUrl: "#",
       githubUrl: "#",
       status: "Beta"
@@ -184,7 +236,7 @@ const Projects = () => {
                         </Button>
                       </motion.div>
                     </DialogTrigger>
-                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto dialog-scrollable">
                       <DialogHeader>
                         <DialogTitle className="text-2xl font-bold">{project.title}</DialogTitle>
                         <DialogDescription className="text-lg">
@@ -219,8 +271,12 @@ const Projects = () => {
                           </div>
                         </div>
                         
-                        <div className="bg-portfolio-accent/10 p-4 rounded-lg">
+                        <div className="bg-portfolio-accent/10 p-4 rounded-lg mb-4">
                           <p className="font-semibold text-portfolio-accent">{project.achievements}</p>
+                        </div>
+                        
+                        <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg mb-4">
+                          <p className="text-sm"><strong>Impact:</strong> {project.impact}</p>
                         </div>
                         
                         <div className="flex space-x-4">

@@ -10,58 +10,53 @@ const Hero = () => {
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-muted/20"
     >
-      {/* Enhanced geometric animation */}
+      {/* Shooting Stars Animation */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Floating geometric shapes */}
-        {[...Array(6)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <motion.div
-            key={`shape-${i}`}
-            className="absolute border border-foreground/10 rounded-lg"
+            key={`star-${i}`}
+            className="absolute"
             style={{
-              width: `${Math.random() * 120 + 60}px`,
-              height: `${Math.random() * 120 + 60}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
-            animate={{
-              rotate: [0, 360],
-              scale: [1, 1.1, 1],
-              opacity: [0.1, 0.3, 0.1],
-              x: [0, Math.random() * 100 - 50],
-              y: [0, Math.random() * 100 - 50],
-            }}
-            transition={{
-              duration: Math.random() * 25 + 20,
-              repeat: Infinity,
-              ease: "linear",
-              delay: Math.random() * 10,
-            }}
-          />
-        ))}
-
-        {/* Curved lines */}
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={`line-${i}`}
-            className="absolute h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent"
-            style={{
-              width: `${Math.random() * 200 + 150}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              transform: `rotate(${Math.random() * 180}deg)`,
+            initial={{
+              opacity: 0,
+              scale: 0,
             }}
             animate={{
-              scaleX: [0, 1, 0],
-              opacity: [0, 0.5, 0],
-              rotate: [0, 45, 0],
+              opacity: [0, 1, 1, 0],
+              scale: [0, 1, 1, 0],
+              x: [0, -200, -400],
+              y: [0, 100, 200],
             }}
             transition={{
-              duration: Math.random() * 8 + 6,
+              duration: 3,
               repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "easeInOut"
+              delay: Math.random() * 8,
+              ease: "easeOut",
             }}
-          />
+          >
+            {/* Star body */}
+            <div className="relative">
+              <div className="w-1 h-1 bg-accent rounded-full" />
+              {/* Tail */}
+              <motion.div
+                className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-accent to-transparent origin-left"
+                style={{ width: '30px' }}
+                animate={{
+                  scaleX: [0, 1, 0],
+                  opacity: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: Math.random() * 8,
+                  ease: "easeOut",
+                }}
+              />
+            </div>
+          </motion.div>
         ))}
 
         {/* Subtle grid pattern */}
@@ -72,57 +67,6 @@ const Hero = () => {
           `,
           backgroundSize: '80px 80px'
         }} />
-
-        {/* Animated circles */}
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={`circle-${i}`}
-            className="absolute border border-foreground/5 rounded-full"
-            style={{
-              width: `${Math.random() * 80 + 40}px`,
-              height: `${Math.random() * 80 + 40}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.1, 0.2, 0.1],
-              borderWidth: [1, 2, 1],
-            }}
-            transition={{
-              duration: Math.random() * 6 + 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 3,
-            }}
-          />
-        ))}
-
-        {/* Morphing blobs */}
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={`blob-${i}`}
-            className="absolute bg-foreground/5 rounded-full blur-xl"
-            style={{
-              width: `${Math.random() * 200 + 100}px`,
-              height: `${Math.random() * 200 + 100}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              x: [0, Math.random() * 200 - 100, 0],
-              y: [0, Math.random() * 200 - 100, 0],
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: Math.random() * 15 + 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 5,
-            }}
-          />
-        ))}
       </div>
 
       <div className="container mx-auto px-6 text-center relative z-10">

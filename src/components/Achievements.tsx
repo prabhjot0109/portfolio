@@ -191,32 +191,6 @@ const Achievements = () => {
           </div>
         </motion.div>
 
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-to-r from-portfolio-accent/10 to-portfolio-glow/10 rounded-2xl p-8 max-w-2xl mx-auto">
-            <h4 className="text-xl font-bold text-foreground mb-4">
-              🚀 Ready to Create Impact Together?
-            </h4>
-            <p className="text-muted-foreground mb-6">
-              Let's collaborate on innovative projects that make a difference. 
-              From AI solutions to sustainable technology, I'm always excited to tackle new challenges.
-            </p>
-            <motion.button
-              className="portfolio-button px-6 py-3 text-portfolio-dark font-semibold rounded-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Let's Connect →
-            </motion.button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

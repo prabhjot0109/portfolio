@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
+import ScrollReveal from './ScrollReveal';
+import ParallaxContainer from './ParallaxContainer';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -82,32 +84,87 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="py-20 bg-muted/30 relative overflow-hidden">
+      {/* Animated Background */}
+      <ParallaxContainer speed={0.3} className="absolute inset-0 pointer-events-none">
+        {/* Floating sparkles */}
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={`sparkle-${i}`}
+            className="absolute"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              scale: [0, 1, 0],
+              rotate: [0, 180, 360],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 3,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+              ease: "easeInOut"
+            }}
+          >
+            <Sparkles className="w-4 h-4 text-foreground/20" />
+          </motion.div>
+        ))}
+        
+        {/* Gradient blobs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 px-4">
-            🌐 Connect & Collaborate
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-            💬 Ask me about AI, Winning SIH and hackathons, or impactful projects.<br />
-            🤝 I'm looking to collaborate on AI/ML and Flutter projects.<br />
-            📫 Ready to discuss innovative solutions? Let's connect!
-          </p>
-        </motion.div>
+          className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-foreground/5 to-transparent rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-10 w-48 h-48 bg-gradient-to-l from-foreground/5 to-transparent rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+      </ParallaxContainer>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <ScrollReveal direction="up" delay={0.2} className="text-center mb-16">
+          <motion.div
+            className="text-reveal inline-block"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 px-4 text-reveal-inner animate-wave">
+              🌐 Connect & Collaborate
+            </h2>
+          </motion.div>
+          <ScrollReveal direction="up" delay={0.4}>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+              💬 Ask me about AI, Winning SIH and hackathons, or impactful projects.<br />
+              🤝 I'm looking to collaborate on AI/ML and Flutter projects.<br />
+              📫 Ready to discuss innovative solutions? Let's connect!
+            </p>
+          </ScrollReveal>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 max-w-6xl mx-auto px-4">
           {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+          <ScrollReveal
+            direction="left"
+            delay={0.3}
             className="space-y-6 md:space-y-8"
           >
             <div>
@@ -182,16 +239,22 @@ const Contact = () => {
               </p>
               <p className="text-muted-foreground text-xs md:text-sm mt-2">- My Development Philosophy</p>
             </motion.div>
-          </motion.div>
+          </ScrollReveal>
 
           {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="portfolio-card p-4 md:p-6 lg:p-8"
+          <ScrollReveal
+            direction="right"
+            delay={0.5}
+            className="portfolio-card p-4 md:p-6 lg:p-8 perspective-card"
           >
+            <motion.div
+              className="card-3d h-full"
+              whileHover={{ 
+                rotateY: 2,
+                rotateX: 2,
+                transition: { duration: 0.3 }
+              }}
+            >
             <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">
               Send Me a Message
             </h3>
@@ -276,7 +339,8 @@ const Contact = () => {
                 Usually respond within 24 hours ⚡
               </p>
             </div>
-          </motion.div>
+            </motion.div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

@@ -201,11 +201,31 @@ const Experience = () => {
                 >
                   {/* Timeline marker */}
                   <motion.div 
-                    className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 top-1/2"
-                    whileHover={{ scale: 1.2 }}
+                    className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 top-1/2 z-10"
+                    whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className={`w-4 h-4 rounded-full ${getStatusColor(event.status)} border-4 border-background`}></div>
+                    <div className="relative">
+                      <motion.div 
+                        className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center shadow-lg border-2 border-background"
+                        whileHover={{ rotate: 45 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <IconComponent className="h-4 w-4 text-accent-foreground" />
+                      </motion.div>
+                      <motion.div
+                        className="absolute inset-0 bg-accent/20 rounded-lg"
+                        animate={{ 
+                          scale: [1, 1.2, 1],
+                          opacity: [0.5, 0, 0.5]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    </div>
                   </motion.div>
 
                   {/* Content */}

@@ -1,8 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Database, Cpu, Wrench, Brain, Smartphone } from 'lucide-react';
-import ScrollReveal from './ScrollReveal';
-import ParallaxContainer from './ParallaxContainer';
 
 const Skills = () => {
   const skillCategories = [
@@ -143,97 +141,76 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-20 relative overflow-hidden">
-      {/* Enhanced Background with Parallax */}
-      <ParallaxContainer speed={0.2} className="absolute inset-0 pointer-events-none">
-        {/* Floating geometric shapes with orbital motion */}
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={`orbit-${i}`}
-            className="absolute w-2 h-2 bg-foreground/10 rounded-full"
-            style={{
-              left: `${20 + (i * 12)}%`,
-              top: `${30 + (i % 3) * 25}%`,
-            }}
-            animate={{
-              rotate: [0, 360],
-              scale: [1, 1.5, 1],
-              opacity: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: 15 + (i * 2),
-              repeat: Infinity,
-              ease: "linear",
-              delay: i * 0.5,
-            }}
-          />
-        ))}
-        
-        {/* Morphing blobs */}
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={`blob-${i}`}
-            className="absolute morph-blob bg-foreground/5"
-            style={{
-              width: `${80 + i * 40}px`,
-              height: `${80 + i * 40}px`,
-              left: `${15 + i * 30}%`,
-              top: `${20 + i * 20}%`,
-            }}
-            animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 180, 360],
-              opacity: [0.3, 0.6, 0.3],
-            }}
-            transition={{
-              duration: 20 + i * 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 2,
-            }}
-          />
-        ))}
-      </ParallaxContainer>
+      {/* Background Animation */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          className="absolute top-10 left-10 w-4 h-4 bg-foreground/5 rotate-45"
+          animate={{
+            rotate: [45, 225, 45],
+            scale: [1, 1.2, 1],
+            opacity: [0.5, 0.8, 0.5]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute top-32 right-20 w-6 h-6 border-2 border-foreground/10 rounded-full"
+          animate={{
+            scale: [1, 1.5, 1],
+            rotate: [0, 180, 360],
+            opacity: [0.3, 0.7, 0.3]
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 left-1/4 w-8 h-1 bg-foreground/8"
+          animate={{
+            scaleX: [1, 2, 1],
+            rotate: [0, 90, 0],
+            opacity: [0.4, 0.8, 0.4]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <ScrollReveal direction="up" delay={0.2} className="text-center mb-12 sm:mb-16 px-4">
-          <motion.div
-            className="text-reveal"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-reveal-inner">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4 animate-wave">
-                Core Competencies
-              </h2>
-            </div>
-          </motion.div>
-          <ScrollReveal direction="up" delay={0.4}>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-              A comprehensive toolkit for building innovative solutions across multiple domains
-            </p>
-          </ScrollReveal>
-        </ScrollReveal>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-12 sm:mb-16 px-4"
+        >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Core Competencies
+          </h2>
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+            A comprehensive toolkit for building innovative solutions across multiple domains
+          </p>
+        </motion.div>
 
-        {/* Skills Matrix with 3D Cards */}
+        {/* Skills Matrix */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16 px-4">
           {skillCategories.map((category, categoryIndex) => (
-            <ScrollReveal
+            <motion.div
               key={categoryIndex}
-              direction="diagonal"
-              delay={categoryIndex * 0.15}
-              className="perspective-card h-full"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-card border border-border rounded-xl p-6 h-full shadow-sm hover:shadow-md transition-all duration-300"
             >
-              <motion.div
-                className="card-3d bg-card border border-border rounded-xl p-6 h-full shadow-sm hover:shadow-xl transition-all duration-500 magnetic-hover animate-pulse-glow"
-                whileHover={{ 
-                  scale: 1.05,
-                  rotateY: 5,
-                  rotateX: 5,
-                  transition: { duration: 0.3 }
-                }}
-              >
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 rounded-xl bg-foreground flex items-center justify-center mr-4">
                   <category.icon className="h-6 w-6 text-background" />
@@ -272,44 +249,36 @@ const Skills = () => {
                   </motion.div>
                 ))}
               </div>
-              </motion.div>
-            </ScrollReveal>
+            </motion.div>
           ))}
         </div>
 
-        {/* Tech Stack with Creative Layout */}
-        <ScrollReveal direction="up" delay={0.6} className="text-center">
-          <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-6 sm:mb-8 text-reveal">
-            <span className="text-reveal-inner">Technologies I Work With</span>
+        {/* Tech Stack with Real Logos */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-6 sm:mb-8">
+            Technologies I Work With
           </h3>
-          <div className="relative">
-            {/* Orbital animation container */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-4 max-w-6xl mx-auto px-4">
-              {techStack.map((tech, index) => (
-                <ScrollReveal
-                  key={index}
-                  direction="up"
-                  delay={index * 0.05}
-                  className="group"
-                >
-                  <motion.div
-                    whileHover={{ 
-                      scale: 1.2,
-                      y: -10,
-                      rotateY: 15,
-                      transition: { 
-                        duration: 0.3,
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 20
-                      }
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    className="perspective-card bg-card border border-border rounded-xl p-3 sm:p-4 text-center hover:shadow-xl transition-all duration-500 cursor-pointer magnetic-hover animate-elastic-scale"
-                    style={{
-                      animationDelay: `${index * 0.1}s`
-                    }}
-                  >
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 sm:gap-4 max-w-6xl mx-auto px-4">
+            {techStack.map((tech, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                whileHover={{ 
+                  scale: 1.15,
+                  y: -5,
+                  transition: { duration: 0.2 }
+                }}
+                className="bg-card border border-border rounded-xl p-3 sm:p-4 text-center hover:shadow-lg transition-all duration-300 cursor-pointer group"
+              >
                 <div className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-2 group-hover:scale-110 transition-transform duration-200">
                   <img 
                     src={tech.logo} 
@@ -321,15 +290,13 @@ const Skills = () => {
                     }}
                   />
                 </div>
-                    <p className="text-xs sm:text-sm font-medium text-foreground group-hover:text-foreground transition-colors duration-200">
-                      {tech.name}
-                    </p>
-                  </motion.div>
-                </ScrollReveal>
-              ))}
-            </div>
+                <p className="text-xs sm:text-sm font-medium text-foreground group-hover:text-foreground transition-colors duration-200">
+                  {tech.name}
+                </p>
+              </motion.div>
+            ))}
           </div>
-        </ScrollReveal>
+        </motion.div>
       </div>
     </section>
   );

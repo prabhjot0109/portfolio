@@ -158,11 +158,11 @@ const Skills = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="portfolio-card p-8 bg-foreground text-background min-h-[500px]"
+                  className="portfolio-card p-8 bg-card text-foreground min-h-[500px] border border-border"
                 >
                   <div className="flex items-center gap-4 mb-8">
-                    {React.createElement(skillCategories[activeCategory].icon, { className: "h-8 w-8 text-background" })}
-                    <h3 className="text-3xl font-bold tracking-wider uppercase">
+                    {React.createElement(skillCategories[activeCategory].icon, { className: "h-8 w-8 text-foreground" })}
+                    <h3 className="text-3xl font-bold tracking-wider uppercase text-foreground">
                       {skillCategories[activeCategory].title} SKILLS
                     </h3>
                   </div>
@@ -177,22 +177,22 @@ const Skills = () => {
                         className="space-y-2"
                       >
                         <div className="flex justify-between items-center">
-                          <span className="text-background font-medium text-lg">
+                          <span className="text-foreground font-medium text-lg">
                             {skill.name}
                           </span>
-                          <span className="text-background/80 font-bold text-lg">
+                          <span className="text-muted-foreground font-bold text-lg">
                             {skill.level}%
                           </span>
                         </div>
-                        <div className="h-3 bg-background/20 rounded-full overflow-hidden">
+                        <div className="h-3 bg-muted rounded-full overflow-hidden">
                           <motion.div
-                            className="h-full bg-background rounded-full relative"
+                            className="h-full bg-foreground rounded-full relative"
                             initial={{ width: 0 }}
                             animate={{ width: `${skill.level}%` }}
                             transition={{ duration: 1.5, delay: index * 0.1 }}
                           >
                             <motion.div
-                              className="absolute right-0 top-0 h-full w-1 bg-background/70 rounded-full"
+                              className="absolute right-0 top-0 h-full w-1 bg-foreground/70 rounded-full"
                               animate={{ 
                                 opacity: [0.5, 1, 0.5]
                               }}
@@ -208,8 +208,8 @@ const Skills = () => {
                     ))}
                   </div>
 
-                  <div className="absolute top-6 right-6 opacity-10">
-                    {React.createElement(skillCategories[activeCategory].icon, { className: "h-24 w-24" })}
+                  <div className="absolute top-6 right-6 opacity-5">
+                    {React.createElement(skillCategories[activeCategory].icon, { className: "h-20 w-20 text-muted-foreground/30" })}
                   </div>
                 </motion.div>
               </AnimatePresence>

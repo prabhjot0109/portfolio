@@ -84,77 +84,160 @@ const Achievements = () => {
           </p>
         </motion.div>
 
-        {/* Achievement Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {majorAchievements.map((achievement, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ 
-                y: -10,
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
-              className="portfolio-card p-6 relative overflow-hidden group cursor-pointer"
-            >
-              {/* Background Gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-              
-              {/* Icon */}
-              <motion.div
-                className={`w-14 h-14 rounded-xl bg-gradient-to-br ${achievement.color} flex items-center justify-center mb-4 relative z-10`}
-                whileHover={{ rotate: 5, scale: 1.1 }}
-                transition={{ duration: 0.2 }}
-              >
-                <achievement.icon className="h-7 w-7 text-white" />
-              </motion.div>
+        {/* Achievement Mindmap */}
+        <div className="relative max-w-7xl mx-auto mb-16">
+          {/* Central Timeline */}
+          <motion.div 
+            className="absolute left-1/2 top-0 w-1 bg-gradient-to-b from-portfolio-accent via-portfolio-accent/50 to-transparent transform -translate-x-1/2"
+            initial={{ height: 0 }}
+            whileInView={{ height: "100%" }}
+            transition={{ duration: 2, ease: "easeInOut" }}
+            viewport={{ once: true }}
+            style={{ height: "calc(100% - 100px)" }}
+          />
+          
+          {/* Central Node */}
+          <motion.div 
+            className="absolute left-1/2 top-16 w-24 h-24 transform -translate-x-1/2 z-20"
+            initial={{ scale: 0, rotate: -180 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <div className="w-full h-full rounded-full bg-gradient-to-br from-portfolio-accent to-portfolio-accent/70 flex items-center justify-center shadow-2xl border-4 border-background">
+              <Trophy className="h-10 w-10 text-white" />
+            </div>
+            <motion.div 
+              className="absolute -top-2 -left-2 w-28 h-28 rounded-full border-2 border-portfolio-accent/30"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            />
+          </motion.div>
 
-              {/* Content */}
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-lg font-bold text-foreground group-hover:text-portfolio-accent transition-colors duration-300">
-                    {achievement.title}
-                  </h3>
-                  <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">
-                    {achievement.year}
-                  </span>
-                </div>
-                
-                <p className="text-portfolio-accent font-semibold text-sm mb-2">
-                  {achievement.organization}
-                </p>
-                
-                <div className="bg-portfolio-accent/10 px-3 py-1 rounded-lg mb-3 inline-block">
-                  <span className="text-xs font-medium text-portfolio-accent">
-                    {achievement.product}
-                  </span>
-                </div>
-                
-                <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                  {achievement.description}
-                </p>
-                
-                <div className="flex items-center">
-                  <div className="w-2 h-2 bg-portfolio-accent rounded-full mr-2" />
-                  <span className="text-xs text-muted-foreground font-medium">
-                    {achievement.impact}
-                  </span>
-                </div>
-              </div>
-
-              {/* Hover Effect */}
+          {/* Achievement Nodes */}
+          {majorAchievements.map((achievement, index) => {
+            const isLeft = index % 2 === 0;
+            const topPosition = 200 + (index * 180);
+            
+            return (
               <motion.div
-                className="absolute top-0 right-0 w-20 h-20 bg-portfolio-accent/5 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                key={index}
+                className={`absolute ${isLeft ? 'left-4' : 'right-4'} flex ${isLeft ? 'flex-row' : 'flex-row-reverse'} items-center gap-6 z-10`}
+                style={{ top: `${topPosition}px` }}
+                initial={{ 
+                  opacity: 0, 
+                  x: isLeft ? -100 : 100,
+                  scale: 0.8 
+                }}
+                whileInView={{ 
+                  opacity: 1, 
+                  x: 0, 
+                  scale: 1 
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  bounce: 0.3
+                }}
                 viewport={{ once: true }}
-              />
-            </motion.div>
-          ))}
+              >
+                {/* Connection Line */}
+                <motion.div 
+                  className={`w-16 h-0.5 bg-gradient-to-r ${isLeft ? 'from-portfolio-accent/60 to-transparent' : 'from-transparent to-portfolio-accent/60'}`}
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 + 0.4 }}
+                  viewport={{ once: true }}
+                />
+                
+                {/* Date Node */}
+                <motion.div 
+                  className="relative"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${achievement.color} flex items-center justify-center shadow-lg relative z-10`}>
+                    <span className="text-white font-bold text-sm">{achievement.year}</span>
+                  </div>
+                  <motion.div 
+                    className={`absolute inset-0 rounded-full bg-gradient-to-br ${achievement.color} opacity-30`}
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+                  />
+                </motion.div>
+
+                {/* Achievement Card */}
+                <motion.div
+                  className={`portfolio-card p-6 relative overflow-hidden group cursor-pointer max-w-sm ${isLeft ? 'text-left' : 'text-right'}`}
+                  whileHover={{ 
+                    scale: 1.02,
+                    y: -5,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  {/* Background Effects */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                  <motion.div
+                    className="absolute top-0 right-0 w-20 h-20 bg-portfolio-accent/10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 0.5, delay: index * 0.2 + 0.6 }}
+                    viewport={{ once: true }}
+                  />
+                  
+                  {/* Icon */}
+                  <motion.div
+                    className={`w-12 h-12 rounded-lg bg-gradient-to-br ${achievement.color} flex items-center justify-center mb-4 ${isLeft ? 'mr-auto' : 'ml-auto'} relative z-10`}
+                    whileHover={{ rotate: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <achievement.icon className="h-6 w-6 text-white" />
+                  </motion.div>
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <h3 className="text-lg font-bold text-foreground group-hover:text-portfolio-accent transition-colors duration-300 mb-2">
+                      {achievement.title}
+                    </h3>
+                    
+                    <p className="text-portfolio-accent font-semibold text-sm mb-2">
+                      {achievement.organization}
+                    </p>
+                    
+                    <div className={`bg-portfolio-accent/10 px-3 py-1 rounded-lg mb-3 inline-block`}>
+                      <span className="text-xs font-medium text-portfolio-accent">
+                        {achievement.product}
+                      </span>
+                    </div>
+                    
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                      {achievement.description}
+                    </p>
+                    
+                    <div className={`flex items-center ${isLeft ? 'justify-start' : 'justify-end'}`}>
+                      <div className="w-2 h-2 bg-portfolio-accent rounded-full mr-2" />
+                      <span className="text-xs text-muted-foreground font-medium">
+                        {achievement.impact}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+          
+          {/* Timeline End Decoration */}
+          <motion.div 
+            className="absolute left-1/2 transform -translate-x-1/2 z-10"
+            style={{ top: `${200 + (majorAchievements.length * 180)}px` }}
+            initial={{ scale: 0, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, delay: majorAchievements.length * 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-portfolio-accent to-portfolio-accent/70 shadow-lg" />
+          </motion.div>
         </div>
 
         {/* Impact Statistics */}

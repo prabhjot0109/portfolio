@@ -118,9 +118,8 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              🔭 I'm currently working on Med.ai, an AI-powered healthcare webapp.
-              <br />🌱 I'm currently learning Advanced Machine Learning and Deep Learning.
-              <br />👯 I'm looking to collaborate on AI/ML and Flutter projects.
+              Currently developing Med.ai, an AI-powered healthcare platform that leverages machine learning 
+              to provide intelligent medical insights and solutions.
             </motion.p>
             
             <motion.p 
@@ -130,9 +129,10 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
             >
-              <strong>Achievements:</strong> SIH'24 Winner, HackWave Hackathon Winner, and IEEE Tech4Good Grant Recipient.
-              From developing an Indian Sign Language translator to creating smart agricultural solutions, 
-              I believe in technology's power to bridge gaps and create inclusive experiences.
+              My expertise spans across artificial intelligence, machine learning, and full-stack development, 
+              with a focus on creating inclusive technology solutions that bridge communication gaps and 
+              enhance accessibility. I specialize in developing applications that make a meaningful impact 
+              on communities and individuals.
             </motion.p>
             
             <motion.p 
@@ -142,37 +142,10 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              💬 Ask me about AI, Winning SIH and hackathons, or impactful projects.
-              📫 How to reach me: <a href="mailto:prabhjotassi16@gmail.com" className="text-portfolio-accent hover:underline">prabhjotassi16@gmail.com</a>
-              <br />⚡ Fun fact: What did the spider do on the computer? Made a website! 🕷️💻
+              Open to collaboration on innovative AI/ML projects and mobile development initiatives. 
+              Feel free to reach out at <a href="mailto:prabhjotassi16@gmail.com" className="text-portfolio-accent hover:underline">prabhjotassi16@gmail.com</a> 
+              to discuss potential partnerships or opportunities.
             </motion.p>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-              {achievements.map((achievement, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.7 + (index * 0.1) }}
-                  viewport={{ once: true }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
-                  }}
-                  className="portfolio-card p-4 cursor-pointer"
-                >
-                  <motion.div
-                    whileHover={{ rotate: 5 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <achievement.icon className="h-8 w-8 text-portfolio-accent mb-3" />
-                  </motion.div>
-                  <h4 className="font-semibold text-foreground mb-2">{achievement.title}</h4>
-                  <p className="text-sm text-muted-foreground mb-2">{achievement.description}</p>
-                  <p className="text-xs text-muted-foreground/70">{achievement.details}</p>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
         </div>
       </div>

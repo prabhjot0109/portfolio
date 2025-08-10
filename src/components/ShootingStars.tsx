@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 
-// Lightweight, high-performance shooting stars effect inspired by Grok AI
+// Lightweight, high-performance shooting stars effect replicated from Grok AI website
 // Uses canvas for smooth animation and minimal DOM overhead
-const ShootingStars: React.FC<{ density?: number }>
-  = ({ density = 18 }) => {
+// Adjusted direction to left-to-right downward for closer match to Grok's chat page animation
+// Colors tied to theme variables for consistency with site background
+const ShootingStars: React.FC<{ density?: number }> = ({ density = 18 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const rafRef = useRef<number | null>(null);
   const runningRef = useRef(true);
@@ -45,7 +46,7 @@ const ShootingStars: React.FC<{ density?: number }>
     const stars: Star[] = [];
     const maxStars = density; // parallelizable by prop
 
-    const angle = (35 * Math.PI) / 180; // ~35deg downward, right->left
+    const angle = (45 * Math.PI) / 180; // Adjusted to 45deg for more natural shooting star motion
     const cos = Math.cos(angle);
     const sin = Math.sin(angle);
 
@@ -63,11 +64,11 @@ const ShootingStars: React.FC<{ density?: number }>
       const speed = 300 + Math.random() * 600; // px/s
       const length = 80 + Math.random() * 160; // px
       const w = Math.random() < 0.8 ? 1 : 2; // subtle thin lines
-      // Start from right/top quadrant
-      const startX = width * (0.8 + Math.random() * 0.5);
+      // Start from left/top quadrant for left-to-right motion
+      const startX = -50 + Math.random() * width * 0.4;
       const startY = -50 + Math.random() * height * 0.4;
 
-      const vx = -cos * speed;
+      const vx = cos * speed; // Positive for rightward motion
       const vy = sin * speed;
 
       const life = (length / speed) * (800 + Math.random() * 600); // ms, scaled by tail
@@ -101,8 +102,8 @@ const ShootingStars: React.FC<{ density?: number }>
         s.y += s.vy * (dt / 1000);
 
         // Tail vector (along motion direction)
-        const tx = s.x + cos * s.length;
-        const ty = s.y - sin * s.length; // subtract to go opposite direction for tail
+        const tx = s.x - cos * s.length; // Subtract for tail behind head (since moving right)
+        const ty = s.y - sin * s.length;
 
         // Fade in/out based on life
         const lifeT = s.life / s.maxLife;
@@ -138,7 +139,7 @@ const ShootingStars: React.FC<{ density?: number }>
         // Remove when offscreen or life done
         if (
           s.life >= s.maxLife ||
-          s.x < -200 ||
+          s.x > width + 200 ||
           s.y > height + 200
         ) {
           stars.splice(i, 1);

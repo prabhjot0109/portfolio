@@ -46,13 +46,23 @@ const Achievements = () => {
     },
     {
       icon: TrendingUp,
-      title: "🥈 Codespire Runner-up",
+      title: "🥈 Codespire 2023 Runner-up",
       organization: "AITR, Indore",
       year: "2023",
       product: "Innovative Software Solution",
       description: "Early achievement demonstrating exceptional problem-solving skills",
       impact: "Technical excellence recognition",
       color: "from-red-400 to-red-600"
+    },
+    {
+      icon: Trophy,
+      title: "🥈 Code for Bharat Season 2 - 1st Runner-up",
+      organization: "Tech Masters India, Microsoft Office Noida",
+      year: "2025",
+      product: "National Problem Solving Challenge",
+      description: "Secured 1st runner-up among top teams across India",
+      impact: "Recognized for innovation and execution",
+      color: "from-orange-400 to-orange-600"
     }
   ];
 
@@ -63,6 +73,16 @@ const Achievements = () => {
     { icon: "📱", number: "8+", label: "Projects Built" },
     { icon: "🤖", number: "40+", label: "AI Models Trained" },
     { icon: "🌱", number: "20%", label: "Efficiency Gains" }
+  ];
+
+  const certifications = [
+    "Python Foundation Certification — Infosys Springboard (04 March 2025)",
+    "Explore Machine Learning using Python — Infosys Springboard (21 December 2024)"
+  ];
+
+  const activities = [
+    "Webmaster, IEEE SIGHT affinity group — IEEE SB at AITR, Indore",
+    "Art Director, CSE (AIML) Department Magazine ‘L.E.A.R.N.’"
   ];
 
   return (
@@ -259,6 +279,42 @@ const Achievements = () => {
                   {stat.label}
                 </div>
               </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Certifications */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="mt-16"
+        >
+          <h3 className="text-2xl font-bold text-foreground mb-6">🎓 Certifications</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            {certifications.map((item, idx) => (
+              <div key={idx} className="portfolio-card p-4 text-sm text-muted-foreground">
+                • {item}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Co-curricular Activities */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mt-10"
+        >
+          <h3 className="text-2xl font-bold text-foreground mb-6">📌 Co-curricular Activities</h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            {activities.map((item, idx) => (
+              <div key={idx} className="portfolio-card p-4 text-sm text-muted-foreground">
+                • {item}
+              </div>
             ))}
           </div>
         </motion.div>

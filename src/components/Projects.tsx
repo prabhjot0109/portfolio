@@ -15,10 +15,10 @@ const Projects = () => {
     {
       id: 1,
       title: "Signify - AI Sign Language Translator",
-      description: "SIH 2024 Winner | Revolutionary AI-driven Indian Sign Language translation system bridging communication gaps.",
+      description: "AI-powered app enabling ISL-to-text and text-to-ISL communication for the hard-of-hearing community. Duration: Ongoing | Role: App & Backend Developer.",
       image: islImage,
       tags: ["Flutter", "Python", "MediaPipe", "Computer Vision", "ML"],
-      longDescription: "Revolutionary AI-driven Indian Sign Language translation system that bridges communication gaps for the hearing-impaired community. Won Smart India Hackathon 2024 for Problem Statement 1716.",
+      longDescription: "AI-powered Indian Sign Language translator that bridges communication gaps for the hard-of-hearing community. Converts ISL to text/speech and vice versa. Recognized at SIH 2024.",
       features: [
         "Real-time gesture recognition of 40+ ISL gestures",
         "Multi-modal output: Text and speech conversion", 
@@ -30,7 +30,7 @@ const Projects = () => {
       impact: "40+ ISL Gestures Recognition",
       demoUrl: "#",
       githubUrl: "#",
-      status: "Completed"
+      status: "Ongoing"
     },
     {
       id: 2,
@@ -50,15 +50,15 @@ const Projects = () => {
       impact: "+15% Accuracy Improvement",
       demoUrl: "#",
       githubUrl: "#",
-      status: "Live"
+      status: "Completed"
     },
     {
       id: 3,
-      title: "Krishi - Smart Agriculture Platform",
-      description: "$4000 IEEE Tech4Good Grant | IoT-enabled agricultural intelligence system empowering farmers.",
-      image: harvestImage,
+      title: "Vrinda - Smart Farming Assistant",
+      description: "AI + IoT farming assistant providing soil analysis and pest detection to improve crop production.",
+      image: solarImage,
       tags: ["Flutter", "Arduino", "IoT", "OpenWeather API", "Gemini AI"],
-      longDescription: "IoT-enabled agricultural intelligence system empowering farmers with data-driven crop management. Awarded $4000 IEEE Tech4Good Grant for impactful technology.",
+      longDescription: "AI app integrated with IoT sensors to deliver real-time soil health insights and pest detection for farmers. Leading development and field pilots as Lead Developer.",
       features: [
         "Real-time soil analysis with IoT sensor integration",
         "Weather-based recommendations via OpenWeather API", 
@@ -66,11 +66,11 @@ const Projects = () => {
         "20% crop yield improvement in field trials",
         "10+ farmers impacted in Indore region"
       ],
-      achievements: "$4000 IEEE Tech4Good Grant Recipient",
-      impact: "10+ Farmers Impacted | 20% Yield Improvement",
+      achievements: "Field pilot underway | Community impact through precision farming",
+      impact: "Real-time soil analysis & early pest detection",
       demoUrl: "#",
       githubUrl: "#",
-      status: "Live"
+      status: "Ongoing"
     },
     {
       id: 4,

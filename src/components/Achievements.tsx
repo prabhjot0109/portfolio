@@ -6,6 +6,16 @@ const Achievements = () => {
   const majorAchievements = [
     {
       icon: Trophy,
+      title: "🥈 Code for Bharat Season 2 - 1st Runner-up",
+      organization: "Tech Masters India, Microsoft Office Noida",
+      year: "2025",
+      product: "National Problem Solving Challenge",
+      description: "Secured 1st runner-up among top teams across India",
+      impact: "Recognized for innovation and execution",
+      color: "from-orange-400 to-orange-600"
+    },
+    {
+      icon: Trophy,
       title: "🥇 SIH 2024 Winner",
       organization: "MoE's IC & AICTE",
       year: "2024",
@@ -53,16 +63,6 @@ const Achievements = () => {
       description: "Early achievement demonstrating exceptional problem-solving skills",
       impact: "Technical excellence recognition",
       color: "from-red-400 to-red-600"
-    },
-    {
-      icon: Trophy,
-      title: "🥈 Code for Bharat Season 2 - 1st Runner-up",
-      organization: "Tech Masters India, Microsoft Office Noida",
-      year: "2025",
-      product: "National Problem Solving Challenge",
-      description: "Secured 1st runner-up among top teams across India",
-      impact: "Recognized for innovation and execution",
-      color: "from-orange-400 to-orange-600"
     }
   ];
 

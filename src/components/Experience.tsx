@@ -5,114 +5,6 @@ import { Calendar, MapPin, Award, Briefcase, GraduationCap } from 'lucide-react'
 const Experience = () => {
   const timelineEvents = [
     {
-      id: 1,
-      type: 'education',
-      icon: GraduationCap,
-      title: "B.Tech in Computer Science & Engineering",
-      organization: "Specialization: AI & ML",
-      location: "Current Institution",
-      date: "2022 - 2026",
-      description: "Pursuing Bachelor of Technology in Computer Science & Engineering with specialization in Artificial Intelligence and Machine Learning. Currently in 3rd year with focus on advanced AI algorithms, machine learning models, and real-world applications.",
-      highlights: [
-        "• Currently maintaining CGPA: 8.5/10",
-        "• Core subjects: Machine Learning, Computer Vision, Natural Language Processing, Data Structures & Algorithms",
-        "• Active leadership role in Tech Society and AI Research Club",
-        "• Research focus: AI applications in Healthcare & Accessibility Technology solutions",
-        "• Published research paper on AI-based accessibility tools"
-      ],
-      status: "current"
-    },
-    {
-      id: 2,
-      type: 'achievement',
-      icon: Award,
-      title: "Smart India Hackathon 2024 Winner",
-      organization: "Ministry of Education & AICTE",
-      location: "National Level",
-      date: "September 2024",
-      description: "🥇 Won the prestigious Smart India Hackathon 2024 for developing Signify - an innovative Indian Sign Language Translator. Led a team of 6 members to create an AI-powered accessibility solution addressing Problem Statement 1716.",
-      highlights: [
-        "• Won against 10,000+ participating teams from across India",
-        "• Prize: ₹1,00,000 cash award + national recognition and media coverage",
-        "• Featured in Times of India and other major publications",
-        "• Developed 40+ Indian Sign Language gesture recognition capability",
-        "• Achieved 90%+ real-time translation accuracy using advanced computer vision"
-      ],
-      status: "completed"
-    },
-    {
-      id: 3,
-      type: 'achievement',
-      icon: Award,
-      title: "IEEE Tech4Good Grant Recipient",
-      organization: "IEEE Humanitarian Technology Board",
-      location: "International",
-      date: "December 2024",
-      description: "💰 Awarded the prestigious $4000 IEEE Tech4Good Grant for developing Krishi - an IoT-enabled smart agriculture platform that empowers farmers with data-driven insights and improves crop yield management.",
-      highlights: [
-        "• Awarded $4,000 grant for innovative IoT-enabled smart agriculture platform",
-        "• Selected from over 1,000+ applications submitted globally",
-        "• Primary focus: Sustainable agriculture technology and data-driven farming solutions",
-        "• Direct impact: 10+ farmers benefited in the pilot program implementation",
-        "• Results: 20% measurable improvement in crop yield efficiency and resource optimization"
-      ],
-      status: "completed"
-    },
-    {
-      id: 4,
-      type: 'achievement', 
-      icon: Award,
-      title: "HackWave 2024 Winner",
-      organization: "CDGI, Indore",
-      location: "Regional",
-      date: "March 2024",
-      description: "🏆 Secured first position at HackWave 2024 for developing PARAS - an urban transport optimization solution using machine learning algorithms to reduce traffic congestion and improve public transportation efficiency.",
-      highlights: [
-        "• Completed 48-hour intensive hackathon challenge with innovative solution",
-        "• Prize: ₹75,000 cash award + ongoing mentorship and guidance",
-        "• Developed advanced ML model for traffic prediction and route optimization",
-        "• Implemented real-time route planning system for urban transportation",
-        "• Integrated carbon footprint reduction tracking and environmental impact analysis"
-      ],
-      status: "completed"
-    },
-    {
-      id: 5,
-      type: 'achievement',
-      icon: Award,
-      title: "Prayatna 2024 - 3rd Runner-up",
-      organization: "AITR, Indore",
-      location: "Regional",
-      date: "October 2024",
-      description: "🥉 Secured 3rd Runner-up position at Prayatna 2024 for developing Med.AI - an AI-powered healthcare diagnostic assistant that enhances medical decision-making through advanced computer vision and machine learning.",
-      highlights: [
-        "• Achieved 15% accuracy improvement in healthcare AI diagnostic solutions",
-        "• Advanced X-Ray image analysis using deep learning and computer vision",
-        "• Integrated medical expert consultation system for enhanced decision-making",
-        "• Developed scalable cloud-based architecture for healthcare institutions",
-        "• Prize: ₹25,000 cash award + recognition certificate and industry exposure"
-      ],
-      status: "completed"
-    },
-    {
-      id: 6,
-      type: 'achievement',
-      icon: Award,
-      title: "Codespire 2023 Runner-up",
-      organization: "AITR, Indore", 
-      location: "Regional",
-      date: "November 2023",
-      description: "🥈 Secured Runner-up position at Codespire 2023 for developing an innovative software solution that demonstrated exceptional problem-solving skills and technical implementation.",
-      highlights: [
-        "Innovative software development challenge",
-        "Prize money: ₹30,000",
-        "Mentorship from industry experts",
-        "Technical excellence recognition",
-        "Early achievement in 2nd year of college"
-      ],
-      status: "completed"
-    },
-    {
       id: 7,
       type: 'internship',
       icon: Briefcase,
@@ -129,6 +21,24 @@ const Experience = () => {
         "Received certification of excellence"
       ],
       status: "completed"
+    },
+    {
+      id: 1,
+      type: 'education',
+      icon: GraduationCap,
+      title: "B.Tech in Computer Science & Engineering",
+      organization: "Specialization: AI & ML",
+      location: "Current Institution",
+      date: "2022 - 2026",
+      description: "Pursuing Bachelor of Technology in Computer Science & Engineering with specialization in Artificial Intelligence and Machine Learning. Currently in 3rd year with focus on advanced AI algorithms, machine learning models, and real-world applications.",
+      highlights: [
+        "• Currently maintaining CGPA: 8.5/10",
+        "• Core subjects: Machine Learning, Computer Vision, Natural Language Processing, Data Structures & Algorithms",
+        "• Active leadership role in Tech Society and AI Research Club",
+        "• Research focus: AI applications in Healthcare & Accessibility Technology solutions",
+        "• Published research paper on AI-based accessibility tools"
+      ],
+      status: "current"
     },
     {
       id: 8,

@@ -8,8 +8,10 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
+      {/* Enhanced Shooting Stars & Cosmic Background */}
+      <ShootingStars density={70} />
 
       <div className="container mx-auto px-6 text-center relative z-10 pt-20">
         <motion.div

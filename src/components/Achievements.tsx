@@ -75,16 +75,6 @@ const Achievements = () => {
     { icon: "🌱", number: "20%", label: "Efficiency Gains" }
   ];
 
-  const certifications = [
-    "Python Foundation Certification — Infosys Springboard (04 March 2025)",
-    "Explore Machine Learning using Python — Infosys Springboard (21 December 2024)"
-  ];
-
-  const activities = [
-    "Webmaster, IEEE SIGHT affinity group — IEEE SB at AITR, Indore",
-    "Art Director, CSE (AIML) Department Magazine ‘L.E.A.R.N.’"
-  ];
-
   return (
     <section id="achievements" className="py-20 bg-muted/30">
       <div className="container mx-auto px-6">
@@ -279,42 +269,6 @@ const Achievements = () => {
                   {stat.label}
                 </div>
               </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Certifications */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mt-16"
-        >
-          <h3 className="text-2xl font-bold text-foreground mb-6">🎓 Certifications</h3>
-          <div className="grid md:grid-cols-2 gap-4">
-            {certifications.map((item, idx) => (
-              <div key={idx} className="portfolio-card p-4 text-sm text-muted-foreground">
-                • {item}
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Co-curricular Activities */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="mt-10"
-        >
-          <h3 className="text-2xl font-bold text-foreground mb-6">📌 Co-curricular Activities</h3>
-          <div className="grid md:grid-cols-2 gap-4">
-            {activities.map((item, idx) => (
-              <div key={idx} className="portfolio-card p-4 text-sm text-muted-foreground">
-                • {item}
-              </div>
             ))}
           </div>
         </motion.div>

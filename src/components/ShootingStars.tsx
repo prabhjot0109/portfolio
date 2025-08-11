@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 
-// Lightweight, high-performance shooting stars effect replicated from Grok AI website
-// Uses canvas for smooth animation and minimal DOM overhead
-// Adjusted direction to left-to-right downward for closer match to Grok's chat page animation
-// Colors tied to theme variables for consistency with site background
-const ShootingStars: React.FC<{ density?: number }> = ({ density = 18 }) => {
+// Minimal, high-performance starfield inspired by Grok AI
+// - Plain background (comes from page's bg)
+// - Small twinkling stars with subtle parallax drift
+// - Honors prefers-reduced-motion
+// - Colors pulled from theme tokens for perfect integration
+const ShootingStars: React.FC<{ density?: number }> = ({ density = 140 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const rafRef = useRef<number | null>(null);
   const runningRef = useRef(true);
@@ -34,21 +35,17 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 18 }) => {
     type Star = {
       x: number;
       y: number;
-      vx: number;
-      vy: number;
-      length: number;
-      width: number;
-      opacity: number;
-      life: number;
-      maxLife: number;
+      size: number; // radius in px
+      baseAlpha: number;
+      amp: number; // twinkle amplitude
+      speed: number; // twinkle speed
+      phase: number; // starting phase for variety
+      vx: number; // slow drift x
+      vy: number; // slow drift y
+      layer: number; // 1,2,3 for parallax
     };
 
-    const stars: Star[] = [];
-    const maxStars = density; // parallelizable by prop
-
-    const angle = (45 * Math.PI) / 180; // Adjusted to 45deg for more natural shooting star motion
-    const cos = Math.cos(angle);
-    const sin = Math.sin(angle);
+    let stars: Star[] = [];
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -58,115 +55,98 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 18 }) => {
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      // Recreate stars according to viewport with slight scaling by area
+      const area = Math.max(1, (width * height) / 10000); // normalize
+      const targetCount = Math.min(450, Math.max(80, Math.floor((density * area) / 20)));
+
+      const newStars: Star[] = [];
+      for (let i = 0; i < targetCount; i++) {
+        // Layers: far -> near
+        const layer = Math.random() < 0.6 ? 1 : Math.random() < 0.85 ? 2 : 3;
+        const sizeBase = layer === 1 ? 0.6 : layer === 2 ? 0.9 : 1.2;
+        const s: Star = {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: sizeBase + Math.random() * 0.8, // 0.6 - ~2.0
+          baseAlpha: layer === 1 ? 0.25 + Math.random() * 0.2 : layer === 2 ? 0.3 + Math.random() * 0.25 : 0.35 + Math.random() * 0.3,
+          amp: 0.08 + Math.random() * 0.18,
+          speed: 0.6 + Math.random() * 1.2, // rad/s
+          phase: Math.random() * Math.PI * 2,
+          vx: (layer * 0.02 + Math.random() * 0.04) * (Math.random() > 0.5 ? 1 : -1), // px/s
+          vy: (layer * 0.06 + Math.random() * 0.08), // px/s downward
+          layer
+        };
+        newStars.push(s);
+      }
+      stars = newStars;
     };
 
-    const spawnStar = () => {
-      const speed = 300 + Math.random() * 600; // px/s
-      const length = 80 + Math.random() * 160; // px
-      const w = Math.random() < 0.8 ? 1 : 2; // subtle thin lines
-      // Start from left/top quadrant for left-to-right motion
-      const startX = -50 + Math.random() * width * 0.4;
-      const startY = -50 + Math.random() * height * 0.4;
-
-      const vx = cos * speed; // Positive for rightward motion
-      const vy = sin * speed;
-
-      const life = (length / speed) * (800 + Math.random() * 600); // ms, scaled by tail
-
-      stars.push({
-        x: startX,
-        y: startY,
-        vx,
-        vy,
-        length,
-        width: w,
-        opacity: 0.5 + Math.random() * 0.4,
-        life: 0,
-        maxLife: life,
-      });
-    };
-
-    let last = performance.now();
-
-    const draw = (dt: number) => {
-      // Clear with subtle fade to create natural trails blending
+    const draw = (t: number) => {
+      // Clear fully but keep background from parent
       ctx.clearRect(0, 0, width, height);
 
-      const headColor = getHslaFromVar('--foreground', 0.95);
-      const tailColor = getHslaFromVar('--foreground', 0);
+      // Use muted foreground for softer star tone in dark theme
+      const starColorBase = getHslaFromVar('--muted-foreground', 1);
+      // Extract HSL from the computed var by reusing same HSLA string but swapping alpha per star
+      // We'll set fillStyle each star with alpha applied
 
-      for (let i = stars.length - 1; i >= 0; i--) {
+      for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
-        s.life += dt;
-        s.x += s.vx * (dt / 1000);
-        s.y += s.vy * (dt / 1000);
 
-        // Tail vector (along motion direction)
-        const tx = s.x - cos * s.length; // Subtract for tail behind head (since moving right)
-        const ty = s.y - sin * s.length;
+        // Twinkle based on time
+        const twinkle = s.baseAlpha + s.amp * Math.sin(s.phase + t * s.speed);
+        const alpha = Math.max(0, Math.min(1, twinkle));
 
-        // Fade in/out based on life
-        const lifeT = s.life / s.maxLife;
-        const alpha = lifeT < 0.2
-          ? (lifeT / 0.2) * s.opacity
-          : lifeT > 0.8
-          ? ((1 - lifeT) / 0.2) * s.opacity
-          : s.opacity;
-
-        // Gradient tail
-        const grad = ctx.createLinearGradient(s.x, s.y, tx, ty);
-        grad.addColorStop(0, headColor);
-        grad.addColorStop(1, tailColor);
-
-        ctx.strokeStyle = grad;
-        ctx.lineWidth = s.width;
-        ctx.lineCap = 'round';
-
+        // Draw
         ctx.beginPath();
-        ctx.moveTo(tx, ty);
-        ctx.lineTo(s.x, s.y);
-        ctx.globalAlpha = alpha;
-        ctx.stroke();
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        // Replace alpha in hsla string by building from CSS var each time
+        ctx.fillStyle = getHslaFromVar('--foreground', alpha * 0.8); // slightly brighter than muted
+        ctx.fill();
 
-        // occasional sparkle head
-        if (Math.random() < 0.05) {
+        // Subtle core highlight for nearest layer
+        if (s.layer === 3 && alpha > 0.4) {
           ctx.beginPath();
-          ctx.arc(s.x, s.y, s.width + 0.5, 0, Math.PI * 2);
-          ctx.fillStyle = getHslaFromVar('--accent', Math.min(1, alpha + 0.2));
+          ctx.arc(s.x, s.y, s.size * 0.4, 0, Math.PI * 2);
+          ctx.fillStyle = getHslaFromVar('--accent', Math.min(0.25, alpha * 0.25));
           ctx.fill();
         }
+      }
+    };
 
-        // Remove when offscreen or life done
-        if (
-          s.life >= s.maxLife ||
-          s.x > width + 200 ||
-          s.y > height + 200
-        ) {
-          stars.splice(i, 1);
+    const step = (() => {
+      let last = performance.now();
+      return (now: number) => {
+        if (!runningRef.current) return;
+        const dt = Math.min(50, now - last) / 1000; // seconds
+        last = now;
+        const t = now / 1000; // seconds for twinkle
+
+        // Update positions
+        for (let i = 0; i < stars.length; i++) {
+          const s = stars[i];
+          s.x += s.vx * dt;
+          s.y += s.vy * dt;
+
+          // Wrap around edges for continuous flow
+          if (s.x < -2) s.x = width + 2;
+          if (s.x > width + 2) s.x = -2;
+          if (s.y > height + 2) {
+            s.y = -2;
+            s.x = Math.random() * width;
+          }
         }
-      }
-    };
 
-    const tick = (now: number) => {
-      if (!runningRef.current) return;
-      const dt = Math.min(50, now - last); // cap dt for stability
-      last = now;
-
-      // Spawn
-      if (stars.length < maxStars) {
-        // Spawn probabilistically to avoid bursts
-        if (Math.random() < 0.8) spawnStar();
-      }
-
-      draw(dt);
-      rafRef.current = requestAnimationFrame(tick);
-    };
+        draw(t);
+        rafRef.current = requestAnimationFrame(step);
+      };
+    })();
 
     const onVisibility = () => {
       runningRef.current = document.visibilityState === 'visible';
       if (runningRef.current) {
-        last = performance.now();
-        rafRef.current = requestAnimationFrame(tick);
+        rafRef.current = requestAnimationFrame(step);
       } else if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
@@ -176,7 +156,7 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 18 }) => {
     window.addEventListener('resize', resize);
     document.addEventListener('visibilitychange', onVisibility);
 
-    rafRef.current = requestAnimationFrame(tick);
+    rafRef.current = requestAnimationFrame(step);
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -186,10 +166,11 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 18 }) => {
   }, [density]);
 
   return (
-    <div className="absolute inset-0 pointer-events-none select-none">
-      <canvas ref={canvasRef} className="w-full h-full" aria-hidden="true" />
+    <div className="absolute inset-0 pointer-events-none select-none" aria-hidden="true" role="img">
+      <canvas ref={canvasRef} className="w-full h-full" />
     </div>
   );
 };
 
 export default ShootingStars;
+

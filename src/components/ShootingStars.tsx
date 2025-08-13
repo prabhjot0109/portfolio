@@ -69,12 +69,12 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 140 }) => {
           x: Math.random() * width,
           y: Math.random() * height,
           size: sizeBase + Math.random() * 0.8, // 0.6 - ~2.0
-          baseAlpha: layer === 1 ? 0.15 + Math.random() * 0.15 : layer === 2 ? 0.2 + Math.random() * 0.15 : 0.25 + Math.random() * 0.2,
-          amp: 0.05 + Math.random() * 0.1, // More subtle twinkling
-          speed: 0.3 + Math.random() * 0.6, // Slower twinkle speed
+          baseAlpha: layer === 1 ? 0.2 + Math.random() * 0.2 : layer === 2 ? 0.3 + Math.random() * 0.2 : 0.4 + Math.random() * 0.3,
+          amp: 0.15 + Math.random() * 0.25, // More expressive twinkling
+          speed: 0.8 + Math.random() * 1.2, // Faster twinkle speed
           phase: Math.random() * Math.PI * 2,
-          vx: (layer * 0.01 + Math.random() * 0.02) * (Math.random() > 0.5 ? 1 : -1), // Much slower horizontal drift
-          vy: (layer * 0.03 + Math.random() * 0.04), // Much slower vertical drift
+          vx: (layer * 0.08 + Math.random() * 0.12) * (Math.random() > 0.5 ? 1 : -1), // Faster horizontal drift
+          vy: (layer * 0.15 + Math.random() * 0.2), // Faster vertical drift
           layer
         };
         newStars.push(s);

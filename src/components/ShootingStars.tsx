@@ -57,24 +57,24 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 140 }) => {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       // Recreate stars according to viewport with slight scaling by area
-      const area = Math.max(1, (width * height) / 15000); // normalize with higher threshold
-      const targetCount = Math.min(150, Math.max(30, Math.floor((density * area) / 30))); // Reduced max stars
+      const area = Math.max(1, (width * height) / 12000); // normalize with higher threshold
+      const targetCount = Math.min(200, Math.max(50, Math.floor((density * area) / 25))); // More stars
 
       const newStars: Star[] = [];
       for (let i = 0; i < targetCount; i++) {
         // Layers: far -> near
-        const layer = Math.random() < 0.6 ? 1 : Math.random() < 0.85 ? 2 : 3;
-        const sizeBase = layer === 1 ? 0.6 : layer === 2 ? 0.9 : 1.2;
+        const layer = Math.random() < 0.5 ? 1 : Math.random() < 0.8 ? 2 : 3;
+        const sizeBase = layer === 1 ? 0.5 : layer === 2 ? 0.8 : 1.1;
         const s: Star = {
           x: Math.random() * width,
           y: Math.random() * height,
-          size: sizeBase + Math.random() * 0.8, // 0.6 - ~2.0
-          baseAlpha: layer === 1 ? 0.2 + Math.random() * 0.2 : layer === 2 ? 0.3 + Math.random() * 0.2 : 0.4 + Math.random() * 0.3,
-          amp: 0.15 + Math.random() * 0.25, // More expressive twinkling
-          speed: 0.8 + Math.random() * 1.2, // Faster twinkle speed
+          size: sizeBase + Math.random() * 0.6,
+          baseAlpha: layer === 1 ? 0.3 + Math.random() * 0.3 : layer === 2 ? 0.4 + Math.random() * 0.3 : 0.5 + Math.random() * 0.4,
+          amp: 0.2 + Math.random() * 0.4, // More expressive twinkling
+          speed: 1.2 + Math.random() * 1.8, // Faster twinkle speed
           phase: Math.random() * Math.PI * 2,
-          vx: (layer * 0.08 + Math.random() * 0.12) * (Math.random() > 0.5 ? 1 : -1), // Faster horizontal drift
-          vy: (layer * 0.15 + Math.random() * 0.2), // Faster vertical drift
+          vx: (layer * 0.3 + Math.random() * 0.8) * (Math.random() > 0.5 ? 1 : -1), // Much faster horizontal movement
+          vy: (layer * 0.2 + Math.random() * 0.6) * (Math.random() > 0.7 ? 1 : -1), // Faster vertical movement with some upward motion
           layer
         };
         newStars.push(s);
@@ -132,12 +132,10 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 140 }) => {
           s.y += s.vy * dt;
 
           // Wrap around edges for continuous flow
-          if (s.x < -2) s.x = width + 2;
-          if (s.x > width + 2) s.x = -2;
-          if (s.y > height + 2) {
-            s.y = -2;
-            s.x = Math.random() * width;
-          }
+          if (s.x < -5) s.x = width + 5;
+          if (s.x > width + 5) s.x = -5;
+          if (s.y < -5) s.y = height + 5;
+          if (s.y > height + 5) s.y = -5;
         }
 
         draw(t);

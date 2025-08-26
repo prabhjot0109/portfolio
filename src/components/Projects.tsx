@@ -5,10 +5,11 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
 
-import islImage from '@/assets/project-isl.jpg';
-import harvestImage from '@/assets/project-harvest.jpg';
-import solarImage from '@/assets/project-solar.jpg';
-import parasImage from '@/assets/project-paras.jpg';
+// Lazy load images for better performance
+const islImage = new URL('@/assets/project-isl.jpg', import.meta.url).href;
+const harvestImage = new URL('@/assets/project-harvest.jpg', import.meta.url).href;
+const solarImage = new URL('@/assets/project-solar.jpg', import.meta.url).href;
+const parasImage = new URL('@/assets/project-paras.jpg', import.meta.url).href;
 
 const Projects = () => {
   const projects = [
@@ -212,6 +213,8 @@ const Projects = () => {
                   className="w-full h-48 object-cover"
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.6 }}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center space-x-4"
@@ -248,6 +251,8 @@ const Projects = () => {
                           src={project.image}
                           alt={project.title}
                           className="w-full h-64 object-cover rounded-lg"
+                          loading="lazy"
+                          decoding="async"
                         />
                         
                         <div>

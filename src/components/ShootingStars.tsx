@@ -57,8 +57,8 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 140 }) => {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       // Recreate stars according to viewport with slight scaling by area
-      const area = Math.max(1, (width * height) / 12000); // normalize
-      const targetCount = Math.min(200, Math.max(40, Math.floor((density * area) / 25)));
+      const area = Math.max(1, (width * height) / 15000); // normalize with higher threshold
+      const targetCount = Math.min(150, Math.max(30, Math.floor((density * area) / 30))); // Reduced max stars
 
       const newStars: Star[] = [];
       for (let i = 0; i < targetCount; i++) {
@@ -86,11 +86,9 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 140 }) => {
       // Clear fully but keep background from parent
       ctx.clearRect(0, 0, width, height);
 
-      // Use muted foreground for softer star tone in dark theme
-      const starColorBase = getHslaFromVar('--muted-foreground', 1);
-      // Extract HSL from the computed var by reusing same HSLA string but swapping alpha per star
-      // We'll set fillStyle each star with alpha applied
-
+      // Batch drawing operations for better performance
+      ctx.globalCompositeOperation = 'lighter';
+      
       for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
 
@@ -98,21 +96,25 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 140 }) => {
         const twinkle = s.baseAlpha + s.amp * Math.sin(s.phase + t * s.speed);
         const alpha = Math.max(0, Math.min(1, twinkle));
 
-        // Draw
+        // Skip drawing if alpha is too low (performance optimization)
+        if (alpha < 0.05) continue;
+
+        // Draw star
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-        // Replace alpha in hsla string by building from CSS var each time
-        ctx.fillStyle = getHslaFromVar('--foreground', alpha * 0.8); // slightly brighter than muted
+        ctx.fillStyle = getHslaFromVar('--foreground', alpha * 0.8);
         ctx.fill();
 
-        // Subtle core highlight for nearest layer
-        if (s.layer === 3 && alpha > 0.4) {
+        // Subtle core highlight for nearest layer only
+        if (s.layer === 3 && alpha > 0.6) {
           ctx.beginPath();
           ctx.arc(s.x, s.y, s.size * 0.4, 0, Math.PI * 2);
-          ctx.fillStyle = getHslaFromVar('--accent', Math.min(0.25, alpha * 0.25));
+          ctx.fillStyle = getHslaFromVar('--accent', Math.min(0.2, alpha * 0.2));
           ctx.fill();
         }
       }
+      
+      ctx.globalCompositeOperation = 'source-over';
     };
 
     const step = (() => {

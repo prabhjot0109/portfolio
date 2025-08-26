@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, BookOpen, Target, Zap } from 'lucide-react';
-import profileImage from '@/assets/profile-photo.jpg';
+const profileImage = new URL('@/assets/profile-photo.jpg', import.meta.url).href;
 
 const About = () => {
   const achievements = [
@@ -86,6 +86,8 @@ const About = () => {
                     src={profileImage}
                     alt="Prabhjot Singh Assi - Software Developer & AI Engineer"
                     className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
+                    loading="lazy"
+                    decoding="async"
                   />
                   {/* Professional overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />

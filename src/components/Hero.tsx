@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import ShootingStars from './ShootingStars';
+
+const ShootingStars = lazy(() => import('./ShootingStars'));
 
 const Hero = () => {
   return (
@@ -11,7 +12,9 @@ const Hero = () => {
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
       {/* Enhanced Shooting Stars & Cosmic Background */}
-      <ShootingStars density={70} />
+      <Suspense fallback={null}>
+        <ShootingStars density={70} />
+      </Suspense>
 
       <div className="container mx-auto px-6 text-center relative z-10 pt-20">
         <motion.div

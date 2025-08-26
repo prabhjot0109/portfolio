@@ -40,9 +40,12 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 140 }) => {
       amp: number; // twinkle amplitude
       speed: number; // twinkle speed
       phase: number; // starting phase for variety
-      vx: number; // slow drift x
-      vy: number; // slow drift y
+      vx: number; // horizontal velocity
+      vy: number; // vertical velocity
       layer: number; // 1,2,3 for parallax
+      pulsePhase: number; // secondary pulse for more natural twinkle
+      driftAngle: number; // natural drift direction
+      orbitRadius: number; // subtle orbital motion
     };
 
     let stars: Star[] = [];
@@ -64,18 +67,24 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 140 }) => {
       for (let i = 0; i < targetCount; i++) {
         // Layers: far -> near
         const layer = Math.random() < 0.5 ? 1 : Math.random() < 0.8 ? 2 : 3;
-        const sizeBase = layer === 1 ? 0.5 : layer === 2 ? 0.8 : 1.1;
+        const sizeBase = layer === 1 ? 0.4 : layer === 2 ? 0.7 : 1.0;
+        const driftAngle = Math.random() * Math.PI * 2;
+        const baseSpeed = layer * 0.1 + Math.random() * 0.3;
+        
         const s: Star = {
           x: Math.random() * width,
           y: Math.random() * height,
-          size: sizeBase + Math.random() * 0.6,
-          baseAlpha: layer === 1 ? 0.3 + Math.random() * 0.3 : layer === 2 ? 0.4 + Math.random() * 0.3 : 0.5 + Math.random() * 0.4,
-          amp: 0.2 + Math.random() * 0.4, // More expressive twinkling
-          speed: 1.2 + Math.random() * 1.8, // Faster twinkle speed
+          size: sizeBase + Math.random() * 0.5,
+          baseAlpha: layer === 1 ? 0.2 + Math.random() * 0.3 : layer === 2 ? 0.3 + Math.random() * 0.3 : 0.4 + Math.random() * 0.4,
+          amp: 0.3 + Math.random() * 0.5, // More natural twinkling
+          speed: 0.5 + Math.random() * 1.5, // Natural twinkle rhythm
           phase: Math.random() * Math.PI * 2,
-          vx: (layer * 0.3 + Math.random() * 0.8) * (Math.random() > 0.5 ? 1 : -1), // Much faster horizontal movement
-          vy: (layer * 0.2 + Math.random() * 0.6) * (Math.random() > 0.7 ? 1 : -1), // Faster vertical movement with some upward motion
-          layer
+          vx: Math.cos(driftAngle) * baseSpeed * (0.8 + Math.random() * 0.4), // Natural flowing movement
+          vy: Math.sin(driftAngle) * baseSpeed * (0.8 + Math.random() * 0.4), // Natural flowing movement
+          layer,
+          pulsePhase: Math.random() * Math.PI * 2, // Secondary pulse for natural effect
+          driftAngle,
+          orbitRadius: 0.5 + Math.random() * 1.5 // Subtle orbital motion
         };
         newStars.push(s);
       }
@@ -92,24 +101,39 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 140 }) => {
       for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
 
-        // Twinkle based on time
-        const twinkle = s.baseAlpha + s.amp * Math.sin(s.phase + t * s.speed);
+        // Natural multi-layered twinkling like Grok
+        const primaryTwinkle = Math.sin(s.phase + t * s.speed);
+        const secondaryPulse = Math.sin(s.pulsePhase + t * s.speed * 0.7) * 0.3;
+        const twinkle = s.baseAlpha + s.amp * (primaryTwinkle + secondaryPulse);
         const alpha = Math.max(0, Math.min(1, twinkle));
 
         // Skip drawing if alpha is too low (performance optimization)
-        if (alpha < 0.05) continue;
+        if (alpha < 0.02) continue;
 
-        // Draw star
+        // Subtle orbital motion for natural feel
+        const orbitX = s.x + Math.cos(t * 0.3 + s.driftAngle) * s.orbitRadius * 0.2;
+        const orbitY = s.y + Math.sin(t * 0.3 + s.driftAngle) * s.orbitRadius * 0.1;
+
+        // Draw main star with soft glow
+        const starSize = s.size * (0.8 + alpha * 0.4); // Size varies with twinkle
         ctx.beginPath();
-        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-        ctx.fillStyle = getHslaFromVar('--foreground', alpha * 0.8);
+        ctx.arc(orbitX, orbitY, starSize, 0, Math.PI * 2);
+        ctx.fillStyle = getHslaFromVar('--foreground', alpha * 0.9);
         ctx.fill();
 
-        // Subtle core highlight for nearest layer only
-        if (s.layer === 3 && alpha > 0.6) {
+        // Enhanced glow effect for brighter stars
+        if (alpha > 0.6) {
           ctx.beginPath();
-          ctx.arc(s.x, s.y, s.size * 0.4, 0, Math.PI * 2);
-          ctx.fillStyle = getHslaFromVar('--accent', Math.min(0.2, alpha * 0.2));
+          ctx.arc(orbitX, orbitY, starSize * 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = getHslaFromVar('--foreground', alpha * 0.1);
+          ctx.fill();
+        }
+
+        // Accent core for nearest layer stars
+        if (s.layer === 3 && alpha > 0.7) {
+          ctx.beginPath();
+          ctx.arc(orbitX, orbitY, starSize * 0.3, 0, Math.PI * 2);
+          ctx.fillStyle = getHslaFromVar('--accent', Math.min(0.3, alpha * 0.3));
           ctx.fill();
         }
       }

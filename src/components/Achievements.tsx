@@ -8,7 +8,7 @@ const Achievements = () => {
       icon: Trophy,
       title: "🥇 Intellify 3.0 Hackathon Winner",
       organization: "Marwadi University, Rajkot",
-      year: "2024",
+      year: "2025",
       product: "Best Software Solution",
       description: "National level hackathon winner recognized for creating the best software solution",
       impact: "National recognition for innovation excellence",

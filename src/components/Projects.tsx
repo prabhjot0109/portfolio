@@ -350,11 +350,6 @@ const Projects = () => {
                         <Github className="h-4 w-4" />
                       </Button>
                     </motion.div>
-                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                      <Button size="sm" variant="ghost" className="p-2 hover:bg-portfolio-accent/10 hover:text-portfolio-accent">
-                        <ExternalLink className="h-4 w-4" />
-                      </Button>
-                    </motion.div>
                   </div>
                   
                   <Dialog>
@@ -370,6 +365,63 @@ const Projects = () => {
                         </Button>
                       </motion.div>
                     </DialogTrigger>
+                    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto scrollbar-hidden">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-bold">{project.title}</DialogTitle>
+                        <DialogDescription className="text-lg">
+                          {project.longDescription}
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-6">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-64 object-cover rounded-lg"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        
+                        <div>
+                          <h3 className="text-lg font-semibold mb-3">Key Features</h3>
+                          <ul className="grid md:grid-cols-2 gap-2">
+                            {project.features.map((feature, idx) => (
+                              <li key={idx} className="flex items-center">
+                                <span className="w-2 h-2 bg-portfolio-accent rounded-full mr-3" />
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        
+                        <div>
+                          <h3 className="text-lg font-semibold mb-3">Technologies Used</h3>
+                          <div className="flex flex-wrap gap-2">
+                            {project.tags.map((tag, idx) => (
+                              <Badge key={idx} variant="secondary">{tag}</Badge>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        <div className="bg-portfolio-accent/10 p-4 rounded-lg mb-4">
+                          <p className="font-semibold text-portfolio-accent">{project.achievements}</p>
+                        </div>
+                        
+                        <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg mb-4">
+                          <p className="text-sm"><strong>Impact:</strong> {project.impact}</p>
+                        </div>
+                        
+                        <div className="flex space-x-4">
+                          <Button className="portfolio-button">
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                            Live Demo
+                          </Button>
+                          <Button variant="outline">
+                            <Github className="h-4 w-4 mr-2" />
+                            View Code
+                          </Button>
+                        </div>
+                      </div>
+                    </DialogContent>
                   </Dialog>
                 </div>
               </div>

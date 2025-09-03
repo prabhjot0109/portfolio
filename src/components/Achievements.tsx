@@ -6,6 +6,16 @@ const Achievements = () => {
   const majorAchievements = [
     {
       icon: Trophy,
+      title: "🥇 Intellify 3.0 Hackathon Winner",
+      organization: "Marwadi University, Rajkot",
+      year: "2024",
+      product: "Best Software Solution",
+      description: "National level hackathon winner recognized for creating the best software solution",
+      impact: "National recognition for innovation excellence",
+      color: "from-indigo-400 to-indigo-600"
+    },
+    {
+      icon: Trophy,
       title: "🥈 Code for Bharat Season 2 - 1st Runner-up",
       organization: "Tech Masters India, Microsoft Office Noida",
       year: "2025",
@@ -67,7 +77,7 @@ const Achievements = () => {
   ];
 
   const impactStats = [
-    { icon: "🏆", number: "5", label: "Hackathon Wins" },
+    { icon: "🏆", number: "6", label: "Hackathon Wins" },
     { icon: "💰", number: "$4K", label: "Grant Received" },
     { icon: "🎯", number: "10K+", label: "People Impacted" },
     { icon: "📱", number: "8+", label: "Projects Built" },

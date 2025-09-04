@@ -15,13 +15,15 @@ const Index = () => {
     <ThemeProvider>
       <div className="min-h-screen bg-background">
         <Navigation />
-        <Hero />
-        <About />
-        <Skills />
-        <Achievements />
-        <Projects />
-        <Experience />
-        <Contact />
+        <main id="main-content" className="focus:outline-none" tabIndex={-1}>
+          <Hero />
+          <About />
+          <Skills />
+          <Achievements />
+          <Projects />
+          <Experience />
+          <Contact />
+        </main>
         <Footer />
       </div>
     </ThemeProvider>

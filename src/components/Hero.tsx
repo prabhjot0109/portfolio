@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Mail, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 
@@ -79,13 +79,27 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.0 }}
           >
-            <Button
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-6 sm:px-8 py-2.5 text-sm sm:text-base w-full sm:w-auto border-0"
-              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              View My Work
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-3 items-center">
+              <Button
+                size="lg"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-6 sm:px-8 py-2.5 text-sm sm:text-base w-full sm:w-auto border-0"
+                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                aria-label="View my work and projects"
+              >
+                View My Work
+              </Button>
+              
+              <Button
+                variant="outline"
+                size="lg"
+                className="font-semibold px-6 sm:px-8 py-2.5 text-sm sm:text-base w-full sm:w-auto"
+                onClick={() => window.open('/resume.pdf', '_blank')}
+                aria-label="Download resume as PDF"
+              >
+                <Download className="h-4 w-4 mr-2" />
+                Download Resume
+              </Button>
+            </div>
             
             <div className="flex items-center space-x-3">
               <Button 

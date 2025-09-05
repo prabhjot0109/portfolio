@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navigation from '@/components/Navigation';
+import SkipNavigation from '@/components/SkipNavigation';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Skills from '@/components/Skills';
@@ -14,14 +15,17 @@ const Index = () => {
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-background">
+        <SkipNavigation />
         <Navigation />
-        <Hero />
+        <main id="main-content">
+          <Hero />
         <About />
         <Skills />
         <Achievements />
         <Projects />
         <Experience />
-        <Contact />
+          <Contact />
+        </main>
         <Footer />
       </div>
     </ThemeProvider>

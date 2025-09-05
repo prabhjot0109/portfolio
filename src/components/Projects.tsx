@@ -148,19 +148,6 @@ const Projects = () => {
                   </Dialog>
                 </motion.div>
                 
-                <div className="absolute top-4 right-4">
-                  <Badge 
-                    className={`${
-                      project.status === 'Completed' ? 'bg-green-500' :
-                      project.status === 'Live' ? 'bg-blue-500' :
-                      project.status === 'Beta' ? 'bg-yellow-500' :
-                      project.status === 'Prototype' ? 'bg-purple-500' :
-                      'bg-orange-500'
-                    } text-white`}
-                  >
-                    {project.status}
-                  </Badge>
-                </div>
               </div>
 
               <div className="p-6">

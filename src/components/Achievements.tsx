@@ -147,12 +147,12 @@ const Achievements = () => {
                         className="portfolio-card p-6 max-w-md group hover:scale-[1.02] transition-all duration-300"
                         whileHover={{ y: -5 }}
                       >
-                        <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-xl`} />
+                        <div className={`absolute inset-0 bg-gradient-to-br from-foreground/5 to-foreground/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl`} />
                         
                         <div className="relative z-10">
                           <div className="flex items-start gap-4 mb-4">
-                            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${achievement.color} flex items-center justify-center flex-shrink-0`}>
-                              <achievement.icon className="h-6 w-6 text-white" />
+                            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br from-foreground to-foreground/70 flex items-center justify-center flex-shrink-0`}>
+                              <achievement.icon className="h-6 w-6 text-background" />
                             </div>
                             <div className="flex-1">
                               <h3 className="text-lg font-bold text-foreground group-hover:text-portfolio-accent transition-colors duration-300 mb-1">

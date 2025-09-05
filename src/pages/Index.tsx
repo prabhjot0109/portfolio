@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Navigation from '@/components/Navigation';
 import SkipNavigation from '@/components/SkipNavigation';
 import Hero from '@/components/Hero';
-import About from '@/components/About';
-import Skills from '@/components/Skills';
-import Achievements from '@/components/Achievements';
-import Projects from '@/components/Projects';
-import Experience from '@/components/Experience';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
+import LazySection from '@/components/LazySection';
+import { useServiceWorker } from '@/hooks/useServiceWorker';
+
+// Lazy load below-the-fold components
+const About = lazy(() => import('@/components/About'));
+const Skills = lazy(() => import('@/components/Skills'));
+const Achievements = lazy(() => import('@/components/Achievements'));
+const Projects = lazy(() => import('@/components/Projects'));
+const Experience = lazy(() => import('@/components/Experience'));
+const Contact = lazy(() => import('@/components/Contact'));
+const Footer = lazy(() => import('@/components/Footer'));
 
 const Index = () => {
+  // Register service worker for caching
+  useServiceWorker();
+
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-background">
@@ -19,14 +27,37 @@ const Index = () => {
         <Navigation />
         <main id="main-content">
           <Hero />
-        <About />
-        <Skills />
-        <Achievements />
-        <Projects />
-        <Experience />
-          <Contact />
+          
+          <LazySection>
+            <About />
+          </LazySection>
+          
+          <LazySection>
+            <Skills />
+          </LazySection>
+          
+          <LazySection>
+            <Achievements />
+          </LazySection>
+          
+          <LazySection>
+            <Projects />
+          </LazySection>
+          
+          <LazySection>
+            <Experience />
+          </LazySection>
+          
+          <LazySection>
+            <Contact />
+          </LazySection>
         </main>
-        <Footer />
+        
+        <LazySection>
+          <Footer />
+        </LazySection>
+        
+        <ScrollToTop />
       </div>
     </ThemeProvider>
   );

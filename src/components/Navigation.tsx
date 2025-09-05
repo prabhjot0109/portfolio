@@ -161,15 +161,18 @@ const Navigation = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isOpen && (
-          <div 
-            className="md:hidden mt-4 pb-4 border-t border-border" 
-            id="mobile-menu"
-            role="menu"
-            aria-label="Mobile navigation menu"
-          >
-            <ul className="flex flex-col space-y-4 pt-4" role="none">
-              {navItems.map((item) => (
+        <div 
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+          id="mobile-menu"
+          role="menu"
+          aria-label="Mobile navigation menu"
+          aria-hidden={!isOpen}
+        >
+          <div className="border-t border-border pt-4 pb-4">
+            <ul className="flex flex-col space-y-2" role="none">
+              {navItems.map((item, index) => (
                 <li key={item.href} role="none">
                   <a
                     href={item.href}
@@ -177,9 +180,16 @@ const Navigation = () => {
                       e.preventDefault();
                       handleNavClick(item.href, item.label);
                     }}
-                    className={`text-foreground hover:text-portfolio-accent transition-colors duration-300 py-2 block
-                              focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 rounded-lg px-2
-                              ${activeSection === item.href.substring(1) ? 'text-portfolio-accent font-semibold' : ''}`}
+                    className={`text-foreground hover:text-portfolio-accent transition-all duration-300 py-3 px-4 block rounded-lg
+                              focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2
+                              hover:bg-accent/10 transform hover:translate-x-2
+                              ${activeSection === item.href.substring(1) ? 'text-portfolio-accent font-semibold bg-accent/10' : ''}
+                              ${prefersReducedMotion ? '' : 'animate-fade-in'}
+                              `}
+                    style={{ 
+                      animationDelay: prefersReducedMotion ? '0ms' : `${index * 100}ms`,
+                      animationFillMode: 'backwards'
+                    }}
                     role="menuitem"
                     aria-current={activeSection === item.href.substring(1) ? 'page' : undefined}
                   >
@@ -189,7 +199,7 @@ const Navigation = () => {
               ))}
             </ul>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );

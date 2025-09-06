@@ -105,29 +105,29 @@ const Achievements = () => {
         </motion.div>
 
         {/* Achievement Timeline Grid */}
-        <div className="max-w-6xl mx-auto mb-16">
+        <div className="max-w-6xl mx-auto mb-16 px-4 md:px-0">
           {/* Central Timeline Header */}
           <motion.div 
-            className="flex justify-center mb-12"
+            className="flex justify-center mb-8 md:mb-12"
             initial={{ scale: 0, rotate: -180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
             viewport={{ once: true }}
           >
             <div className="relative">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-foreground to-foreground/70 flex items-center justify-center shadow-2xl border-4 border-background">
-                <Trophy className="h-8 w-8 text-background" />
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-foreground to-foreground/70 flex items-center justify-center shadow-2xl border-4 border-background">
+                <Trophy className="h-6 w-6 md:h-8 md:w-8 text-background" />
               </div>
               <motion.div 
-                className="absolute -top-2 -left-2 w-24 h-24 rounded-full border-2 border-foreground/20"
+                className="absolute -top-2 -left-2 w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-foreground/20"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               />
             </div>
           </motion.div>
 
-          {/* Achievement Grid */}
-          <div className="grid gap-8">
+          {/* Achievement Grid - Mobile Vertical, Desktop Timeline */}
+          <div className="space-y-6 md:space-y-8">
             {majorAchievements.map((achievement, index) => (
               <motion.div
                 key={index}
@@ -137,11 +137,51 @@ const Achievements = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                {/* Timeline Line */}
-                <div className="absolute left-1/2 top-0 w-px h-full bg-gradient-to-b from-foreground/30 via-foreground/20 to-transparent transform -translate-x-1/2 z-0" />
+                {/* Desktop Timeline Line - Hidden on mobile */}
+                <div className="hidden md:block absolute left-1/2 top-0 w-px h-full bg-gradient-to-b from-foreground/30 via-foreground/20 to-transparent transform -translate-x-1/2 z-0" />
                 
-                {/* Achievement Row */}
-                <div className="relative flex items-center gap-8 z-10">
+                {/* Mobile Layout - Simple Cards */}
+                <div className="md:hidden">
+                  <motion.div
+                    className="portfolio-card p-4 group hover:scale-[1.02] transition-all duration-300"
+                    whileHover={{ y: -5 }}
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-xl`} />
+                    
+                    <div className="relative z-10">
+                      <div className="flex items-start gap-3 mb-3">
+                        <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${achievement.color} flex items-center justify-center flex-shrink-0`}>
+                          <achievement.icon className="h-5 w-5 text-white" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-base font-bold text-foreground group-hover:text-portfolio-accent transition-colors duration-300 mb-1 leading-tight">
+                            {achievement.title}
+                          </h3>
+                          <p className="text-foreground/80 font-medium text-xs">
+                            {achievement.organization}
+                          </p>
+                          <div className="bg-muted/50 px-2 py-1 rounded-full mt-2 inline-block">
+                            <span className="text-xs font-medium text-foreground/70">
+                              {achievement.year} • {achievement.product}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-2">
+                        {achievement.description}
+                      </p>
+                      
+                      <div className="flex items-center text-xs text-muted-foreground">
+                        <div className="w-2 h-2 bg-foreground/40 rounded-full mr-2" />
+                        {achievement.impact}
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Desktop Timeline Layout */}
+                <div className="hidden md:flex relative items-center gap-8 z-10">
                   {/* Left Content (odd index) or spacer (even index) */}
                   <div className={`flex-1 ${index % 2 === 0 ? 'flex justify-end' : ''}`}>
                     {index % 2 === 1 && (

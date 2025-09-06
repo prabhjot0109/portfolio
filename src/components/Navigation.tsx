@@ -3,6 +3,7 @@ import { Moon, Sun, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from './ThemeProvider';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import ColorSelector from './ColorSelector';
 
 const Navigation = () => {
   const { theme, toggleTheme } = useTheme();
@@ -69,11 +70,15 @@ const Navigation = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-background/90 backdrop-blur-lg border-b border-border shadow-lg' 
-          : 'bg-background/90 backdrop-blur-lg md:bg-transparent md:backdrop-blur-none'
+          ? 'bg-background/70 backdrop-blur-xl border-b border-border/30 shadow-2xl' 
+          : 'bg-background/50 backdrop-blur-xl border-b border-border/20'
       }`}
       role="navigation"
       aria-label="Main navigation"
+      style={{
+        backdropFilter: 'blur(20px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(20px) saturate(180%)'
+      }}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -112,6 +117,8 @@ const Navigation = () => {
               </li>
             ))}
             
+            <ColorSelector />
+            
             <Button
               variant="ghost"
               size="icon"
@@ -129,6 +136,8 @@ const Navigation = () => {
 
           {/* Mobile Navigation Toggle */}
           <div className="md:hidden flex items-center space-x-4">
+            <ColorSelector />
+            
             <Button
               variant="ghost"
               size="icon"
@@ -170,7 +179,7 @@ const Navigation = () => {
           aria-label="Mobile navigation menu"
           aria-hidden={!isOpen}
         >
-          <div className="border-t border-border pt-4 pb-4">
+          <div className="border-t border-border/30 pt-4 pb-4 bg-background/30 backdrop-blur-md rounded-b-xl mt-2">
             <ul className="flex flex-col space-y-2" role="none">
               {navItems.map((item, index) => (
                 <li key={item.href} role="none">

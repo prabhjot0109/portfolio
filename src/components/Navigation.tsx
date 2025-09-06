@@ -70,7 +70,7 @@ const Navigation = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
           ? 'bg-background/90 backdrop-blur-lg border-b border-border shadow-lg' 
-          : 'bg-transparent'
+          : 'bg-background/90 backdrop-blur-lg md:bg-transparent md:backdrop-blur-none'
       }`}
       role="navigation"
       aria-label="Main navigation"

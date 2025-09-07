@@ -100,9 +100,9 @@ const Navigation = () => {
               <li key={item.href} role="none">
                 <a
                   href={item.href}
-                  className={`text-foreground hover:text-portfolio-accent transition-colors duration-300 relative group 
-                            focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 rounded-lg px-3 py-2
-                            ${activeSection === item.href.substring(1) ? 'text-portfolio-accent font-semibold' : ''}`}
+                  className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out relative group 
+                            focus:outline-none focus-visible:outline-none px-3 py-2 rounded-lg
+                            ${activeSection === item.href.substring(1) ? 'text-portfolio-accent font-medium' : ''}`}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNavClick(item.href, item.label);
@@ -111,8 +111,8 @@ const Navigation = () => {
                   aria-current={activeSection === item.href.substring(1) ? 'page' : undefined}
                 >
                   {item.label}
-                  <span className={`absolute -bottom-1 left-3 h-0.5 bg-portfolio-accent transition-all duration-300 
-                                 ${activeSection === item.href.substring(1) ? 'w-[calc(100%-1.5rem)]' : 'w-0 group-hover:w-[calc(100%-1.5rem)]'}`} />
+                  <span className={`absolute -bottom-1 left-3 h-0.5 bg-portfolio-accent transition-all duration-500 ease-out
+                                 ${activeSection === item.href.substring(1) ? 'w-[calc(100%-1.5rem)] opacity-100' : 'w-0 opacity-0 group-hover:w-[calc(100%-1.5rem)] group-hover:opacity-100'}`} />
                 </a>
               </li>
             ))}
@@ -189,10 +189,10 @@ const Navigation = () => {
                       e.preventDefault();
                       handleNavClick(item.href, item.label);
                     }}
-                    className={`text-foreground hover:text-portfolio-accent transition-all duration-300 py-3 px-4 block rounded-lg
-                              focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2
+                    className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out py-3 px-4 block rounded-lg
+                              focus:outline-none focus-visible:outline-none
                               hover:bg-accent/10 transform hover:translate-x-2
-                              ${activeSection === item.href.substring(1) ? 'text-portfolio-accent font-semibold bg-accent/10' : ''}
+                              ${activeSection === item.href.substring(1) ? 'text-portfolio-accent font-medium bg-accent/10' : ''}
                               ${prefersReducedMotion ? '' : 'animate-fade-in'}
                               `}
                     style={{ 

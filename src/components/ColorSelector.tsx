@@ -18,16 +18,27 @@ const ColorSelector = () => {
   const handleColorChange = (color: typeof colors[0]) => {
     const root = document.documentElement;
     
-    // Update CSS custom properties
-    root.style.setProperty('--portfolio-dark', color.primary);
+    // Update only specific portfolio accent colors
     root.style.setProperty('--portfolio-accent', color.accent);
     root.style.setProperty('--portfolio-glow', color.glow);
     
-    // For light mode, update accent as well
-    if (!document.documentElement.classList.contains('dark')) {
-      root.style.setProperty('--accent', color.accent);
-      root.style.setProperty('--primary', color.primary);
+    // Update link colors and interactive elements
+    const style = document.createElement('style');
+    style.textContent = `
+      .portfolio-link { color: hsl(${color.accent}) !important; }
+      .portfolio-icon { color: hsl(${color.accent}) !important; }
+      .portfolio-border { border-color: hsl(${color.accent}) !important; }
+      .portfolio-bg { background-color: hsl(${color.accent}) !important; }
+    `;
+    
+    // Remove existing portfolio style if any
+    const existingStyle = document.getElementById('portfolio-colors');
+    if (existingStyle) {
+      existingStyle.remove();
     }
+    
+    style.id = 'portfolio-colors';
+    document.head.appendChild(style);
     
     setSelectedColor(color.name);
     setIsOpen(false);
@@ -37,28 +48,35 @@ const ColorSelector = () => {
     <div className="relative">
       <Button
         variant="ghost"
-        size="icon"
+        size="sm"
         onClick={() => setIsOpen(!isOpen)}
-        className="hover:bg-accent relative"
+        className="hover:bg-accent relative h-8 w-8 p-1"
         aria-label="Select portfolio color theme"
         aria-expanded={isOpen}
       >
-        <Palette className="h-5 w-5" aria-hidden="true" />
+        <div 
+          className="w-4 h-4 rounded-full border-2 border-border/50"
+          style={{ 
+            backgroundColor: selectedColor === 'white' 
+              ? 'hsl(0 0% 100%)' 
+              : `hsl(${colors.find(c => c.name === selectedColor)?.primary || '0 0% 100%'})`
+          }}
+        />
       </Button>
 
       {isOpen && (
         <div 
-          className="absolute top-full right-0 mt-2 p-3 rounded-xl border border-border/50 shadow-lg z-50
-                     bg-background/80 backdrop-blur-lg transition-all duration-200 animate-fade-in"
-          style={{ minWidth: '140px' }}
+          className="absolute top-full right-0 mt-2 p-2 rounded-lg border border-border/50 shadow-lg z-50
+                     bg-background/90 backdrop-blur-lg transition-all duration-200 animate-fade-in"
+          style={{ minWidth: '120px' }}
         >
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-3 gap-1.5">
             {colors.map((color) => (
               <button
                 key={color.name}
                 onClick={() => handleColorChange(color)}
-                className={`w-8 h-8 rounded-full border-2 transition-all duration-200 hover:scale-110 hover:shadow-lg
-                           ${selectedColor === color.name ? 'border-foreground shadow-md' : 'border-border/30'}
+                className={`w-6 h-6 rounded-full border-2 transition-all duration-200 hover:scale-110 hover:shadow-lg
+                           ${selectedColor === color.name ? 'border-foreground shadow-md scale-110' : 'border-border/30'}
                            focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2`}
                 style={{ 
                   backgroundColor: color.name === 'white' 

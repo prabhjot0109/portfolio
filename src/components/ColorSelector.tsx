@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Palette } from 'lucide-react';
+import { Circle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const ColorSelector = () => {
@@ -7,7 +7,7 @@ const ColorSelector = () => {
   const [selectedColor, setSelectedColor] = useState('none');
 
   const colors = [
-    { name: 'none', primary: '', accent: '', glow: '', display: 'Default', icon: '🚫' },
+    { name: 'none', primary: '', accent: '', glow: '', display: 'Default' },
     { name: 'pink', primary: '330 81% 60%', accent: '330 81% 60%', glow: '330 81% 80%', display: 'Pink' },
     { name: 'orange', primary: '25 95% 53%', accent: '25 95% 53%', glow: '25 95% 73%', display: 'Orange' },
     { name: 'green', primary: '142 71% 45%', accent: '142 71% 45%', glow: '142 71% 65%', display: 'Green' },
@@ -24,7 +24,9 @@ const ColorSelector = () => {
     }
     
     if (color.name === 'none') {
-      // Reset to default theme colors
+      // Reset CSS custom properties to default
+      root.style.removeProperty('--portfolio-accent');
+      root.style.removeProperty('--portfolio-glow');
       setSelectedColor(color.name);
       setIsOpen(false);
       return;
@@ -61,7 +63,7 @@ const ColorSelector = () => {
         aria-expanded={isOpen}
       >
         {selectedColor === 'none' ? (
-          <span className="text-xs">🚫</span>
+          <Circle className="w-3 h-3 text-foreground" strokeWidth={2} />
         ) : (
           <div 
             className="w-3 h-3 rounded-full border border-border/50"
@@ -94,7 +96,7 @@ const ColorSelector = () => {
                 aria-label={`Select ${color.display} color theme`}
                 title={`${color.display} theme`}
               >
-                {color.name === 'none' && <span className="text-xs">🚫</span>}
+                {color.name === 'none' && <Circle className="w-3 h-3 text-foreground" strokeWidth={2} />}
               </button>
             ))}
           </div>

@@ -4,19 +4,31 @@ import { Button } from '@/components/ui/button';
 
 const ColorSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedColor, setSelectedColor] = useState('white');
+  const [selectedColor, setSelectedColor] = useState('none');
 
   const colors = [
-    { name: 'white', primary: '0 0% 0%', accent: '0 0% 0%', glow: '0 0% 20%' },
-    { name: 'pink', primary: '330 81% 60%', accent: '330 81% 60%', glow: '330 81% 80%' },
-    { name: 'yellow', primary: '45 93% 58%', accent: '45 93% 58%', glow: '45 93% 78%' },
-    { name: 'green', primary: '142 71% 45%', accent: '142 71% 45%', glow: '142 71% 65%' },
-    { name: 'blue', primary: '217 91% 60%', accent: '217 91% 60%', glow: '217 91% 80%' },
-    { name: 'purple', primary: '262 83% 58%', accent: '262 83% 58%', glow: '262 83% 78%' },
+    { name: 'none', primary: '', accent: '', glow: '', display: 'Default' },
+    { name: 'pink', primary: '330 81% 60%', accent: '330 81% 60%', glow: '330 81% 80%', display: 'Pink' },
+    { name: 'orange', primary: '25 95% 53%', accent: '25 95% 53%', glow: '25 95% 73%', display: 'Orange' },
+    { name: 'green', primary: '142 71% 45%', accent: '142 71% 45%', glow: '142 71% 65%', display: 'Green' },
+    { name: 'yellow', primary: '45 93% 58%', accent: '45 93% 58%', glow: '45 93% 78%', display: 'Yellow' },
   ];
 
   const handleColorChange = (color: typeof colors[0]) => {
     const root = document.documentElement;
+    
+    // Remove existing portfolio style if any
+    const existingStyle = document.getElementById('portfolio-colors');
+    if (existingStyle) {
+      existingStyle.remove();
+    }
+    
+    if (color.name === 'none') {
+      // Reset to default theme colors
+      setSelectedColor(color.name);
+      setIsOpen(false);
+      return;
+    }
     
     // Update only specific portfolio accent colors
     root.style.setProperty('--portfolio-accent', color.accent);
@@ -30,12 +42,6 @@ const ColorSelector = () => {
       .portfolio-border { border-color: hsl(${color.accent}) !important; }
       .portfolio-bg { background-color: hsl(${color.accent}) !important; }
     `;
-    
-    // Remove existing portfolio style if any
-    const existingStyle = document.getElementById('portfolio-colors');
-    if (existingStyle) {
-      existingStyle.remove();
-    }
     
     style.id = 'portfolio-colors';
     document.head.appendChild(style);
@@ -57,37 +63,34 @@ const ColorSelector = () => {
         <div 
           className="w-4 h-4 rounded-full border-2 border-border/50"
           style={{ 
-            backgroundColor: selectedColor === 'white' 
-              ? 'hsl(0 0% 100%)' 
-              : `hsl(${colors.find(c => c.name === selectedColor)?.primary || '0 0% 100%'})`
+            backgroundColor: selectedColor === 'none' 
+              ? 'hsl(var(--foreground))' 
+              : `hsl(${colors.find(c => c.name === selectedColor)?.primary || 'var(--foreground)'})`
           }}
         />
       </Button>
 
       {isOpen && (
         <div 
-          className="absolute top-full right-0 mt-2 p-2 rounded-lg border border-border/50 shadow-lg z-50
-                     bg-background/90 backdrop-blur-lg transition-all duration-200 animate-fade-in"
-          style={{ minWidth: '120px' }}
+          className="absolute top-full right-0 mt-2 p-3 rounded-xl border border-border/30 shadow-2xl z-50
+                     bg-background/95 backdrop-blur-xl transition-all duration-200 animate-fade-in"
+          style={{ minWidth: '48px' }}
         >
-          <div className="grid grid-cols-3 gap-1.5">
+          <div className="grid grid-cols-1 gap-2">
             {colors.map((color) => (
               <button
                 key={color.name}
                 onClick={() => handleColorChange(color)}
-                className={`w-6 h-6 rounded-full border-2 transition-all duration-200 hover:scale-110 hover:shadow-lg
-                           ${selectedColor === color.name ? 'border-foreground shadow-md scale-110' : 'border-border/30'}
+                className={`w-8 h-8 rounded-lg border-2 transition-all duration-200 hover:scale-105 hover:shadow-md
+                           ${selectedColor === color.name ? 'border-foreground shadow-lg scale-105 ring-2 ring-accent/50' : 'border-border/40'}
                            focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2`}
                 style={{ 
-                  backgroundColor: color.name === 'white' 
-                    ? 'hsl(0 0% 100%)' 
+                  backgroundColor: color.name === 'none' 
+                    ? 'hsl(var(--foreground))' 
                     : `hsl(${color.primary})`,
-                  ...(color.name === 'white' && {
-                    border: '2px solid hsl(0 0% 80%)'
-                  })
                 }}
-                aria-label={`Select ${color.name} color theme`}
-                title={`${color.name} theme`}
+                aria-label={`Select ${color.display} color theme`}
+                title={`${color.display} theme`}
               />
             ))}
           </div>

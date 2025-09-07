@@ -7,7 +7,7 @@ const ColorSelector = () => {
   const [selectedColor, setSelectedColor] = useState('none');
 
   const colors = [
-    { name: 'none', primary: '', accent: '', glow: '', display: 'Default' },
+    { name: 'none', primary: '', accent: '', glow: '', display: 'Default', icon: '🚫' },
     { name: 'pink', primary: '330 81% 60%', accent: '330 81% 60%', glow: '330 81% 80%', display: 'Pink' },
     { name: 'orange', primary: '25 95% 53%', accent: '25 95% 53%', glow: '25 95% 73%', display: 'Orange' },
     { name: 'green', primary: '142 71% 45%', accent: '142 71% 45%', glow: '142 71% 65%', display: 'Green' },
@@ -56,18 +56,20 @@ const ColorSelector = () => {
         variant="ghost"
         size="sm"
         onClick={() => setIsOpen(!isOpen)}
-        className="hover:bg-accent relative h-8 w-8 p-1"
+        className="hover:bg-accent relative h-6 w-6 p-0.5"
         aria-label="Select portfolio color theme"
         aria-expanded={isOpen}
       >
-        <div 
-          className="w-4 h-4 rounded-full border-2 border-border/50"
-          style={{ 
-            backgroundColor: selectedColor === 'none' 
-              ? 'hsl(var(--foreground))' 
-              : `hsl(${colors.find(c => c.name === selectedColor)?.primary || 'var(--foreground)'})`
-          }}
-        />
+        {selectedColor === 'none' ? (
+          <span className="text-xs">🚫</span>
+        ) : (
+          <div 
+            className="w-3 h-3 rounded-full border border-border/50"
+            style={{ 
+              backgroundColor: `hsl(${colors.find(c => c.name === selectedColor)?.primary || 'var(--foreground)'})`
+            }}
+          />
+        )}
       </Button>
 
       {isOpen && (
@@ -76,22 +78,24 @@ const ColorSelector = () => {
                      bg-background/95 backdrop-blur-xl transition-all duration-200 animate-fade-in"
           style={{ minWidth: '48px' }}
         >
-          <div className="grid grid-cols-1 gap-2">
+          <div className="grid grid-cols-1 gap-1.5">
             {colors.map((color) => (
               <button
                 key={color.name}
                 onClick={() => handleColorChange(color)}
-                className={`w-8 h-8 rounded-lg border-2 transition-all duration-200 hover:scale-105 hover:shadow-md
-                           ${selectedColor === color.name ? 'border-foreground shadow-lg scale-105 ring-2 ring-accent/50' : 'border-border/40'}
+                className={`w-6 h-6 rounded-full border-2 transition-all duration-200 hover:scale-110 hover:shadow-md flex items-center justify-center
+                           ${selectedColor === color.name ? 'border-foreground shadow-lg scale-110 ring-2 ring-accent/50' : 'border-border/40'}
                            focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2`}
                 style={{ 
                   backgroundColor: color.name === 'none' 
-                    ? 'hsl(var(--foreground))' 
+                    ? 'transparent' 
                     : `hsl(${color.primary})`,
                 }}
                 aria-label={`Select ${color.display} color theme`}
                 title={`${color.display} theme`}
-              />
+              >
+                {color.name === 'none' && <span className="text-xs">🚫</span>}
+              </button>
             ))}
           </div>
         </div>

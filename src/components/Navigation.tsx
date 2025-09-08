@@ -101,7 +101,7 @@ const Navigation = () => {
                 <a
                   href={item.href}
                   className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out relative group 
-                            focus:outline-none focus-visible:outline-none focus:ring-0 focus:ring-offset-0 px-3 py-2 rounded-lg
+                            focus:outline-none focus-visible:outline-none px-3 py-2 rounded-lg
                             ${activeSection === item.href.substring(1) ? 'text-portfolio-accent font-medium' : ''}`}
                   onClick={(e) => {
                     e.preventDefault();

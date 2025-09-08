@@ -19,8 +19,12 @@ export default {
 		},
 		extend: {
 		fontFamily: {
-			'space': ['Space Grotesk', 'system-ui', 'sans-serif'],
-			'nunito': ['Nunito', 'system-ui', 'sans-serif'],
+			// Primary: Montserrat (used by `font-space` utility and default `sans`)
+			'space': ['Montserrat', 'system-ui', 'sans-serif'],
+			// Secondary: Inter (used by `font-nunito` utility)
+			'nunito': ['Inter', 'system-ui', 'sans-serif'],
+			// Set Tailwind default sans to Montserrat with Inter fallback
+			sans: ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
 		},
 		fontSize: {
 			'xs': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.025em' }],

@@ -19,7 +19,7 @@ export default {
 		},
 		extend: {
 		fontFamily: {
-			'ubuntu': ['Ubuntu', 'system-ui', 'sans-serif'],
+			'space': ['Space Grotesk', 'system-ui', 'sans-serif'],
 			'nunito': ['Nunito', 'system-ui', 'sans-serif'],
 		},
 		fontSize: {

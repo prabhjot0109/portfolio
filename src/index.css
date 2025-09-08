@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Nunito:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -144,11 +144,11 @@ All colors MUST be HSL.
   
   /* Typography scale for professional layouts */
   .typography-display {
-    @apply font-ubuntu font-bold tracking-tight;
+    @apply font-space font-bold tracking-tight;
   }
   
   .typography-heading {
-    @apply font-ubuntu font-medium tracking-tight;
+    @apply font-space font-medium tracking-tight;
   }
   
   .typography-body {

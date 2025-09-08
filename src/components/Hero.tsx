@@ -24,20 +24,20 @@ const Hero = () => {
           className="max-w-4xl mx-auto"
         >
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-4 sm:mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-space font-bold text-foreground mb-4 sm:mb-6 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="text-muted-foreground text-lg sm:text-xl md:text-2xl font-normal block mb-2">Hello, I'm</span>
-            <span className="text-accent">Prabhjot Singh Assi</span>
-            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-foreground mt-2">
+            <span className="text-muted-foreground text-lg sm:text-xl md:text-2xl font-nunito font-normal block mb-2">Hello, I'm</span>
+            <span className="text-accent font-space">Prabhjot Singh Assi</span>
+            <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-space font-semibold text-foreground mt-2">
               Software Developer & AI Engineer
             </span>
           </motion.h1>
 
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4 sm:mb-6 max-w-3xl mx-auto leading-relaxed px-4"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4 sm:mb-6 max-w-3xl mx-auto leading-relaxed px-4 font-nunito"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -47,7 +47,7 @@ const Hero = () => {
           </motion.p>
 
           <motion.p
-            className="text-sm sm:text-base md:text-lg text-muted-foreground/90 mb-4 sm:mb-6 max-w-2xl mx-auto px-4"
+            className="text-sm sm:text-base md:text-lg text-muted-foreground/90 mb-4 sm:mb-6 max-w-2xl mx-auto px-4 font-nunito"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}

@@ -84,7 +84,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           <a 
             href="#home" 
-            className="text-2xl font-bold text-foreground focus:outline-none focus:ring-0 focus:ring-offset-0 rounded-lg px-2 py-1"
+            className="text-2xl font-space font-bold text-foreground focus:outline-none focus:ring-0 focus:ring-offset-0 rounded-lg px-2 py-1"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick('#home', 'Home');
@@ -101,7 +101,7 @@ const Navigation = () => {
                 <a
                   href={item.href}
                   className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out relative group 
-                            focus:outline-none focus:ring-0 focus:ring-offset-0 px-3 py-2 rounded-lg
+                            focus:outline-none focus:ring-0 focus:ring-offset-0 px-3 py-2 rounded-lg font-nunito
                             ${activeSection === item.href.substring(1) ? 'text-portfolio-accent font-medium' : ''}`}
                   onClick={(e) => {
                     e.preventDefault();
@@ -189,7 +189,7 @@ const Navigation = () => {
                       e.preventDefault();
                       handleNavClick(item.href, item.label);
                     }}
-                    className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out py-3 px-4 block rounded-lg
+                    className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out py-3 px-4 block rounded-lg font-nunito
                               focus:outline-none focus:ring-0 focus:ring-offset-0
                               hover:bg-accent/10 transform hover:translate-x-2
                               ${activeSection === item.href.substring(1) ? 'text-portfolio-accent font-medium bg-accent/10' : ''}

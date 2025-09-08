@@ -19,8 +19,8 @@ export default {
 		},
 		extend: {
 		fontFamily: {
-			'space': ['Space Grotesk', 'system-ui', 'sans-serif'],
-			'instrument': ['Instrument Sans', 'system-ui', 'sans-serif'],
+			'playfair': ['Playfair Display', 'serif'],
+			'montserrat': ['Montserrat', 'system-ui', 'sans-serif'],
 		},
 		fontSize: {
 			'xs': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.025em' }],

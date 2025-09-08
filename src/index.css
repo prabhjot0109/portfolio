@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Sans:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -133,8 +133,30 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-inter antialiased;
+    @apply bg-background text-foreground font-space antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    font-optical-sizing: auto;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Typography scale for professional layouts */
+  .typography-display {
+    @apply font-space font-bold tracking-tight;
+  }
+  
+  .typography-heading {
+    @apply font-space font-semibold tracking-tight;
+  }
+  
+  .typography-body {
+    @apply font-instrument font-normal tracking-normal;
+  }
+  
+  .typography-caption {
+    @apply font-instrument font-medium tracking-wide text-sm;
   }
   
   html {

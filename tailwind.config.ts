@@ -19,8 +19,8 @@ export default {
 		},
 		extend: {
 		fontFamily: {
-			'playfair': ['Playfair Display', 'serif'],
-			'montserrat': ['Montserrat', 'system-ui', 'sans-serif'],
+			'ubuntu': ['Ubuntu', 'system-ui', 'sans-serif'],
+			'nunito': ['Nunito', 'system-ui', 'sans-serif'],
 		},
 		fontSize: {
 			'xs': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.025em' }],

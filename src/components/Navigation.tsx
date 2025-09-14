@@ -80,7 +80,7 @@ const Navigation = () => {
         WebkitBackdropFilter: 'blur(24px) saturate(200%)'
       }}
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-6 py-5 min-h-[4rem]">
         <div className="flex items-center justify-between">
           <a 
             href="#home" 

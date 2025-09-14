@@ -94,11 +94,11 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 120 }) => {
       canvas.height = Math.floor(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // Create enhanced star field
-      const area = Math.max(1, (width * height) / 15000);
+      // Create enhanced star field with more stars
+      const area = Math.max(1, (width * height) / 12000); // Increased density
       const targetCount = Math.min(
-        180,
-        Math.max(40, Math.floor((density * area) / 20))
+        250, // Increased max count
+        Math.max(60, Math.floor((density * area) / 15)) // More stars
       );
 
       const newStars: Star[] = [];
@@ -204,17 +204,29 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 120 }) => {
           // Special stars get accent colors
           ctx.fillStyle = getHslaFromVar("--accent", alpha * 0.8);
         } else {
-          ctx.fillStyle = getHslaFromVar("--foreground", alpha);
+          // Enhanced visibility for light theme
+          const isDark = getComputedStyle(document.documentElement)
+            .getPropertyValue('--background').includes('222');
+          
+          ctx.fillStyle = isDark 
+            ? getHslaFromVar("--foreground", alpha)
+            : getHslaFromVar("--primary", alpha * 0.7);
         }
         ctx.fill();
 
         // Glow effects for brighter stars
         if (alpha > 0.5) {
+          // Enhanced glow effects for light theme visibility
+          const isDark = getComputedStyle(document.documentElement)
+            .getPropertyValue('--background').includes('222');
+            
           ctx.beginPath();
           ctx.arc(orbitX, orbitY, starSize * 2, 0, Math.PI * 2);
           ctx.fillStyle = s.isSpecial
             ? getHslaFromVar("--accent", alpha * 0.1)
-            : getHslaFromVar("--foreground", alpha * 0.08);
+            : isDark 
+              ? getHslaFromVar("--foreground", alpha * 0.08)
+              : getHslaFromVar("--primary", alpha * 0.12);
           ctx.fill();
 
           // Additional outer glow for special stars

@@ -13,8 +13,36 @@ const Hero = () => {
     >
       {/* Enhanced Night Sky Background */}
       <Suspense fallback={null}>
-        <ShootingStars density={80} />
+        <ShootingStars density={150} />
       </Suspense>
+
+      {/* Additional CSS-based twinkling stars for light theme */}
+      <div className="absolute inset-0 pointer-events-none">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-portfolio-accent rounded-full animate-twinkle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`
+            }}
+          />
+        ))}
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div
+            key={`sparkle-${i}`}
+            className="absolute w-0.5 h-0.5 bg-primary rounded-full animate-sparkle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${3 + Math.random() * 2}s`
+            }}
+          />
+        ))}
+      </div>
 
       <div className="container mx-auto px-6 text-center relative z-10 pt-20">
         <motion.div

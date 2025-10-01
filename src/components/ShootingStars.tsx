@@ -58,22 +58,38 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 120 }) => {
     let shootingStars: ShootingStar[] = [];
     let lastShootingStarTime = 0;
 
-    // Theme detection function
+    // Theme detection function - improved
     const isDarkTheme = () => {
       const bgValue = getComputedStyle(document.documentElement)
         .getPropertyValue("--background")
         .trim();
-      // Check if background is dark (contains "0%" or very low lightness)
-      return bgValue.includes("0%") || bgValue.match(/\s+0%\s+0%/);
+      // Parse HSL values: "0 0% 0%" = dark, "0 0% 100%" = light
+      const matches = bgValue.match(/(\d+)\s+(\d+)%\s+(\d+)%/);
+      if (matches) {
+        const lightness = parseInt(matches[3]);
+        // If lightness is less than 50%, it's dark theme
+        return lightness < 50;
+      }
+      return false;
     };
 
     const getThemeColors = () => {
       const isDark = isDarkTheme();
-      return {
-        background: isDark ? "#0a0a0a" : "#fafafa",
-        starColor: isDark ? "rgba(255, 255, 255," : "rgba(40, 40, 40,",
-        shootingStarColor: isDark ? "rgba(255, 255, 255," : "rgba(60, 60, 60,",
-      };
+      if (isDark) {
+        // Dark theme: white stars on very dark background
+        return {
+          background: "rgba(10, 10, 10, 1)", // Very dark background
+          starColor: "rgba(255, 255, 255,", // White stars
+          shootingStarColor: "rgba(255, 255, 255,", // White shooting stars
+        };
+      } else {
+        // Light theme: dark stars on light background
+        return {
+          background: "rgba(250, 250, 250, 1)", // Very light background
+          starColor: "rgba(50, 50, 50,", // Dark gray stars
+          shootingStarColor: "rgba(30, 30, 30,", // Darker shooting stars
+        };
+      }
     };
 
     const resize = () => {

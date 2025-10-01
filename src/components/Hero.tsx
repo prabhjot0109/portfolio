@@ -21,10 +21,11 @@ const Hero = () => {
         {Array.from({ length: 60 }).map((_, i) => {
           const size = 1 + Math.random() * 2;
           const opacity = 0.3 + Math.random() * 0.7;
+          const blur = 2 + Math.random() * 4;
           return (
             <div
               key={i}
-              className="absolute rounded-full animate-twinkle"
+              className="absolute rounded-full animate-twinkle bg-foreground/80"
               style={{
                 width: `${size}px`,
                 height: `${size}px`,
@@ -32,10 +33,9 @@ const Hero = () => {
                 top: `${Math.random() * 100}%`,
                 animationDelay: `${Math.random() * 3}s`,
                 animationDuration: `${2 + Math.random() * 2}s`,
-                backgroundColor: `hsl(var(--foreground) / ${opacity})`,
-                boxShadow: `0 0 ${
-                  2 + Math.random() * 4
-                }px hsl(var(--foreground) / ${opacity * 0.5})`,
+                opacity: opacity,
+                filter: `blur(${blur * 0.3}px)`,
+                boxShadow: `0 0 ${blur}px currentColor`,
               }}
             />
           );
@@ -43,10 +43,11 @@ const Hero = () => {
         {Array.from({ length: 30 }).map((_, i) => {
           const size = 0.5 + Math.random() * 1.5;
           const opacity = 0.2 + Math.random() * 0.6;
+          const blur = 1 + Math.random() * 3;
           return (
             <div
               key={`sparkle-${i}`}
-              className="absolute rounded-full animate-sparkle"
+              className="absolute rounded-full animate-sparkle bg-foreground/70"
               style={{
                 width: `${size}px`,
                 height: `${size}px`,
@@ -54,10 +55,9 @@ const Hero = () => {
                 top: `${Math.random() * 100}%`,
                 animationDelay: `${Math.random() * 4}s`,
                 animationDuration: `${3 + Math.random() * 2}s`,
-                backgroundColor: `hsl(var(--foreground) / ${opacity})`,
-                boxShadow: `0 0 ${
-                  1 + Math.random() * 3
-                }px hsl(var(--foreground) / ${opacity * 0.4})`,
+                opacity: opacity,
+                filter: `blur(${blur * 0.3}px)`,
+                boxShadow: `0 0 ${blur}px currentColor`,
               }}
             />
           );

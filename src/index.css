@@ -44,17 +44,17 @@ All colors MUST be HSL.
     --portfolio-dark: 0 0% 0%;
     --portfolio-accent: 0 0% 0%;
     --portfolio-glow: 0 0% 20%;
-    
+
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(var(--background)), hsl(var(--muted)));
     --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted)));
     --gradient-accent: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--foreground)));
-    
+
     /* Shadows */
     --shadow-card: 0 4px 6px -1px hsl(0 0% 0% / 0.1);
     --shadow-hover: 0 10px 25px -3px hsl(0 0% 0% / 0.1);
     --shadow-glow: 0 0 20px hsl(0 0% 0% / 0.1);
-    
+
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -98,22 +98,22 @@ All colors MUST be HSL.
     --border: 0 0% 15%;
     --input: 0 0% 15%;
     --ring: 0 0% 100%;
-    
+
     /* Dark mode specific */
     --portfolio-dark: 0 0% 100%;
     --portfolio-accent: 0 0% 100%;
     --portfolio-glow: 0 0% 80%;
-    
+
     /* Dark gradients */
     --gradient-hero: linear-gradient(135deg, hsl(var(--background)), hsl(0 0% 5%));
     --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted)));
     --gradient-accent: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--foreground)));
-    
+
     /* Dark shadows */
     --shadow-card: 0 4px 6px -1px hsl(0 0% 0% / 0.3);
     --shadow-hover: 0 10px 25px -3px hsl(0 0% 0% / 0.3);
     --shadow-glow: 0 0 20px hsl(0 0% 100% / 0.1);
-    
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -122,6 +122,9 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+  .theme {
+    --animate-meteor-effect: meteor 5s linear infinite;
   }
 }
 
@@ -139,24 +142,24 @@ All colors MUST be HSL.
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   /* Typography scale for professional layouts */
   .typography-display {
     @apply font-space font-bold tracking-tight;
   }
-  
+
   .typography-heading {
     @apply font-space font-medium tracking-tight;
   }
-  
+
   .typography-body {
     @apply font-nunito font-normal tracking-normal;
   }
-  
+
   .typography-caption {
     @apply font-nunito font-medium tracking-wide text-sm;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
@@ -198,7 +201,7 @@ All colors MUST be HSL.
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
-  
+
   .scrollbar-hidden::-webkit-scrollbar {
     display: none;  /* Chrome, Safari and Opera */
   }
@@ -209,15 +212,15 @@ All colors MUST be HSL.
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
-  
+
   .animate-glow {
     animation: glow 2s ease-in-out infinite alternate;
   }
-  
+
   .animate-slide-up {
     animation: slide-up 0.8s ease-out forwards;
   }
-  
+
   .animate-fade-in {
     animation: fade-in 1s ease-out forwards;
   }
@@ -233,31 +236,31 @@ All colors MUST be HSL.
   .animate-sparkle {
     animation: sparkle ease-in-out infinite;
   }
-  
+
   /* Interactive elements */
   .portfolio-button {
     @apply relative overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl;
     background: var(--gradient-accent);
   }
-  
+
   .portfolio-button::before {
     @apply absolute inset-0 opacity-0 transition-opacity duration-300;
     content: '';
     background: linear-gradient(45deg, transparent 30%, hsl(var(--portfolio-glow) / 0.5) 50%, transparent 70%);
     transform: translateX(-100%);
   }
-  
+
   .portfolio-button:hover::before {
     @apply opacity-100;
     animation: shimmer 0.6s ease-out;
   }
-  
+
   .portfolio-card {
     @apply bg-card rounded-xl shadow-[var(--shadow-card)] border border-border;
     @apply transition-all duration-300 hover:shadow-[var(--shadow-hover)] hover:scale-[1.02];
     background: var(--gradient-card);
   }
-  
+
   .portfolio-glow {
     box-shadow: var(--shadow-glow);
   }
@@ -403,5 +406,40 @@ All colors MUST be HSL.
   50% { 
     opacity: 0.8;
     transform: scale(1.3);
+  }
+}
+
+/* Meteor head twinkle */
+@keyframes meteorTwinkle { 0%,100% { opacity: 0.85; } 50% { opacity: 0.35; } }
+.meteor-twinkle { animation: meteorTwinkle 2.4s ease-in-out infinite; }
+
+/* ---break---
+*/
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ---break---
+*/
+
+@theme inline {
+  @keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+    }
+  70% {
+    opacity: 1;
+    }
+  100% {
+    transform: rotate(215deg) translateX(-500px);
+    opacity: 0;
+    }
   }
 }

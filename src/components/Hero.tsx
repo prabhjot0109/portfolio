@@ -1,67 +1,132 @@
-import React, { lazy, Suspense } from "react";
+import React, {
+  useMemo,
+  memo,
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+} from "react";
 import { ArrowDown, Github, Linkedin, Mail, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-
-const ShootingStars = lazy(() => import("./ShootingStars"));
+import { Meteors } from "@/components/ui/shadcn-io/meteors";
+import Starfield from "@/components/Starfield";
 
 const Hero = () => {
+  const [animated, setAnimated] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const enableAnimation = useCallback(() => setAnimated(true), []);
+
+  useEffect(() => {
+    if (animated) return;
+    if (!sectionRef.current) return;
+    if (!("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
+            setAnimated(true);
+          } else {
+            setAnimated(false);
+          }
+        }
+      },
+      { threshold: [0.1, 0.4, 0.6] }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, [animated, enableAnimation]);
+
+  useEffect(() => {
+    if (animated) return;
+    const events: (keyof DocumentEventMap)[] = [
+      "pointermove",
+      "click",
+      "keydown",
+      "touchstart",
+      "scroll",
+    ];
+    const handler = () => {
+      enableAnimation();
+      events.forEach((e) => window.removeEventListener(e, handler as any));
+    };
+    events.forEach((e) =>
+      window.addEventListener(e, handler as any, { passive: true })
+    );
+    return () =>
+      events.forEach((e) => window.removeEventListener(e, handler as any));
+  }, [animated, enableAnimation]);
+
+  const sparkles = useMemo(
+    () =>
+      Array.from({ length: 15 }).map((_, index) => ({
+        id: `sparkle-${index}`,
+        size: 1.6 + Math.random() * 2.4,
+        opacity: 0.28 + Math.random() * 0.5,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        delay: Math.random() * 4,
+        duration: 3.5 + Math.random() * 3,
+        blur: 0.3 + Math.random() * 1.2,
+        glow: 2 + Math.random() * 5,
+      })),
+    []
+  );
+
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      onMouseEnter={enableAnimation}
+      onFocus={enableAnimation}
     >
-      {/* Enhanced Night Sky Background */}
-      <Suspense fallback={null}>
-        <ShootingStars density={150} />
-      </Suspense>
+      {/* Starfield background */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <Starfield density={0.06} speed={0.4} active={animated} />
+      </div>
+      {/* Meteors / shooting stars - only after activation */}
+      {animated && (
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <Meteors
+            number={40}
+            angle={45}
+            className="opacity-90 bg-white meteor-twinkle"
+          />
+        </div>
+      )}
 
-      {/* Additional CSS-based twinkling stars - Theme aware */}
+      {/* Aurora overlay and sparkles */}
       <div className="absolute inset-0 pointer-events-none">
-        {Array.from({ length: 60 }).map((_, i) => {
-          const size = 1 + Math.random() * 2;
-          const opacity = 0.3 + Math.random() * 0.7;
-          const blur = 2 + Math.random() * 4;
-          return (
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(20,40,80,0.5),transparent_70%)] opacity-85 mix-blend-screen" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0e1533]/45 to-[#050712]/90" />
+        <div className="absolute inset-0 mix-blend-screen">
+          {sparkles.map((sparkle) => (
             <div
-              key={i}
-              className="absolute rounded-full animate-twinkle bg-foreground/80"
+              key={sparkle.id}
+              className="absolute"
               style={{
-                width: `${size}px`,
-                height: `${size}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 2}s`,
-                opacity: opacity,
-                filter: `blur(${blur * 0.3}px)`,
-                boxShadow: `0 0 ${blur}px currentColor`,
+                left: `${sparkle.left}%`,
+                top: `${sparkle.top}%`,
+                transform: "translate(-50%, -50%)",
               }}
-            />
-          );
-        })}
-        {Array.from({ length: 30 }).map((_, i) => {
-          const size = 0.5 + Math.random() * 1.5;
-          const opacity = 0.2 + Math.random() * 0.6;
-          const blur = 1 + Math.random() * 3;
-          return (
-            <div
-              key={`sparkle-${i}`}
-              className="absolute rounded-full animate-sparkle bg-foreground/70"
-              style={{
-                width: `${size}px`,
-                height: `${size}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 4}s`,
-                animationDuration: `${3 + Math.random() * 2}s`,
-                opacity: opacity,
-                filter: `blur(${blur * 0.3}px)`,
-                boxShadow: `0 0 ${blur}px currentColor`,
-              }}
-            />
-          );
-        })}
+            >
+              <div
+                className="rounded-full animate-sparkle bg-white/90 mix-blend-screen"
+                style={{
+                  width: `${sparkle.size}px`,
+                  height: `${sparkle.size}px`,
+                  animationDelay: `${sparkle.delay}s`,
+                  animationDuration: `${sparkle.duration}s`,
+                  opacity: sparkle.opacity,
+                  filter: `blur(${sparkle.blur}px)`,
+                  boxShadow: `0 0 ${sparkle.glow}px rgba(180, 210, 255, 0.85)`,
+                }}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="container mx-auto px-6 text-center relative z-10 pt-20">
@@ -98,7 +163,7 @@ const Hero = () => {
             technology
           </motion.p>
 
-          {/* Social Links - More visible and positioned higher */}
+          {/* Social Links */}
           <motion.div
             className="flex items-center justify-center space-x-6 mb-8"
             initial={{ opacity: 0, y: 20 }}
@@ -147,8 +212,9 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Button
+              variant="ghost"
               size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold px-8 py-3 text-sm w-full sm:w-auto border-0 shadow-lg hover:shadow-xl transition-all duration-200"
+              className="text-foreground hover:text-accent hover:bg-accent/20 hover:scale-110 transition-all duration-200 border border-muted-foreground/20 rounded-full px-8 py-3 font-semibold text-sm w-full sm:w-auto h-12 min-w-[200px]"
               onClick={() =>
                 document
                   .getElementById("projects")
@@ -160,9 +226,9 @@ const Hero = () => {
             </Button>
 
             <Button
-              variant="outline"
+              variant="ghost"
               size="lg"
-              className="font-semibold px-8 py-3 text-sm w-full sm:w-auto border-2 border-muted-foreground/20 hover:border-accent hover:text-accent transition-all duration-200"
+              className="text-foreground hover:text-accent hover:bg-accent/20 hover:scale-110 transition-all duration-200 border border-muted-foreground/20 rounded-full px-8 py-3 font-semibold text-sm w-full sm:w-auto h-12 min-w-[200px]"
               onClick={() => window.open("/resume.pdf", "_blank")}
               aria-label="Download resume as PDF"
             >
@@ -192,4 +258,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default memo(Hero);

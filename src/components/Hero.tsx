@@ -11,11 +11,13 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Meteors } from "@/components/ui/shadcn-io/meteors";
 import Starfield from "@/components/Starfield";
+import { useTheme } from "@/components/ThemeProvider";
 
 const Hero = () => {
   const [animated, setAnimated] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
   const enableAnimation = useCallback(() => setAnimated(true), []);
+  const { actualTheme } = useTheme();
 
   useEffect(() => {
     if (animated) return;
@@ -82,52 +84,63 @@ const Hero = () => {
       onMouseEnter={enableAnimation}
       onFocus={enableAnimation}
     >
-      {/* Starfield background */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <Starfield density={0.06} speed={0.4} active={animated} />
-      </div>
-      {/* Meteors / shooting stars - only after activation */}
-      {animated && (
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <Meteors
-            number={40}
-            angle={45}
-            className="opacity-90 bg-white meteor-twinkle"
-          />
-        </div>
-      )}
-
-      {/* Aurora overlay and sparkles */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(20,40,80,0.5),transparent_70%)] opacity-85 mix-blend-screen" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0e1533]/45 to-[#050712]/90" />
-        <div className="absolute inset-0 mix-blend-screen">
-          {sparkles.map((sparkle) => (
-            <div
-              key={sparkle.id}
-              className="absolute"
-              style={{
-                left: `${sparkle.left}%`,
-                top: `${sparkle.top}%`,
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              <div
-                className="rounded-full animate-sparkle bg-white/90 mix-blend-screen"
-                style={{
-                  width: `${sparkle.size}px`,
-                  height: `${sparkle.size}px`,
-                  animationDelay: `${sparkle.delay}s`,
-                  animationDuration: `${sparkle.duration}s`,
-                  opacity: sparkle.opacity,
-                  filter: `blur(${sparkle.blur}px)`,
-                  boxShadow: `0 0 ${sparkle.glow}px rgba(180, 210, 255, 0.85)`,
-                }}
+      {/* Background based on theme */}
+      {actualTheme === "dark" ? (
+        <>
+          {/* Starfield background */}
+          <div className="absolute inset-0 pointer-events-none z-0">
+            <Starfield density={0.06} speed={0.4} active={animated} />
+          </div>
+          {/* Meteors / shooting stars - only after activation */}
+          {animated && (
+            <div className="absolute inset-0 pointer-events-none z-0">
+              <Meteors
+                number={40}
+                angle={45}
+                className="opacity-90 bg-white meteor-twinkle"
               />
             </div>
-          ))}
+          )}
+
+          {/* Aurora overlay and sparkles */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(20,40,80,0.5),transparent_70%)] opacity-85 mix-blend-screen" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0e1533]/45 to-[#050712]/90" />
+            <div className="absolute inset-0 mix-blend-screen">
+              {sparkles.map((sparkle) => (
+                <div
+                  key={sparkle.id}
+                  className="absolute"
+                  style={{
+                    left: `${sparkle.left}%`,
+                    top: `${sparkle.top}%`,
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  <div
+                    className="rounded-full animate-sparkle bg-white/90 mix-blend-screen"
+                    style={{
+                      width: `${sparkle.size}px`,
+                      height: `${sparkle.size}px`,
+                      animationDelay: `${sparkle.delay}s`,
+                      animationDuration: `${sparkle.duration}s`,
+                      opacity: sparkle.opacity,
+                      filter: `blur(${sparkle.blur}px)`,
+                      boxShadow: `0 0 ${sparkle.glow}px rgba(180, 210, 255, 0.85)`,
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </>
+      ) : (
+        /* Light theme: Subtle noon day sky gradient */
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-sky-200 via-sky-100 to-white" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-sky-200/10" />
         </div>
-      </div>
+      )}
 
       <div className="container mx-auto px-6 text-center relative z-10 pt-20">
         <motion.div
@@ -154,7 +167,7 @@ const Hero = () => {
           </motion.h1>
 
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-muted-foreground/80 mb-8 max-w-xl mx-auto leading-relaxed px-4 font-nunito"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed px-4 font-nunito"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}

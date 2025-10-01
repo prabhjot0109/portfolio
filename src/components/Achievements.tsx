@@ -17,9 +17,9 @@ const Achievements = () => {
     {
       icon: Trophy,
       title: "🥈 Code for Bharat Season 2 - 1st Runner-up",
-      organization: "Tech Masters India, Microsoft Office Noida",
+      organization: "Tech Masters India, Microsoft Office, Noida",
       year: "2025",
-      product: "National Problem Solving Challenge",
+      product: "National Project Building Challenge",
       description: "Secured 1st runner-up among top teams across India",
       impact: "Recognized for innovation and execution",
       color: "from-orange-400 to-orange-600"
@@ -81,7 +81,7 @@ const Achievements = () => {
     { icon: "💰", number: "$4K", label: "Grant Received" },
     { icon: "🎯", number: "10K+", label: "People Impacted" },
     { icon: "📱", number: "8+", label: "Projects Built" },
-    { icon: "🤖", number: "40+", label: "AI Models Trained" },
+    { icon: "🤖", number: "20+", label: "AI Models Trained" },
     { icon: "🌱", number: "20%", label: "Efficiency Gains" }
   ];
 

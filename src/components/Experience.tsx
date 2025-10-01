@@ -6,58 +6,60 @@ const Experience = () => {
   const timelineEvents = [
     {
       id: 7,
-      type: 'internship',
+      type: "internship",
       icon: Briefcase,
       title: "AI/ML Intern",
       organization: "Edunet Foundation",
       location: "Remote",
-      date: "November 2024 - December 2024",
-      description: "Completed intensive virtual internship focusing on practical applications of AI and ML in real-world scenarios. Worked on AI Transformative Learning project using CNN and MobileNetV2 architecture.",
+      date: "Nov 2024 - Dec 2024",
+      description:
+        "Completed intensive virtual internship focusing on practical applications of AI and ML in real-world scenarios. Worked on AI Transformative Learning project using CNN and MobileNetV2 architecture.",
       highlights: [
         "Deployed production-ready ML model on Streamlit Cloud",
-        "Implemented CNN with MobileNetV2 for image classification", 
+        "Implemented CNN with MobileNetV2 for image classification",
         "Transfer learning on ImageNet dataset",
         "Real-time inference and model optimization",
-        "Received certification of excellence"
+        "Received certification of excellence",
       ],
-      status: "completed"
+      status: "completed",
     },
     {
       id: 1,
-      type: 'education',
+      type: "education",
       icon: GraduationCap,
       title: "B.Tech in Computer Science & Engineering",
       organization: "Specialization: AI & ML",
-      location: "Current Institution",
+      location: "AITR, Indore, India",
       date: "2022 - 2026",
-      description: "Pursuing Bachelor of Technology in Computer Science & Engineering with specialization in Artificial Intelligence and Machine Learning. Currently in 3rd year with focus on advanced AI algorithms, machine learning models, and real-world applications.",
+      description:
+        "Pursuing B.Tech. in Computer Science & Engineering with specialization in Artificial Intelligence and Machine Learning. Currently in 4th year with focus on advanced AI algorithms, machine learning models, and real-world applications.",
       highlights: [
-        "• Currently maintaining CGPA: 8.5/10",
-        "• Core subjects: Machine Learning, Computer Vision, Natural Language Processing, Data Structures & Algorithms",
-        "• Active leadership role in Tech Society and AI Research Club",
-        "• Research focus: AI applications in Healthcare & Accessibility Technology solutions",
-        "• Published research paper on AI-based accessibility tools"
+        "Current CGPA: 7.22/10",
+        "Core subjects: Machine Learning, Computer Vision, Natural Language Processing, Data Structures & Algorithms",
+        "Active leadership role in IEEE SIGHT student chapter",
+        "Research focus: AI applications in Healthcare & Accessibility Technology solutions",
+        "Published research paper on CSLR based sign language recognition",
       ],
-      status: "current"
+      status: "current",
     },
     {
       id: 8,
-      type: 'education',
+      type: "education",
       icon: GraduationCap,
       title: "Higher Secondary Education (PCM + CS)",
-      organization: "DAV Public School",
-      location: "Local City",
-      date: "2020 - 2022",
-      description: "Completed higher secondary education with PCM (Physics, Chemistry, Mathematics) and Computer Science stream. Developed strong foundation in analytical thinking, problem-solving, and programming fundamentals.",
+      organization: "Chameli Devi Public School",
+      location: "Indore, India",
+      date: "2021 - 2022",
+      description:
+        "Completed higher secondary education with PCM (Physics, Chemistry, Mathematics) and Computer Science stream. Developed strong foundation in analytical thinking, problem-solving, and programming fundamentals.",
       highlights: [
-        "Percentage: 92% (Distinction)",
+        "Percentage: 73.0%",
         "Science stream with Computer Science specialization",
-        "School topper in Mathematics and Computer Science",
         "Active participation in science exhibitions and coding competitions",
-        "Foundation in C++ and Python programming"
+        "Foundation in Python programming",
       ],
-      status: "completed"
-    }
+      status: "completed",
+    },
   ];
 
   const getStatusColor = (status: string) => {
@@ -87,7 +89,7 @@ const Experience = () => {
             Experience & Education
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            My journey of learning, growing, and achieving milestones
+            My journey of learning and growing
           </p>
         </motion.div>
 

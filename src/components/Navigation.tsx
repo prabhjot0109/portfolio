@@ -3,7 +3,6 @@ import { Moon, Sun, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from './ThemeProvider';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
-import ColorSelector from './ColorSelector';
 
 const Navigation = () => {
   const { theme, toggleTheme } = useTheme();
@@ -117,8 +116,6 @@ const Navigation = () => {
               </li>
             ))}
             
-            <ColorSelector />
-            
             <Button
               variant="ghost"
               size="icon"
@@ -136,8 +133,6 @@ const Navigation = () => {
 
           {/* Mobile Navigation Toggle */}
           <div className="md:hidden flex items-center space-x-4">
-            <ColorSelector />
-            
             <Button
               variant="ghost"
               size="icon"

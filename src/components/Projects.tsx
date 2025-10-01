@@ -95,84 +95,44 @@ const Projects = () => {
     },
     {
       id: 5,
-      title: "PARAS - Urban Transport Solution",
-      description: "Hackwave Runner-up | Smart transportation app optimizing urban mobility and reducing congestion.",
+      title: "Swara",
+      description: "Codespire 1st Runner-up | Python-based software to help singers compare their voice sessions and improve their singing.",
       image: parasImage,
-      tags: ["React", "Node.js", "MongoDB", "Google Maps API", "ML Model"],
-      longDescription: "A comprehensive urban transport optimization solution that provides real-time route planning, traffic management, and public transport integration. Runner-up at Hackwave 2024.",
+      tags: ["Python", "NumPy", "Matplotlib", "Pandas", "MySQL"],
+      longDescription: "A Python-based voice analysis software that helps singers track and improve their vocal performance by comparing voice sessions. Won 1st Runner-up at Codespire competition.",
       features: [
-        "Real-time route optimization algorithms",
-        "Multi-modal transport integration",
-        "Traffic prediction using machine learning",
-        "Carbon footprint tracking",
-        "48-hour intensive development"
+        "Voice session recording and comparison",
+        "Pitch accuracy analysis and visualization",
+        "Performance tracking over time",
+        "Data-driven insights for vocal improvement",
+        "MySQL database for session management"
       ],
-      achievements: "Hackwave 2024 Runner-up | Prize: ₹50,000",
-      impact: "Traffic Congestion Reduction",
+      achievements: "Codespire 1st Runner-up | Voice Analysis Innovation",
+      impact: "Vocal Performance Tracking",
       demoUrl: "#",
       githubUrl: "#",
       status: "Completed"
     },
     {
       id: 6,
-      title: "Solar Tracker Control System",
-      description: "Engineering Innovation | PID-controlled solar tracking system for optimizing energy capture efficiency.",
+      title: "ReWear",
+      description: "Sustainable Shopping | E-commerce webapp helping people buy and sell used products for a sustainable future.",
       image: solarImage,
-      tags: ["MATLAB", "Simulink", "Control Systems", "IoT", "C++"],
-      longDescription: "Designed and simulated a sophisticated solar tracking system using PID control algorithms. The system automatically adjusts solar panel orientation to maximize energy capture throughout the day.",
+      tags: ["React", "Vite", "HTML", "CSS", "JavaScript"],
+      longDescription: "An e-commerce platform designed to promote sustainability by enabling users to buy and sell pre-owned products. Built with modern web technologies for a seamless shopping experience.",
       features: [
-        "Dual-axis solar tracking mechanism",
-        "PID controller optimization algorithms",
-        "Weather-adaptive positioning system",
-        "Energy efficiency monitoring dashboard",
-        "MATLAB/Simulink simulation environment"
+        "User-friendly product listing and browsing",
+        "Secure transaction management",
+        "Product condition ratings and reviews",
+        "Search and filter functionality",
+        "Responsive design for all devices"
       ],
-      achievements: "35% Energy Efficiency Improvement",
-      impact: "35% Efficiency Improvement",
+      achievements: "Promoting Circular Economy | Sustainable Commerce",
+      impact: "Reducing Waste Through Reuse",
       demoUrl: "#",
       githubUrl: "#",
-      status: "Prototype"
+      status: "Completed"
     },
-    {
-      id: 7,
-      title: "Samvidhan Saga - Constitutional Game",
-      description: "Educational Tech | Interactive game teaching Indian constitutional principles through gamification.",
-      image: islImage,
-      tags: ["Unity", "C#", "Game Development", "Educational Tech", "UI/UX"],
-      longDescription: "An engaging game-based learning platform that makes understanding the Indian Constitution fun and interactive. Features quiz modes, story-driven scenarios, and progress tracking.",
-      features: [
-        "Interactive constitution lessons with animations",
-        "Gamified learning experience with rewards",
-        "Progress tracking and achievement system",
-        "Multiplayer quiz modes for competition",
-        "Story-driven constitutional scenarios"
-      ],
-      achievements: "10k+ Students Engaged",
-      impact: "10k+ Students Engaged",
-      demoUrl: "#",
-      githubUrl: "#",
-      status: "Live"
-    },
-    {
-      id: 8,
-      title: "Sahayak - AI Career Guidance",
-      description: "Career Tech | AI-powered career guidance platform with personalized recommendations and learning paths.",
-      image: harvestImage,
-      tags: ["Python", "Django", "Machine Learning", "React", "PostgreSQL"],
-      longDescription: "A comprehensive career guidance platform that uses AI to analyze user skills, interests, and market trends to provide personalized career recommendations and learning paths.",
-      features: [
-        "AI-powered personality assessment",
-        "Comprehensive skill gap analysis",
-        "Real-time industry trend insights",
-        "Personalized learning path recommendations",
-        "Career trajectory visualization"
-      ],
-      achievements: "1000+ Career Paths Mapped",
-      impact: "1000+ Career Paths Mapped",
-      demoUrl: "#",
-      githubUrl: "#",
-      status: "Beta"
-    }
   ];
 
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);

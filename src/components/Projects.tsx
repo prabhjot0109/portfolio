@@ -1,23 +1,41 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Eye } from 'lucide-react';
+import { ExternalLink, Github, Eye, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
-// Lazy load images for better performance
-const islImage = new URL('@/assets/project-isl.jpg', import.meta.url).href;
-const harvestImage = new URL('@/assets/project-harvest.jpg', import.meta.url).href;
-const solarImage = new URL('@/assets/project-solar.jpg', import.meta.url).href;
-const parasImage = new URL('@/assets/project-paras.jpg', import.meta.url).href;
+// Import images
+import islImage from '@/assets/project-isl.jpg';
+import islImage2 from '@/assets/project-isl-2.jpg';
+import islImage3 from '@/assets/project-isl-3.jpg';
+import medaiImage from '@/assets/project-medai.jpg';
+import medaiImage2 from '@/assets/project-medai-2.jpg';
+import medaiImage3 from '@/assets/project-medai-3.jpg';
+import vrindaImage from '@/assets/project-vrinda.jpg';
+import vrindaImage2 from '@/assets/project-vrinda-2.jpg';
+import vrindaImage3 from '@/assets/project-vrinda-3.jpg';
+import kavachImage from '@/assets/project-kavach.jpg';
+import kavachImage2 from '@/assets/project-kavach-2.jpg';
+import kavachImage3 from '@/assets/project-kavach-3.jpg';
+import swaraImage from '@/assets/project-swara.jpg';
+import swaraImage2 from '@/assets/project-swara-2.jpg';
+import swaraImage3 from '@/assets/project-swara-3.jpg';
+import rewearImage from '@/assets/project-rewear.jpg';
+import rewearImage2 from '@/assets/project-rewear-2.jpg';
+import rewearImage3 from '@/assets/project-rewear-3.jpg';
 
 const Projects = () => {
+  const [showAll, setShowAll] = useState(false);
+  
   const projects = [
     {
       id: 1,
       title: "Signify - AI Sign Language Translator",
       description: "AI-powered app enabling ISL-to-text and text-to-ISL communication for the hard-of-hearing community. Duration: Ongoing | Role: App & Backend Developer.",
       image: islImage,
+      images: [islImage, islImage2, islImage3],
       tags: ["Flutter", "Python", "MediaPipe", "Computer Vision", "ML"],
       longDescription: "AI-powered Indian Sign Language translator that bridges communication gaps for the hard-of-hearing community. Converts ISL to text/speech and vice versa. Recognized at SIH 2024.",
       features: [
@@ -37,7 +55,8 @@ const Projects = () => {
       id: 2,
       title: "Med.AI - Healthcare Intelligence System",
       description: "Prayatna 3rd Runner-up | AI-powered medical diagnostic assistant enhancing healthcare decision-making.",
-      image: harvestImage,
+      image: medaiImage,
+      images: [medaiImage, medaiImage2, medaiImage3],
       tags: ["PyTorch", "Scikit-learn", "Computer Vision", "Medical AI", "X-Ray Analysis"],
       longDescription: "AI-powered medical diagnostic assistant that enhances healthcare decision-making through advanced analytics. Secured 3rd Runner-up position at Prayatna Hackathon.",
       features: [
@@ -57,7 +76,8 @@ const Projects = () => {
       id: 3,
       title: "Vrinda - Smart Farming Assistant",
       description: "AI + IoT farming assistant providing soil analysis and pest detection to improve crop production.",
-      image: solarImage,
+      image: vrindaImage,
+      images: [vrindaImage, vrindaImage2, vrindaImage3],
       tags: ["Flutter", "Arduino", "IoT", "OpenWeather API", "Gemini AI"],
       longDescription: "AI app integrated with IoT sensors to deliver real-time soil health insights and pest detection for farmers. Leading development and field pilots as Lead Developer.",
       features: [
@@ -77,7 +97,8 @@ const Projects = () => {
       id: 4,
       title: "Kavach - Emergency SOS System",
       description: "Safety Innovation | Intelligent emergency response application with advanced speech recognition.",
-      image: parasImage,
+      image: kavachImage,
+      images: [kavachImage, kavachImage2, kavachImage3],
       tags: ["Java", "Android Native", "XML", "Speech Recognition", "Voice AI"],
       longDescription: "Intelligent emergency response application with advanced speech recognition capabilities for critical safety situations.",
       features: [
@@ -97,7 +118,8 @@ const Projects = () => {
       id: 5,
       title: "Swara",
       description: "Codespire 1st Runner-up | Python-based software to help singers compare their voice sessions and improve their singing.",
-      image: parasImage,
+      image: swaraImage,
+      images: [swaraImage, swaraImage2, swaraImage3],
       tags: ["Python", "NumPy", "Matplotlib", "Pandas", "MySQL"],
       longDescription: "A Python-based voice analysis software that helps singers track and improve their vocal performance by comparing voice sessions. Won 1st Runner-up at Codespire competition.",
       features: [
@@ -117,7 +139,8 @@ const Projects = () => {
       id: 6,
       title: "ReWear",
       description: "Sustainable Shopping | E-commerce webapp helping people buy and sell used products for a sustainable future.",
-      image: solarImage,
+      image: rewearImage,
+      images: [rewearImage, rewearImage2, rewearImage3],
       tags: ["React", "Vite", "HTML", "CSS", "JavaScript"],
       longDescription: "An e-commerce platform designed to promote sustainability by enabling users to buy and sell pre-owned products. Built with modern web technologies for a seamless shopping experience.",
       features: [
@@ -136,6 +159,8 @@ const Projects = () => {
   ];
 
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+
+  const displayedProjects = showAll ? projects : projects.slice(0, 3);
 
   return (
     <section id="projects" className="py-20 bg-muted/30">
@@ -156,7 +181,7 @@ const Projects = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {displayedProjects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 50 }}
@@ -207,13 +232,23 @@ const Projects = () => {
                         </DialogDescription>
                       </DialogHeader>
                       <div className="space-y-6">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-64 object-cover rounded-lg"
-                          loading="lazy"
-                          decoding="async"
-                        />
+                        <Carousel className="w-full">
+                          <CarouselContent>
+                            {project.images.map((img, idx) => (
+                              <CarouselItem key={idx}>
+                                <img
+                                  src={img}
+                                  alt={`${project.title} - Image ${idx + 1}`}
+                                  className="w-full h-64 object-cover rounded-lg"
+                                  loading="lazy"
+                                  decoding="async"
+                                />
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious />
+                          <CarouselNext />
+                        </Carousel>
                         
                         <div>
                           <h3 className="text-lg font-semibold mb-3">Key Features</h3>
@@ -333,13 +368,23 @@ const Projects = () => {
                         </DialogDescription>
                       </DialogHeader>
                       <div className="space-y-6">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-64 object-cover rounded-lg"
-                          loading="lazy"
-                          decoding="async"
-                        />
+                        <Carousel className="w-full">
+                          <CarouselContent>
+                            {project.images.map((img, idx) => (
+                              <CarouselItem key={idx}>
+                                <img
+                                  src={img}
+                                  alt={`${project.title} - Image ${idx + 1}`}
+                                  className="w-full h-64 object-cover rounded-lg"
+                                  loading="lazy"
+                                  decoding="async"
+                                />
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          <CarouselPrevious />
+                          <CarouselNext />
+                        </Carousel>
                         
                         <div>
                           <h3 className="text-lg font-semibold mb-3">Key Features</h3>
@@ -388,6 +433,33 @@ const Projects = () => {
             </motion.div>
           ))}
         </div>
+
+        {projects.length > 3 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <Button
+              onClick={() => setShowAll(!showAll)}
+              size="lg"
+              variant="outline"
+              className="group"
+            >
+              {showAll ? (
+                <>
+                  Show Less <ChevronUp className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+                </>
+              ) : (
+                <>
+                  Show All Projects <ChevronDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+                </>
+              )}
+            </Button>
+          </motion.div>
+        )}
       </div>
     </section>
   );

@@ -1,24 +1,15 @@
 import React, { useEffect, useRef } from "react";
 
-// Enhanced starfield inspired by Grok AI's beautiful night sky
-// - Dynamic background with subtle gradients
-// - Realistic twinkling stars with natural patterns
-// - Occasional shooting star trails
-// - Multiple layers for depth and parallax
+// Enhanced starfield inspired by Grok.com's beautiful night sky
+// - Theme-aware: Adapts to both light and dark modes
+// - White stars on dark background, dark stars on light background
+// - Elegant shooting stars moving diagonally from top-right to bottom-left
+// - Minimalist and clean aesthetic
 // - Honors prefers-reduced-motion
-// - Colors pulled from theme tokens for perfect integration
 const ShootingStars: React.FC<{ density?: number }> = ({ density = 120 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const rafRef = useRef<number | null>(null);
   const runningRef = useRef(true);
-
-  // Get HSLA color string from CSS variable tokens
-  const getHslaFromVar = (cssVar: string, alpha = 1) => {
-    const val = getComputedStyle(document.documentElement)
-      .getPropertyValue(cssVar)
-      .trim(); // e.g. "210 40% 98%"
-    return `hsla(${val} / ${alpha})`;
-  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -28,7 +19,7 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 120 }) => {
     if (!ctx) return;
 
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (media.matches) return; // Respect reduced motion
+    if (media.matches) return;
 
     let width = 0;
     let height = 0;
@@ -49,7 +40,6 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 120 }) => {
       driftAngle: number;
       orbitRadius: number;
       twinkleIntensity: number;
-      isSpecial: boolean; // For brighter focal stars
     };
 
     type ShootingStar = {
@@ -68,21 +58,22 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 120 }) => {
     let shootingStars: ShootingStar[] = [];
     let lastShootingStarTime = 0;
 
-    // Create subtle background gradient
-    const createBackgroundGradient = () => {
-      const gradient = ctx.createRadialGradient(
-        width * 0.3,
-        height * 0.2,
-        0,
-        width * 0.7,
-        height * 0.8,
-        Math.max(width, height) * 0.8
-      );
-      gradient.addColorStop(0, getHslaFromVar("--background", 1));
-      gradient.addColorStop(0.3, getHslaFromVar("--background", 0.98));
-      gradient.addColorStop(0.7, getHslaFromVar("--muted", 0.02));
-      gradient.addColorStop(1, getHslaFromVar("--background", 1));
-      return gradient;
+    // Theme detection function
+    const isDarkTheme = () => {
+      const bgValue = getComputedStyle(document.documentElement)
+        .getPropertyValue("--background")
+        .trim();
+      // Check if background is dark (contains "0%" or very low lightness)
+      return bgValue.includes("0%") || bgValue.match(/\s+0%\s+0%/);
+    };
+
+    const getThemeColors = () => {
+      const isDark = isDarkTheme();
+      return {
+        background: isDark ? "#0a0a0a" : "#fafafa",
+        starColor: isDark ? "rgba(255, 255, 255," : "rgba(40, 40, 40,",
+        shootingStarColor: isDark ? "rgba(255, 255, 255," : "rgba(60, 60, 60,",
+      };
     };
 
     const resize = () => {
@@ -94,61 +85,56 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 120 }) => {
       canvas.height = Math.floor(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // Create enhanced star field with more stars
-      const area = Math.max(1, (width * height) / 12000); // Increased density
+      const area = Math.max(1, (width * height) / 10000);
       const targetCount = Math.min(
-        250, // Increased max count
-        Math.max(60, Math.floor((density * area) / 15)) // More stars
+        300,
+        Math.max(80, Math.floor((density * area) / 12))
       );
 
       const newStars: Star[] = [];
       for (let i = 0; i < targetCount; i++) {
         const layer = Math.random() < 0.4 ? 1 : Math.random() < 0.7 ? 2 : 3;
-        const sizeBase = layer === 1 ? 0.3 : layer === 2 ? 0.6 : 1.2;
+        const sizeBase = layer === 1 ? 0.4 : layer === 2 ? 0.7 : 1.0;
         const driftAngle = Math.random() * Math.PI * 2;
-        const baseSpeed = layer * 0.08 + Math.random() * 0.25;
-        const isSpecial = Math.random() < 0.05; // 5% chance for special bright stars
+        const baseSpeed = layer * 0.05 + Math.random() * 0.15;
 
         const s: Star = {
           x: Math.random() * width,
           y: Math.random() * height,
-          size: sizeBase + Math.random() * (isSpecial ? 1.5 : 0.4),
-          baseAlpha: isSpecial
-            ? 0.6 + Math.random() * 0.4
-            : layer === 1
-            ? 0.15 + Math.random() * 0.25
-            : layer === 2
-            ? 0.25 + Math.random() * 0.3
-            : 0.35 + Math.random() * 0.4,
-          amp: 0.2 + Math.random() * (isSpecial ? 0.7 : 0.4),
-          speed: 0.3 + Math.random() * (isSpecial ? 2.0 : 1.2),
+          size: sizeBase + Math.random() * 0.5,
+          baseAlpha:
+            layer === 1
+              ? 0.2 + Math.random() * 0.3
+              : layer === 2
+              ? 0.3 + Math.random() * 0.35
+              : 0.4 + Math.random() * 0.4,
+          amp: 0.3 + Math.random() * 0.4,
+          speed: 0.4 + Math.random() * 1.0,
           phase: Math.random() * Math.PI * 2,
-          vx: Math.cos(driftAngle) * baseSpeed * (0.7 + Math.random() * 0.6),
-          vy: Math.sin(driftAngle) * baseSpeed * (0.7 + Math.random() * 0.6),
+          vx: Math.cos(driftAngle) * baseSpeed * (0.5 + Math.random() * 0.5),
+          vy: Math.sin(driftAngle) * baseSpeed * (0.5 + Math.random() * 0.5),
           layer,
           pulsePhase: Math.random() * Math.PI * 2,
           driftAngle,
-          orbitRadius: 0.3 + Math.random() * (isSpecial ? 2.0 : 1.2),
-          twinkleIntensity: 0.5 + Math.random() * 0.5,
-          isSpecial,
+          orbitRadius: 0.2 + Math.random() * 0.8,
+          twinkleIntensity: 0.6 + Math.random() * 0.4,
         };
         newStars.push(s);
       }
       stars = newStars;
-      shootingStars = []; // Reset shooting stars on resize
+      shootingStars = [];
     };
 
-    // Create shooting star - only from top to bottom
     const createShootingStar = () => {
-      // Always start from top edge
-      const x = Math.random() * width;
-      const y = -10;
+      // Start from top-right corner area
+      const x = width * 0.7 + Math.random() * width * 0.3; // Right 30% of screen
+      const y = -20 + Math.random() * 50; // Near top
 
-      // Slight horizontal variation but mainly downward
-      const vx = (Math.random() - 0.5) * 50; // Much less horizontal movement
-      const vy = 150 + Math.random() * 100; // Always downward
+      // Move diagonally from top-right to bottom-left
+      const vx = -(150 + Math.random() * 100); // Negative for leftward movement
+      const vy = 100 + Math.random() * 80; // Downward movement (less than horizontal for diagonal)
 
-      const maxLife = 0.8 + Math.random() * 0.7;
+      const maxLife = 1.0 + Math.random() * 0.8;
       shootingStars.push({
         x,
         y,
@@ -156,143 +142,99 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 120 }) => {
         vy,
         life: 0,
         maxLife,
-        size: 1 + Math.random() * 1.5,
-        alpha: 0.8 + Math.random() * 0.2,
+        size: 1.5 + Math.random() * 1.0,
+        alpha: 0.9 + Math.random() * 0.1,
         trail: [],
       });
     };
 
     const draw = (t: number) => {
-      // Draw subtle background gradient
-      const bgGradient = createBackgroundGradient();
-      ctx.fillStyle = bgGradient;
-      ctx.fillRect(0, 0, width, height);
+      const colors = getThemeColors();
 
-      // Draw stars
+      // Theme-appropriate background
+      ctx.fillStyle = colors.background;
+      ctx.fillRect(0, 0, width, height);
       ctx.globalCompositeOperation = "lighter";
 
       for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
-
-        // Enhanced natural twinkling
         const primaryTwinkle = Math.sin(s.phase + t * s.speed);
         const secondaryPulse = Math.sin(s.pulsePhase + t * s.speed * 0.6) * 0.4;
         const tertiaryShimmer =
           Math.sin(s.phase * 1.3 + t * s.speed * 1.1) * 0.2;
-
         const combinedTwinkle =
           (primaryTwinkle + secondaryPulse + tertiaryShimmer) / 3;
         const twinkle =
           s.baseAlpha + s.amp * combinedTwinkle * s.twinkleIntensity;
         const alpha = Math.max(0, Math.min(1, twinkle));
-
         if (alpha < 0.02) continue;
 
-        // Enhanced orbital motion with natural drift
         const orbitX =
           s.x + Math.cos(t * 0.2 + s.driftAngle) * s.orbitRadius * 0.3;
         const orbitY =
           s.y + Math.sin(t * 0.15 + s.driftAngle) * s.orbitRadius * 0.2;
+        const starSize = s.size * (0.8 + alpha * 0.4);
 
-        const starSize = s.size * (0.7 + alpha * 0.6);
-
-        // Main star body
         ctx.beginPath();
         ctx.arc(orbitX, orbitY, starSize, 0, Math.PI * 2);
-
-        if (s.isSpecial) {
-          // Special stars get accent colors
-          ctx.fillStyle = getHslaFromVar("--accent", alpha * 0.8);
-        } else {
-          // Enhanced visibility for light theme
-          const isDark = getComputedStyle(document.documentElement)
-            .getPropertyValue('--background').includes('222');
-          
-          ctx.fillStyle = isDark 
-            ? getHslaFromVar("--foreground", alpha)
-            : getHslaFromVar("--primary", alpha * 0.7);
-        }
+        ctx.fillStyle = `${colors.starColor} ${alpha * 0.9})`;
         ctx.fill();
 
-        // Glow effects for brighter stars
         if (alpha > 0.5) {
-          // Enhanced glow effects for light theme visibility
-          const isDark = getComputedStyle(document.documentElement)
-            .getPropertyValue('--background').includes('222');
-            
           ctx.beginPath();
-          ctx.arc(orbitX, orbitY, starSize * 2, 0, Math.PI * 2);
-          ctx.fillStyle = s.isSpecial
-            ? getHslaFromVar("--accent", alpha * 0.1)
-            : isDark 
-              ? getHslaFromVar("--foreground", alpha * 0.08)
-              : getHslaFromVar("--primary", alpha * 0.12);
+          ctx.arc(orbitX, orbitY, starSize * 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = `${colors.starColor} ${alpha * 0.1})`;
           ctx.fill();
-
-          // Additional outer glow for special stars
-          if (s.isSpecial && alpha > 0.7) {
+          if (alpha > 0.7) {
             ctx.beginPath();
-            ctx.arc(orbitX, orbitY, starSize * 3, 0, Math.PI * 2);
-            ctx.fillStyle = getHslaFromVar("--accent", alpha * 0.04);
+            ctx.arc(orbitX, orbitY, starSize * 4, 0, Math.PI * 2);
+            ctx.fillStyle = `${colors.starColor} ${alpha * 0.05})`;
             ctx.fill();
           }
         }
-
-        // Subtle cross-pattern for the brightest stars
-        if (s.isSpecial && alpha > 0.8) {
-          const lineLength = starSize * 2;
-          ctx.strokeStyle = getHslaFromVar("--accent", alpha * 0.3);
-          ctx.lineWidth = 0.5;
-          ctx.beginPath();
-          ctx.moveTo(orbitX - lineLength, orbitY);
-          ctx.lineTo(orbitX + lineLength, orbitY);
-          ctx.moveTo(orbitX, orbitY - lineLength);
-          ctx.lineTo(orbitX, orbitY + lineLength);
-          ctx.stroke();
-        }
       }
 
-      // Draw shooting stars
       for (let i = shootingStars.length - 1; i >= 0; i--) {
         const ss = shootingStars[i];
         const lifeRatio = ss.life / ss.maxLife;
         const fadeAlpha = ss.alpha * (1 - Math.pow(lifeRatio, 2));
-
         if (fadeAlpha <= 0.01 || ss.life >= ss.maxLife) {
           shootingStars.splice(i, 1);
           continue;
         }
 
-        // Draw trail
         for (let j = 0; j < ss.trail.length; j++) {
           const trailPoint = ss.trail[j];
-          const trailAlpha =
-            trailPoint.alpha * fadeAlpha * (1 - j / ss.trail.length);
-
+          const trailFade = 1 - j / ss.trail.length;
+          const trailAlpha = trailPoint.alpha * fadeAlpha * trailFade * 0.8;
           if (trailAlpha > 0.01) {
+            const trailSize = ss.size * (1 - (j / ss.trail.length) * 0.7);
             ctx.beginPath();
-            ctx.arc(
-              trailPoint.x,
-              trailPoint.y,
-              ss.size * (1 - (j / ss.trail.length) * 0.8),
-              0,
-              Math.PI * 2
-            );
-            ctx.fillStyle = getHslaFromVar("--accent", trailAlpha);
+            ctx.arc(trailPoint.x, trailPoint.y, trailSize * 2, 0, Math.PI * 2);
+            ctx.fillStyle = `${colors.shootingStarColor} ${trailAlpha * 0.2})`;
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(trailPoint.x, trailPoint.y, trailSize, 0, Math.PI * 2);
+            ctx.fillStyle = `${colors.shootingStarColor} ${trailAlpha})`;
             ctx.fill();
           }
         }
 
-        // Draw main shooting star
+        ctx.beginPath();
+        ctx.arc(ss.x, ss.y, ss.size * 3, 0, Math.PI * 2);
+        ctx.fillStyle = `${colors.shootingStarColor} ${fadeAlpha * 0.15})`;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(ss.x, ss.y, ss.size * 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `${colors.shootingStarColor} ${fadeAlpha * 0.6})`;
+        ctx.fill();
         ctx.beginPath();
         ctx.arc(ss.x, ss.y, ss.size, 0, Math.PI * 2);
-        ctx.fillStyle = getHslaFromVar("--accent", fadeAlpha);
+        ctx.fillStyle = `${colors.shootingStarColor} ${fadeAlpha})`;
         ctx.fill();
-
-        // Bright core
         ctx.beginPath();
-        ctx.arc(ss.x, ss.y, ss.size * 0.4, 0, Math.PI * 2);
-        ctx.fillStyle = getHslaFromVar("--background", fadeAlpha * 0.9);
+        ctx.arc(ss.x, ss.y, ss.size * 0.5, 0, Math.PI * 2);
+        ctx.fillStyle = `${colors.shootingStarColor} ${fadeAlpha * 0.95})`;
         ctx.fill();
       }
 
@@ -307,40 +249,29 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 120 }) => {
         last = now;
         const t = now / 1000;
 
-        // Update star positions with gentle drift
         for (let i = 0; i < stars.length; i++) {
           const s = stars[i];
           s.x += s.vx * dt;
           s.y += s.vy * dt;
-
-          // Wrap around edges smoothly
           if (s.x < -10) s.x = width + 10;
           if (s.x > width + 10) s.x = -10;
           if (s.y < -10) s.y = height + 10;
           if (s.y > height + 10) s.y = -10;
         }
 
-        // Update shooting stars
         for (let i = 0; i < shootingStars.length; i++) {
           const ss = shootingStars[i];
-
-          // Add current position to trail
           ss.trail.unshift({ x: ss.x, y: ss.y, alpha: 1 });
-          if (ss.trail.length > 12) ss.trail.pop();
-
-          // Update position
+          if (ss.trail.length > 25) ss.trail.pop();
           ss.x += ss.vx * dt;
           ss.y += ss.vy * dt;
           ss.life += dt;
-
-          // Fade trail points
           for (let j = 0; j < ss.trail.length; j++) {
-            ss.trail[j].alpha *= 0.95;
+            ss.trail[j].alpha *= 0.96;
           }
         }
 
-        // Occasionally create shooting stars (every 3-8 seconds)
-        if (t - lastShootingStarTime > 3 + Math.random() * 5) {
+        if (t - lastShootingStarTime > 2 + Math.random() * 2) {
           createShootingStar();
           lastShootingStarTime = t;
         }
@@ -362,7 +293,6 @@ const ShootingStars: React.FC<{ density?: number }> = ({ density = 120 }) => {
     resize();
     window.addEventListener("resize", resize);
     document.addEventListener("visibilitychange", onVisibility);
-
     rafRef.current = requestAnimationFrame(step);
 
     return () => {

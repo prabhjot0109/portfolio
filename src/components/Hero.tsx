@@ -16,32 +16,52 @@ const Hero = () => {
         <ShootingStars density={150} />
       </Suspense>
 
-      {/* Additional CSS-based twinkling stars for light theme */}
+      {/* Additional CSS-based twinkling stars - Theme aware */}
       <div className="absolute inset-0 pointer-events-none">
-        {Array.from({ length: 50 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-portfolio-accent rounded-full animate-twinkle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`
-            }}
-          />
-        ))}
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div
-            key={`sparkle-${i}`}
-            className="absolute w-0.5 h-0.5 bg-primary rounded-full animate-sparkle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 4}s`,
-              animationDuration: `${3 + Math.random() * 2}s`
-            }}
-          />
-        ))}
+        {Array.from({ length: 60 }).map((_, i) => {
+          const size = 1 + Math.random() * 2;
+          const opacity = 0.3 + Math.random() * 0.7;
+          return (
+            <div
+              key={i}
+              className="absolute rounded-full animate-twinkle"
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${2 + Math.random() * 2}s`,
+                backgroundColor: `hsl(var(--foreground) / ${opacity})`,
+                boxShadow: `0 0 ${
+                  2 + Math.random() * 4
+                }px hsl(var(--foreground) / ${opacity * 0.5})`,
+              }}
+            />
+          );
+        })}
+        {Array.from({ length: 30 }).map((_, i) => {
+          const size = 0.5 + Math.random() * 1.5;
+          const opacity = 0.2 + Math.random() * 0.6;
+          return (
+            <div
+              key={`sparkle-${i}`}
+              className="absolute rounded-full animate-sparkle"
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${3 + Math.random() * 2}s`,
+                backgroundColor: `hsl(var(--foreground) / ${opacity})`,
+                boxShadow: `0 0 ${
+                  1 + Math.random() * 3
+                }px hsl(var(--foreground) / ${opacity * 0.4})`,
+              }}
+            />
+          );
+        })}
       </div>
 
       <div className="container mx-auto px-6 text-center relative z-10 pt-20">

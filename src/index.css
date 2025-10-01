@@ -225,6 +225,14 @@ All colors MUST be HSL.
   .animate-pulse-slow {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+
+  .animate-twinkle {
+    animation: twinkle ease-in-out infinite;
+  }
+
+  .animate-sparkle {
+    animation: sparkle ease-in-out infinite;
+  }
   
   /* Interactive elements */
   .portfolio-button {
@@ -374,4 +382,26 @@ All colors MUST be HSL.
 @keyframes shimmer {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
+}
+
+@keyframes twinkle {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% { 
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.3);
+  }
 }

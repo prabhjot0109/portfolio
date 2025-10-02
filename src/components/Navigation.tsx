@@ -201,7 +201,7 @@ const Navigation = () => {
           aria-label="Mobile navigation menu"
           aria-hidden={!isOpen}
         >
-          <div className="border-t border-border/60 pt-4 pb-4 backdrop-blur-md rounded-b-xl mt-2">
+          <div className="border-t border-border/80 pt-4 pb-4 backdrop-blur-md rounded-b-xl mt-2">
             <ul className="flex flex-col space-y-2" role="none">
               {navItems.map((item, index) => (
                 <li key={item.href} role="none">

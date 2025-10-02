@@ -67,7 +67,7 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
         scrolled
           ? "md:backdrop-blur-2xl border-b border-border/20 shadow-2xl"
           : "border-b border-border/10"
@@ -83,8 +83,8 @@ const Navigation = () => {
           : {}
       }
     >
-      <div className="container mx-auto px-6 py-5 min-h-[4rem]">
-        <div className="flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 py-5 min-h-[4rem] max-w-full">
+        <div className="flex items-center justify-between w-full">
           <a
             href="#home"
             className="text-2xl font-space font-bold text-foreground focus:outline-none focus:ring-0 focus:ring-offset-0 rounded-lg px-2 py-1"
@@ -193,7 +193,7 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out w-full ${
             isOpen ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
           }`}
           id="mobile-menu"
@@ -201,8 +201,8 @@ const Navigation = () => {
           aria-label="Mobile navigation menu"
           aria-hidden={!isOpen}
         >
-          <div className="border-t border-border/80 pt-4 pb-4 backdrop-blur-md rounded-b-xl mt-2">
-            <ul className="flex flex-col space-y-2" role="none">
+          <div className="border-t border-border/90 pt-4 pb-4 backdrop-blur-md rounded-b-xl mt-2 w-full">
+            <ul className="flex flex-col space-y-2 w-full" role="none">
               {navItems.map((item, index) => (
                 <li key={item.href} role="none">
                   <a

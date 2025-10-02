@@ -1,5 +1,4 @@
 import React, { lazy } from 'react';
-import { ThemeProvider } from '@/components/ThemeProvider';
 import Navigation from '@/components/Navigation';
 import SkipNavigation from '@/components/SkipNavigation';
 import Hero from '@/components/Hero';
@@ -21,45 +20,43 @@ const Index = () => {
   useServiceWorker();
 
   return (
-    <ThemeProvider>
-      <div className="min-h-screen bg-background">
-        <SkipNavigation />
-        <Navigation />
-        <main id="main-content">
-          <Hero />
-          
-          <LazySection>
-            <About />
-          </LazySection>
-          
-          <LazySection>
-            <Skills />
-          </LazySection>
-          
-          <LazySection>
-            <Achievements />
-          </LazySection>
-          
-          <LazySection>
-            <Projects />
-          </LazySection>
-          
-          <LazySection>
-            <Experience />
-          </LazySection>
-          
-          <LazySection>
-            <Contact />
-          </LazySection>
-        </main>
+    <div className="min-h-screen bg-background">
+      <SkipNavigation />
+      <Navigation />
+      <main id="main-content">
+        <Hero />
         
         <LazySection>
-          <Footer />
+          <About />
         </LazySection>
         
-        <ScrollToTop />
-      </div>
-    </ThemeProvider>
+        <LazySection>
+          <Skills />
+        </LazySection>
+        
+        <LazySection>
+          <Achievements />
+        </LazySection>
+        
+        <LazySection>
+          <Projects />
+        </LazySection>
+        
+        <LazySection>
+          <Experience />
+        </LazySection>
+        
+        <LazySection>
+          <Contact />
+        </LazySection>
+      </main>
+      
+      <LazySection>
+        <Footer />
+      </LazySection>
+      
+      <ScrollToTop />
+    </div>
   );
 };
 

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Code, Database, Cpu, Wrench, Brain, Smartphone } from "lucide-react";
 
 const Skills = () => {
-  const [activeCategory, setActiveCategory] = useState(0);
+  const [activeCategory, setActiveCategory] = React.useState(0);
 
   const skillCategories = [
     {

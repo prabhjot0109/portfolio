@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { prefersReducedMotion, getDevicePixelRatio } from "@/utils/performance";
 
 interface StarfieldProps {
@@ -24,12 +24,12 @@ const Starfield: React.FC<StarfieldProps> = ({
       ? density * 0.5
       : density;
 
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const starsRef = useRef<{ x: number; y: number; r: number; p: number }[]>([]);
-  const animationRef = useRef<number>();
-  const lastTimeRef = useRef<number>(0);
+  const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
+  const starsRef = React.useRef<{ x: number; y: number; r: number; p: number }[]>([]);
+  const animationRef = React.useRef<number>();
+  const lastTimeRef = React.useRef<number>(0);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "./ThemeProvider";
@@ -6,12 +6,12 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const Navigation = () => {
   const { theme, toggleTheme } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState("home");
   const prefersReducedMotion = useReducedMotion();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 

@@ -1,11 +1,4 @@
-import React, {
-  useMemo,
-  memo,
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-} from "react";
+import React from "react";
 import { ArrowDown, Github, Linkedin, Mail, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -14,12 +7,12 @@ import Starfield from "@/components/Starfield";
 import { useTheme } from "@/components/ThemeProvider";
 
 const Hero = () => {
-  const [animated, setAnimated] = useState(false);
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const enableAnimation = useCallback(() => setAnimated(true), []);
+  const [animated, setAnimated] = React.useState(false);
+  const sectionRef = React.useRef<HTMLElement | null>(null);
+  const enableAnimation = React.useCallback(() => setAnimated(true), []);
   const { actualTheme } = useTheme();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (animated) return;
     if (!sectionRef.current) return;
     if (!("IntersectionObserver" in window)) return;
@@ -40,7 +33,7 @@ const Hero = () => {
     return () => observer.disconnect();
   }, [animated, enableAnimation]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (animated) return;
     const events: (keyof DocumentEventMap)[] = [
       "pointermove",
@@ -60,7 +53,7 @@ const Hero = () => {
       events.forEach((e) => window.removeEventListener(e, handler as any));
   }, [animated, enableAnimation]);
 
-  const sparkles = useMemo(
+  const sparkles = React.useMemo(
     () =>
       Array.from({ length: 15 }).map((_, index) => ({
         id: `sparkle-${index}`,
@@ -271,4 +264,4 @@ const Hero = () => {
   );
 };
 
-export default memo(Hero);
+export default React.memo(Hero);

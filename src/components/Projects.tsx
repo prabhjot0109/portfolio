@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import {
   ExternalLink,
@@ -40,7 +40,7 @@ import rewearImage2 from "@/assets/project-rewear-2.jpg";
 import rewearImage3 from "@/assets/project-rewear-3.jpg";
 
 const Projects = () => {
-  const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = React.useState(false);
 
   const projects = [
     {
@@ -192,7 +192,7 @@ const Projects = () => {
     },
   ];
 
-  const [selectedProject, setSelectedProject] = useState<
+  const [selectedProject, setSelectedProject] = React.useState<
     (typeof projects)[0] | null
   >(null);
 

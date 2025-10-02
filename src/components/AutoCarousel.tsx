@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
@@ -9,7 +9,7 @@ interface AutoCarouselProps {
 }
 
 const AutoCarousel: React.FC<AutoCarouselProps> = ({ images, alt }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
@@ -19,12 +19,12 @@ const AutoCarousel: React.FC<AutoCarouselProps> = ({ images, alt }) => {
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
   );
 
-  const onSelect = useCallback(() => {
+  const onSelect = React.useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
   }, [emblaApi]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!emblaApi) return;
     onSelect();
     emblaApi.on("select", onSelect);
@@ -36,7 +36,7 @@ const AutoCarousel: React.FC<AutoCarouselProps> = ({ images, alt }) => {
     };
   }, [emblaApi, onSelect]);
 
-  const scrollTo = useCallback(
+  const scrollTo = React.useCallback(
     (index: number) => emblaApi && emblaApi.scrollTo(index),
     [emblaApi]
   );

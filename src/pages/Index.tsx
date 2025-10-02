@@ -20,10 +20,10 @@ const Index = () => {
   useServiceWorker();
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden w-full max-w-[100vw]">
+    <div className="min-h-screen bg-background">
       <SkipNavigation />
       <Navigation />
-      <main id="main-content" className="w-full overflow-x-hidden">
+      <main id="main-content">
         <Hero />
         
         <LazySection>

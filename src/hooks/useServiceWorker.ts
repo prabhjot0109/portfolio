@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import React from 'react';
 
 export const useServiceWorker = () => {
-  useEffect(() => {
+  React.useEffect(() => {
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')

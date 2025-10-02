@@ -73,7 +73,7 @@ const Hero = () => {
     <section
       ref={sectionRef}
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden w-full max-w-[100vw]"
       onMouseEnter={enableAnimation}
       onFocus={enableAnimation}
     >

@@ -133,8 +133,13 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    @apply overflow-x-hidden;
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased overflow-x-hidden;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     font-optical-sizing: auto;
     font-synthesis: none;
@@ -142,6 +147,8 @@ All colors MUST be HSL.
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-display: swap;
+    width: 100%;
+    max-width: 100vw;
   }
 
   /* Typography scale for professional layouts */
@@ -161,9 +168,6 @@ All colors MUST be HSL.
     @apply font-nunito font-medium tracking-wide text-sm;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
 
   /* Custom Scrollbar Styling */
   ::-webkit-scrollbar {

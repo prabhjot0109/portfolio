@@ -5,20 +5,30 @@ interface LazyImageProps {
   alt: string;
   className?: string;
   placeholder?: string;
+  priority?: boolean;
 }
 
 const LazyImage: React.FC<LazyImageProps> = ({ 
   src, 
   alt, 
   className = '', 
-  placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+SW1hZ2U8L3RleHQ+Cjwvc3ZnPg==' 
+  placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZjNmNGY2Ii8+Cjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjOWNhM2FmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+SW1hZ2U8L3RleHQ+Cjwvc3ZnPg==',
+  priority = false 
 }) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
-  const [isInView, setIsInView] = React.useState(false);
+  const [isInView, setIsInView] = React.useState(priority);
   const imgRef = React.useRef<HTMLImageElement>(null);
 
   React.useEffect(() => {
+    // Skip intersection observer if priority image
+    if (priority) return;
+    
+    if (!('IntersectionObserver' in window)) {
+      setIsInView(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -26,7 +36,10 @@ const LazyImage: React.FC<LazyImageProps> = ({
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { 
+        threshold: 0.01,
+        rootMargin: '50px'
+      }
     );
 
     if (imgRef.current) {
@@ -34,40 +47,46 @@ const LazyImage: React.FC<LazyImageProps> = ({
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [priority]);
 
-  const handleLoad = () => {
-    setIsLoaded(true);
-    setIsError(false);
-  };
-
-  const handleError = () => {
-    setIsError(true);
-    setIsLoaded(false);
-  };
+  const handleLoad = () => setIsLoaded(true);
+  const handleError = () => setIsError(true);
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
-      <img
-        ref={imgRef}
-        src={!isInView ? placeholder : src}
-        alt={alt}
-        onLoad={handleLoad}
-        onError={handleError}
-        className={`transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        } ${className}`}
-        loading="lazy"
-        decoding="async"
-      />
-      
-      {!isLoaded && isInView && !isError && (
-        <div className="absolute inset-0 bg-muted animate-pulse" />
+    <div 
+      ref={imgRef}
+      className={`relative overflow-hidden ${className}`}
+      style={{ minHeight: '200px' }}
+    >
+      {/* Placeholder or loading state */}
+      {!isLoaded && !isError && (
+        <img
+          src={placeholder}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover blur-sm"
+          aria-hidden="true"
+        />
       )}
       
+      {/* Actual image */}
+      {isInView && (
+        <img
+          src={src}
+          alt={alt}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
+          onLoad={handleLoad}
+          onError={handleError}
+          className={`w-full h-full object-cover transition-opacity duration-500 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          } ${className}`}
+        />
+      )}
+      
+      {/* Error state */}
       {isError && (
-        <div className="absolute inset-0 bg-muted flex items-center justify-center">
-          <span className="text-muted-foreground text-sm">Failed to load image</span>
+        <div className="absolute inset-0 flex items-center justify-center bg-muted text-muted-foreground">
+          <p>Failed to load image</p>
         </div>
       )}
     </div>

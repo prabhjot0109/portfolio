@@ -1,11 +1,8 @@
-const CACHE_NAME = 'portfolio-v1.0.0';
+const CACHE_NAME = 'portfolio-v1.1.0';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/src/main.tsx',
-  '/src/index.css',
   '/resume.pdf',
-  '/sitemap.xml'
 ];
 
 // Install service worker
@@ -13,89 +10,76 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        return cache.addAll(urlsToCache);
+        return cache.addAll(urlsToCache).catch(err => {
+          console.warn('Cache addAll error:', err);
+          return Promise.resolve();
+        });
       })
-      .then(() => {
-        return self.skipWaiting();
-      })
+      .then(() => self.skipWaiting())
   );
 });
 
-// Fetch event - cache first strategy for static assets
+// Fetch event - Stale-while-revalidate strategy
 self.addEventListener('fetch', (event) => {
-  // Skip cross-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) {
+  // Skip cross-origin and non-GET requests
+  if (!event.request.url.startsWith(self.location.origin) || 
+      event.request.method !== 'GET') {
     return;
   }
 
-  // Cache first strategy for static resources
+  // Skip chrome-extension and other protocols
+  if (!event.request.url.startsWith('http')) {
+    return;
+  }
+
+  // Cache strategy for static assets
   if (event.request.destination === 'image' || 
       event.request.destination === 'font' || 
       event.request.destination === 'style' ||
       event.request.destination === 'script') {
     
     event.respondWith(
-      caches.match(event.request)
-        .then((response) => {
-          // Return cached version or fetch from network
-          if (response) {
-            return response;
-          }
-          
-          return fetch(event.request).then((response) => {
-            // Check if valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
+      caches.open(CACHE_NAME).then(cache => {
+        return cache.match(event.request).then(cachedResponse => {
+          const fetchPromise = fetch(event.request).then(networkResponse => {
+            if (networkResponse && networkResponse.status === 200) {
+              cache.put(event.request, networkResponse.clone());
             }
-
-            // Clone the response
-            const responseToCache = response.clone();
-            
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          });
-        })
+            return networkResponse;
+          }).catch(() => cachedResponse);
+          
+          return cachedResponse || fetchPromise;
+        });
+      })
     );
   }
-  
-  // Network first strategy for HTML pages
-  else {
+  // Network-first for HTML
+  else if (event.request.headers.get('accept')?.includes('text/html')) {
     event.respondWith(
       fetch(event.request)
-        .then((response) => {
-          // Clone and cache the response
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME)
-            .then((cache) => {
+        .then(response => {
+          if (response && response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then(cache => {
               cache.put(event.request, responseToCache);
             });
+          }
           return response;
         })
-        .catch(() => {
-          // Return cached version if network fails
-          return caches.match(event.request);
-        })
+        .catch(() => caches.match(event.request))
     );
   }
 });
 
-// Activate service worker
+// Activate and clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
+        cacheNames
+          .filter(cacheName => cacheName !== CACHE_NAME)
+          .map(cacheName => caches.delete(cacheName))
       );
-    }).then(() => {
-      return self.clients.claim();
-    })
+    }).then(() => self.clients.claim())
   );
 });

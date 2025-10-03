@@ -11,12 +11,11 @@ const Skills = () => {
       icon: Code,
       title: "Frontend",
       skills: [
-        { name: "React", level: 90 },
-        { name: "TypeScript", level: 85 },
-        { name: "Next.js", level: 80 },
-        { name: "Tailwind CSS", level: 95 },
-        { name: "Vue.js", level: 70 },
-        { name: "JavaScript", level: 90 },
+        { name: "HTML", level: 90 },
+        { name: "CSS", level: 90 },
+        { name: "Tailwind CSS", level: 80 },
+        { name: "JavaScript", level: 70 },
+        { name: "TypeScript", level: 60 },
       ],
     },
     {
@@ -24,11 +23,10 @@ const Skills = () => {
       icon: Database,
       title: "Backend",
       skills: [
-        { name: "Node.js", level: 85 },
         { name: "Python", level: 95 },
+        { name: "C++", level: 90 },
         { name: "Django", level: 80 },
         { name: "Flask", level: 85 },
-        { name: "Express.js", level: 80 },
         { name: "REST APIs", level: 90 },
       ],
     },
@@ -39,10 +37,9 @@ const Skills = () => {
       skills: [
         { name: "MySQL", level: 85 },
         { name: "PostgreSQL", level: 80 },
-        { name: "MongoDB", level: 75 },
         { name: "Firebase", level: 85 },
+        { name: "Supabase", level: 80 },
         { name: "SQLite", level: 80 },
-        { name: "Redis", level: 70 },
       ],
     },
     {
@@ -53,9 +50,20 @@ const Skills = () => {
         { name: "Flutter", level: 90 },
         { name: "Dart", level: 80 },
         { name: "Native Android", level: 80 },
-        { name: "React Native", level: 75 },
         { name: "API Integration", level: 85 },
         { name: "Mobile UI/UX", level: 80 },
+      ],
+    },
+    {
+      id: "ai",
+      icon: Brain,
+      title: "AI/ML",
+      skills: [
+        { name: "PyTorch", level: 90 },
+        { name: "TensorFlow", level: 80 },
+        { name: "Scikit-learn", level: 90 },
+        { name: "OpenCV", level: 85 },
+        { name: "Mediapipe", level: 80 },
       ],
     },
     {
@@ -65,23 +73,9 @@ const Skills = () => {
       skills: [
         { name: "Git", level: 95 },
         { name: "VS Code", level: 95 },
-        { name: "Docker", level: 65 },
-        { name: "AWS", level: 70 },
+        { name: "Android Studio", level: 90 },
         { name: "Arduino", level: 80 },
         { name: "Figma", level: 75 },
-      ],
-    },
-    {
-      id: "ai",
-      icon: Brain,
-      title: "AI/ML",
-      skills: [
-        { name: "TensorFlow", level: 90 },
-        { name: "PyTorch", level: 85 },
-        { name: "Scikit-learn", level: 90 },
-        { name: "OpenCV", level: 85 },
-        { name: "Computer Vision", level: 80 },
-        { name: "NLP", level: 75 },
       ],
     },
   ];
@@ -274,7 +268,7 @@ const Skills = () => {
                 logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg",
               },
               {
-                name: "Scikit",
+                name: "Scikit-learn",
                 logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg",
               },
               {

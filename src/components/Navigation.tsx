@@ -85,159 +85,50 @@ const Navigation = () => {
         role="navigation"
         aria-label="Main navigation"
         style={{
-          backdropFilter: scrolled || isOpen ? "blur(32px) saturate(200%)" : "none",
-          WebkitBackdropFilter: scrolled || isOpen ? "blur(32px) saturate(200%)" : "none",
-          backgroundColor: isOpen ? "hsl(var(--background) / 0.95)" : scrolled ? "hsl(var(--background) / 0.8)" : "transparent",
+          backdropFilter:
+            scrolled || isOpen ? "blur(32px) saturate(200%)" : "none",
+          WebkitBackdropFilter:
+            scrolled || isOpen ? "blur(32px) saturate(200%)" : "none",
+          backgroundColor: isOpen
+            ? "hsl(var(--background) / 0.95)"
+            : scrolled
+            ? "hsl(var(--background) / 0.8)"
+            : "transparent",
         }}
       >
-      <div className="container mx-auto px-4 sm:px-6 py-5 min-h-[4rem] max-w-full">
-        <div className="flex items-center justify-between w-full">
-          <a
-            href="#home"
-            className="text-2xl font-space font-bold text-foreground focus:outline-none focus:ring-0 focus:ring-offset-0 rounded-lg px-2 py-1"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("#home", "Home");
-            }}
-            aria-label="Portfolio home - Prabhjot Singh Assi"
-          >
-            Portfolio
-          </a>
+        <div className="container mx-auto px-4 sm:px-6 py-5 min-h-[4rem] max-w-full">
+          <div className="flex items-center justify-between w-full">
+            <a
+              href="#home"
+              className="text-2xl font-space font-bold text-foreground focus:outline-none focus:ring-0 focus:ring-offset-0 rounded-lg px-2 py-1"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("#home", "Home");
+              }}
+              aria-label="Portfolio home - Prabhjot Singh Assi"
+            >
+              Portfolio
+            </a>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center space-x-8" role="menubar">
-            {navItems.map((item) => (
-              <li key={item.href} role="none">
-                <a
-                  href={item.href}
-                  className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out relative group 
+            {/* Desktop Navigation */}
+            <ul
+              className="hidden md:flex items-center space-x-8"
+              role="menubar"
+            >
+              {navItems.map((item) => (
+                <li key={item.href} role="none">
+                  <a
+                    href={item.href}
+                    className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out relative group 
                             focus:outline-none focus:ring-0 focus:ring-offset-0 px-3 py-2 rounded-lg font-nunito
                             ${
                               activeSection === item.href.substring(1)
                                 ? "text-portfolio-accent font-medium"
                                 : ""
                             }`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(item.href, item.label);
-                  }}
-                  role="menuitem"
-                  aria-current={
-                    activeSection === item.href.substring(1)
-                      ? "page"
-                      : undefined
-                  }
-                >
-                  {item.label}
-                  <span
-                    className={`absolute -bottom-1 left-3 h-0.5 bg-portfolio-accent transition-all duration-500 ease-out
-                                 ${
-                                   activeSection === item.href.substring(1)
-                                     ? "w-[calc(100%-1.5rem)] opacity-100"
-                                     : "w-0 opacity-0 group-hover:w-[calc(100%-1.5rem)] group-hover:opacity-100"
-                                 }`}
-                  />
-                </a>
-              </li>
-            ))}
-
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="hover:bg-accent"
-              aria-label={`Switch to ${
-                theme === "dark" ? "light" : "dark"
-              } mode`}
-              aria-pressed={theme === "dark"}
-            >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" aria-hidden="true" />
-              ) : (
-                <Moon className="h-5 w-5" aria-hidden="true" />
-              )}
-            </Button>
-          </ul>
-
-          {/* Mobile Navigation Toggle */}
-          <div className="md:hidden flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="hover:bg-accent"
-              aria-label={`Switch to ${
-                theme === "dark" ? "light" : "dark"
-              } mode`}
-              aria-pressed={theme === "dark"}
-            >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" aria-hidden="true" />
-              ) : (
-                <Moon className="h-5 w-5" aria-hidden="true" />
-              )}
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              className="hover:bg-accent"
-              aria-label={
-                isOpen ? "Close navigation menu" : "Open navigation menu"
-              }
-              aria-expanded={isOpen}
-              aria-controls="mobile-menu"
-            >
-              {isOpen ? (
-                <X className="h-5 w-5" aria-hidden="true" />
-              ) : (
-                <Menu className="h-5 w-5" aria-hidden="true" />
-              )}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out w-full ${
-            isOpen ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
-          }`}
-          id="mobile-menu"
-          role="menu"
-          aria-label="Mobile navigation menu"
-          aria-hidden={!isOpen}
-        >
-          <div className="border-t border-border/50 pt-4 pb-4 mt-2 w-full bg-background/60 backdrop-blur-xl rounded-b-2xl shadow-lg"
-            style={{
-              backdropFilter: "blur(24px) saturate(180%)",
-              WebkitBackdropFilter: "blur(24px) saturate(180%)",
-            }}
-          >
-            <ul className="flex flex-col space-y-2 w-full" role="none">
-              {navItems.map((item, index) => (
-                <li key={item.href} role="none">
-                  <a
-                    href={item.href}
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick(item.href, item.label);
-                    }}
-                    className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out py-3 px-4 block rounded-lg font-nunito
-                              focus:outline-none focus:ring-0 focus:ring-offset-0
-                              hover:bg-accent/20 hover:shadow-md transform hover:translate-x-2
-                              ${
-                                activeSection === item.href.substring(1)
-                                  ? "text-portfolio-accent font-semibold bg-accent/20 shadow-sm border-l-2 border-portfolio-accent"
-                                  : ""
-                              }
-                              ${prefersReducedMotion ? "" : "animate-fade-in"}
-                              `}
-                    style={{
-                      animationDelay: prefersReducedMotion
-                        ? "0ms"
-                        : `${index * 100}ms`,
-                      animationFillMode: "backwards",
                     }}
                     role="menuitem"
                     aria-current={
@@ -247,13 +138,132 @@ const Navigation = () => {
                     }
                   >
                     {item.label}
+                    <span
+                      className={`absolute -bottom-1 left-3 h-0.5 bg-portfolio-accent transition-all duration-500 ease-out
+                            ${
+                              activeSection === item.href.substring(1)
+                                ? "w-[calc(100%-1.5rem)] opacity-100"
+                                : "w-0 opacity-0 group-hover:w-[calc(100%-1.5rem)] group-hover:opacity-100"
+                            }`}
+                    />
                   </a>
                 </li>
               ))}
+
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="hover:bg-accent"
+                aria-label={`Switch to ${
+                  theme === "dark" ? "light" : "dark"
+                } mode`}
+                aria-pressed={theme === "dark"}
+              >
+                {theme === "dark" ? (
+                  <Sun className="h-5 w-5" aria-hidden="true" />
+                ) : (
+                  <Moon className="h-5 w-5" aria-hidden="true" />
+                )}
+              </Button>
             </ul>
+
+            {/* Mobile Navigation Toggle */}
+            <div className="md:hidden flex items-center space-x-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className="hover:bg-accent"
+                aria-label={`Switch to ${
+                  theme === "dark" ? "light" : "dark"
+                } mode`}
+                aria-pressed={theme === "dark"}
+              >
+                {theme === "dark" ? (
+                  <Sun className="h-5 w-5" aria-hidden="true" />
+                ) : (
+                  <Moon className="h-5 w-5" aria-hidden="true" />
+                )}
+              </Button>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(!isOpen)}
+                className="hover:bg-accent"
+                aria-label={
+                  isOpen ? "Close navigation menu" : "Open navigation menu"
+                }
+                aria-expanded={isOpen}
+                aria-controls="mobile-menu"
+              >
+                {isOpen ? (
+                  <X className="h-5 w-5" aria-hidden="true" />
+                ) : (
+                  <Menu className="h-5 w-5" aria-hidden="true" />
+                )}
+              </Button>
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          <div
+            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out w-full ${
+              isOpen ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
+            }`}
+            id="mobile-menu"
+            role="menu"
+            aria-label="Mobile navigation menu"
+            aria-hidden={!isOpen}
+          >
+            <div
+              className="border-t border-border/50 pt-4 pb-4 mt-2 w-full bg-background/60 backdrop-blur-xl rounded-b-2xl shadow-lg"
+              style={{
+                backdropFilter: "blur(24px) saturate(180%)",
+                WebkitBackdropFilter: "blur(24px) saturate(180%)",
+              }}
+            >
+              <ul className="flex flex-col space-y-2 w-full" role="none">
+                {navItems.map((item, index) => (
+                  <li key={item.href} role="none">
+                    <a
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavClick(item.href, item.label);
+                      }}
+                      className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out py-3 px-4 block rounded-lg font-nunito
+                              focus:outline-none focus:ring-0 focus:ring-offset-0
+                              hover:bg-accent/20 hover:shadow-md transform hover:translate-x-2
+                              ${
+                                activeSection === item.href.substring(1)
+                                  ? "text-portfolio-accent font-semibold bg-accent/20 shadow-sm border-l-2 border-portfolio-accent"
+                                  : ""
+                              }
+                              ${prefersReducedMotion ? "" : "animate-fade-in"}
+                              `}
+                      style={{
+                        animationDelay: prefersReducedMotion
+                          ? "0ms"
+                          : `${index * 100}ms`,
+                        animationFillMode: "backwards",
+                      }}
+                      role="menuitem"
+                      aria-current={
+                        activeSection === item.href.substring(1)
+                          ? "page"
+                          : undefined
+                      }
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
       </nav>
     </>
   );

@@ -21,10 +21,10 @@ export default {
 		fontFamily: {
 			// Primary: Montserrat (used by `font-space` utility and default `sans`)
 			'space': ['Montserrat', 'system-ui', 'sans-serif'],
-			// Secondary: Inter (used by `font-nunito` utility)
-			'nunito': ['Inter', 'system-ui', 'sans-serif'],
-			// Set Tailwind default sans to Montserrat with Inter fallback
-			sans: ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
+			// Secondary: DM Sans (used by `font-nunito` utility)
+			'nunito': ['DM Sans', 'system-ui', 'sans-serif'],
+			// Set Tailwind default sans to Montserrat with DM Sans fallback
+			sans: ['Montserrat', 'DM Sans', 'system-ui', 'sans-serif'],
 		},
 		fontSize: {
 			'xs': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.025em' }],

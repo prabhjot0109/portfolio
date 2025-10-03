@@ -118,7 +118,7 @@ const Skills = () => {
               <h3 className="text-2xl font-bold text-foreground mb-6 text-center lg:text-left">
                 CATEGORIES:
               </h3>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
                 {skillCategories.map((category, index) => (
                   <motion.button
                     key={category.id}

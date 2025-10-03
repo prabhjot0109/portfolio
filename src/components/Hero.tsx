@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Meteors } from "@/components/ui/shadcn-io/meteors";
 import Starfield from "@/components/Starfield";
+import ShootingStars from "@/components/ShootingStars";
 import { useTheme } from "@/components/ThemeProvider";
 
 const Hero = () => {
@@ -84,6 +85,12 @@ const Hero = () => {
           <div className="absolute inset-0 pointer-events-none z-0">
             <Starfield density={0.06} speed={0.4} active={animated} />
           </div>
+          {/* Shooting stars - realistic effect matching starfield speed */}
+          {animated && (
+            <div className="absolute inset-0 pointer-events-none z-0">
+              <ShootingStars active={animated} speed={0.4} />
+            </div>
+          )}
           {/* Meteors / shooting stars - only after activation */}
           {animated && (
             <div className="absolute inset-0 pointer-events-none z-0">

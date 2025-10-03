@@ -66,23 +66,30 @@ const Navigation = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
-        scrolled
-          ? "md:backdrop-blur-2xl border-b border-border/20 shadow-2xl"
-          : "border-b border-border/10"
-      }`}
-      role="navigation"
-      aria-label="Main navigation"
-      style={
-        scrolled
-          ? {
-              backdropFilter: "blur(32px) saturate(200%)",
-              WebkitBackdropFilter: "blur(32px) saturate(200%)",
-            }
-          : {}
-      }
-    >
+    <>
+      {/* Mobile Menu Backdrop Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden animate-fade-in"
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
+          scrolled || isOpen
+            ? "backdrop-blur-2xl border-b border-border/20 shadow-2xl"
+            : "border-b border-border/10"
+        }`}
+        role="navigation"
+        aria-label="Main navigation"
+        style={{
+          backdropFilter: scrolled || isOpen ? "blur(32px) saturate(200%)" : "none",
+          WebkitBackdropFilter: scrolled || isOpen ? "blur(32px) saturate(200%)" : "none",
+          backgroundColor: isOpen ? "hsl(var(--background) / 0.95)" : scrolled ? "hsl(var(--background) / 0.8)" : "transparent",
+        }}
+      >
       <div className="container mx-auto px-4 sm:px-6 py-5 min-h-[4rem] max-w-full">
         <div className="flex items-center justify-between w-full">
           <a
@@ -201,7 +208,12 @@ const Navigation = () => {
           aria-label="Mobile navigation menu"
           aria-hidden={!isOpen}
         >
-          <div className="border-t border-border/90 pt-4 pb-4 backdrop-blur-md rounded-b-xl mt-2 w-full">
+          <div className="border-t border-border/50 pt-4 pb-4 mt-2 w-full bg-background/60 backdrop-blur-xl rounded-b-2xl shadow-lg"
+            style={{
+              backdropFilter: "blur(24px) saturate(180%)",
+              WebkitBackdropFilter: "blur(24px) saturate(180%)",
+            }}
+          >
             <ul className="flex flex-col space-y-2 w-full" role="none">
               {navItems.map((item, index) => (
                 <li key={item.href} role="none">
@@ -213,10 +225,10 @@ const Navigation = () => {
                     }}
                     className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out py-3 px-4 block rounded-lg font-nunito
                               focus:outline-none focus:ring-0 focus:ring-offset-0
-                              hover:bg-accent/10 transform hover:translate-x-2
+                              hover:bg-accent/20 hover:shadow-md transform hover:translate-x-2
                               ${
                                 activeSection === item.href.substring(1)
-                                  ? "text-portfolio-accent font-medium bg-accent/10"
+                                  ? "text-portfolio-accent font-semibold bg-accent/20 shadow-sm border-l-2 border-portfolio-accent"
                                   : ""
                               }
                               ${prefersReducedMotion ? "" : "animate-fade-in"}
@@ -242,7 +254,8 @@ const Navigation = () => {
           </div>
         </div>
       </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 

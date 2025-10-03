@@ -433,45 +433,16 @@ All colors MUST be HSL.
 
 @theme inline {
   @keyframes meteor {
-    0% {
-      transform: rotate(var(--angle)) translateX(0);
-      opacity: 0;
-      filter: blur(2px);
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
     }
-    10% {
-      opacity: 1;
-      filter: blur(0px);
+  70% {
+    opacity: 1;
     }
-    70% {
-      opacity: 0.8;
+  100% {
+    transform: rotate(215deg) translateX(-500px);
+    opacity: 0;
     }
-    100% {
-      transform: rotate(var(--angle)) translateX(-600px);
-      opacity: 0;
-      filter: blur(1px);
-    }
-  }
-
-  @keyframes meteor-tail {
-    0% {
-      width: 150px;
-      opacity: 1;
-    }
-    50% {
-      width: 100px;
-      opacity: 0.8;
-    }
-    100% {
-      width: 50px;
-      opacity: 0;
-    }
-  }
-
-  .animate-meteor {
-    animation: meteor var(--meteor-duration, 5s) linear infinite;
-  }
-
-  .animate-meteor-tail {
-    animation: meteor-tail var(--meteor-duration, 5s) linear infinite;
   }
 }

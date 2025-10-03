@@ -84,13 +84,17 @@ const Hero = () => {
           <div className="absolute inset-0 pointer-events-none z-0">
             <Starfield density={0.06} speed={0.4} active={animated} />
           </div>
-          {/* Meteors / shooting stars - only after activation */}
+          {/* Realistic shooting stars - only after activation */}
           {animated && (
             <div className="absolute inset-0 pointer-events-none z-0">
               <Meteors
-                number={40}
-                angle={45}
-                className="opacity-90 bg-white meteor-twinkle"
+                number={25}
+                angle={225}
+                minDelay={0.5}
+                maxDelay={4}
+                minDuration={2}
+                maxDuration={4}
+                className="opacity-100 bg-gradient-to-r from-white via-blue-100 to-transparent"
               />
             </div>
           )}

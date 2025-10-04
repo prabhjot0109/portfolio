@@ -186,7 +186,7 @@ const Hero = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="text-foreground hover:text-accent hover:bg-accent/20 hover:scale-110 w-12 h-12 transition-all duration-200 border border-muted-foreground/20 rounded-full"
+              className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 hover:scale-110 w-12 h-12 transition-all duration-200 border border-border rounded-full hover:border-portfolio-accent hover:shadow-lg hover:shadow-portfolio-accent/20"
               onClick={() =>
                 window.open("https://github.com/prabhjot0109", "_blank")
               }
@@ -196,7 +196,7 @@ const Hero = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="text-foreground hover:text-accent hover:bg-accent/20 hover:scale-110 w-12 h-12 transition-all duration-200 border border-muted-foreground/20 rounded-full"
+              className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 hover:scale-110 w-12 h-12 transition-all duration-200 border border-border rounded-full hover:border-portfolio-accent hover:shadow-lg hover:shadow-portfolio-accent/20"
               onClick={() =>
                 window.open(
                   "https://linkedin.com/in/prabhjotsinghassi",
@@ -209,7 +209,7 @@ const Hero = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="text-foreground hover:text-accent hover:bg-accent/20 hover:scale-110 w-12 h-12 transition-all duration-200 border border-muted-foreground/20 rounded-full"
+              className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 hover:scale-110 w-12 h-12 transition-all duration-200 border border-border rounded-full hover:border-portfolio-accent hover:shadow-lg hover:shadow-portfolio-accent/20"
               onClick={() =>
                 window.open("mailto:prabhjotassi16@gmail.com", "_blank")
               }
@@ -225,9 +225,8 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Button
-              variant="ghost"
               size="lg"
-              className="text-foreground hover:text-accent hover:bg-accent/20 hover:scale-110 transition-all duration-200 border border-muted-foreground/20 rounded-full px-8 py-3 font-semibold text-sm w-full sm:w-auto h-12 min-w-[200px]"
+              className="bg-gradient-to-r from-portfolio-accent to-portfolio-glow text-white hover:shadow-xl hover:shadow-portfolio-accent/30 hover:scale-105 transition-all duration-300 border-0 rounded-full px-8 py-3 font-semibold text-sm w-full sm:w-auto h-12 min-w-[200px]"
               onClick={() =>
                 document
                   .getElementById("projects")
@@ -239,9 +238,9 @@ const Hero = () => {
             </Button>
 
             <Button
-              variant="ghost"
+              variant="outline"
               size="lg"
-              className="text-foreground hover:text-accent hover:bg-accent/20 hover:scale-110 transition-all duration-200 border border-muted-foreground/20 rounded-full px-8 py-3 font-semibold text-sm w-full sm:w-auto h-12 min-w-[200px]"
+              className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 hover:scale-105 transition-all duration-300 border-2 border-border hover:border-portfolio-accent rounded-full px-8 py-3 font-semibold text-sm w-full sm:w-auto h-12 min-w-[200px] hover:shadow-lg hover:shadow-portfolio-accent/20"
               onClick={() => window.open("/resume.pdf", "_blank")}
               aria-label="Download resume as PDF"
             >
@@ -257,7 +256,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <ArrowDown
-              className="h-5 w-5 text-muted-foreground/60 mx-auto cursor-pointer hover:text-accent transition-colors duration-200"
+              className="h-5 w-5 text-muted-foreground/60 mx-auto cursor-pointer hover:text-portfolio-accent transition-colors duration-200"
               onClick={() =>
                 document
                   .getElementById("about")

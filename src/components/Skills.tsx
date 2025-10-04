@@ -81,22 +81,45 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-6">
+    <section id="skills" className="py-24 bg-gradient-to-b from-background via-muted/20 to-background relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-30">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-portfolio-accent/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-portfolio-glow/10 rounded-full blur-3xl" />
+      </div>
+      
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Core Competencies
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="inline-block"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-foreground via-portfolio-accent to-portfolio-glow bg-clip-text text-transparent">
+                Core Competencies
+              </span>
+            </h2>
+          </motion.div>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             A comprehensive toolkit for building innovative solutions across
             multiple domains
           </p>
+          
+          {/* Decorative separator */}
+          <div className="flex items-center justify-center gap-2 mt-6">
+            <div className="h-1 w-12 bg-gradient-to-r from-transparent via-portfolio-accent to-transparent rounded-full" />
+            <div className="h-1 w-1 bg-portfolio-accent rounded-full" />
+            <div className="h-1 w-12 bg-gradient-to-r from-transparent via-portfolio-accent to-transparent rounded-full" />
+          </div>
         </motion.div>
 
         <div className="max-w-7xl mx-auto">
@@ -114,15 +137,15 @@ const Skills = () => {
               </h3>
               <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
                 {skillCategories.map((category, index) => (
-                  <motion.button
+                   <motion.button
                     key={category.id}
                     onClick={() => setActiveCategory(index)}
                     className={`w-full p-4 rounded-lg border-2 transition-all duration-300 flex items-center gap-3 text-left ${
                       activeCategory === index
-                        ? "bg-foreground text-background border-foreground"
-                        : "bg-transparent text-foreground border-border hover:border-foreground/50"
+                        ? "bg-gradient-to-r from-portfolio-accent to-portfolio-glow text-white border-portfolio-accent shadow-lg shadow-portfolio-accent/25"
+                        : "bg-card/50 backdrop-blur-sm text-foreground border-border hover:border-portfolio-accent/50 hover:shadow-md"
                     }`}
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.02, x: 4 }}
                     whileTap={{ scale: 0.98 }}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -153,14 +176,16 @@ const Skills = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5 }}
-                  className="portfolio-card p-8 bg-card text-foreground min-h-[500px] border border-border"
+                  className="portfolio-card p-8 bg-card/80 backdrop-blur-sm text-foreground min-h-[500px] border-2 border-border/50 shadow-lg"
                 >
-                  <div className="flex items-center gap-4 mb-8">
+                  <div className="flex items-center gap-4 mb-10 pb-6 border-b-2 border-gradient-to-r from-transparent via-portfolio-accent/30 to-transparent">
                     {React.createElement(skillCategories[activeCategory].icon, {
-                      className: "h-8 w-8 text-foreground",
+                      className: "h-10 w-10 text-portfolio-accent",
                     })}
-                    <h3 className="text-3xl font-bold tracking-wider uppercase text-foreground">
-                      {skillCategories[activeCategory].title} SKILLS
+                    <h3 className="text-3xl font-bold tracking-wider uppercase">
+                      <span className="bg-gradient-to-r from-foreground to-portfolio-accent bg-clip-text text-transparent">
+                        {skillCategories[activeCategory].title} SKILLS
+                      </span>
                     </h3>
                   </div>
 
@@ -182,17 +207,21 @@ const Skills = () => {
                               {skill.level}%
                             </span>
                           </div>
-                          <div className="h-3 bg-muted rounded-full overflow-hidden">
+                          <div className="h-3 bg-muted/50 rounded-full overflow-hidden border border-border/30">
                             <motion.div
-                              className="h-full bg-foreground rounded-full relative"
+                              className="h-full bg-gradient-to-r from-portfolio-accent via-portfolio-glow to-portfolio-accent rounded-full relative shadow-lg shadow-portfolio-accent/30"
                               initial={{ width: 0 }}
                               animate={{ width: `${skill.level}%` }}
-                              transition={{ duration: 1.5, delay: index * 0.1 }}
+                              transition={{ 
+                                duration: 1.5, 
+                                delay: index * 0.1,
+                                ease: "easeOut"
+                              }}
                             >
                               <motion.div
-                                className="absolute right-0 top-0 h-full w-1 bg-foreground/70 rounded-full"
+                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-full"
                                 animate={{
-                                  opacity: [0.5, 1, 0.5],
+                                  x: ['-100%', '200%'],
                                 }}
                                 transition={{
                                   duration: 2,
@@ -218,17 +247,37 @@ const Skills = () => {
           </div>
         </div>
 
+        {/* Separator with decorative line */}
+        <div className="my-20 flex items-center justify-center">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent max-w-md" />
+          <div className="px-6">
+            <div className="w-2 h-2 bg-portfolio-accent rounded-full animate-pulse" />
+          </div>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent max-w-md" />
+        </div>
+
         {/* Technologies Grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-20 text-center"
+          className="text-center"
         >
-          <h3 className="text-2xl font-bold text-foreground mb-8">
-            Technologies I Work With
-          </h3>
+          <motion.h3 
+            className="text-3xl font-bold mb-4"
+            initial={{ scale: 0.95, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <span className="bg-gradient-to-r from-foreground via-portfolio-accent to-portfolio-glow bg-clip-text text-transparent">
+              Technologies I Work With
+            </span>
+          </motion.h3>
+          <p className="text-muted-foreground mb-10 max-w-2xl mx-auto">
+            Leveraging cutting-edge tools and frameworks to build powerful solutions
+          </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4 max-w-6xl mx-auto place-items-center">
             {[
               {
@@ -315,9 +364,10 @@ const Skills = () => {
                   y: -5,
                   transition: { duration: 0.2 },
                 }}
-                className="portfolio-card p-3 text-center hover:shadow-lg transition-all duration-300 cursor-pointer group w-full aspect-square flex flex-col justify-center items-center"
+                className="portfolio-card p-4 text-center hover:shadow-xl hover:shadow-portfolio-accent/20 transition-all duration-300 cursor-pointer group w-full aspect-square flex flex-col justify-center items-center border-2 border-border/50 hover:border-portfolio-accent/50 bg-card/80 backdrop-blur-sm"
               >
-                <div className="w-12 h-12 mx-auto mb-2 group-hover:scale-110 transition-transform duration-200">
+                <div className="w-14 h-14 mx-auto mb-3 group-hover:scale-110 transition-transform duration-200 relative">
+                  <div className="absolute inset-0 bg-portfolio-accent/0 group-hover:bg-portfolio-accent/10 rounded-lg transition-colors duration-300" />
                   <img
                     src={tech.logo}
                     alt={tech.name}
@@ -328,7 +378,7 @@ const Skills = () => {
                     }}
                   />
                 </div>
-                <p className="text-sm font-medium text-foreground group-hover:text-foreground transition-colors duration-200">
+                <p className="text-sm font-semibold text-foreground group-hover:text-portfolio-accent transition-colors duration-200">
                   {tech.name}
                 </p>
               </motion.div>

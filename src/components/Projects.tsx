@@ -199,21 +199,44 @@ const Projects = () => {
   const displayedProjects = showAll ? projects : projects.slice(0, 3);
 
   return (
-    <section id="projects" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="py-24 bg-gradient-to-b from-background via-muted/20 to-background relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <div className="absolute top-32 right-10 w-80 h-80 bg-portfolio-glow/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-32 left-10 w-96 h-96 bg-portfolio-accent/20 rounded-full blur-3xl" />
+      </div>
+      
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Featured Projects
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="inline-block"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-foreground via-portfolio-accent to-portfolio-glow bg-clip-text text-transparent">
+                Featured Projects
+              </span>
+            </h2>
+          </motion.div>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Innovative solutions that bridge technology and real-world impact
           </p>
+          
+          {/* Decorative separator */}
+          <div className="flex items-center justify-center gap-2 mt-6">
+            <div className="h-1 w-12 bg-gradient-to-r from-transparent via-portfolio-accent to-transparent rounded-full" />
+            <div className="h-1 w-1 bg-portfolio-accent rounded-full" />
+            <div className="h-1 w-12 bg-gradient-to-r from-transparent via-portfolio-accent to-transparent rounded-full" />
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -225,7 +248,7 @@ const Projects = () => {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="group portfolio-card overflow-hidden hover:shadow-xl hover:shadow-portfolio-accent/10 transition-all duration-500"
+              className="group portfolio-card overflow-hidden hover:shadow-xl hover:shadow-portfolio-accent/20 transition-all duration-500 border-2 border-border/50 hover:border-portfolio-accent/50"
             >
               <div className="relative overflow-hidden">
                 <motion.img
@@ -350,7 +373,7 @@ const Projects = () => {
 
               <div className="p-6">
                 <motion.h3
-                  className="text-xl font-bold text-foreground mb-3 group-hover:text-portfolio-accent transition-colors duration-300"
+                  className="text-xl font-bold text-foreground mb-3 group-hover:bg-gradient-to-r group-hover:from-portfolio-accent group-hover:to-portfolio-glow group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300"
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >
@@ -369,7 +392,7 @@ const Projects = () => {
                     >
                       <Badge
                         variant="outline"
-                        className="text-xs hover:border-portfolio-accent hover:text-portfolio-accent transition-colors"
+                        className="text-xs hover:border-portfolio-accent hover:text-portfolio-accent hover:bg-portfolio-accent/10 transition-colors"
                       >
                         {tag}
                       </Badge>
@@ -391,7 +414,7 @@ const Projects = () => {
                       <Button
                         size="sm"
                         variant="ghost"
-                        className="p-2 hover:bg-portfolio-accent/10 hover:text-portfolio-accent"
+                        className="p-2 hover:bg-portfolio-accent/10 hover:text-portfolio-accent hover:scale-110 transition-all duration-200"
                       >
                         <Github className="h-4 w-4" />
                       </Button>
@@ -407,7 +430,7 @@ const Projects = () => {
                         <Button
                           size="sm"
                           variant="link"
-                          className="text-portfolio-accent hover:text-portfolio-accent/80"
+                          className="text-portfolio-accent hover:text-portfolio-glow font-semibold"
                           onClick={() => setSelectedProject(project)}
                         >
                           Learn More →
@@ -456,24 +479,24 @@ const Projects = () => {
                           </div>
                         </div>
 
-                        <div className="bg-portfolio-accent/10 p-4 rounded-lg mb-4">
-                          <p className="font-semibold text-portfolio-accent">
-                            {project.achievements}
+                        <div className="bg-portfolio-accent/5 border border-portfolio-accent/30 p-5 rounded-xl mb-4 shadow-sm">
+                          <p className="font-semibold text-portfolio-accent text-base">
+                            🏆 {project.achievements}
                           </p>
                         </div>
 
-                        <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg mb-4">
-                          <p className="text-sm">
-                            <strong>Impact:</strong> {project.impact}
+                        <div className="bg-gradient-to-br from-portfolio-glow/10 to-portfolio-accent/10 border border-portfolio-accent/20 p-4 rounded-xl mb-6">
+                          <p className="text-sm font-medium">
+                            <strong className="text-portfolio-accent">Impact:</strong> {project.impact}
                           </p>
                         </div>
 
                         <div className="flex space-x-4">
-                          <Button className="portfolio-button">
+                          <Button className="bg-gradient-to-r from-portfolio-accent to-portfolio-glow text-white hover:shadow-lg hover:shadow-portfolio-accent/40 hover:scale-105 transition-all duration-300 border-0">
                             <ExternalLink className="h-4 w-4 mr-2" />
                             Live Demo
                           </Button>
-                          <Button variant="outline">
+                          <Button variant="outline" className="border-2 hover:border-portfolio-accent hover:text-portfolio-accent hover:bg-portfolio-accent/10 transition-all duration-300">
                             <Github className="h-4 w-4 mr-2" />
                             View Code
                           </Button>
@@ -498,8 +521,7 @@ const Projects = () => {
             <Button
               onClick={() => setShowAll(!showAll)}
               size="lg"
-              variant="outline"
-              className="group"
+              className="group bg-gradient-to-r from-portfolio-accent to-portfolio-glow text-white hover:shadow-xl hover:shadow-portfolio-accent/30 hover:scale-105 transition-all duration-300 border-0"
             >
               {showAll ? (
                 <>

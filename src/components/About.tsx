@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Award, BookOpen, Target, Zap } from "lucide-react";
+import LazyImage from "@/components/LazyImage";
 const profileImage = new URL("@/assets/profile-photo.jpg", import.meta.url)
   .href;
 
@@ -83,17 +84,14 @@ const About = () => {
                     "linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--card)) 100%)",
                 }}
               >
-                <div className="w-full h-full relative overflow-hidden">
-                  <img
-                    src={profileImage}
-                    alt="Prabhjot Singh Assi - Software Developer & AI Engineer"
-                    className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  {/* Professional overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-                </div>
+                <LazyImage
+                  src={profileImage}
+                  alt="Prabhjot Singh Assi - Software Developer & AI Engineer"
+                  className="w-full h-full object-cover object-center filter brightness-105 contrast-105"
+                  priority={false}
+                />
+                {/* Professional overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
               </motion.div>
             </div>
           </motion.div>
@@ -152,7 +150,7 @@ const About = () => {
               development initiatives. Feel free to reach out at{" "}
               <a
                 href="mailto:prabhjotassi16@gmail.com"
-                className="text-portfolio-accent hover:underline"
+                className="text-portfolio-accent hover:underline transition-all duration-200 hover:text-portfolio-glow hover:scale-105 inline-block"
               >
                 prabhjotassi16@gmail.com
               </a>

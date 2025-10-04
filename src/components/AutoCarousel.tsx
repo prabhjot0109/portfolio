@@ -2,6 +2,7 @@ import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
+import LazyImage from "@/components/LazyImage";
 
 interface AutoCarouselProps {
   images: string[];
@@ -47,16 +48,19 @@ const AutoCarousel: React.FC<AutoCarouselProps> = ({ images, alt }) => {
         <div className="flex touch-pan-y">
           {images.map((image, index) => (
             <div key={index} className="flex-[0_0_100%] min-w-0">
-              <motion.img
-                src={image}
-                alt={`${alt} - Image ${index + 1}`}
-                className="w-full h-64 object-cover rounded-lg"
-                loading="lazy"
-                decoding="async"
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-              />
+                className="h-64"
+              >
+                <LazyImage
+                  src={image}
+                  alt={`${alt} - Image ${index + 1}`}
+                  className="w-full h-64 rounded-lg"
+                  priority={index === 0}
+                />
+              </motion.div>
             </div>
           ))}
         </div>
@@ -67,10 +71,10 @@ const AutoCarousel: React.FC<AutoCarouselProps> = ({ images, alt }) => {
         {images.map((_, index) => (
           <button
             key={index}
-            className={`transition-all duration-300 rounded-full ${
+            className={`transition-all duration-300 rounded-full hover:scale-110 ${
               index === selectedIndex
-                ? "w-8 h-2 bg-foreground"
-                : "w-2 h-2 bg-foreground/30 hover:bg-foreground/50"
+                ? "w-8 h-2 bg-portfolio-accent"
+                : "w-2 h-2 bg-foreground/30 hover:bg-portfolio-accent/50"
             }`}
             onClick={() => scrollTo(index)}
             aria-label={`Go to slide ${index + 1}`}

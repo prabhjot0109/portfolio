@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import AutoCarousel from "@/components/AutoCarousel";
+import LazyImage from "@/components/LazyImage";
 
 // Import images
 import islImage from "@/assets/project-isl.jpg";
@@ -250,15 +251,12 @@ const Projects = () => {
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
               className="group portfolio-card overflow-hidden hover:shadow-xl hover:shadow-portfolio-accent/20 transition-all duration-500 border-2 border-border/50 hover:border-portfolio-accent/50"
             >
-              <div className="relative overflow-hidden">
-                <motion.img
+              <div className="relative overflow-hidden h-48">
+                <LazyImage
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                  loading="lazy"
-                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-110"
+                  priority={index < 3}
                 />
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center space-x-4"

@@ -226,7 +226,7 @@ const Hero = () => {
           >
             <Button
               size="lg"
-              className="bg-gradient-to-r from-portfolio-accent to-portfolio-glow text-white hover:shadow-xl hover:shadow-portfolio-accent/30 hover:scale-105 transition-all duration-300 border-0 rounded-full px-8 py-3 font-semibold text-sm w-full sm:w-auto h-12 min-w-[200px]"
+              className="bg-transparent text-foreground hover:shadow-xl hover:shadow-portfolio-accent/30 hover:scale-105 transition-all duration-300 border-2 border-foreground hover:border-portfolio-accent rounded-full px-8 py-3 font-semibold text-sm w-full sm:w-auto h-12 min-w-[200px]"
               onClick={() =>
                 document
                   .getElementById("projects")
@@ -240,7 +240,7 @@ const Hero = () => {
             <Button
               variant="outline"
               size="lg"
-              className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 hover:scale-105 transition-all duration-300 border-2 border-border hover:border-portfolio-accent rounded-full px-8 py-3 font-semibold text-sm w-full sm:w-auto h-12 min-w-[200px] hover:shadow-lg hover:shadow-portfolio-accent/20"
+              className="bg-transparent text-foreground hover:text-portfolio-accent hover:bg-transparent hover:scale-105 transition-all duration-300 border-2 border-border hover:border-portfolio-accent rounded-full px-8 py-3 font-semibold text-sm w-full sm:w-auto h-12 min-w-[200px] hover:shadow-lg hover:shadow-portfolio-accent/20"
               onClick={() => window.open("/resume.pdf", "_blank")}
               aria-label="Download resume as PDF"
             >

@@ -137,12 +137,12 @@ const Skills = () => {
               </h3>
               <div className="grid grid-cols-2 lg:grid-cols-1 gap-3">
                 {skillCategories.map((category, index) => (
-                   <motion.button
+                  <motion.button
                     key={category.id}
                     onClick={() => setActiveCategory(index)}
                     className={`w-full p-4 rounded-lg border-2 transition-all duration-300 flex items-center gap-3 text-left ${
                       activeCategory === index
-                        ? "bg-gradient-to-r from-portfolio-accent to-portfolio-glow text-white border-portfolio-accent shadow-lg shadow-portfolio-accent/25"
+                        ? "bg-gradient-to-r from-portfolio-accent to-portfolio-glow text-accent-foreground border-portfolio-accent shadow-lg shadow-portfolio-accent/25"
                         : "bg-card/50 backdrop-blur-sm text-foreground border-border hover:border-portfolio-accent/50 hover:shadow-md"
                     }`}
                     whileHover={{ scale: 1.02, x: 4 }}

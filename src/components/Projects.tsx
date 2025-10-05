@@ -274,7 +274,7 @@ const Projects = () => {
                           size="sm"
                           variant="secondary"
                           onClick={() => setSelectedProject(project)}
-                          className="backdrop-blur-sm bg-white/20 border-white/30 text-white hover:bg-white/30"
+                          className="backdrop-blur-sm bg-portfolio-accent/20 border-portfolio-accent/30 text-foreground hover:bg-portfolio-accent/30"
                         >
                           <Eye className="h-4 w-4 mr-2" />
                           View Details
@@ -490,7 +490,7 @@ const Projects = () => {
                         </div>
 
                         <div className="flex space-x-4">
-                          <Button className="bg-gradient-to-r from-portfolio-accent to-portfolio-glow text-white hover:shadow-lg hover:shadow-portfolio-accent/40 hover:scale-105 transition-all duration-300 border-0">
+                          <Button className="bg-gradient-to-r from-portfolio-accent to-portfolio-glow text-accent-foreground hover:shadow-lg hover:shadow-portfolio-accent/40 hover:scale-105 transition-all duration-300 border-0">
                             <ExternalLink className="h-4 w-4 mr-2" />
                             Live Demo
                           </Button>
@@ -519,7 +519,7 @@ const Projects = () => {
             <Button
               onClick={() => setShowAll(!showAll)}
               size="lg"
-              className="group bg-gradient-to-r from-portfolio-accent to-portfolio-glow text-white hover:shadow-xl hover:shadow-portfolio-accent/30 hover:scale-105 transition-all duration-300 border-0"
+              className="group bg-gradient-to-r from-portfolio-accent to-portfolio-glow text-accent-foreground hover:shadow-xl hover:shadow-portfolio-accent/30 hover:scale-105 transition-all duration-300 border-0"
             >
               {showAll ? (
                 <>

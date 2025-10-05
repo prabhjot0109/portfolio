@@ -48,19 +48,14 @@ const AutoCarousel: React.FC<AutoCarouselProps> = ({ images, alt }) => {
         <div className="flex touch-pan-y">
           {images.map((image, index) => (
             <div key={index} className="flex-[0_0_100%] min-w-0">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="h-64"
-              >
+              <div className="h-64">
                 <LazyImage
                   src={image}
                   alt={`${alt} - Image ${index + 1}`}
                   className="w-full h-64 rounded-lg"
                   priority={index === 0}
                 />
-              </motion.div>
+              </div>
             </div>
           ))}
         </div>

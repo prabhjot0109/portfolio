@@ -38,7 +38,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
       },
       { 
         threshold: 0.01,
-        rootMargin: '50px'
+        rootMargin: '200px' // Increased for earlier loading
       }
     );
 
@@ -56,31 +56,25 @@ const LazyImage: React.FC<LazyImageProps> = ({
     <div 
       ref={imgRef}
       className={`relative overflow-hidden ${className}`}
-      style={{ minHeight: '200px' }}
     >
-      {/* Placeholder or loading state */}
-      {!isLoaded && !isError && (
-        <img
-          src={placeholder}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover blur-sm"
-          aria-hidden="true"
-        />
-      )}
-      
-      {/* Actual image */}
+      {/* Actual image - loads instantly */}
       {isInView && (
         <img
           src={src}
           alt={alt}
           loading={priority ? 'eager' : 'lazy'}
           fetchPriority={priority ? 'high' : 'auto'}
+          decoding="async"
           onLoad={handleLoad}
           onError={handleError}
-          className={`w-full h-full object-cover transition-opacity duration-500 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          } ${className}`}
+          className={`w-full h-full object-cover ${className}`}
+          style={{ contentVisibility: 'auto' }}
         />
+      )}
+      
+      {/* Minimal skeleton only before image loads */}
+      {!isLoaded && !isError && isInView && (
+        <div className="absolute inset-0 bg-muted/20 animate-pulse" aria-hidden="true" />
       )}
       
       {/* Error state */}

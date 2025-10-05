@@ -86,9 +86,9 @@ const Navigation = () => {
         aria-label="Main navigation"
         style={{
           backdropFilter:
-            scrolled || isOpen ? "blur(32px) saturate(200%)" : "none",
+            scrolled || isOpen ? "blur(60px) saturate(200%)" : "none",
           WebkitBackdropFilter:
-            scrolled || isOpen ? "blur(32px) saturate(200%)" : "none",
+            scrolled || isOpen ? "blur(60px) saturate(200%)" : "none",
           backgroundColor: isOpen
             ? "hsl(var(--background) / 0.95)"
             : scrolled
@@ -220,8 +220,8 @@ const Navigation = () => {
             <div
               className="border-t border-border/50 pt-4 pb-4 mt-2 w-full bg-background/60 backdrop-blur-xl rounded-b-2xl shadow-lg"
               style={{
-                backdropFilter: "blur(24px) saturate(180%)",
-                WebkitBackdropFilter: "blur(24px) saturate(180%)",
+                backdropFilter: "blur(40px) saturate(180%)",
+                WebkitBackdropFilter: "blur(40px) saturate(180%)",
               }}
             >
               <ul className="flex flex-col space-y-2 w-full" role="none">

@@ -42,6 +42,18 @@ import rewearImage3 from "@/assets/project-rewear-3.jpg";
 
 const Projects = () => {
   const [showAll, setShowAll] = React.useState(false);
+  const firstHiddenProjectRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (showAll && firstHiddenProjectRef.current) {
+      setTimeout(() => {
+        firstHiddenProjectRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 100);
+    }
+  }, [showAll]);
 
   const projects = [
     {
@@ -244,6 +256,7 @@ const Projects = () => {
           {displayedProjects.map((project, index) => (
             <motion.div
               key={project.id}
+              ref={index === 3 ? firstHiddenProjectRef : null}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}

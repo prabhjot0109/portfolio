@@ -209,7 +209,7 @@ const Skills = () => {
                           </div>
                           <div className="h-3 bg-muted/50 rounded-full overflow-hidden border border-border/30">
                             <motion.div
-                              className="h-full bg-gradient-to-r from-portfolio-accent via-portfolio-glow to-portfolio-accent rounded-full relative shadow-lg shadow-portfolio-accent/30"
+                              className="h-full bg-gradient-to-r from-portfolio-accent via-portfolio-glow to-portfolio-accent rounded-full shadow-lg shadow-portfolio-accent/30"
                               initial={{ width: 0 }}
                               animate={{ width: `${skill.level}%` }}
                               transition={{ 
@@ -217,19 +217,7 @@ const Skills = () => {
                                 delay: index * 0.1,
                                 ease: "easeOut"
                               }}
-                            >
-                              <motion.div
-                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent rounded-full"
-                                animate={{
-                                  x: ['-100%', '200%'],
-                                }}
-                                transition={{
-                                  duration: 2,
-                                  repeat: Infinity,
-                                  ease: "easeInOut",
-                                }}
-                              />
-                            </motion.div>
+                            />
                           </div>
                         </motion.div>
                       )

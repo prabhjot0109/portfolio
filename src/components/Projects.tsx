@@ -249,7 +249,7 @@ const Projects = () => {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="group portfolio-card overflow-hidden hover:shadow-xl hover:shadow-portfolio-accent/20 transition-all duration-500 border-2 border-border/50 hover:border-portfolio-accent/50"
+              className="group portfolio-card overflow-hidden hover:shadow-xl hover:shadow-border/50 transition-all duration-500 border-2 border-border/50"
             >
               <div className="relative overflow-hidden h-48">
                 <LazyImage

@@ -352,7 +352,7 @@ const Skills = () => {
                   y: -5,
                   transition: { duration: 0.2 },
                 }}
-                className="portfolio-card p-4 text-center hover:shadow-xl hover:shadow-portfolio-accent/20 transition-all duration-300 cursor-pointer group w-full aspect-square flex flex-col justify-center items-center border-2 border-border/50 hover:border-portfolio-accent/50 bg-card/80 backdrop-blur-sm"
+                className="portfolio-card p-4 text-center hover:shadow-xl hover:shadow-border/50 transition-all duration-300 cursor-pointer group w-full aspect-square flex flex-col justify-center items-center border-2 border-border/50 bg-card/80 backdrop-blur-sm"
               >
                 <div className="w-14 h-14 mx-auto mb-3 group-hover:scale-110 transition-transform duration-200 relative">
                   <div className="absolute inset-0 bg-portfolio-accent/0 group-hover:bg-portfolio-accent/10 rounded-lg transition-colors duration-300" />

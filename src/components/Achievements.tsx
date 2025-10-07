@@ -296,7 +296,7 @@ const Achievements = () => {
           className="text-center"
         >
           <h3 className="text-2xl font-bold text-foreground mb-8">📊 Impact by Numbers</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
             {impactStats.map((stat, index) => (
               <motion.div
                 key={index}

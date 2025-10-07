@@ -79,10 +79,8 @@ const Achievements = () => {
   const impactStats = [
     { icon: "🏆", number: "6", label: "Hackathon Wins" },
     { icon: "💰", number: "$4K", label: "Grant Received" },
-    { icon: "🎯", number: "10K+", label: "People Impacted" },
     { icon: "📱", number: "8+", label: "Projects Built" },
-    { icon: "🤖", number: "20+", label: "AI Models Trained" },
-    { icon: "🌱", number: "20%", label: "Efficiency Gains" }
+    { icon: "🤖", number: "20+", label: "AI Models Trained" }
   ];
 
   return (

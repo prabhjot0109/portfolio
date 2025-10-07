@@ -28,20 +28,6 @@ const Footer = () => {
               AI & ML enthusiast building innovative solutions that bridge 
               technology and human needs. Always learning, always creating.
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center hover:bg-portfolio-accent/20 hover:text-portfolio-accent transition-colors"
-                  aria-label={social.label}
-                >
-                  <social.icon className="h-5 w-5" />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Quick Links */}

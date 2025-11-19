@@ -1,128 +1,84 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail, ArrowRight, MessageSquare } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Contact = () => {
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: "Gmail",
-      value: "prabhjotassi16@gmail.com",
-      link: "mailto:prabhjotassi16@gmail.com",
-    },
-    {
-      icon: Github,
-      label: "GitHub",
-      value: "prabhjot0109",
-      link: "https://github.com/prabhjot0109",
-    },
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      value: "prabhjotassi",
-      link: "https://linkedin.com/in/prabhjotsinghassi",
-    },
-  ];
-
   return (
-    <section id="contact" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 px-4">
-            🌐 Connect & Collaborate
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-            💬 Ask me about AI, Winning SIH and hackathons, or impactful
-            projects.
-            <br />
-            🤝 I'm looking to collaborate on AI/ML and Flutter projects.
-            <br />
-            📫 Ready to discuss innovative solutions? Let's connect!
-          </p>
-        </motion.div>
+    <section id="contact" className="py-24 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-portfolio-accent/5 via-background to-background opacity-50" />
 
-        <div className="max-w-4xl mx-auto px-4">
-          {/* Contact Information */}
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto text-center"
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border/50 backdrop-blur-sm mb-8"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            <span className="text-sm font-medium text-muted-foreground">
+              Available for work
+            </span>
+          </motion.div>
+
+          <h2 className="text-5xl md:text-7xl font-space font-bold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60">
+            Let's create something
+            <br />
+            extraordinary.
+          </h2>
+
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
+            I am actively seeking full-time software engineering roles and
+            freelance opportunities. If you're looking for a developer who can
+            deliver robust web solutions and innovative AI integrations, I'd
+            love to discuss how I can contribute to your team.
+          </p>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center space-y-6 md:space-y-8"
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6"
           >
-            <div>
-              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">
-                Get In Touch
-              </h3>
-              <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6 md:mb-8">
-                I'm always interested in discussing new projects, creative
-                ideas, or opportunities to be part of your vision. Whether
-                you're a fellow developer, a startup looking for technical
-                expertise, or someone with an interesting project, let's
-                connect!
-              </p>
-            </div>
-
-            {/* Contact Icons (icon-only similar to skills grid) */}
-            <div className="grid grid-cols-3 gap-2 md:gap-3 max-w-sm mx-auto mb-10">
-              {contactInfo.map((item, index) => (
-                <motion.a
-                  key={index}
-                  href={item.link}
-                  target={item.link.startsWith("http") ? "_blank" : undefined}
-                  rel={
-                    item.link.startsWith("http")
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  whileHover={{
-                    scale: 1.15,
-                    y: -5,
-                    transition: { duration: 0.2 },
-                  }}
-                  className="portfolio-card p-2 text-center hover:shadow-lg transition-all duration-300 cursor-pointer group w-full aspect-square flex flex-col justify-center items-center"
-                  aria-label={`${item.label}: ${item.value}`}
-                >
-                  <div className="w-6 h-6 mx-auto mb-1 group-hover:scale-110 transition-transform duration-200">
-                    <item.icon className="w-full h-full" />
-                  </div>
-                  {/* Tooltip style label on hover (desktop) */}
-                  <span className="pointer-events-none absolute -bottom-5 left-1/2 -translate-x-1/2 text-[9px] md:text-[10px] font-medium text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap select-none">
-                    {item.label}
-                  </span>
-                  {/* Accessible text for screen readers */}
-                  <span className="sr-only">{`${item.label}: ${item.value}`}</span>
-                </motion.a>
-              ))}
-            </div>
-
-            {/* Quote */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="portfolio-card p-6 md:p-8 bg-accent/10 border-l-4 border-accent max-w-2xl mx-auto"
+            <Button
+              size="lg"
+              className="h-14 px-8 rounded-full text-lg gap-2 bg-foreground text-background hover:bg-foreground/90 shadow-lg hover:shadow-xl transition-all duration-300 group"
+              onClick={() =>
+                (window.location.href = "mailto:prabhjotassi16@gmail.com")
+              }
             >
-              <p className="text-foreground italic text-base md:text-lg text-center">
-                "Build What Matters."
-              </p>
-              <p className="text-muted-foreground text-sm md:text-base mt-3 text-center">
-                - My Development Philosophy
-              </p>
-            </motion.div>
+              <Mail className="w-5 h-5" />
+              Send an email
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+
+            <Button
+              variant="outline"
+              size="lg"
+              className="h-14 px-8 rounded-full text-lg gap-2 border-2 border-border/60 text-foreground hover:text-portfolio-accent hover:border-portfolio-accent hover:bg-portfolio-accent/10 dark:hover:bg-portfolio-accent/20 transition-all duration-300"
+              onClick={() =>
+                window.open(
+                  "https://linkedin.com/in/prabhjotsinghassi",
+                  "_blank"
+                )
+              }
+            >
+              <MessageSquare className="w-5 h-5" />
+              DM on LinkedIn
+            </Button>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

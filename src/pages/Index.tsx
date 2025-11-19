@@ -2,7 +2,6 @@ import React, { lazy } from "react";
 import Navigation from "@/components/Navigation";
 import SkipNavigation from "@/components/SkipNavigation";
 import Hero from "@/components/Hero";
-import ScrollToTop from "@/components/ScrollToTop";
 import LazySection from "@/components/LazySection";
 import { useServiceWorker } from "@/hooks/useServiceWorker";
 
@@ -54,8 +53,6 @@ const Index = () => {
       <LazySection>
         <Footer />
       </LazySection>
-
-      <ScrollToTop />
     </div>
   );
 };

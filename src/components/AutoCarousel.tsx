@@ -7,9 +7,14 @@ import LazyImage from "@/components/LazyImage";
 interface AutoCarouselProps {
   images: string[];
   alt: string;
+  className?: string;
 }
 
-const AutoCarousel: React.FC<AutoCarouselProps> = ({ images, alt }) => {
+const AutoCarousel: React.FC<AutoCarouselProps> = ({
+  images,
+  alt,
+  className,
+}) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -43,16 +48,22 @@ const AutoCarousel: React.FC<AutoCarouselProps> = ({ images, alt }) => {
   );
 
   return (
-    <div className="relative">
-      <div className="overflow-hidden rounded-lg" ref={emblaRef}>
-        <div className="flex touch-pan-y">
+    <div className={`relative h-full ${className || ""}`}>
+      <div
+        className="overflow-hidden h-full rounded-none touch-pan-y"
+        ref={emblaRef}
+      >
+        <div className="flex h-full">
           {images.map((image, index) => (
-            <div key={index} className="flex-[0_0_100%] min-w-0">
-              <div className="h-64">
+            <div
+              key={index}
+              className="flex-[0_0_100%] min-w-0 h-full select-none"
+            >
+              <div className="h-full w-full relative">
                 <LazyImage
                   src={image}
                   alt={`${alt} - Image ${index + 1}`}
-                  className="w-full h-64 rounded-lg"
+                  className="w-full h-full object-cover"
                   priority={index === 0}
                 />
               </div>
@@ -62,14 +73,14 @@ const AutoCarousel: React.FC<AutoCarouselProps> = ({ images, alt }) => {
       </div>
 
       {/* Dot Indicators */}
-      <div className="flex justify-center gap-2 mt-4">
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-20">
         {images.map((_, index) => (
           <button
             key={index}
-            className={`transition-all duration-300 rounded-full hover:scale-110 ${
+            className={`transition-all duration-300 rounded-full shadow-sm ${
               index === selectedIndex
-                ? "w-8 h-2 bg-portfolio-accent"
-                : "w-2 h-2 bg-foreground/30 hover:bg-portfolio-accent/50"
+                ? "w-6 h-1.5 bg-white"
+                : "w-1.5 h-1.5 bg-white/50 hover:bg-white/80"
             }`}
             onClick={() => scrollTo(index)}
             aria-label={`Go to slide ${index + 1}`}

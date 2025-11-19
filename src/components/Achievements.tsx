@@ -1,326 +1,228 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Award, Trophy, Target, Star, TrendingUp, Users } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Award, Trophy, Target, Star, TrendingUp, Zap } from "lucide-react";
 
 const Achievements = () => {
   const majorAchievements = [
     {
       icon: Trophy,
-      title: "🥇 Intellify 3.0 Hackathon Winner",
+      title: "Intellify 3.0 Hackathon Winner",
       organization: "Marwadi University, Rajkot",
       year: "2025",
       product: "Best Software Solution",
-      description: "National level hackathon winner recognized for creating the best software solution",
+      description:
+        "National level hackathon winner recognized for creating the best software solution.",
       impact: "National recognition for innovation excellence",
-      color: "from-indigo-400 to-indigo-600"
+      color: "from-indigo-500 to-purple-500",
+      shadow: "shadow-indigo-500/20",
     },
     {
       icon: Trophy,
-      title: "🥈 Code for Bharat Season 2 - 1st Runner-up",
-      organization: "Tech Masters India, Microsoft Office, Noida",
+      title: "Code for Bharat Season 2",
+      organization: "Tech Masters India, Microsoft Office",
       year: "2025",
-      product: "National Project Building Challenge",
-      description: "Secured 1st runner-up among top teams across India",
+      product: "1st Runner-up",
+      description:
+        "Secured 1st runner-up among top teams across India in the National Project Building Challenge.",
       impact: "Recognized for innovation and execution",
-      color: "from-orange-400 to-orange-600"
+      color: "from-orange-500 to-red-500",
+      shadow: "shadow-orange-500/20",
     },
     {
       icon: Trophy,
-      title: "🥇 SIH 2024 Winner",
+      title: "SIH 2024 Winner",
       organization: "MoE's IC & AICTE",
       year: "2024",
       product: "AI Sign Language Translator",
-      description: "Won against 10,000+ teams nationwide with Signify - AI-powered ISL translator",
+      description:
+        "Won against 10,000+ teams nationwide with Signify - An AI-powered ISL translator.",
       impact: "40+ ISL gestures, 90%+ accuracy",
-      color: "from-yellow-400 to-yellow-600"
+      color: "from-yellow-400 to-orange-500",
+      shadow: "shadow-yellow-500/20",
     },
     {
       icon: Target,
-      title: "💰 IEEE Tech4Good Grant",
+      title: "IEEE Tech4Good Grant",
       organization: "IEEE HTB",
-      year: "2024", 
+      year: "2024",
       product: "Krishi Agriculture Platform",
-      description: "$4000 grant for IoT-enabled smart agriculture platform empowering farmers",
+      description:
+        "$4000 grant for IoT-enabled smart agriculture platform empowering farmers.",
       impact: "10+ farmers impacted, 20% yield improvement",
-      color: "from-green-400 to-green-600"
+      color: "from-green-400 to-emerald-600",
+      shadow: "shadow-green-500/20",
     },
     {
       icon: Award,
-      title: "🏆 HackWave Winner",
+      title: "HackWave Winner",
       organization: "CDGI, Indore",
       year: "2024",
       product: "PARAS Transport ML Model",
-      description: "First place for urban transport optimization using machine learning",
+      description:
+        "First place for urban transport optimization using machine learning.",
       impact: "Traffic congestion reduction solution",
-      color: "from-blue-400 to-blue-600"
+      color: "from-blue-400 to-cyan-500",
+      shadow: "shadow-blue-500/20",
     },
     {
       icon: Star,
-      title: "🥉 Prayatna 3rd Runner-up",
+      title: "Prayatna 3rd Runner-up",
       organization: "AITR, Indore",
       year: "2024",
       product: "Med.AI Healthcare Platform",
-      description: "AI-powered healthcare diagnostic assistant with computer vision",
+      description:
+        "AI-powered healthcare diagnostic assistant with computer vision.",
       impact: "15% diagnostic accuracy improvement",
-      color: "from-purple-400 to-purple-600"
+      color: "from-purple-400 to-pink-500",
+      shadow: "shadow-purple-500/20",
     },
     {
       icon: TrendingUp,
-      title: "🥈 Codespire 2023 Runner-up",
+      title: "Codespire 2023 Runner-up",
       organization: "AITR, Indore",
       year: "2023",
       product: "Innovative Software Solution",
-      description: "Early achievement demonstrating exceptional problem-solving skills",
+      description:
+        "Early achievement demonstrating exceptional problem-solving skills.",
       impact: "Technical excellence recognition",
-      color: "from-red-400 to-red-600"
-    }
+      color: "from-red-400 to-rose-600",
+      shadow: "shadow-red-500/20",
+    },
   ];
 
   const impactStats = [
     { icon: "🏆", number: "6", label: "Hackathon Wins" },
     { icon: "💰", number: "$4K", label: "Grant Received" },
     { icon: "📱", number: "8+", label: "Projects Built" },
-    { icon: "🤖", number: "20+", label: "AI Models Trained" }
+    { icon: "🤖", number: "20+", label: "AI Models Trained" },
   ];
 
   return (
-    <section id="achievements" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-6">
-        {/* Header */}
+    <section
+      id="achievements"
+      className="py-24 relative overflow-hidden bg-background/50"
+    >
+      {/* Ambient Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            🏆 Major Achievements & Recognition
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 tracking-tight">
+            Major Achievements
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Building innovative solutions that create real-world impact and earn recognition
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            A journey marked by innovation, competition, and impactful solutions
+            recognized on national platforms.
           </p>
         </motion.div>
 
-        {/* Achievement Timeline Grid */}
-        <div className="max-w-6xl mx-auto mb-16 px-4 md:px-0">
-          {/* Central Timeline Header */}
-          <motion.div 
-            className="flex justify-center mb-8 md:mb-12"
-            initial={{ scale: 0, rotate: -180 }}
-            whileInView={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <div className="relative">
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-foreground to-foreground/70 flex items-center justify-center shadow-2xl border-4 border-background">
-                <Trophy className="h-6 w-6 md:h-8 md:w-8 text-background" />
-              </div>
-              <motion.div 
-                className="absolute -top-2 -left-2 w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-foreground/20"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              />
-            </div>
-          </motion.div>
+        {/* Timeline Container */}
+        <div className="max-w-5xl mx-auto mb-24">
+          <div className="relative">
+            {/* Central Line (Desktop) */}
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent -translate-x-1/2" />
 
-          {/* Achievement Grid - Mobile Vertical, Desktop Timeline */}
-          <div className="space-y-6 md:space-y-8">
             {majorAchievements.map((achievement, index) => (
               <motion.div
                 key={index}
-                className="relative"
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                className={`relative flex items-center gap-8 mb-16 md:mb-24 ${
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                }`}
               >
-                {/* Desktop Timeline Line - Hidden on mobile */}
-                <div className="hidden md:block absolute left-1/2 top-0 w-px h-full bg-gradient-to-b from-foreground/30 via-foreground/20 to-transparent transform -translate-x-1/2 z-0" />
-                
-                {/* Mobile Layout - Simple Cards */}
-                <div className="md:hidden">
-                  <motion.div
-                    className="portfolio-card p-4 group hover:scale-[1.02] transition-all duration-300"
-                    whileHover={{ y: -5 }}
+                {/* Content Card */}
+                <div className="flex-1 w-full md:w-auto">
+                  <div
+                    className={`group relative p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:border-primary/20 ${achievement.shadow} hover:shadow-lg`}
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-xl`} />
-                    
+                    {/* Gradient Glow */}
+                    <div
+                      className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                    />
+
                     <div className="relative z-10">
-                      <div className="flex items-start gap-3 mb-3">
-                        <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${achievement.color} flex items-center justify-center flex-shrink-0`}>
-                          <achievement.icon className="h-5 w-5 text-white" />
+                      <div className="flex items-start justify-between mb-4">
+                        <div
+                          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${achievement.color} flex items-center justify-center text-white shadow-lg`}
+                        >
+                          <achievement.icon className="w-6 h-6" />
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-base font-bold text-foreground group-hover:text-portfolio-accent transition-colors duration-300 mb-1 leading-tight">
-                            {achievement.title}
-                          </h3>
-                          <p className="text-foreground/80 font-medium text-xs">
-                            {achievement.organization}
-                          </p>
-                          <div className="bg-muted/50 px-2 py-1 rounded-full mt-2 inline-block">
-                            <span className="text-xs font-medium text-foreground/70">
-                              {achievement.year} • {achievement.product}
-                            </span>
-                          </div>
-                        </div>
+                        <span className="px-3 py-1 rounded-full bg-muted/50 text-xs font-medium text-muted-foreground border border-border/50">
+                          {achievement.year}
+                        </span>
                       </div>
-                      
-                      <p className="text-muted-foreground text-sm leading-relaxed mb-2">
+
+                      <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                        {achievement.title}
+                      </h3>
+                      <div className="text-sm font-medium text-primary/80 mb-3">
+                        {achievement.organization}
+                      </div>
+
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                         {achievement.description}
                       </p>
-                      
-                      <div className="flex items-center text-xs text-muted-foreground">
-                        <div className="w-2 h-2 bg-foreground/40 rounded-full mr-2" />
+
+                      <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground pt-4 border-t border-border/50">
+                        <Zap className="w-3 h-3 text-yellow-500" />
                         {achievement.impact}
                       </div>
                     </div>
-                  </motion.div>
-                </div>
-
-                {/* Desktop Timeline Layout */}
-                <div className="hidden md:flex relative items-center gap-8 z-10">
-                  {/* Left Content (odd index) or spacer (even index) */}
-                  <div className={`flex-1 ${index % 2 === 0 ? 'flex justify-end' : ''}`}>
-                    {index % 2 === 1 && (
-                      <motion.div
-                        className="portfolio-card p-6 max-w-md group hover:scale-[1.02] transition-all duration-300"
-                        whileHover={{ y: -5 }}
-                      >
-                        <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-xl`} />
-                        
-                        <div className="relative z-10">
-                          <div className="flex items-start gap-4 mb-4">
-                            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${achievement.color} flex items-center justify-center flex-shrink-0`}>
-                              <achievement.icon className="h-6 w-6 text-white" />
-                            </div>
-                            <div className="flex-1">
-                              <h3 className="text-lg font-bold text-foreground group-hover:text-portfolio-accent transition-colors duration-300 mb-1">
-                                {achievement.title}
-                              </h3>
-                              <p className="text-foreground/80 font-medium text-sm">
-                                {achievement.organization}
-                              </p>
-                            </div>
-                          </div>
-                          
-                          <div className="bg-muted/50 px-3 py-1 rounded-full mb-3 inline-block">
-                            <span className="text-xs font-medium text-foreground/70">
-                              {achievement.product}
-                            </span>
-                          </div>
-                          
-                          <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                            {achievement.description}
-                          </p>
-                          
-                          <div className="flex items-center text-xs text-muted-foreground">
-                            <div className="w-2 h-2 bg-foreground/40 rounded-full mr-2" />
-                            {achievement.impact}
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </div>
-
-                  {/* Central Date Node */}
-                  <motion.div 
-                    className="relative z-20 flex-shrink-0"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${achievement.color} flex items-center justify-center shadow-lg relative z-10 border-4 border-background`}>
-                      <span className="text-white font-bold text-xs">{achievement.year}</span>
-                    </div>
-                    <motion.div 
-                      className={`absolute inset-0 rounded-full bg-gradient-to-br ${achievement.color} opacity-30`}
-                      animate={{ scale: [1, 1.3, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
-                    />
-                  </motion.div>
-
-                  {/* Right Content (even index) or spacer (odd index) */}
-                  <div className={`flex-1 ${index % 2 === 1 ? 'flex justify-start' : ''}`}>
-                    {index % 2 === 0 && (
-                      <motion.div
-                        className="portfolio-card p-6 max-w-md group hover:scale-[1.02] transition-all duration-300"
-                        whileHover={{ y: -5 }}
-                      >
-                        <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-xl`} />
-                        
-                        <div className="relative z-10">
-                          <div className="flex items-start gap-4 mb-4">
-                            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${achievement.color} flex items-center justify-center flex-shrink-0`}>
-                              <achievement.icon className="h-6 w-6 text-white" />
-                            </div>
-                            <div className="flex-1">
-                              <h3 className="text-lg font-bold text-foreground group-hover:text-portfolio-accent transition-colors duration-300 mb-1">
-                                {achievement.title}
-                              </h3>
-                              <p className="text-foreground/80 font-medium text-sm">
-                                {achievement.organization}
-                              </p>
-                            </div>
-                          </div>
-                          
-                          <div className="bg-muted/50 px-3 py-1 rounded-full mb-3 inline-block">
-                            <span className="text-xs font-medium text-foreground/70">
-                              {achievement.product}
-                            </span>
-                          </div>
-                          
-                          <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                            {achievement.description}
-                          </p>
-                          
-                          <div className="flex items-center text-xs text-muted-foreground">
-                            <div className="w-2 h-2 bg-foreground/40 rounded-full mr-2" />
-                            {achievement.impact}
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
                   </div>
                 </div>
+
+                {/* Center Point (Desktop) */}
+                <div className="hidden md:flex relative items-center justify-center w-12 flex-shrink-0">
+                  <div
+                    className={`w-4 h-4 rounded-full bg-gradient-to-r ${achievement.color} shadow-[0_0_10px_rgba(0,0,0,0.2)] ring-4 ring-background z-10`}
+                  />
+                  <div
+                    className={`absolute w-8 h-8 rounded-full bg-gradient-to-r ${achievement.color} opacity-20 animate-pulse`}
+                  />
+                </div>
+
+                {/* Empty Space for Desktop Layout */}
+                <div className="hidden md:block flex-1" />
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Impact Statistics */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <h3 className="text-2xl font-bold text-foreground mb-8">📊 Impact by Numbers</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-            {impactStats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="portfolio-card p-4 text-center group"
-              >
-                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-200">
-                  {stat.icon}
-                </div>
-                <div className="text-2xl font-bold text-portfolio-accent mb-1">
-                  {stat.number}
-                </div>
-                <div className="text-xs text-muted-foreground font-medium">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
+        {/* Impact Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          {impactStats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5 }}
+              className="p-6 rounded-2xl bg-card/30 border border-border/50 backdrop-blur-sm text-center hover:bg-card/50 transition-all duration-300"
+            >
+              <div className="text-3xl mb-3">{stat.icon}</div>
+              <div className="text-3xl font-bold text-foreground mb-1">
+                {stat.number}
+              </div>
+              <div className="text-sm text-muted-foreground font-medium">
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

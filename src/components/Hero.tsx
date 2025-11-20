@@ -82,7 +82,7 @@ const Hero = () => {
         <>
           {/* Starfield background */}
           <div className="absolute inset-0 pointer-events-none z-0">
-            <Starfield density={0.06} speed={0.4} active={animated} />
+            <Starfield density={0.12} speed={0.25} active={animated} />
           </div>
           {/* Shooting stars - realistic effect matching starfield speed */}
           {animated && (
@@ -216,8 +216,9 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Button
+              variant="outline"
               size="lg"
-              className="portfolio-button text-primary-foreground rounded-full px-10 py-6 font-bold text-lg shadow-lg hover:shadow-xl min-w-[220px]"
+              className="bg-transparent text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/5 border-2 border-foreground/20 hover:border-portfolio-accent rounded-full px-10 py-6 font-bold text-lg w-[260px] transition-all duration-300"
               onClick={() =>
                 document
                   .getElementById("projects")
@@ -230,7 +231,7 @@ const Hero = () => {
             <Button
               variant="outline"
               size="lg"
-              className="bg-transparent text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/5 border-2 border-foreground/20 hover:border-portfolio-accent rounded-full px-10 py-6 font-bold text-lg min-w-[220px] transition-all duration-300"
+              className="bg-transparent text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/5 border-2 border-foreground/20 hover:border-portfolio-accent rounded-full px-10 py-6 font-bold text-lg w-[260px] transition-all duration-300"
               onClick={() => window.open("/resume.pdf", "_blank")}
             >
               <Download className="h-5 w-5 mr-2" />

@@ -4,6 +4,16 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "./ThemeProvider";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
+const navItems = [
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#skills", label: "Skills" },
+  { href: "#achievements", label: "Achievements" },
+  { href: "#projects", label: "Projects" },
+  { href: "#experience", label: "Experience" },
+  { href: "#contact", label: "Contact" },
+];
+
 const Navigation = () => {
   const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = React.useState(false);
@@ -34,16 +44,6 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeSection]);
-
-  const navItems = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#skills", label: "Skills" },
-    { href: "#achievements", label: "Achievements" },
-    { href: "#projects", label: "Projects" },
-    { href: "#experience", label: "Experience" },
-    { href: "#contact", label: "Contact" },
-  ];
 
   const handleNavClick = (href: string, label: string) => {
     const element = document.getElementById(href.substring(1));
@@ -100,7 +100,7 @@ const Navigation = () => {
           <div className="flex items-center justify-between w-full">
             <a
               href="#home"
-              className="text-2xl font-space font-bold text-foreground focus:outline-none focus:ring-0 focus:ring-offset-0 rounded-lg px-2 py-1"
+              className="text-2xl font-space font-bold text-foreground outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus:ring-offset-0 border-none rounded-lg px-2 py-1"
               onClick={(e) => {
                 e.preventDefault();
                 handleNavClick("#home", "Home");
@@ -120,7 +120,7 @@ const Navigation = () => {
                   <a
                     href={item.href}
                     className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out relative group 
-                            focus:outline-none focus:ring-0 focus:ring-offset-0 px-3 py-2 rounded-lg font-nunito
+                            outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus:ring-offset-0 border-none px-3 py-2 rounded-lg font-nunito
                             ${
                               activeSection === item.href.substring(1)
                                 ? "text-portfolio-accent font-medium"
@@ -234,7 +234,7 @@ const Navigation = () => {
                         handleNavClick(item.href, item.label);
                       }}
                       className={`text-foreground hover:text-portfolio-accent transition-all duration-500 ease-out py-3 px-4 block rounded-lg font-nunito
-                              focus:outline-none focus:ring-0 focus:ring-offset-0
+                              outline-none focus:outline-none focus-visible:outline-none focus:ring-0 focus:ring-offset-0
                               hover:bg-accent/20 hover:shadow-md transform hover:translate-x-2
                               ${
                                 activeSection === item.href.substring(1)

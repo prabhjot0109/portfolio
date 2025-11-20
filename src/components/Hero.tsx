@@ -43,15 +43,14 @@ const Hero = () => {
       "touchstart",
       "scroll",
     ];
-    const handler = () => {
+    const handler: EventListener = () => {
       enableAnimation();
-      events.forEach((e) => window.removeEventListener(e, handler as any));
+      events.forEach((e) => window.removeEventListener(e, handler));
     };
     events.forEach((e) =>
-      window.addEventListener(e, handler as any, { passive: true })
+      window.addEventListener(e, handler, { passive: true })
     );
-    return () =>
-      events.forEach((e) => window.removeEventListener(e, handler as any));
+    return () => events.forEach((e) => window.removeEventListener(e, handler));
   }, [animated, enableAnimation]);
 
   const sparkles = React.useMemo(

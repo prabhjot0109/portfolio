@@ -52,8 +52,10 @@ All colors MUST be HSL.
     --gradient-section: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 98%));
 
     /* Shadows */
-    --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.1), 0 4px 16px -4px hsl(0 0% 0% / 0.06);
-    --shadow-hover: 0 8px 24px -4px hsl(0 0% 0% / 0.2), 0 16px 48px -8px hsl(0 0% 0% / 0.12);
+    --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.1),
+      0 4px 16px -4px hsl(0 0% 0% / 0.06);
+    --shadow-hover: 0 8px 24px -4px hsl(0 0% 0% / 0.2),
+      0 16px 48px -8px hsl(0 0% 0% / 0.12);
     --shadow-glow: 0 0 32px hsl(0 0% 0% / 0.25);
 
     /* Animations */
@@ -112,8 +114,10 @@ All colors MUST be HSL.
     --gradient-section: linear-gradient(180deg, hsl(0 0% 0%), hsl(0 0% 5%));
 
     /* Dark shadows */
-    --shadow-card: 0 4px 12px -2px hsl(0 0% 0% / 0.8), 0 8px 24px -4px hsl(0 0% 100% / 0.15);
-    --shadow-hover: 0 12px 32px -4px hsl(0 0% 0% / 0.9), 0 24px 64px -8px hsl(0 0% 100% / 0.25);
+    --shadow-card: 0 4px 12px -2px hsl(0 0% 0% / 0.8),
+      0 8px 24px -4px hsl(0 0% 100% / 0.15);
+    --shadow-hover: 0 12px 32px -4px hsl(0 0% 0% / 0.9),
+      0 24px 64px -8px hsl(0 0% 100% / 0.25);
     --shadow-glow: 0 0 40px hsl(0 0% 100% / 0.3);
 
     --sidebar-background: 240 5.9% 10%;
@@ -181,13 +185,21 @@ All colors MUST be HSL.
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, hsl(var(--portfolio-accent)), hsl(var(--portfolio-glow)));
+    background: linear-gradient(
+      180deg,
+      hsl(var(--portfolio-accent)),
+      hsl(var(--portfolio-glow))
+    );
     border-radius: 4px;
     transition: all 0.3s ease;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, hsl(var(--portfolio-glow)), hsl(var(--portfolio-accent)));
+    background: linear-gradient(
+      180deg,
+      hsl(var(--portfolio-glow)),
+      hsl(var(--portfolio-accent))
+    );
     box-shadow: 0 0 10px hsl(var(--portfolio-accent) / 0.5);
   }
 
@@ -203,12 +215,12 @@ All colors MUST be HSL.
 
   /* Hidden scrollbar while maintaining scroll functionality */
   .scrollbar-hidden {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 
   .scrollbar-hidden::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
+    display: none; /* Chrome, Safari and Opera */
   }
 }
 
@@ -250,8 +262,13 @@ All colors MUST be HSL.
 
   .portfolio-button::before {
     @apply absolute inset-0 opacity-0 transition-opacity duration-300;
-    content: '';
-    background: linear-gradient(45deg, transparent 30%, hsl(var(--portfolio-glow) / 0.5) 50%, transparent 70%);
+    content: "";
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      hsl(var(--portfolio-glow) / 0.5) 50%,
+      transparent 70%
+    );
     transform: translateX(-100%);
   }
 
@@ -264,22 +281,22 @@ All colors MUST be HSL.
   .story-link {
     @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-portfolio-accent after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
   }
-  
+
   /* Hover Scale Animation */
   .hover-scale {
     @apply transition-all duration-200 hover:scale-105 hover:shadow-lg;
   }
-  
+
   /* Link Micro-interactions */
   a:not(.no-hover) {
     @apply transition-all duration-200 hover:text-portfolio-accent;
   }
-  
+
   /* Pulse Animation */
   .pulse {
     @apply animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite];
   }
-  
+
   /* Button Press Animation */
   button:active {
     @apply scale-95 transition-transform duration-100;
@@ -347,17 +364,29 @@ All colors MUST be HSL.
   }
 
   .dialog-scrollable::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, hsl(var(--portfolio-accent)), hsl(var(--portfolio-glow)));
+    background: linear-gradient(
+      180deg,
+      hsl(var(--portfolio-accent)),
+      hsl(var(--portfolio-glow))
+    );
     border-radius: 3px;
   }
 
   .dialog-scrollable::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, hsl(var(--portfolio-glow)), hsl(var(--portfolio-accent)));
+    background: linear-gradient(
+      180deg,
+      hsl(var(--portfolio-glow)),
+      hsl(var(--portfolio-accent))
+    );
   }
 
   /* Gradient text effect */
   .gradient-text {
-    background: linear-gradient(135deg, hsl(var(--portfolio-accent)), hsl(var(--portfolio-glow)));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--portfolio-accent)),
+      hsl(var(--portfolio-glow))
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -377,13 +406,18 @@ All colors MUST be HSL.
   }
 
   .animated-border::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, hsl(var(--portfolio-accent)), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--portfolio-accent)),
+      transparent
+    );
     transition: left 0.5s;
   }
 
@@ -393,55 +427,90 @@ All colors MUST be HSL.
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes glow {
-  0% { box-shadow: 0 0 5px hsl(var(--portfolio-glow) / 0.4); }
-  100% { box-shadow: 0 0 20px hsl(var(--portfolio-glow) / 0.8); }
+  0% {
+    box-shadow: 0 0 5px hsl(var(--portfolio-glow) / 0.4);
+  }
+  100% {
+    box-shadow: 0 0 20px hsl(var(--portfolio-glow) / 0.8);
+  }
 }
 
 @keyframes slide-up {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fade-in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes twinkle {
-  0%, 100% { 
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(1);
   }
-  50% { 
+  50% {
     opacity: 1;
     transform: scale(1.2);
   }
 }
 
 @keyframes sparkle {
-  0%, 100% { 
+  0%,
+  100% {
     opacity: 0.2;
     transform: scale(0.8);
   }
-  50% { 
+  50% {
     opacity: 0.8;
     transform: scale(1.3);
   }
 }
 
 /* Meteor head twinkle */
-@keyframes meteorTwinkle { 0%,100% { opacity: 0.85; } 50% { opacity: 0.35; } }
-.meteor-twinkle { animation: meteorTwinkle 2.4s ease-in-out infinite; }
+@keyframes meteorTwinkle {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.meteor-twinkle {
+  animation: meteorTwinkle 2.4s ease-in-out infinite;
+}
 
 /* ---break---
 */
@@ -460,16 +529,16 @@ All colors MUST be HSL.
 
 @theme inline {
   @keyframes meteor {
-  0% {
-    transform: rotate(215deg) translateX(0);
-    opacity: 1;
+    0% {
+      transform: rotate(215deg) translateX(0);
+      opacity: 1;
     }
-  70% {
-    opacity: 1;
+    70% {
+      opacity: 1;
     }
-  100% {
-    transform: rotate(215deg) translateX(-500px);
-    opacity: 0;
+    100% {
+      transform: rotate(215deg) translateX(-500px);
+      opacity: 0;
     }
   }
 }

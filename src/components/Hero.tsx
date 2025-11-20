@@ -141,97 +141,88 @@ const Hero = () => {
         </div>
       )}
 
-      <div className="container mx-auto px-6 text-center relative z-10 pt-20">
+      <div className="container mx-auto px-6 text-center relative z-10 pt-20 flex items-center justify-center min-h-screen">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-4xl mx-auto relative z-10"
         >
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-space font-bold text-foreground mb-8 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-space font-bold text-foreground mb-8 leading-tight tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="text-muted-foreground text-base sm:text-lg md:text-xl font-nunito font-normal block mb-3">
+            <span className="text-muted-foreground text-lg sm:text-xl md:text-2xl font-nunito font-light block mb-4 tracking-widest uppercase">
               Hello, I'm
             </span>
-            <span className="text-accent font-space block mb-2">
-              Prabhjot Singh Assi
+            <span className="gradient-text font-space block mb-4 drop-shadow-sm pb-2 leading-relaxed">
+              Prabhjot Singh
             </span>
-            <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl font-space font-medium text-muted-foreground">
+            <span className="block text-xl sm:text-2xl md:text-3xl font-space font-medium text-muted-foreground/80">
               Software Developer & AI Engineer
             </span>
           </motion.h1>
 
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed px-4 font-nunito"
+            className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed px-4 font-nunito font-light"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Building the future with AI-powered solutions and innovative
-            technology
+            Building the future with{" "}
+            <span className="text-foreground font-medium">
+              AI-powered solutions
+            </span>{" "}
+            and{" "}
+            <span className="text-foreground font-medium">
+              innovative technology
+            </span>
+            .
           </motion.p>
 
           {/* Social Links */}
           <motion.div
-            className="flex items-center justify-center space-x-6 mb-8"
+            className="flex items-center justify-center space-x-6 mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 hover:scale-110 w-12 h-12 transition-all duration-200 border border-border rounded-full hover:border-portfolio-accent hover:shadow-lg hover:shadow-portfolio-accent/20"
-              onClick={() =>
-                window.open("https://github.com/prabhjot0109", "_blank")
-              }
-            >
-              <Github className="h-6 w-6" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 hover:scale-110 w-12 h-12 transition-all duration-200 border border-border rounded-full hover:border-portfolio-accent hover:shadow-lg hover:shadow-portfolio-accent/20"
-              onClick={() =>
-                window.open(
-                  "https://linkedin.com/in/prabhjotsinghassi",
-                  "_blank"
-                )
-              }
-            >
-              <Linkedin className="h-6 w-6" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 hover:scale-110 w-12 h-12 transition-all duration-200 border border-border rounded-full hover:border-portfolio-accent hover:shadow-lg hover:shadow-portfolio-accent/20"
-              onClick={() =>
-                window.open("mailto:prabhjotassi16@gmail.com", "_blank")
-              }
-            >
-              <Mail className="h-6 w-6" />
-            </Button>
+            {[
+              { icon: Github, link: "https://github.com/prabhjot0109" },
+              {
+                icon: Linkedin,
+                link: "https://linkedin.com/in/prabhjotsinghassi",
+              },
+              { icon: Mail, link: "mailto:prabhjotassi16@gmail.com" },
+            ].map((social, index) => (
+              <Button
+                key={index}
+                variant="ghost"
+                size="icon"
+                className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 hover:scale-110 w-14 h-14 transition-all duration-300 border border-border/50 rounded-full hover:border-portfolio-accent hover:shadow-[0_0_20px_rgba(var(--portfolio-accent),0.3)]"
+                onClick={() => window.open(social.link, "_blank")}
+              >
+                <social.icon className="h-6 w-6" />
+              </Button>
+            ))}
           </motion.div>
 
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 px-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Button
               size="lg"
-              className="bg-transparent text-foreground hover:text-portfolio-accent hover:bg-transparent hover:scale-105 transition-all duration-300 border-2 border-border hover:border-portfolio-accent rounded-full px-8 py-3 font-semibold text-sm w-full sm:w-auto h-12 min-w-[200px] hover:shadow-lg hover:shadow-portfolio-accent/20"
+              className="portfolio-button text-primary-foreground rounded-full px-10 py-6 font-bold text-lg shadow-lg hover:shadow-xl min-w-[220px]"
               onClick={() =>
                 document
                   .getElementById("projects")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
-              aria-label="View my work and projects"
             >
               View My Work
             </Button>
@@ -239,30 +230,29 @@ const Hero = () => {
             <Button
               variant="outline"
               size="lg"
-              className="bg-transparent text-foreground hover:text-portfolio-accent hover:bg-transparent hover:scale-105 transition-all duration-300 border-2 border-border hover:border-portfolio-accent rounded-full px-8 py-3 font-semibold text-sm w-full sm:w-auto h-12 min-w-[200px] hover:shadow-lg hover:shadow-portfolio-accent/20"
+              className="bg-transparent text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/5 border-2 border-foreground/20 hover:border-portfolio-accent rounded-full px-10 py-6 font-bold text-lg min-w-[220px] transition-all duration-300"
               onClick={() => window.open("/resume.pdf", "_blank")}
-              aria-label="Download resume as PDF"
             >
-              <Download className="h-4 w-4 mr-2" />
+              <Download className="h-5 w-5 mr-2" />
               Download Resume
             </Button>
           </motion.div>
+        </motion.div>
 
-          <motion.div
-            className="animate-bounce"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <ArrowDown
-              className="h-5 w-5 text-muted-foreground/60 mx-auto cursor-pointer hover:text-portfolio-accent transition-colors duration-200"
-              onClick={() =>
-                document
-                  .getElementById("about")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-            />
-          </motion.div>
+        <motion.div
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-20"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1 }}
+        >
+          <ArrowDown
+            className="h-6 w-6 text-muted-foreground/60 cursor-pointer hover:text-portfolio-accent transition-colors duration-300"
+            onClick={() =>
+              document
+                .getElementById("about")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          />
         </motion.div>
       </div>
     </section>

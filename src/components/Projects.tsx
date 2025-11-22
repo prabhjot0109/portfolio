@@ -362,7 +362,7 @@ const ProjectCard = React.forwardRef<
         viewport={{ once: true, margin: "-50px" }}
         className="h-full"
       >
-        <div className="group relative h-full bg-card/50 dark:bg-card/40 backdrop-blur-sm border border-border/50 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-primary/5 hover:border-primary/20 transition-all duration-500 flex flex-col">
+        <div className="group relative h-full bg-card/20 dark:bg-card/20 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-primary/5 hover:border-white/20 transition-all duration-500 flex flex-col hover:-translate-y-1">
           <div className="relative h-56 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
 

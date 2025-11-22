@@ -146,7 +146,7 @@ const Achievements = () => {
                 {/* Content Card */}
                 <div className="flex-1 w-full md:w-auto">
                   <div
-                    className={`group relative p-6 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm hover:bg-card/80 transition-all duration-500 hover:border-primary/20 ${achievement.shadow} hover:shadow-lg`}
+                    className={`group relative p-6 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-xl hover:bg-card/40 transition-all duration-500 hover:border-white/20 ${achievement.shadow} shadow-xl hover:shadow-2xl hover:-translate-y-1`}
                   >
                     {/* Gradient Glow */}
                     <div
@@ -211,7 +211,7 @@ const Achievements = () => {
               transition={{ duration: 0.4, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
-              className="p-6 rounded-2xl bg-card/30 border border-border/50 backdrop-blur-sm text-center hover:bg-card/50 transition-all duration-300"
+              className="p-6 rounded-2xl bg-card/20 border border-white/10 backdrop-blur-md text-center hover:bg-card/40 transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               <div className="text-3xl mb-3">{stat.icon}</div>
               <div className="text-3xl font-bold text-foreground mb-1">

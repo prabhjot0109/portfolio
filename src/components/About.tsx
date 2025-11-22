@@ -67,7 +67,7 @@ const About = () => {
             viewport={{ once: true }}
             className="lg:col-span-5 flex justify-center lg:justify-end order-2 lg:order-1"
           >
-            <div className="relative w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+            <div className="relative w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-white/10 group bg-card/20 backdrop-blur-xl">
               <div className="absolute inset-0 bg-portfolio-accent/20 opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10" />
               <LazyImage
                 src={profileImage}
@@ -132,7 +132,7 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                   viewport={{ once: true }}
-                  className={`p-3 rounded-xl border ${item.border} ${item.bg} flex flex-col items-center justify-center text-center gap-2 hover:scale-105 transition-transform duration-300 cursor-default`}
+                  className={`p-3 rounded-xl border ${item.border} ${item.bg} backdrop-blur-md flex flex-col items-center justify-center text-center gap-2 hover:scale-105 transition-transform duration-300 cursor-default shadow-lg hover:shadow-xl`}
                 >
                   <item.icon className={`w-6 h-6 ${item.color}`} />
                   <span className={`text-sm font-semibold ${item.color}`}>

@@ -212,8 +212,8 @@ const Skills = () => {
                 whileTap={{ scale: 0.95 }}
                 className={`px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 flex items-center gap-2 border ${
                   activeCategory === index
-                    ? "bg-primary text-primary-foreground border-primary shadow-lg"
-                    : "bg-card/50 border-border/50 text-muted-foreground hover:text-foreground hover:border-primary/30 backdrop-blur-sm"
+                    ? "bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/25"
+                    : "bg-card/30 border-white/10 text-muted-foreground hover:text-foreground hover:border-primary/50 backdrop-blur-md hover:bg-card/50 hover:shadow-md"
                 }`}
               >
                 <category.icon className="w-4 h-4" />
@@ -232,7 +232,8 @@ const Skills = () => {
               transition={{ duration: 0.4 }}
               className="relative"
             >
-              <div className="p-8 md:p-10 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm">
+              <div className="p-8 md:p-10 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-xl shadow-2xl shadow-black/10 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 {/* Category Header */}
                 <div className="flex items-center gap-4 mb-8 pb-6 border-b border-border/50">
                   <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-primary-foreground shadow-lg">
@@ -321,7 +322,7 @@ const Skills = () => {
                   y: -8,
                   transition: { duration: 0.2 },
                 }}
-                className="group p-4 rounded-xl border border-border/50 bg-card/30 backdrop-blur-sm hover:bg-card/60 hover:border-primary/30 transition-all duration-300 cursor-pointer"
+                className="group p-4 rounded-xl border border-white/5 bg-card/20 backdrop-blur-md hover:bg-card/40 hover:border-primary/30 transition-all duration-300 cursor-pointer hover:shadow-xl hover:-translate-y-1"
               >
                 <div className="relative aspect-square flex items-center justify-center mb-2">
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 rounded-lg transition-colors duration-300" />

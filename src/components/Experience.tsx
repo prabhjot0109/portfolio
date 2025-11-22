@@ -179,7 +179,7 @@ const Experience = () => {
                   } rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                 />
 
-                <div className="relative bg-card/50 backdrop-blur-md border border-border/50 rounded-2xl p-5 md:p-8 hover:border-border transition-colors duration-300">
+                <div className="relative bg-card/20 backdrop-blur-xl border border-white/10 rounded-2xl p-5 md:p-8 hover:border-white/20 transition-all duration-300 shadow-xl hover:shadow-2xl hover:bg-card/30 group-hover:translate-x-1">
                   <div className="flex flex-col md:flex-row gap-5 md:gap-8">
                     {/* Icon Column - Row on mobile, Col on desktop */}
                     <div className="flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-0">

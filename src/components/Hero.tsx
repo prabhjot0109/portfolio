@@ -157,10 +157,10 @@ const Hero = () => {
             <span className="text-muted-foreground text-lg sm:text-xl md:text-2xl font-nunito font-light block mb-4 tracking-widest uppercase">
               Hello, I'm
             </span>
-            <span className="gradient-text font-space block mb-4 drop-shadow-sm pb-2 leading-relaxed">
+            <span className="gradient-text animate-text-gradient font-space block mb-4 drop-shadow-sm pb-2 leading-relaxed">
               Prabhjot Singh
             </span>
-            <span className="block text-xl sm:text-2xl md:text-3xl font-space font-medium text-muted-foreground/80">
+            <span className="block text-xl sm:text-2xl md:text-3xl font-space font-medium text-muted-foreground/80 h-[1.5em]">
               Software Developer & AI Engineer
             </span>
           </motion.h1>

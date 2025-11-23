@@ -82,7 +82,12 @@ const Hero = () => {
         <>
           {/* Starfield background */}
           <div className="absolute inset-0 pointer-events-none z-0">
-            <Starfield density={0.12} speed={0.25} active={animated} />
+            <Starfield
+              density={0.12}
+              speed={0.25}
+              active={animated}
+              theme="dark"
+            />
           </div>
           {/* Shooting stars - realistic effect matching starfield speed */}
           {animated && (
@@ -134,10 +139,16 @@ const Hero = () => {
           </div>
         </>
       ) : (
-        /* Light theme: Subtle noon day sky gradient */
+        /* Light Theme: Subtle noon day sky gradient with particles */
         <div className="absolute inset-0 pointer-events-none z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-sky-200 via-sky-100 to-white" />
           <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-sky-200/10" />
+          <Starfield
+            density={0.15}
+            speed={0.1}
+            active={animated}
+            theme="light"
+          />
         </div>
       )}
 

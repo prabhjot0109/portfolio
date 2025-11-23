@@ -111,7 +111,7 @@ const About = () => {
                 <span className="text-foreground font-medium">
                   first-principles thinking
                 </span>{" "}
-                from Physics with modern computational design. Whether it's
+                with modern computational design. Whether it's
                 optimizing deep learning models or architecting scalable
                 software, I am driven by a passion for innovation and
                 reliability.

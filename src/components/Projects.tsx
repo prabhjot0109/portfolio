@@ -363,13 +363,13 @@ const ProjectCard = React.forwardRef<
         className="h-full"
       >
         <div className="group relative h-full bg-card/20 dark:bg-card/20 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-primary/5 hover:border-white/20 transition-all duration-500 flex flex-col hover:-translate-y-1">
-          <div className="relative h-56 overflow-hidden">
+          <div className="relative h-56 overflow-hidden border-b border-border/10 group-hover:border-primary/20 transition-colors duration-500">
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
 
             <LazyImage
               src={project.image}
               alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:brightness-110"
               priority={index < 3}
             />
 

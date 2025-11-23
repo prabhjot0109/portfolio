@@ -5,6 +5,7 @@ interface StarfieldProps {
   density?: number; // approximate stars per 100px^2 * scaling
   speed?: number; // logical speed factor
   active?: boolean; // whether to animate
+  theme?: "dark" | "light";
 }
 
 interface Star {
@@ -28,6 +29,7 @@ const Starfield: React.FC<StarfieldProps> = ({
   density = 0.08,
   speed = 0.03,
   active = true,
+  theme = "dark",
 }) => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
   const starsRef = React.useRef<Star[]>([]);
@@ -49,8 +51,11 @@ const Starfield: React.FC<StarfieldProps> = ({
     canvas.style.height = height + "px";
     ctx.scale(dpr, dpr);
 
-    // Star colors: White, Blue-white, Yellow-white
-    const starColors = ["255, 255, 255", "220, 240, 255", "255, 240, 220"];
+    // Star colors based on theme
+    const starColors =
+      theme === "dark"
+        ? ["255, 255, 255", "220, 240, 255", "255, 240, 220"] // White, Blue-ish, Yellow-ish
+        : ["0, 0, 0", "60, 60, 80", "100, 149, 237"]; // Black, Dark Gray, Cornflower Blue
 
     // Gaussian random helper (Box-Muller transform)
     const gaussianRandom = (mean = 0, stdev = 1) => {
@@ -85,7 +90,10 @@ const Starfield: React.FC<StarfieldProps> = ({
           r,
           p: Math.random() * Math.PI * 2,
           color: starColors[Math.floor(Math.random() * starColors.length)],
-          baseAlpha: 0.3 + Math.random() * 0.7, // Brighter stars
+          baseAlpha:
+            theme === "dark"
+              ? 0.3 + Math.random() * 0.7 // Brighter in dark mode
+              : 0.1 + Math.random() * 0.3, // More subtle in light mode
         };
       });
     };
@@ -169,7 +177,7 @@ const Starfield: React.FC<StarfieldProps> = ({
       window.removeEventListener("resize", handleResize);
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, [density, speed, active]);
+  }, [density, speed, active, theme]);
 
   return (
     <canvas

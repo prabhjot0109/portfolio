@@ -270,7 +270,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
                   aria-label="Search commands"
                 />
                 <kbd className="hidden sm:flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground bg-white/10 dark:bg-white/5 rounded border border-white/10 dark:border-white/5">
-                  <Command className="w-3 h-3" />K
+                   ⌘ + K / Ctrl + K
                 </kbd>
                 <button
                   onClick={onClose}

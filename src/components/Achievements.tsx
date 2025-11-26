@@ -214,26 +214,55 @@ const Achievements = () => {
         </div>
 
         {/* Impact Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-          {impactStats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-              className="p-6 rounded-2xl bg-card/20 border border-white/10 backdrop-blur-md text-center hover:bg-card/40 transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              <div className="text-3xl mb-3">{stat.icon}</div>
-              <div className="text-3xl font-bold text-foreground mb-1">
-                {stat.number}
-              </div>
-              <div className="text-sm text-muted-foreground font-medium">
-                {stat.label}
-              </div>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto">
+          {impactStats.map((stat, index) => {
+            const colors = [
+              {
+                gradient: "from-yellow-400 to-orange-500",
+                shadow: "shadow-yellow-500/20",
+              },
+              {
+                gradient: "from-green-400 to-emerald-600",
+                shadow: "shadow-green-500/20",
+              },
+              {
+                gradient: "from-blue-400 to-cyan-500",
+                shadow: "shadow-blue-500/20",
+              },
+              {
+                gradient: "from-purple-400 to-pink-500",
+                shadow: "shadow-purple-500/20",
+              },
+            ];
+            const color = colors[index % colors.length];
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+                className={`group relative p-5 md:p-6 rounded-2xl bg-card/20 border border-white/10 backdrop-blur-xl text-center transition-all duration-500 hover:border-white/20 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:${color.shadow}`}
+              >
+                {/* Gradient Glow - Only on Hover */}
+                <div
+                  className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${color.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                />
+
+                <div className="relative z-10">
+                  <div className="text-3xl md:text-4xl mb-3">{stat.icon}</div>
+                  <div className="text-2xl md:text-3xl font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
+                    {stat.number}
+                  </div>
+                  <div className="text-xs md:text-sm text-muted-foreground font-medium">
+                    {stat.label}
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

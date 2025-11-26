@@ -1,7 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Award, Target, Zap, Brain, Sparkles, ArrowRight } from "lucide-react";
+import {
+  Award,
+  Target,
+  Zap,
+  Brain,
+  Sparkles,
+  ArrowRight,
+  Code2,
+} from "lucide-react";
 import LazyImage from "@/components/LazyImage";
+import { TextScramble } from "@/components/ui/text-scramble";
+import { SpotlightCard } from "@/components/ui/spotlight-card";
 
 const profileImage = new URL("@/assets/profile-photo.jpg", import.meta.url)
   .href;
@@ -10,31 +20,35 @@ const About = () => {
   const achievements = [
     {
       icon: Award,
-      label: "SIH 2024",
-      sublabel: "Winner",
-      color: "from-emerald-500 to-teal-500",
-      glow: "group-hover:shadow-emerald-500/25",
+      label: "SIH 2024 Winner",
+      sublabel: "National Hackathon",
+      color: "text-emerald-500",
+      bg: "bg-emerald-500/10",
+      border: "border-emerald-500/20",
     },
     {
       icon: Target,
-      label: "IEEE Grant",
-      sublabel: "Recipient",
-      color: "from-blue-500 to-cyan-500",
-      glow: "group-hover:shadow-blue-500/25",
+      label: "IEEE Grant Recipient",
+      sublabel: "Research Funding",
+      color: "text-blue-500",
+      bg: "bg-blue-500/10",
+      border: "border-blue-500/20",
     },
     {
       icon: Zap,
-      label: "6+ Hackathons",
-      sublabel: "Won",
-      color: "from-violet-500 to-purple-500",
-      glow: "group-hover:shadow-violet-500/25",
+      label: "6+ Hackathon Wins",
+      sublabel: "Innovation & Speed",
+      color: "text-violet-500",
+      bg: "bg-violet-500/10",
+      border: "border-violet-500/20",
     },
     {
       icon: Brain,
-      label: "AI Research",
-      sublabel: "Published",
-      color: "from-amber-500 to-orange-500",
-      glow: "group-hover:shadow-amber-500/25",
+      label: "AI Research Published",
+      sublabel: "Contribution to Science",
+      color: "text-amber-500",
+      bg: "bg-amber-500/10",
+      border: "border-amber-500/20",
     },
   ];
 
@@ -56,7 +70,7 @@ const About = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
       },
     },
   };
@@ -98,21 +112,18 @@ const About = () => {
             viewport={{ once: true }}
             className="lg:col-span-5 lg:sticky lg:top-32"
           >
-            <div className="relative">
-              {/* Animated border gradient */}
-              <div className="absolute -inset-1 bg-gradient-to-br from-portfolio-accent via-transparent to-portfolio-accent rounded-3xl opacity-20 blur-sm" />
-              
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-card border border-border/50">
+            <div className="relative group">
+              {/* Animated border gradient - Subtle in light mode */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-portfolio-accent/20 via-transparent to-portfolio-accent/20 rounded-3xl opacity-5 dark:opacity-20 blur-sm group-hover:opacity-10 dark:group-hover:opacity-40 transition-opacity duration-500" />
+
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-card border border-border/50 shadow-sm dark:shadow-md">
                 <LazyImage
                   src={profileImage}
                   alt="Prabhjot Singh Assi"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   priority={false}
                 />
-                
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-                
+
                 {/* Floating badge */}
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
@@ -121,11 +132,17 @@ const About = () => {
                   viewport={{ once: true }}
                   className="absolute bottom-6 left-6 right-6"
                 >
-                  <div className="glass-morphism rounded-xl p-4 backdrop-blur-xl">
-                    <p className="text-sm font-medium text-foreground">
-                      Open to opportunities
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-1">
+                  <div className="glass-morphism rounded-xl p-4 backdrop-blur-xl border border-white/10 shadow-lg">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="relative flex h-3 w-3">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                      </div>
+                      <p className="text-sm font-medium text-foreground">
+                        Open to opportunities
+                      </p>
+                    </div>
+                    <p className="text-xs dark:text-white text-opacity-100">
                       AI/ML • Full Stack • Research
                     </p>
                   </div>
@@ -145,76 +162,91 @@ const About = () => {
             {/* Main heading */}
             <motion.div variants={itemVariants} className="space-y-4">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                Software Engineer
-                <span className="block text-muted-foreground">&amp; AI Enthusiast</span>
+                <TextScramble className="text-foreground">
+                  Software Engineer
+                </TextScramble>
+                <span className="block text-muted-foreground text-3xl md:text-4xl lg:text-5xl mt-2">
+                  & AI Enthusiast
+                </span>
               </h2>
             </motion.div>
 
             {/* Bio paragraphs */}
             <motion.div variants={itemVariants} className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I'm Prabhjot — a developer obsessed with the intersection of{" "}
+                I engineer intelligent systems that bridge the gap between
+                complex{" "}
+                <span className="text-foreground font-medium">AI research</span>{" "}
+                and practical user needs. With a deep focus on{" "}
                 <span className="text-foreground font-medium">
-                  Artificial Intelligence
+                  Full Stack Development
                 </span>{" "}
-                and real-world impact. I don't just build models; I architect
-                intelligent systems that solve problems people actually have.
+                and{" "}
+                <span className="text-foreground font-medium">
+                  Machine Learning
+                </span>
+                , I build scalable applications that are not just functional but
+                intuitive and impactful.
               </p>
 
               <p className="text-lg text-muted-foreground leading-relaxed">
-                My philosophy? Start from{" "}
+                Driven by{" "}
                 <span className="text-foreground font-medium">
-                  first principles
+                  first-principles thinking
                 </span>
-                , question everything, and ship fast. Whether it's optimizing
-                neural networks or designing scalable architectures, I bring the
-                same rigor and curiosity to every challenge.
+                , I thrive on solving hard problems—whether it's optimizing
+                inference latency, designing event-driven architectures, or
+                crafting pixel-perfect UIs.
               </p>
             </motion.div>
 
             {/* Achievements Bento Grid */}
             <motion.div variants={itemVariants}>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {achievements.map((item, index) => (
-                  <motion.div
+                  <SpotlightCard
                     key={index}
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    transition={{ duration: 0.2 }}
-                    className={`group relative p-4 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm cursor-default overflow-hidden transition-shadow duration-300 hover:shadow-xl ${item.glow}`}
+                    className={`group p-4 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-border/80`}
+                    spotlightColor="rgba(255, 255, 255, 0.05)"
                   >
-                    {/* Gradient accent on hover */}
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
-                    />
-                    
-                    <div className="relative flex items-start gap-3">
+                    <div className="relative flex items-start gap-4">
                       <div
-                        className={`p-2 rounded-lg bg-gradient-to-br ${item.color} bg-opacity-10`}
+                        className={`p-3 rounded-lg ${item.bg} ${item.color} ring-1 ring-inset ${item.border}`}
                       >
-                        <item.icon className="w-5 h-5 text-foreground" />
+                        <item.icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <p className="font-semibold text-foreground text-sm">
+                        <p className="font-semibold text-foreground text-base mb-1">
                           {item.label}
                         </p>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-sm text-muted-foreground">
                           {item.sublabel}
                         </p>
                       </div>
                     </div>
-                  </motion.div>
+                  </SpotlightCard>
                 ))}
               </div>
             </motion.div>
 
             {/* CTA */}
-            <motion.div variants={itemVariants}>
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap gap-4"
+            >
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-portfolio-accent transition-colors group"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-foreground text-background font-medium hover:bg-background hover:text-foreground border border-foreground transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                Let's build something together
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                Connect
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="#projects"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-secondary/80 transition-colors"
+              >
+                View Projects
+                <Code2 className="w-4 h-4" />
               </a>
             </motion.div>
           </motion.div>

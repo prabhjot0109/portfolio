@@ -81,7 +81,7 @@ const Navigation: React.FC<NavigationProps> = ({ onOpenCommandPalette }) => {
                 Navigate and search...
               </span>
               <kbd className="hidden sm:flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold text-muted-foreground bg-white/10 dark:bg-white/5 rounded-md border border-white/10">
-                <span className="text-xs">⌘</span>K
+                ⌘ + K / Ctrl + K
               </kbd>
             </button>
 

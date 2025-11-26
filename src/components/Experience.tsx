@@ -135,20 +135,22 @@ const Experience = () => {
           </p>
 
           {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-0 md:inline-flex p-1 rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50">
-            {["all", "experience", "education"].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setFilter(tab)}
-                className={`px-4 md:px-6 py-2 md:py-2.5 rounded-lg text-sm font-medium transition-all duration-300 capitalize ${
-                  filter === tab
-                    ? "bg-background text-foreground shadow-lg scale-105"
-                    : "text-muted-foreground hover:text-foreground hover:bg-background/50"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
+          <div className="w-full max-w-sm mx-auto md:w-auto md:max-w-none">
+            <div className="grid grid-cols-3 gap-1 p-1 rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50 md:inline-flex md:gap-0">
+              {["all", "experience", "education"].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setFilter(tab)}
+                  className={`px-3 md:px-6 py-2.5 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 capitalize text-center ${
+                    filter === tab
+                      ? "bg-background text-foreground shadow-lg"
+                      : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
           </div>
         </motion.div>
 

@@ -569,25 +569,29 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="flex justify-center mb-12"
+          className="mb-12 px-2"
         >
-          <div className="flex flex-wrap justify-center gap-2 md:gap-0 md:inline-flex p-1 rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => {
-                  setActiveCategory(category.id);
-                  setShowAll(false);
-                }}
-                className={`px-4 md:px-6 py-2 md:py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
-                  activeCategory === category.id
-                    ? "bg-background text-foreground shadow-lg scale-105"
-                    : "text-muted-foreground hover:text-foreground hover:bg-background/50"
-                }`}
-              >
-                <span>{category.label}</span>
-              </button>
-            ))}
+          <div className="w-full overflow-x-auto scrollbar-hidden md:overflow-visible">
+            <div className="flex justify-start md:justify-center min-w-max md:min-w-0">
+              <div className="inline-flex p-1 rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50 gap-1">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => {
+                      setActiveCategory(category.id);
+                      setShowAll(false);
+                    }}
+                    className={`px-3 md:px-5 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                      activeCategory === category.id
+                        ? "bg-background text-foreground shadow-lg"
+                        : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                    }`}
+                  >
+                    {category.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </motion.div>
 

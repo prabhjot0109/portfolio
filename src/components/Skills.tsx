@@ -185,22 +185,24 @@ const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="flex justify-center mb-16"
+          className="mb-16 px-2"
         >
-          <div className="flex flex-wrap justify-center gap-2 md:gap-0 md:inline-flex p-1 rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50">
-            {filterCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-4 md:px-6 py-2 md:py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
-                  activeCategory === category.id
-                    ? "bg-background text-foreground shadow-lg scale-105"
-                    : "text-muted-foreground hover:text-foreground hover:bg-background/50"
-                }`}
-              >
-                <span>{category.label}</span>
-              </button>
-            ))}
+          <div className="w-full max-w-md mx-auto md:w-auto md:max-w-none md:flex md:justify-center">
+            <div className="grid grid-cols-4 gap-1 p-1 rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50 md:inline-flex md:gap-0">
+              {filterCategories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`px-2 md:px-6 py-2.5 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 text-center ${
+                    activeCategory === category.id
+                      ? "bg-background text-foreground shadow-lg"
+                      : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                  }`}
+                >
+                  {category.label}
+                </button>
+              ))}
+            </div>
           </div>
         </motion.div>
 

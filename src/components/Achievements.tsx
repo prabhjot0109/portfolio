@@ -102,10 +102,9 @@ const Achievements = () => {
       id="achievements"
       className="py-24 relative overflow-hidden bg-background/50"
     >
-      {/* Ambient Background */}
+      {/* Ambient Background - Removed as per request */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+        {/* Removed background blobs */}
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -130,7 +129,7 @@ const Achievements = () => {
         <div className="max-w-5xl mx-auto mb-24">
           <div className="relative">
             {/* Central Line (Desktop) */}
-            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent -translate-x-1/2" />
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-primary/20 to-transparent -translate-x-1/2" />
 
             {majorAchievements.map((achievement, index) => (
               <motion.div
@@ -146,9 +145,12 @@ const Achievements = () => {
                 {/* Content Card */}
                 <div className="flex-1 w-full md:w-auto">
                   <div
-                    className={`group relative p-6 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-xl hover:bg-card/40 transition-all duration-500 hover:border-white/20 ${achievement.shadow} shadow-xl hover:shadow-2xl hover:-translate-y-1`}
+                    className={`group relative p-6 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-xl transition-all duration-500 hover:border-white/20 shadow-xl hover:shadow-2xl hover:-translate-y-1 ${
+                      // Only apply colored shadow on hover
+                      `hover:${achievement.shadow}`
+                    }`}
                   >
-                    {/* Gradient Glow */}
+                    {/* Gradient Glow - Only on Hover */}
                     <div
                       className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
                     />
@@ -176,7 +178,7 @@ const Achievements = () => {
                         {achievement.description}
                       </p>
 
-                      <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground pt-4 border-t border-border/50">
+                      <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground mt-4">
                         <Zap className="w-3 h-3 text-yellow-500" />
                         {achievement.impact}
                       </div>
@@ -184,8 +186,18 @@ const Achievements = () => {
                   </div>
                 </div>
 
-                {/* Center Point (Desktop) */}
+                {/* Center Point & Connector (Desktop) */}
                 <div className="hidden md:flex relative items-center justify-center w-12 flex-shrink-0">
+                  {/* Connector Line */}
+                  <div
+                    className={`absolute top-1/2 w-12 h-0.5 bg-gradient-to-r ${
+                      index % 2 === 0
+                        ? "right-1/2 from-transparent to-primary/30"
+                        : "left-1/2 from-primary/30 to-transparent"
+                    }`}
+                  />
+
+                  {/* Dot */}
                   <div
                     className={`w-4 h-4 rounded-full bg-gradient-to-r ${achievement.color} shadow-[0_0_10px_rgba(0,0,0,0.2)] ring-4 ring-background z-10`}
                   />

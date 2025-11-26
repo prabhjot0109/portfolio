@@ -34,8 +34,8 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-background py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
-      {/* Dynamic Glow Effect - Sun (Light) / Cosmos (Dark) */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[140%] h-[500px] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200/30 via-orange-100/10 to-transparent dark:from-indigo-500/20 dark:via-purple-900/10 dark:to-transparent pointer-events-none blur-[80px] opacity-60" />
+      {/* Dynamic Glow Effect - Sky Blue (Light) / Cosmos (Dark) */}
+      <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[180%] h-[650px] bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-sky-300/45 via-sky-200/25 to-transparent dark:from-indigo-500/30 dark:via-blue-900/20 dark:to-transparent pointer-events-none blur-[100px] opacity-75" />
 
       {/* Starry effect for dark mode */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay pointer-events-none"></div>

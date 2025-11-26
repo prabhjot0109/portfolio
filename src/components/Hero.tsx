@@ -254,29 +254,8 @@ const Hero = ({ onOpenCommandPalette }: HeroProps) => {
             </Button>
           </motion.div>
         </motion.div>
-
-        <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-        >
-          <Button
-            variant="ghost"
-            onClick={onOpenCommandPalette}
-            className="group flex flex-col items-center gap-2 hover:bg-transparent"
-          >
-            <div className="flex items-center gap-2 bg-background/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 group-hover:border-portfolio-accent/50 transition-all duration-300 shadow-lg group-hover:shadow-[0_0_15px_rgba(var(--portfolio-accent),0.2)]">
-              <Command className="h-4 w-4 text-muted-foreground group-hover:text-portfolio-accent transition-colors duration-300" />
-              <span className="text-xs font-mono text-muted-foreground group-hover:text-portfolio-accent transition-colors duration-300">
-                Ctrl + K
-              </span>
-            </div>
-          </Button>
-        </motion.div>
       </div>
     </section>
   );
 };
-
 export default React.memo(Hero);

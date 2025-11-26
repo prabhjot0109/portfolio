@@ -255,26 +255,26 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
             aria-modal="true"
             aria-label="Command palette"
           >
-            <div className="bg-card border border-border rounded-xl shadow-2xl overflow-hidden">
+            <div className="bg-background/20 backdrop-blur-3xl border border-white/10 dark:border-white/5 rounded-xl shadow-[0_8px_32px_0_rgba(30,38,135,0.07)] overflow-hidden">
               {/* Search Input */}
-              <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
+              <div className="flex items-center gap-3 px-4 py-3 border-b border-white/10 dark:border-white/5">
                 <Search className="w-5 h-5 text-muted-foreground" />
                 <input
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Type a command or search..."
+                  placeholder="Navigate and search..."
                   className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground outline-none text-sm"
                   autoFocus
                   aria-label="Search commands"
                 />
-                <kbd className="hidden sm:flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground bg-muted rounded">
+                <kbd className="hidden sm:flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground bg-white/10 dark:bg-white/5 rounded border border-white/10 dark:border-white/5">
                   <Command className="w-3 h-3" />K
                 </kbd>
                 <button
                   onClick={onClose}
-                  className="p-1 hover:bg-muted rounded transition-colors"
+                  className="p-1 hover:bg-white/10 dark:hover:bg-white/5 rounded transition-colors"
                   aria-label="Close command palette"
                 >
                   <X className="w-4 h-4 text-muted-foreground" />
@@ -308,8 +308,8 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
                           onMouseEnter={() => setSelectedIndex(globalIndex)}
                           className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${
                             isSelected
-                              ? "bg-accent text-accent-foreground"
-                              : "hover:bg-muted"
+                              ? "bg-black/10 dark:bg-white/10 text-foreground"
+                              : "hover:bg-black/10 dark:hover:bg-black/5"
                           }`}
                           role="option"
                           aria-selected={isSelected}
@@ -329,18 +329,24 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
               </div>
 
               {/* Footer */}
-              <div className="flex items-center justify-between px-4 py-2 border-t border-border text-xs text-muted-foreground">
+              <div className="flex items-center justify-between px-4 py-2 border-t border-white/10 dark:border-white/5 text-xs text-muted-foreground bg-white/5 dark:bg-white/[0.02]">
                 <div className="flex items-center gap-4">
                   <span className="flex items-center gap-1">
-                    <kbd className="px-1.5 py-0.5 bg-muted rounded">↑↓</kbd>{" "}
+                    <kbd className="px-1.5 py-0.5 bg-white/10 dark:bg-white/5 rounded border border-white/10 dark:border-white/5">
+                      ↑↓
+                    </kbd>{" "}
                     Navigate
                   </span>
                   <span className="flex items-center gap-1">
-                    <kbd className="px-1.5 py-0.5 bg-muted rounded">↵</kbd>{" "}
+                    <kbd className="px-1.5 py-0.5 bg-white/10 dark:bg-white/5 rounded border border-white/10 dark:border-white/5">
+                      ↵
+                    </kbd>{" "}
                     Select
                   </span>
                   <span className="flex items-center gap-1">
-                    <kbd className="px-1.5 py-0.5 bg-muted rounded">Esc</kbd>{" "}
+                    <kbd className="px-1.5 py-0.5 bg-white/10 dark:bg-white/5 rounded border border-white/10 dark:border-white/5">
+                      Esc
+                    </kbd>{" "}
                     Close
                   </span>
                 </div>

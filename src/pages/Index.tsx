@@ -1,9 +1,11 @@
-import React, { lazy } from "react";
+import React, { lazy, useState, useCallback, Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import SkipNavigation from "@/components/SkipNavigation";
 import Hero from "@/components/Hero";
 import LazySection from "@/components/LazySection";
+import CommandPalette from "@/components/CommandPalette";
 import { useServiceWorker } from "@/hooks/useServiceWorker";
+import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 
 // Lazy load below-the-fold components
 const About = lazy(() => import("@/components/About"));
@@ -18,12 +20,40 @@ const Index = () => {
   // Register service worker for caching
   useServiceWorker();
 
+  // Command palette state
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+
+  const openCommandPalette = useCallback(() => {
+    setIsCommandPaletteOpen(true);
+  }, []);
+
+  const closeCommandPalette = useCallback(() => {
+    setIsCommandPaletteOpen(false);
+  }, []);
+
+  // Keyboard shortcut for command palette (Cmd/Ctrl + K)
+  useKeyboardShortcut(
+    [
+      { key: "k", meta: true },
+      { key: "k", ctrl: true },
+    ],
+    openCommandPalette,
+    { enabled: !isCommandPaletteOpen }
+  );
+
   return (
     <div className="min-h-screen bg-background">
       <SkipNavigation />
-      <Navigation />
+      <Navigation onOpenCommandPalette={openCommandPalette} />
+
+      {/* Command Palette */}
+      <CommandPalette
+        isOpen={isCommandPaletteOpen}
+        onClose={closeCommandPalette}
+      />
+
       <main id="main-content">
-        <Hero />
+        <Hero onOpenCommandPalette={openCommandPalette} />
 
         <LazySection>
           <About />

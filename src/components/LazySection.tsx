@@ -1,5 +1,6 @@
-import React, { lazy, Suspense, ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import React, { Suspense, ReactNode } from "react";
+import { motion } from "framer-motion";
+import { prefersReducedMotion } from "@/utils/performance";
 
 interface LazySectionProps {
   children: ReactNode;
@@ -29,18 +30,20 @@ const LoadingSkeleton = () => (
   </div>
 );
 
-const LazySection: React.FC<LazySectionProps> = ({ 
-  children, 
-  fallback = <LoadingSkeleton />, 
-  className 
+const LazySection: React.FC<LazySectionProps> = ({
+  children,
+  fallback = <LoadingSkeleton />,
+  className,
 }) => {
+  const reducedMotion = prefersReducedMotion();
+
   return (
     <div className={className}>
       <Suspense fallback={fallback}>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reducedMotion ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true, margin: "-100px" }}
         >
           {children}

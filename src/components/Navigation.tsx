@@ -14,7 +14,11 @@ const navItems = [
   { href: "#contact", label: "Contact" },
 ];
 
-const Navigation = () => {
+interface NavigationProps {
+  onOpenCommandPalette?: () => void;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ onOpenCommandPalette }) => {
   const { theme, toggleTheme } = useTheme();
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
@@ -25,7 +29,6 @@ const Navigation = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      // Update active section based on scroll position
       const sections = navItems.map((item) => item.href.substring(1));
       const current = sections.find((section) => {
         const element = document.getElementById(section);
@@ -149,6 +152,8 @@ const Navigation = () => {
                   </a>
                 </li>
               ))}
+
+              {/* Command Palette Button - Removed as requested */}
 
               <Button
                 variant="ghost"

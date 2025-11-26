@@ -2,39 +2,57 @@ import React from "react";
 import { prefersReducedMotion, getDevicePixelRatio } from "@/utils/performance";
 
 interface StarfieldProps {
-  density?: number; // approximate stars per 100px^2 * scaling
-  speed?: number; // logical speed factor
-  active?: boolean; // whether to animate
+  density?: number;
+  speed?: number;
+  active?: boolean;
   theme?: "dark" | "light";
+  mousePosition?: { normalizedX: number; normalizedY: number; isInViewport: boolean };
+  parallaxIntensity?: number;
 }
 
 interface Star {
   x: number;
   y: number;
-  z: number; // depth (0.2 to 2.0)
-  r: number; // base radius
-  p: number; // phase for twinkle
-  color: string; // star color
-  baseAlpha: number; // base opacity
+  baseX: number;
+  baseY: number;
+  z: number;
+  r: number;
+  p: number;
+  color: string;
+  baseAlpha: number;
 }
 
 /**
  * Starfield: performant canvas star background with:
  * - 3D Parallax effect (depth-based movement)
- * - Realistic star colors (white, blue-ish, yellow-ish)
- * - Smoother twinkling
- * - Diagonal drift (bottom-left -> top-right)
+ * - Interactive mouse parallax (stars follow cursor)
+ * - Realistic star colors
+ * - Smooth twinkling
  */
 const Starfield: React.FC<StarfieldProps> = ({
   density = 0.08,
   speed = 0.03,
   active = true,
   theme = "dark",
+  mousePosition,
+  parallaxIntensity = 30,
 }) => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
   const starsRef = React.useRef<Star[]>([]);
   const animationRef = React.useRef<number>();
   const lastTimeRef = React.useRef<number>(0);
+  const currentMouseRef = React.useRef({ x: 0, y: 0 });
+  const targetMouseRef = React.useRef({ x: 0, y: 0 });
+
+  // Smooth mouse position interpolation
+  React.useEffect(() => {
+    if (mousePosition?.isInViewport) {
+      targetMouseRef.current = {
+        x: mousePosition.normalizedX,
+        y: mousePosition.normalizedY,
+      };
+    }
+  }, [mousePosition]);
 
   React.useEffect(() => {
     const canvas = canvasRef.current;
@@ -51,13 +69,11 @@ const Starfield: React.FC<StarfieldProps> = ({
     canvas.style.height = height + "px";
     ctx.scale(dpr, dpr);
 
-    // Star colors based on theme
     const starColors =
       theme === "dark"
-        ? ["255, 255, 255", "220, 240, 255", "255, 240, 220"] // White, Blue-ish, Yellow-ish
-        : ["0, 0, 0", "60, 60, 80", "100, 149, 237"]; // Black, Dark Gray, Cornflower Blue
+        ? ["255, 255, 255", "220, 240, 255", "255, 240, 220"]
+        : ["0, 0, 0", "60, 60, 80", "100, 149, 237"];
 
-    // Gaussian random helper (Box-Muller transform)
     const gaussianRandom = (mean = 0, stdev = 1) => {
       const u = 1 - Math.random();
       const v = Math.random();
@@ -66,34 +82,34 @@ const Starfield: React.FC<StarfieldProps> = ({
     };
 
     const createStars = () => {
-      // Recalculate effective density based on current width
       const currentEffectiveDensity = width < 640 ? density * 0.5 : density;
-
       const targetStarCount = Math.max(
         40,
         Math.floor((width * height * currentEffectiveDensity) / 120)
       );
 
       starsRef.current = Array.from({ length: targetStarCount }, () => {
-        const z = Math.random() * 1.8 + 0.2; // Depth: 0.2 (far) to 2.0 (near)
-
-        // Use Gaussian distribution for size: most stars are small
-        // Mean 0.8, stdev 0.3, clamped to min 0.2
+        const z = Math.random() * 1.8 + 0.2;
         let r = Math.abs(gaussianRandom(0.8, 0.4));
         r = Math.max(0.2, Math.min(2.5, r));
-        r *= 0.5 + z * 0.3; // Scale by depth
+        r *= 0.5 + z * 0.3;
+
+        const x = Math.random() * width;
+        const y = Math.random() * height;
 
         return {
-          x: Math.random() * width,
-          y: Math.random() * height,
+          x,
+          y,
+          baseX: x,
+          baseY: y,
           z,
           r,
           p: Math.random() * Math.PI * 2,
           color: starColors[Math.floor(Math.random() * starColors.length)],
           baseAlpha:
             theme === "dark"
-              ? 0.3 + Math.random() * 0.7 // Brighter in dark mode
-              : 0.1 + Math.random() * 0.3, // More subtle in light mode
+              ? 0.3 + Math.random() * 0.7
+              : 0.1 + Math.random() * 0.3,
         };
       });
     };
@@ -124,32 +140,39 @@ const Starfield: React.FC<StarfieldProps> = ({
       lastTimeRef.current = time;
       ctx.clearRect(0, 0, width, height);
 
-      // Base drift factor
+      // Smooth mouse interpolation (easing)
+      const lerpFactor = 0.08;
+      currentMouseRef.current.x += (targetMouseRef.current.x - currentMouseRef.current.x) * lerpFactor;
+      currentMouseRef.current.y += (targetMouseRef.current.y - currentMouseRef.current.y) * lerpFactor;
+
       const baseDrift = speed * (delta / 16);
 
       for (const s of starsRef.current) {
-        // Move stars based on depth (parallax)
-        // Closer stars (higher z) move faster
         const moveSpeed = baseDrift * s.z;
 
-        s.x += moveSpeed;
-        s.y -= moveSpeed;
+        // Update base position (drift)
+        s.baseX += moveSpeed;
+        s.baseY -= moveSpeed;
 
         // Wrap around
-        if (s.x > width) s.x -= width;
-        else if (s.x < 0) s.x += width;
-        if (s.y < 0) s.y += height;
-        else if (s.y > height) s.y -= height;
+        if (s.baseX > width) s.baseX -= width;
+        else if (s.baseX < 0) s.baseX += width;
+        if (s.baseY < 0) s.baseY += height;
+        else if (s.baseY > height) s.baseY -= height;
+
+        // Apply mouse parallax offset based on depth
+        // Closer stars (higher z) move more with mouse
+        const parallaxX = currentMouseRef.current.x * parallaxIntensity * s.z;
+        const parallaxY = currentMouseRef.current.y * parallaxIntensity * s.z;
+
+        s.x = s.baseX + parallaxX;
+        s.y = s.baseY + parallaxY;
 
         // Twinkle effect
         s.p += 0.02 + Math.random() * 0.01;
         const twinkle = Math.sin(s.p);
 
-        // Calculate final alpha: base * (0.5 + 0.5 * twinkle)
-        // We keep it subtle: range [0.7 * base, 1.3 * base] clamped to [0, 1]
         let alpha = s.baseAlpha * (0.8 + twinkle * 0.3);
-
-        // Fade out distant stars slightly more
         alpha *= Math.min(1, s.z * 0.8);
         if (alpha < 0) alpha = 0;
         if (alpha > 1) alpha = 1;
@@ -159,7 +182,7 @@ const Starfield: React.FC<StarfieldProps> = ({
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fill();
 
-        // Add a subtle glow for very bright/close stars
+        // Glow for bright/close stars
         if (s.z > 1.0 && alpha > 0.5) {
           ctx.shadowBlur = s.r * 3.5;
           ctx.shadowColor = `rgba(${s.color}, ${alpha * 0.8})`;
@@ -177,7 +200,7 @@ const Starfield: React.FC<StarfieldProps> = ({
       window.removeEventListener("resize", handleResize);
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, [density, speed, active, theme]);
+  }, [density, speed, active, theme, parallaxIntensity]);
 
   return (
     <canvas

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Award, Target, Zap, Brain } from "lucide-react";
+import { Award, Target, Zap, Brain, Sparkles, ArrowRight } from "lucide-react";
 import LazyImage from "@/components/LazyImage";
 
 const profileImage = new URL("@/assets/profile-photo.jpg", import.meta.url)
@@ -10,137 +10,213 @@ const About = () => {
   const achievements = [
     {
       icon: Award,
-      label: "SIH 2024 Winner",
-      color: "text-green-600 dark:text-green-400",
-      bg: "bg-green-100 dark:bg-green-900/20",
-      border: "border-green-200 dark:border-green-800/50",
+      label: "SIH 2024",
+      sublabel: "Winner",
+      color: "from-emerald-500 to-teal-500",
+      glow: "group-hover:shadow-emerald-500/25",
     },
     {
       icon: Target,
-      label: "IEEE Grant Recipient",
-      color: "text-blue-600 dark:text-blue-400",
-      bg: "bg-blue-100 dark:bg-blue-900/20",
-      border: "border-blue-200 dark:border-blue-800/50",
+      label: "IEEE Grant",
+      sublabel: "Recipient",
+      color: "from-blue-500 to-cyan-500",
+      glow: "group-hover:shadow-blue-500/25",
     },
     {
       icon: Zap,
-      label: "6+ Hackathon Wins",
-      color: "text-purple-600 dark:text-purple-400",
-      bg: "bg-purple-100 dark:bg-purple-900/20",
-      border: "border-purple-200 dark:border-purple-800/50",
+      label: "6+ Hackathons",
+      sublabel: "Won",
+      color: "from-violet-500 to-purple-500",
+      glow: "group-hover:shadow-violet-500/25",
     },
     {
       icon: Brain,
       label: "AI Research",
-      color: "text-amber-600 dark:text-amber-400",
-      bg: "bg-amber-100 dark:bg-amber-900/20",
-      border: "border-amber-200 dark:border-amber-800/50",
+      sublabel: "Published",
+      color: "from-amber-500 to-orange-500",
+      glow: "group-hover:shadow-amber-500/25",
     },
   ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
 
   return (
     <section
       id="about"
-      className="py-24 relative overflow-hidden"
+      className="py-32 relative overflow-hidden"
       aria-label="About Prabhjot Singh Assi"
     >
-      <div className="container mx-auto px-6">
+      {/* Subtle background elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-portfolio-accent/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-portfolio-accent/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="flex items-center gap-4 mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-            About Me
-          </h2>
-          <div className="h-1 w-20 bg-portfolio-accent mx-auto rounded-full opacity-80" />
+          <Sparkles className="w-5 h-5 text-portfolio-accent" />
+          <span className="text-sm font-medium tracking-widest uppercase text-muted-foreground">
+            Get to know me
+          </span>
+          <div className="flex-1 h-px bg-gradient-to-r from-border to-transparent" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-          {/* Image Column */}
+        <div className="grid lg:grid-cols-12 gap-16 items-start">
+          {/* Image Column - Modernized */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
-            className="lg:col-span-5 flex justify-center lg:justify-end order-2 lg:order-1"
+            className="lg:col-span-5 lg:sticky lg:top-32"
           >
-            <div className="relative w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-white/10 group bg-card/20 backdrop-blur-xl">
-              <div className="absolute inset-0 bg-portfolio-accent/20 opacity-0 group-hover:opacity-20 transition-opacity duration-500 z-10" />
-              <LazyImage
-                src={profileImage}
-                alt="Prabhjot Singh Assi"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                priority={false}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+            <div className="relative">
+              {/* Animated border gradient */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-portfolio-accent via-transparent to-portfolio-accent rounded-3xl opacity-20 blur-sm" />
+              
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-card border border-border/50">
+                <LazyImage
+                  src={profileImage}
+                  alt="Prabhjot Singh Assi"
+                  className="w-full h-full object-cover"
+                  priority={false}
+                />
+                
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+                
+                {/* Floating badge */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className="absolute bottom-6 left-6 right-6"
+                >
+                  <div className="glass-morphism rounded-xl p-4 backdrop-blur-xl">
+                    <p className="text-sm font-medium text-foreground">
+                      Open to opportunities
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      AI/ML • Full Stack • Research
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
 
           {/* Content Column */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            className="lg:col-span-7 space-y-8 order-1 lg:order-2 text-left"
+            className="lg:col-span-7 space-y-10"
           >
-            <div className="space-y-6">
-              <h3 className="text-3xl font-bold text-foreground">
-                Software Engineer & AI Enthusiast
-              </h3>
+            {/* Main heading */}
+            <motion.div variants={itemVariants} className="space-y-4">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+                Software Engineer
+                <span className="block text-muted-foreground">&amp; AI Enthusiast</span>
+              </h2>
+            </motion.div>
 
+            {/* Bio paragraphs */}
+            <motion.div variants={itemVariants} className="space-y-6">
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I'm Prabhjot, a developer with a deep focus on{" "}
+                I'm Prabhjot — a developer obsessed with the intersection of{" "}
                 <span className="text-foreground font-medium">
                   Artificial Intelligence
                 </span>{" "}
-                and{" "}
+                and real-world impact. I don't just build models; I architect
+                intelligent systems that solve problems people actually have.
+              </p>
+
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                My philosophy? Start from{" "}
                 <span className="text-foreground font-medium">
-                  Machine Learning
+                  first principles
                 </span>
-                . I bridge the gap between complex research and practical
-                application, building intelligent systems that solve real-world
-                problems.
+                , question everything, and ship fast. Whether it's optimizing
+                neural networks or designing scalable architectures, I bring the
+                same rigor and curiosity to every challenge.
               </p>
+            </motion.div>
 
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                My approach combines{" "}
-                <span className="text-foreground font-medium">
-                  first-principles thinking
-                </span>{" "}
-                with modern computational design. Whether it's
-                optimizing deep learning models or architecting scalable
-                software, I am driven by a passion for innovation and
-                reliability.
-              </p>
+            {/* Achievements Bento Grid */}
+            <motion.div variants={itemVariants}>
+              <div className="grid grid-cols-2 gap-3">
+                {achievements.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    transition={{ duration: 0.2 }}
+                    className={`group relative p-4 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm cursor-default overflow-hidden transition-shadow duration-300 hover:shadow-xl ${item.glow}`}
+                  >
+                    {/* Gradient accent on hover */}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+                    />
+                    
+                    <div className="relative flex items-start gap-3">
+                      <div
+                        className={`p-2 rounded-lg bg-gradient-to-br ${item.color} bg-opacity-10`}
+                      >
+                        <item.icon className="w-5 h-5 text-foreground" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-foreground text-sm">
+                          {item.label}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {item.sublabel}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
 
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Currently open to collaborations and opportunities where I can
-                contribute to impactful AI/ML projects.
-              </p>
-            </div>
-
-            {/* Achievements Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
-              {achievements.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  className={`p-3 rounded-xl border ${item.border} ${item.bg} backdrop-blur-md flex flex-col items-center justify-center text-center gap-2 hover:scale-105 transition-transform duration-300 cursor-default shadow-lg hover:shadow-xl`}
-                >
-                  <item.icon className={`w-6 h-6 ${item.color}`} />
-                  <span className={`text-sm font-semibold ${item.color}`}>
-                    {item.label}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+            {/* CTA */}
+            <motion.div variants={itemVariants}>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-portfolio-accent transition-colors group"
+              >
+                Let's build something together
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </div>

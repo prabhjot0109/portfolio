@@ -6,7 +6,11 @@ interface StarfieldProps {
   speed?: number;
   active?: boolean;
   theme?: "dark" | "light";
-  mousePosition?: { normalizedX: number; normalizedY: number; isInViewport: boolean };
+  mousePosition?: {
+    normalizedX: number;
+    normalizedY: number;
+    isInViewport: boolean;
+  };
   parallaxIntensity?: number;
 }
 
@@ -20,6 +24,8 @@ interface Star {
   p: number;
   color: string;
   baseAlpha: number;
+  vx: number; // Velocity/Repulsion X
+  vy: number; // Velocity/Repulsion Y
 }
 
 /**
@@ -41,10 +47,36 @@ const Starfield: React.FC<StarfieldProps> = ({
   const starsRef = React.useRef<Star[]>([]);
   const animationRef = React.useRef<number>();
   const lastTimeRef = React.useRef<number>(0);
+  const mouseRef = React.useRef({ x: -1000, y: -1000 }); // Internal mouse tracking
   const currentMouseRef = React.useRef({ x: 0, y: 0 });
   const targetMouseRef = React.useRef({ x: 0, y: 0 });
 
-  // Smooth mouse position interpolation
+  // Internal mouse event listeners
+  React.useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvasRef.current?.getBoundingClientRect();
+      if (rect) {
+        mouseRef.current = {
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        };
+      }
+    };
+
+    const handleMouseLeave = () => {
+      mouseRef.current = { x: -1000, y: -1000 };
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
+
+  // Smooth mouse position interpolation (Legacy parallax support)
   React.useEffect(() => {
     if (mousePosition?.isInViewport) {
       targetMouseRef.current = {
@@ -110,6 +142,8 @@ const Starfield: React.FC<StarfieldProps> = ({
             theme === "dark"
               ? 0.3 + Math.random() * 0.7
               : 0.1 + Math.random() * 0.3,
+          vx: 0,
+          vy: 0,
         };
       });
     };
@@ -142,8 +176,10 @@ const Starfield: React.FC<StarfieldProps> = ({
 
       // Smooth mouse interpolation (easing)
       const lerpFactor = 0.08;
-      currentMouseRef.current.x += (targetMouseRef.current.x - currentMouseRef.current.x) * lerpFactor;
-      currentMouseRef.current.y += (targetMouseRef.current.y - currentMouseRef.current.y) * lerpFactor;
+      currentMouseRef.current.x +=
+        (targetMouseRef.current.x - currentMouseRef.current.x) * lerpFactor;
+      currentMouseRef.current.y +=
+        (targetMouseRef.current.y - currentMouseRef.current.y) * lerpFactor;
 
       const baseDrift = speed * (delta / 16);
 
@@ -161,12 +197,41 @@ const Starfield: React.FC<StarfieldProps> = ({
         else if (s.baseY > height) s.baseY -= height;
 
         // Apply mouse parallax offset based on depth
-        // Closer stars (higher z) move more with mouse
         const parallaxX = currentMouseRef.current.x * parallaxIntensity * s.z;
         const parallaxY = currentMouseRef.current.y * parallaxIntensity * s.z;
 
-        s.x = s.baseX + parallaxX;
-        s.y = s.baseY + parallaxY;
+        // Gravity / Swirl Effect (Attraction)
+        const dx = mouseRef.current.x - (s.baseX + parallaxX);
+        const dy = mouseRef.current.y - (s.baseY + parallaxY);
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const maxDist = 400; // Radius of influence
+
+        let targetOffsetX = 0;
+        let targetOffsetY = 0;
+
+        if (dist < maxDist) {
+          const force = (maxDist - dist) / maxDist;
+          const angle = Math.atan2(dy, dx);
+          const swirlAngle = angle + Math.PI / 2; // 90 degrees for swirl
+
+          // Attraction Force (pull towards mouse)
+          const attractionStrength = 100; // How close they gather
+          targetOffsetX = Math.cos(angle) * force * attractionStrength * s.z;
+          targetOffsetY = Math.sin(angle) * force * attractionStrength * s.z;
+
+          // Swirl Force (add tangential movement)
+          const orbitRadius = 60 * (1 - force); // Closer stars orbit tighter
+          targetOffsetX += Math.cos(swirlAngle) * orbitRadius * force * 3;
+          targetOffsetY += Math.sin(swirlAngle) * orbitRadius * force * 3;
+        }
+
+        // Smooth Spring Interpolation
+        const springStrength = 0.05;
+        s.vx += (targetOffsetX - s.vx) * springStrength;
+        s.vy += (targetOffsetY - s.vy) * springStrength;
+
+        s.x = s.baseX + parallaxX + s.vx;
+        s.y = s.baseY + parallaxY + s.vy;
 
         // Twinkle effect
         s.p += 0.02 + Math.random() * 0.01;

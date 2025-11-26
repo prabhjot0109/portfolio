@@ -49,6 +49,18 @@ import rewearImage from "@/assets/project-rewear.jpg";
 import rewearImage2 from "@/assets/project-rewear-2.jpg";
 import rewearImage3 from "@/assets/project-rewear-3.jpg";
 
+// Category definitions
+const categories = [
+  { id: "all", label: "All Projects" },
+  { id: "ai", label: "AI/ML" },
+  { id: "mobile", label: "Mobile" },
+  { id: "web", label: "Web" },
+  { id: "iot", label: "IoT" },
+  { id: "software", label: "Software" },
+] as const;
+
+type CategoryId = (typeof categories)[number]["id"];
+
 // Project Data
 const projects = [
   {
@@ -60,6 +72,7 @@ const projects = [
     image: islImage,
     images: [islImage, islImage2, islImage3],
     tags: ["Flutter", "Python", "MediaPipe", "Computer Vision", "ML"],
+    category: ["ai", "mobile"] as CategoryId[],
     longDescription:
       "An award-winning AI solution designed to empower the hard-of-hearing community. Signify translates Indian Sign Language (ISL) gestures into text and speech in real-time, and vice versa, facilitating seamless two-way communication.",
     features: [
@@ -92,6 +105,7 @@ const projects = [
       "Medical AI",
       "X-Ray Analysis",
     ],
+    category: ["ai", "web"] as CategoryId[],
     longDescription:
       "Med.AI serves as an intelligent assistant for medical professionals, leveraging deep learning to analyze X-rays and symptoms. It aims to reduce diagnostic errors and improve patient outcomes through data-driven insights.",
     features: [
@@ -117,6 +131,7 @@ const projects = [
     image: vrindaImage,
     images: [vrindaImage, vrindaImage2, vrindaImage3],
     tags: ["Flutter", "Arduino", "IoT", "OpenWeather API", "Gemini AI"],
+    category: ["ai", "mobile", "iot"] as CategoryId[],
     longDescription:
       "Vrinda combines IoT hardware with advanced AI to provide farmers with actionable insights on soil health, weather patterns, and pest control, directly impacting crop yield and sustainability.",
     features: [
@@ -142,6 +157,7 @@ const projects = [
     image: kavachImage,
     images: [kavachImage, kavachImage2, kavachImage3],
     tags: ["Java", "Android Native", "XML", "Speech Recognition", "Voice AI"],
+    category: ["ai", "mobile"] as CategoryId[],
     longDescription:
       "Kavach provides a lifeline in emergencies through stealthy, voice-activated SOS triggers. It ensures help is just a spoken command away, even when the phone is locked or out of reach.",
     features: [
@@ -167,6 +183,7 @@ const projects = [
     image: swaraImage,
     images: [swaraImage, swaraImage2, swaraImage3],
     tags: ["Python", "NumPy", "Matplotlib", "Pandas", "MySQL"],
+    category: ["software"] as CategoryId[],
     longDescription:
       "Swara is a comprehensive tool for vocalists to record, analyze, and track their singing performance. It uses signal processing to visualize pitch accuracy and consistency over time.",
     features: [
@@ -192,6 +209,7 @@ const projects = [
     image: rewearImage,
     images: [rewearImage, rewearImage2, rewearImage3],
     tags: ["React", "Vite", "HTML", "CSS", "JavaScript"],
+    category: ["web"] as CategoryId[],
     longDescription:
       "ReWear addresses fashion waste by making it easy and attractive to trade second-hand clothing. It features a clean, responsive design and secure user interactions to build trust in the resale market.",
     features: [
@@ -356,13 +374,20 @@ const ProjectCard = React.forwardRef<
     <Dialog>
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 50, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 20, scale: 0.95 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
         viewport={{ once: true, margin: "-50px" }}
+        layout
         className="h-full"
       >
-        <div className="group relative h-full bg-card/20 dark:bg-card/20 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-primary/5 hover:border-white/20 transition-all duration-500 flex flex-col hover:-translate-y-1">
+        <motion.div
+          className="group relative h-full bg-card/20 dark:bg-card/20 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30 transition-all duration-500 flex flex-col"
+          whileHover={{ y: -8, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        >
           <div className="relative h-56 overflow-hidden border-b border-border/10 group-hover:border-primary/20 transition-colors duration-500">
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
 
@@ -420,43 +445,61 @@ const ProjectCard = React.forwardRef<
             <div className="mt-auto space-y-4">
               <div className="flex flex-wrap gap-2">
                 {project.tags.slice(0, 3).map((tag, idx) => (
-                  <span
+                  <motion.span
                     key={idx}
-                    className="text-xs px-2.5 py-1 rounded-full bg-muted/50 text-muted-foreground border border-border/50 group-hover:border-primary/20 transition-colors"
+                    className="text-xs px-2.5 py-1 rounded-full bg-muted/50 text-muted-foreground border border-border/50 group-hover:border-primary/20 transition-colors cursor-default"
+                    whileHover={{
+                      scale: 1.1,
+                      backgroundColor: "hsl(var(--primary) / 0.1)",
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   >
                     {tag}
-                  </span>
+                  </motion.span>
                 ))}
                 {project.tags.length > 3 && (
-                  <span className="text-xs px-2.5 py-1 rounded-full bg-muted/50 text-muted-foreground border border-border/50">
+                  <motion.span
+                    className="text-xs px-2.5 py-1 rounded-full bg-muted/50 text-muted-foreground border border-border/50"
+                    whileHover={{ scale: 1.1 }}
+                  >
                     +{project.tags.length - 3}
-                  </span>
+                  </motion.span>
                 )}
               </div>
 
               <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-muted-foreground hover:text-foreground hover:bg-primary/10 p-0 h-auto px-2 py-1"
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Github className="w-4 h-4 mr-1.5" />
-                  Code
-                </Button>
-                <DialogTrigger asChild>
                   <Button
-                    variant="link"
+                    variant="ghost"
                     size="sm"
-                    className="text-primary p-0 h-auto group/btn"
+                    className="text-muted-foreground hover:text-foreground hover:bg-primary/10 p-0 h-auto px-2 py-1"
                   >
-                    Learn More
-                    <ChevronDown className="w-4 h-4 ml-1 -rotate-90 group-hover/btn:translate-x-1 transition-transform" />
+                    <Github className="w-4 h-4 mr-1.5" />
+                    Code
                   </Button>
+                </motion.div>
+                <DialogTrigger asChild>
+                  <motion.div
+                    whileHover={{ scale: 1.05, x: 3 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      variant="link"
+                      size="sm"
+                      className="text-primary p-0 h-auto group/btn"
+                    >
+                      Learn More
+                      <ChevronDown className="w-4 h-4 ml-1 -rotate-90 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </motion.div>
                 </DialogTrigger>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
       <ProjectDialogContent project={project} />
     </Dialog>
@@ -467,6 +510,7 @@ ProjectCard.displayName = "ProjectCard";
 
 const Projects = () => {
   const [showAll, setShowAll] = React.useState(false);
+  const [activeCategory, setActiveCategory] = React.useState<CategoryId>("all");
   const firstHiddenProjectRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -480,7 +524,16 @@ const Projects = () => {
     }
   }, [showAll]);
 
-  const displayedProjects = showAll ? projects : projects.slice(0, 3);
+  const filteredProjects = React.useMemo(() => {
+    if (activeCategory === "all") return projects;
+    return projects.filter((project) =>
+      project.category.includes(activeCategory)
+    );
+  }, [activeCategory]);
+
+  const displayedProjects = showAll
+    ? filteredProjects
+    : filteredProjects.slice(0, 3);
 
   return (
     <section
@@ -499,7 +552,7 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Featured <span className="text-primary">Projects</span>
@@ -508,6 +561,34 @@ const Projects = () => {
             A collection of innovative solutions bridging technology and
             real-world impact.
           </p>
+        </motion.div>
+
+        {/* Category Filter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="flex justify-center mb-12"
+        >
+          <div className="flex flex-wrap justify-center gap-2 md:gap-0 md:inline-flex p-1 rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => {
+                  setActiveCategory(category.id);
+                  setShowAll(false);
+                }}
+                className={`px-4 md:px-6 py-2 md:py-2.5 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                  activeCategory === category.id
+                    ? "bg-background text-foreground shadow-lg scale-105"
+                    : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                }`}
+              >
+                <span>{category.label}</span>
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -523,7 +604,7 @@ const Projects = () => {
           </AnimatePresence>
         </div>
 
-        {projects.length > 3 && (
+        {filteredProjects.length > 3 && (
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -531,24 +612,43 @@ const Projects = () => {
             viewport={{ once: true }}
             className="text-center mt-16"
           >
-            <Button
-              onClick={() => setShowAll(!showAll)}
-              size="lg"
-              variant="outline"
-              className="group min-w-[200px] border-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
-            >
-              {showAll ? (
-                <>
-                  Show Less{" "}
-                  <ChevronUp className="ml-2 h-4 w-4 group-hover:-translate-y-1 transition-transform" />
-                </>
-              ) : (
-                <>
-                  View All Projects{" "}
-                  <ChevronDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
-                </>
-              )}
-            </Button>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button
+                onClick={() => setShowAll(!showAll)}
+                size="lg"
+                variant="outline"
+                className="group min-w-[200px] border-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+              >
+                {showAll ? (
+                  <>
+                    Show Less{" "}
+                    <ChevronUp className="ml-2 h-4 w-4 group-hover:-translate-y-1 transition-transform" />
+                  </>
+                ) : (
+                  <>
+                    View All{" "}
+                    {activeCategory === "all"
+                      ? "Projects"
+                      : categories.find((c) => c.id === activeCategory)
+                          ?.label}{" "}
+                    ({filteredProjects.length - 3} more)
+                    <ChevronDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+                  </>
+                )}
+              </Button>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-16"
+          >
+            <p className="text-muted-foreground text-lg">
+              No projects found in this category.
+            </p>
           </motion.div>
         )}
       </div>

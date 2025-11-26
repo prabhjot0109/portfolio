@@ -255,19 +255,25 @@ const Skills = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.4, delay: index * 0.1 }}
-                        className="space-y-2"
+                        className="space-y-2 group/skill cursor-default"
+                        whileHover={{ x: 4 }}
                       >
                         <div className="flex justify-between items-center">
-                          <span className="text-foreground font-semibold text-base md:text-lg">
+                          <motion.span 
+                            className="text-foreground font-semibold text-base md:text-lg group-hover/skill:text-primary transition-colors duration-200"
+                          >
                             {skill.name}
-                          </span>
-                          <span className="text-muted-foreground font-medium text-sm md:text-base">
+                          </motion.span>
+                          <motion.span 
+                            className="text-muted-foreground font-medium text-sm md:text-base group-hover/skill:text-primary transition-colors duration-200"
+                            whileHover={{ scale: 1.1 }}
+                          >
                             {skill.level}%
-                          </span>
+                          </motion.span>
                         </div>
-                        <div className="h-2.5 bg-muted/30 rounded-full overflow-hidden">
+                        <div className="h-2.5 bg-muted/30 rounded-full overflow-hidden group-hover/skill:bg-muted/50 transition-colors duration-200">
                           <motion.div
-                            className="h-full bg-primary shadow-lg"
+                            className="h-full bg-primary shadow-lg group-hover/skill:shadow-primary/50"
                             initial={{ width: 0 }}
                             animate={{ width: `${skill.level}%` }}
                             transition={{

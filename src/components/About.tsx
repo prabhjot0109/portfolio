@@ -78,7 +78,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-32 relative overflow-hidden"
+      className="py-16 sm:py-24 md:py-32 relative overflow-hidden"
       aria-label="About Prabhjot Singh Assi"
     >
       {/* Dynamic Glow Effect - Sky Blue (Light) / Cosmos (Dark) */}
@@ -166,20 +166,20 @@ const About = () => {
             className="lg:col-span-7 space-y-10"
           >
             {/* Main heading */}
-            <motion.div variants={itemVariants} className="space-y-4">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <motion.div variants={itemVariants} className="space-y-2 sm:space-y-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
                 <TextScramble className="text-foreground">
                   Software Engineer
                 </TextScramble>
-                <span className="block text-muted-foreground text-3xl md:text-4xl lg:text-5xl mt-2">
+                <span className="block text-muted-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-1 sm:mt-2">
                   & AI Enthusiast
                 </span>
               </h2>
             </motion.div>
 
             {/* Bio paragraphs */}
-            <motion.div variants={itemVariants} className="space-y-6">
-              <p className="text-lg text-muted-foreground leading-relaxed">
+            <motion.div variants={itemVariants} className="space-y-4 sm:space-y-6">
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                 I engineer intelligent systems that bridge the gap between
                 complex{" "}
                 <span className="text-foreground font-medium">AI research</span>{" "}
@@ -195,7 +195,7 @@ const About = () => {
                 intuitive and impactful.
               </p>
 
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                 Driven by{" "}
                 <span className="text-foreground font-medium">
                   first-principles thinking
@@ -208,24 +208,24 @@ const About = () => {
 
             {/* Achievements Bento Grid */}
             <motion.div variants={itemVariants}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 {achievements.map((item, index) => (
                   <SpotlightCard
                     key={index}
-                    className={`group p-4 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-border/80`}
+                    className={`group p-3 sm:p-4 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-border/80`}
                     spotlightColor="rgba(255, 255, 255, 0.05)"
                   >
-                    <div className="relative flex items-start gap-4">
+                    <div className="relative flex flex-col sm:flex-row items-start gap-2 sm:gap-4">
                       <div
-                        className={`p-3 rounded-lg ${item.bg} ${item.color} ring-1 ring-inset ${item.border}`}
+                        className={`p-2 sm:p-3 rounded-lg ${item.bg} ${item.color} ring-1 ring-inset ${item.border} flex-shrink-0`}
                       >
-                        <item.icon className="w-6 h-6" />
+                        <item.icon className="w-4 h-4 sm:w-6 sm:h-6" />
                       </div>
-                      <div>
-                        <p className="font-semibold text-foreground text-base mb-1">
+                      <div className="min-w-0">
+                        <p className="font-semibold text-foreground text-sm sm:text-base mb-0.5 sm:mb-1 leading-tight">
                           {item.label}
                         </p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-xs sm:text-sm text-muted-foreground leading-tight">
                           {item.sublabel}
                         </p>
                       </div>
@@ -238,21 +238,21 @@ const About = () => {
             {/* CTA */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap gap-4"
+              className="flex flex-row gap-3 sm:gap-4"
             >
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-foreground text-background font-medium hover:bg-background hover:text-foreground border border-foreground transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-foreground text-background font-medium hover:bg-background hover:text-foreground border border-foreground transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
               >
                 Connect
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </a>
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-secondary/80 transition-colors"
+                className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-secondary/80 transition-colors text-sm sm:text-base"
               >
                 View Projects
-                <Code2 className="w-4 h-4" />
+                <Code2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </a>
             </motion.div>
           </motion.div>

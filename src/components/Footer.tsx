@@ -53,7 +53,7 @@ const Footer = () => {
               className="flex items-center gap-2"
             >
               <span className="text-2xl sm:text-3xl font-space font-bold tracking-tighter">
-                Prabhjot<span className="text-portfolio-accent">.</span>
+                Prabhjot Singh
               </span>
             </motion.div>
             <p className="text-muted-foreground max-w-sm leading-relaxed text-base sm:text-lg">

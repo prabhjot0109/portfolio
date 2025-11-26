@@ -552,12 +552,12 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6">
             Featured <span className="text-primary">Projects</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-2">
             A collection of innovative solutions bridging technology and
             real-world impact.
           </p>
@@ -569,11 +569,11 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mb-12 px-2"
+          className="mb-8 md:mb-12 px-2"
         >
-          <div className="w-full overflow-x-auto scrollbar-hidden md:overflow-visible">
+          <div className="w-full overflow-x-auto scrollbar-hidden md:overflow-visible pb-2 -mb-2">
             <div className="flex justify-start md:justify-center min-w-max md:min-w-0">
-              <div className="inline-flex p-1 rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50 gap-1">
+              <div className="inline-flex p-1 rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50 gap-0.5 md:gap-1">
                 {categories.map((category) => (
                   <button
                     key={category.id}
@@ -581,7 +581,7 @@ const Projects = () => {
                       setActiveCategory(category.id);
                       setShowAll(false);
                     }}
-                    className={`px-3 md:px-5 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                    className={`px-2.5 sm:px-3 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg text-[11px] sm:text-xs md:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
                       activeCategory === category.id
                         ? "bg-background text-foreground shadow-lg"
                         : "text-muted-foreground hover:text-foreground hover:bg-background/50"
@@ -595,7 +595,7 @@ const Projects = () => {
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           <AnimatePresence mode="popLayout">
             {displayedProjects.map((project, index) => (
               <ProjectCard

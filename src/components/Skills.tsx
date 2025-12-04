@@ -247,7 +247,10 @@ const Skills = () => {
                   {/* Skills List */}
                   <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-12 gap-y-5 md:gap-y-8">
                     {activeSkillCategory.skills.map((skill, skillIndex) => (
-                      <div key={skill.name} className="space-y-2 md:space-y-3 group/skill">
+                      <div
+                        key={skill.name}
+                        className="space-y-2 md:space-y-3 group/skill"
+                      >
                         <div className="flex justify-between items-center">
                           <div className="flex items-center gap-3 md:gap-4">
                             <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-white/5 p-1.5 md:p-2 flex items-center justify-center border border-white/10 group-hover/skill:border-foreground/20 transition-colors flex-shrink-0">
@@ -269,13 +272,12 @@ const Skills = () => {
                           <motion.div
                             className="h-full bg-foreground"
                             initial={{ width: 0 }}
-                            whileInView={{ width: `${skill.level}%` }}
+                            animate={{ width: `${skill.level}%` }}
                             transition={{
                               duration: 1,
-                              delay: 0.2 + skillIndex * 0.1,
+                              delay: 0.4 + skillIndex * 0.1,
                               ease: "easeOut",
                             }}
-                            viewport={{ once: true }}
                           />
                         </div>
                       </div>

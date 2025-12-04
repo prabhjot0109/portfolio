@@ -30,6 +30,10 @@ interface Star {
   targetVy: number; // Target velocity Y for smooth interpolation
   orbitAngle: number; // Individual orbit angle for swirl effect
   orbitSpeed: number; // Individual orbit speed
+  trail: { x: number; y: number; alpha: number }[]; // Trail positions
+  hue: number; // Individual hue offset for color variation
+  pulsePhase: number; // Phase for pulsing effect
+  mass: number; // Star mass for gravitational interactions
 }
 
 /**
@@ -176,7 +180,11 @@ const Starfield: React.FC<StarfieldProps> = ({
           targetVx: 0,
           targetVy: 0,
           orbitAngle: Math.random() * Math.PI * 2,
-          orbitSpeed: 0.02 + Math.random() * 0.03,
+          orbitSpeed: 0.015 + Math.random() * 0.025,
+          trail: [] as { x: number; y: number; alpha: number }[],
+          hue: Math.random() * 60 - 30, // -30 to +30 hue variation
+          pulsePhase: Math.random() * Math.PI * 2,
+          mass: 0.5 + Math.random() * 1.5, // Mass for gravitational pull
         };
       });
     };
@@ -203,6 +211,7 @@ const Starfield: React.FC<StarfieldProps> = ({
     const mouseVelocityRef = { x: 0, y: 0 };
     let lastMouseX = -1000;
     let lastMouseY = -1000;
+    let globalTime = 0;
 
     const animate = (time: number) => {
       if (!active || reduced) {
@@ -212,22 +221,25 @@ const Starfield: React.FC<StarfieldProps> = ({
       const delta = lastTimeRef.current ? time - lastTimeRef.current : 16;
       const deltaFactor = delta / 16; // Normalize to 60fps
       lastTimeRef.current = time;
+      globalTime += delta * 0.001; // Time in seconds
       ctx.clearRect(0, 0, width, height);
 
       // Smoothly fade effect strength based on mouse movement
       const targetStrength = isMouseMovingRef.current ? 1 : 0;
-      const strengthLerpSpeed = isMouseMovingRef.current ? 0.15 : 0.05; // Faster activation, slower deactivation
+      const strengthLerpSpeed = isMouseMovingRef.current ? 0.12 : 0.03; // Smoother transitions
       effectStrengthRef.current +=
         (targetStrength - effectStrengthRef.current) * strengthLerpSpeed;
 
       // Ultra-smooth mouse interpolation with velocity tracking
-      const mouseLerpFactor = 0.15;
+      const mouseLerpFactor = 0.12;
       const rawMouseX = mouseRef.current.x;
       const rawMouseY = mouseRef.current.y;
 
-      // Track mouse velocity for momentum
-      mouseVelocityRef.x = (rawMouseX - lastMouseX) * 0.5;
-      mouseVelocityRef.y = (rawMouseY - lastMouseY) * 0.5;
+      // Track mouse velocity for momentum with smoothing
+      const newVelX = (rawMouseX - lastMouseX) * 0.4;
+      const newVelY = (rawMouseY - lastMouseY) * 0.4;
+      mouseVelocityRef.x = mouseVelocityRef.x * 0.7 + newVelX * 0.3;
+      mouseVelocityRef.y = mouseVelocityRef.y * 0.7 + newVelY * 0.3;
       lastMouseX = rawMouseX;
       lastMouseY = rawMouseY;
 
@@ -246,10 +258,23 @@ const Starfield: React.FC<StarfieldProps> = ({
 
       const baseDrift = speed * deltaFactor;
 
-      // REPULSION EFFECT PARAMETERS - creates empty space around cursor
-      const effectRadius = 400; // Large area of effect
-      const emptyZoneRadius = 100; // Inner zone where no stars should be
-      const repulsionStrength = 180; // How strongly stars are pushed away
+      // ENHANCED EFFECT PARAMETERS
+      const effectRadius = 350; // Area of effect
+      const innerGlowRadius = 80; // Inner zone for intense glow
+      const orbitRadius = 200; // Radius where orbital effect is strongest
+      const gravitationalPull = 0.8; // Gentle attraction strength
+      const swirlStrength = 2.5; // Swirl/vortex effect
+      const repulsionCore = 50; // Very close stars get pushed out
+
+      // Calculate mouse speed for dynamic effects
+      const mouseSpeed = Math.sqrt(
+        mouseVelocityRef.x * mouseVelocityRef.x +
+          mouseVelocityRef.y * mouseVelocityRef.y
+      );
+
+      // Collect nearby stars for constellation effect
+      const nearbyStars: { star: Star; dist: number; x: number; y: number }[] =
+        [];
 
       for (const s of starsRef.current) {
         const moveSpeed = baseDrift * s.z;
@@ -274,6 +299,7 @@ const Starfield: React.FC<StarfieldProps> = ({
         const dx = smoothMouseRef.x - starPosX;
         const dy = smoothMouseRef.y - starPosY;
         const dist = Math.sqrt(dx * dx + dy * dy);
+        const angle = Math.atan2(dy, dx);
 
         // Reset targets
         s.targetVx = 0;
@@ -284,49 +310,84 @@ const Starfield: React.FC<StarfieldProps> = ({
           effectStrengthRef.current > 0.01 && smoothMouseRef.x > 0;
 
         if (dist < effectRadius && effectActive) {
-          const angle = Math.atan2(dy, dx);
-
-          // REPULSION - push stars AWAY from cursor (opposite direction)
-          // Stronger repulsion when closer to cursor
           const normalizedDist = dist / effectRadius;
-          const repulsionForce = Math.pow(1 - normalizedDist, 2);
+          const effectStrength = effectStrengthRef.current;
 
-          // Calculate repulsion - push away from cursor
-          const pushStrength =
-            repulsionStrength *
-            repulsionForce *
-            s.z *
-            effectStrengthRef.current;
+          // 1. ORBITAL/SWIRL EFFECT - Stars orbit around cursor
+          s.orbitAngle += s.orbitSpeed * deltaFactor * (1 + mouseSpeed * 0.02);
+          const orbitInfluence =
+            Math.pow(1 - normalizedDist, 1.5) * effectStrength;
+          const orbitOffsetX =
+            Math.cos(s.orbitAngle + angle) *
+            swirlStrength *
+            orbitInfluence *
+            s.z;
+          const orbitOffsetY =
+            Math.sin(s.orbitAngle + angle) *
+            swirlStrength *
+            orbitInfluence *
+            s.z;
+          s.targetVx += orbitOffsetX;
+          s.targetVy += orbitOffsetY;
 
-          // Push in opposite direction (away from cursor)
-          s.targetVx = -Math.cos(angle) * pushStrength;
-          s.targetVy = -Math.sin(angle) * pushStrength;
+          // 2. MAGNETIC VORTEX - Perpendicular force creates swirling motion
+          const perpX = -Math.sin(angle);
+          const perpY = Math.cos(angle);
+          const vortexStrength =
+            Math.pow(1 - normalizedDist, 2) * 3 * effectStrength * s.z;
+          s.targetVx +=
+            perpX * vortexStrength * (s.orbitAngle > Math.PI ? 1 : -1);
+          s.targetVy +=
+            perpY * vortexStrength * (s.orbitAngle > Math.PI ? 1 : -1);
 
-          // Extra strong repulsion in the empty zone
-          if (dist < emptyZoneRadius) {
-            const zoneForce =
-              ((emptyZoneRadius - dist) / emptyZoneRadius) *
-              effectStrengthRef.current;
-            const extraPush = 250 * zoneForce * s.z;
-            s.targetVx -= Math.cos(angle) * extraPush;
-            s.targetVy -= Math.sin(angle) * extraPush;
+          // 3. GENTLE GRAVITATIONAL ATTRACTION to orbit zone
+          if (dist > orbitRadius * 0.5 && dist < effectRadius) {
+            const attractionForce =
+              gravitationalPull *
+              Math.pow(1 - normalizedDist, 1.2) *
+              effectStrength *
+              s.mass;
+            s.targetVx += Math.cos(angle) * attractionForce;
+            s.targetVy += Math.sin(angle) * attractionForce;
           }
 
-          // Mouse movement influence - stars follow cursor movement direction
-          const dragInfluence = repulsionForce * 0.6 * effectStrengthRef.current;
+          // 4. REPULSION from core - prevents clumping at center
+          if (dist < repulsionCore) {
+            const coreForce =
+              ((repulsionCore - dist) / repulsionCore) *
+              8 *
+              effectStrength *
+              s.z;
+            s.targetVx -= Math.cos(angle) * coreForce;
+            s.targetVy -= Math.sin(angle) * coreForce;
+          }
+
+          // 5. MOMENTUM INFLUENCE - stars follow cursor movement direction
+          const dragInfluence =
+            Math.pow(1 - normalizedDist, 1.5) * 1.2 * effectStrength;
           s.targetVx += mouseVelocityRef.x * dragInfluence;
           s.targetVy += mouseVelocityRef.y * dragInfluence;
+
+          // Collect nearby stars for constellation connections
+          if (dist < innerGlowRadius * 2.5 && s.z > 0.8) {
+            nearbyStars.push({
+              star: s,
+              dist,
+              x: starPosX + s.vx,
+              y: starPosY + s.vy,
+            });
+          }
         }
 
-        // Calculate proximity factor for subtle visual enhancements (0 = far, 1 = close)
+        // Calculate proximity factor for visual enhancements
         const proximityFactor =
           dist < effectRadius && effectActive
-            ? Math.pow(1 - dist / effectRadius, 1.5) * effectStrengthRef.current
+            ? Math.pow(1 - dist / effectRadius, 1.8) * effectStrengthRef.current
             : 0;
 
-        // Slightly faster spring for stars near cursor
-        const springStrength = 0.1 + proximityFactor * 0.05;
-        const damping = 0.9 - proximityFactor * 0.03;
+        // Spring physics with variable stiffness
+        const springStrength = 0.08 + proximityFactor * 0.06;
+        const damping = 0.92 - proximityFactor * 0.04;
 
         // Apply spring force toward target
         const springForceX = (s.targetVx - s.vx) * springStrength;
@@ -339,41 +400,161 @@ const Starfield: React.FC<StarfieldProps> = ({
         s.x = starPosX + s.vx;
         s.y = starPosY + s.vy;
 
-        // Twinkle effect - slightly faster near cursor
-        s.p += 0.02 + proximityFactor * 0.02 + Math.random() * 0.01;
-        const twinkle = Math.sin(s.p);
+        // Update trail (for motion blur effect)
+        if (proximityFactor > 0.2) {
+          s.trail.unshift({ x: s.x, y: s.y, alpha: proximityFactor * 0.6 });
+          if (s.trail.length > 5) s.trail.pop();
+        } else {
+          // Fade out trail when not near cursor
+          s.trail = s.trail.filter((t) => {
+            t.alpha *= 0.85;
+            return t.alpha > 0.02;
+          });
+        }
 
-        let alpha = s.baseAlpha * (0.8 + twinkle * 0.3);
-        alpha *= Math.min(1, s.z * 0.8);
-        // Subtle brightness boost near cursor
-        alpha = Math.min(1, alpha + proximityFactor * 0.25);
+        // Update pulse phase
+        s.pulsePhase += 0.03 + proximityFactor * 0.05;
+
+        // Enhanced twinkle with pulse
+        const twinkle = Math.sin(s.p + globalTime * 2);
+        const pulse = Math.sin(s.pulsePhase) * 0.5 + 0.5;
+        s.p += 0.015 + proximityFactor * 0.03 + Math.random() * 0.008;
+
+        let alpha = s.baseAlpha * (0.75 + twinkle * 0.25);
+        alpha *= Math.min(1, s.z * 0.85);
+        // Brightness boost with pulsing near cursor
+        alpha = Math.min(1, alpha + proximityFactor * 0.4 * pulse);
 
         if (alpha < 0) alpha = 0;
         if (alpha > 1) alpha = 1;
 
-        // Subtle size increase near cursor (up to 1.5x)
-        const sizeMultiplier = 1 + proximityFactor * 0.5;
+        // Dynamic size based on proximity and velocity
+        const velocityMagnitude = Math.sqrt(s.vx * s.vx + s.vy * s.vy);
+        const velocityScale = Math.min(1, velocityMagnitude / 10) * 0.3;
+        const sizeMultiplier = 1 + proximityFactor * 0.8 + velocityScale;
         const currentRadius = s.r * sizeMultiplier;
 
+        // Draw trail first (behind the star)
+        if (s.trail.length > 1) {
+          ctx.beginPath();
+          ctx.moveTo(s.trail[0].x, s.trail[0].y);
+          for (let i = 1; i < s.trail.length; i++) {
+            ctx.lineTo(s.trail[i].x, s.trail[i].y);
+          }
+          ctx.strokeStyle = `rgba(${s.color}, ${alpha * 0.3})`;
+          ctx.lineWidth = currentRadius * 0.6;
+          ctx.lineCap = "round";
+          ctx.stroke();
+        }
+
+        // Draw main star with enhanced visuals
         ctx.beginPath();
+
+        // Velocity-based stretching effect
+        if (velocityMagnitude > 3 && proximityFactor > 0.1) {
+          const stretchFactor = Math.min(2.5, 1 + velocityMagnitude / 15);
+          const velocityAngle = Math.atan2(s.vy, s.vx);
+          ctx.save();
+          ctx.translate(s.x, s.y);
+          ctx.rotate(velocityAngle);
+          ctx.scale(stretchFactor, 1);
+          ctx.arc(0, 0, currentRadius, 0, Math.PI * 2);
+          ctx.restore();
+        } else {
+          ctx.arc(s.x, s.y, currentRadius, 0, Math.PI * 2);
+        }
+
         ctx.fillStyle = `rgba(${s.color}, ${alpha.toFixed(3)})`;
-        ctx.arc(s.x, s.y, currentRadius, 0, Math.PI * 2);
         ctx.fill();
 
-        // Enhanced glow for stars near cursor
-        const glowMultiplier = 1 + proximityFactor * 1.5;
-        if (s.z > 1.0 && alpha > 0.5) {
-          ctx.shadowBlur = currentRadius * 3.5 * glowMultiplier;
-          ctx.shadowColor = `rgba(${s.color}, ${alpha * 0.8})`;
+        // Multi-layer glow effect for stars near cursor
+        const glowIntensity = proximityFactor * (1 + pulse * 0.5);
+        if (glowIntensity > 0.15) {
+          // Outer soft glow
+          ctx.shadowBlur = currentRadius * 8 * glowIntensity;
+          ctx.shadowColor = `rgba(${s.color}, ${alpha * 0.4})`;
           ctx.fill();
+
+          // Middle glow with color shift
+          ctx.shadowBlur = currentRadius * 4 * glowIntensity;
+          const glowHue = theme === "dark" ? "200, 220, 255" : "100, 150, 220";
+          ctx.shadowColor = `rgba(${glowHue}, ${alpha * 0.6})`;
+          ctx.fill();
+
+          // Inner bright core
+          if (glowIntensity > 0.4) {
+            ctx.shadowBlur = currentRadius * 2;
+            ctx.shadowColor = `rgba(255, 255, 255, ${
+              alpha * 0.8 * glowIntensity
+            })`;
+            ctx.fill();
+          }
           ctx.shadowBlur = 0;
-        } else if (proximityFactor > 0.3) {
-          // Add subtle glow to smaller stars when near cursor
-          ctx.shadowBlur = currentRadius * 3 * glowMultiplier;
-          ctx.shadowColor = `rgba(${s.color}, ${alpha * 0.7})`;
+        } else if (s.z > 1.0 && alpha > 0.5) {
+          // Normal glow for bright distant stars
+          ctx.shadowBlur = currentRadius * 3;
+          ctx.shadowColor = `rgba(${s.color}, ${alpha * 0.6})`;
           ctx.fill();
           ctx.shadowBlur = 0;
         }
+      }
+
+      // Draw constellation connections between nearby stars
+      if (nearbyStars.length > 1 && effectStrengthRef.current > 0.3) {
+        for (let i = 0; i < nearbyStars.length; i++) {
+          for (let j = i + 1; j < nearbyStars.length; j++) {
+            const a = nearbyStars[i];
+            const b = nearbyStars[j];
+            const connDist = Math.sqrt(
+              Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2)
+            );
+            const maxConnDist = 80;
+            if (connDist < maxConnDist) {
+              const connAlpha =
+                (1 - connDist / maxConnDist) * 0.25 * effectStrengthRef.current;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.strokeStyle =
+                theme === "dark"
+                  ? `rgba(180, 200, 255, ${connAlpha})`
+                  : `rgba(100, 130, 180, ${connAlpha})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      // Draw cursor glow aura when active
+      if (effectStrengthRef.current > 0.1 && smoothMouseRef.x > 0) {
+        const auraAlpha = effectStrengthRef.current * 0.08;
+        const gradient = ctx.createRadialGradient(
+          smoothMouseRef.x,
+          smoothMouseRef.y,
+          0,
+          smoothMouseRef.x,
+          smoothMouseRef.y,
+          innerGlowRadius
+        );
+        gradient.addColorStop(
+          0,
+          theme === "dark"
+            ? `rgba(100, 150, 255, ${auraAlpha * 0.5})`
+            : `rgba(150, 200, 255, ${auraAlpha * 0.3})`
+        );
+        gradient.addColorStop(0.5, `rgba(150, 180, 255, ${auraAlpha * 0.2})`);
+        gradient.addColorStop(1, "rgba(150, 180, 255, 0)");
+        ctx.beginPath();
+        ctx.arc(
+          smoothMouseRef.x,
+          smoothMouseRef.y,
+          innerGlowRadius,
+          0,
+          Math.PI * 2
+        );
+        ctx.fillStyle = gradient;
+        ctx.fill();
       }
 
       animationRef.current = requestAnimationFrame(animate);

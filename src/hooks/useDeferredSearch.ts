@@ -1,36 +1,36 @@
-import { useState, useDeferredValue, useTransition, useCallback } from 'react';
+import { useState, useDeferredValue, useTransition, useCallback } from "react";
 
 interface UseDeferredSearchOptions<T> {
-  items: T[];
-  searchFn: (item: T, query: string) => boolean;
-  debounceMs?: number;
+	items: T[];
+	searchFn: (item: T, query: string) => boolean;
+	debounceMs?: number;
 }
 
 export const useDeferredSearch = <T>({
-  items,
-  searchFn,
+	items,
+	searchFn,
 }: UseDeferredSearchOptions<T>) => {
-  const [query, setQuery] = useState('');
-  const [isPending, startTransition] = useTransition();
-  const deferredQuery = useDeferredValue(query);
+	const [query, setQuery] = useState("");
+	const [isPending, startTransition] = useTransition();
+	const deferredQuery = useDeferredValue(query);
 
-  const filteredItems = items.filter(item => 
-    deferredQuery === '' || searchFn(item, deferredQuery)
-  );
+	const filteredItems = items.filter(
+		(item) => deferredQuery === "" || searchFn(item, deferredQuery),
+	);
 
-  const handleSearch = useCallback((newQuery: string) => {
-    startTransition(() => {
-      setQuery(newQuery);
-    });
-  }, []);
+	const handleSearch = useCallback((newQuery: string) => {
+		startTransition(() => {
+			setQuery(newQuery);
+		});
+	}, []);
 
-  return {
-    query,
-    setQuery: handleSearch,
-    filteredItems,
-    isPending,
-    isStale: query !== deferredQuery,
-  };
+	return {
+		query,
+		setQuery: handleSearch,
+		filteredItems,
+		isPending,
+		isStale: query !== deferredQuery,
+	};
 };
 
 export default useDeferredSearch;

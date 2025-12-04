@@ -1,265 +1,271 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  Award,
-  Target,
-  Zap,
-  Brain,
-  Sparkles,
-  ArrowRight,
-  Code2,
+	Award,
+	Target,
+	Zap,
+	Brain,
+	Sparkles,
+	ArrowRight,
+	Code2,
 } from "lucide-react";
 import LazyImage from "@/components/LazyImage";
 import { TextScramble } from "@/components/ui/text-scramble";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
 
 const profileImage = new URL("@/assets/profile-photo.jpg", import.meta.url)
-  .href;
+	.href;
 
 const About = () => {
-  const achievements = [
-    {
-      icon: Award,
-      label: "SIH 2024 Winner",
-      sublabel: "National Hackathon",
-      color: "text-emerald-500",
-      bg: "bg-emerald-500/10",
-      border: "border-emerald-500/20",
-    },
-    {
-      icon: Target,
-      label: "IEEE Grant Recipient",
-      sublabel: "Research Funding",
-      color: "text-blue-500",
-      bg: "bg-blue-500/10",
-      border: "border-blue-500/20",
-    },
-    {
-      icon: Zap,
-      label: "6+ Hackathon Wins",
-      sublabel: "Innovation & Speed",
-      color: "text-violet-500",
-      bg: "bg-violet-500/10",
-      border: "border-violet-500/20",
-    },
-    {
-      icon: Brain,
-      label: "AI Research Published",
-      sublabel: "Contribution to Science",
-      color: "text-amber-500",
-      bg: "bg-amber-500/10",
-      border: "border-amber-500/20",
-    },
-  ];
+	const achievements = [
+		{
+			icon: Award,
+			label: "SIH 2024 Winner",
+			sublabel: "National Hackathon",
+			color: "text-emerald-500",
+			bg: "bg-emerald-500/10",
+			border: "border-emerald-500/20",
+		},
+		{
+			icon: Target,
+			label: "IEEE Grant Recipient",
+			sublabel: "Research Funding",
+			color: "text-blue-500",
+			bg: "bg-blue-500/10",
+			border: "border-blue-500/20",
+		},
+		{
+			icon: Zap,
+			label: "6+ Hackathon Wins",
+			sublabel: "Innovation & Speed",
+			color: "text-violet-500",
+			bg: "bg-violet-500/10",
+			border: "border-violet-500/20",
+		},
+		{
+			icon: Brain,
+			label: "AI Research Published",
+			sublabel: "Contribution to Science",
+			color: "text-amber-500",
+			bg: "bg-amber-500/10",
+			border: "border-amber-500/20",
+		},
+	];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
+	const containerVariants = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: {
+				staggerChildren: 0.15,
+				delayChildren: 0.2,
+			},
+		},
+	};
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-      },
-    },
-  };
+	const itemVariants = {
+		hidden: { opacity: 0, y: 30 },
+		visible: {
+			opacity: 1,
+			y: 0,
+			transition: {
+				duration: 0.6,
+				ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+			},
+		},
+	};
 
-  return (
-    <section
-      id="about"
-      className="py-16 sm:py-24 md:py-32 relative overflow-hidden"
-      aria-label="About Prabhjot Singh Assi"
-    >
-      {/* Dynamic Glow Effect - Sky Blue (Light) / Cosmos (Dark) */}
-      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[160%] h-[700px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-300/40 via-sky-200/20 to-transparent dark:from-indigo-500/25 dark:via-blue-900/15 dark:to-transparent pointer-events-none blur-[100px] opacity-70" />
+	return (
+		<section
+			id="about"
+			className="py-16 sm:py-24 md:py-32 relative overflow-hidden"
+			aria-label="About Prabhjot Singh Assi"
+		>
+			{/* Dynamic Glow Effect - Sky Blue (Light) / Cosmos (Dark) */}
+			<div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[160%] h-[700px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-300/40 via-sky-200/20 to-transparent dark:from-indigo-500/25 dark:via-blue-900/15 dark:to-transparent pointer-events-none blur-[100px] opacity-70" />
 
-      {/* Noise texture overlay */}
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay pointer-events-none" />
+			{/* Noise texture overlay */}
+			<div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay pointer-events-none" />
 
-      {/* Subtle background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-portfolio-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-portfolio-accent/5 rounded-full blur-3xl" />
-      </div>
+			{/* Subtle background elements */}
+			<div className="absolute inset-0 pointer-events-none">
+				<div className="absolute top-1/4 -left-32 w-96 h-96 bg-portfolio-accent/5 rounded-full blur-3xl" />
+				<div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-portfolio-accent/5 rounded-full blur-3xl" />
+			</div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="flex items-center gap-4 mb-16"
-        >
-          <Sparkles className="w-5 h-5 text-portfolio-accent" />
-          <span className="text-sm font-medium tracking-widest uppercase text-muted-foreground">
-            Get to know me
-          </span>
-          <div className="flex-1 h-px bg-gradient-to-r from-border to-transparent" />
-        </motion.div>
+			<div className="container mx-auto px-6 relative z-10">
+				{/* Section Header */}
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6 }}
+					viewport={{ once: true }}
+					className="flex items-center gap-4 mb-16"
+				>
+					<Sparkles className="w-5 h-5 text-portfolio-accent" />
+					<span className="text-sm font-medium tracking-widest uppercase text-muted-foreground">
+						Get to know me
+					</span>
+					<div className="flex-1 h-px bg-gradient-to-r from-border to-transparent" />
+				</motion.div>
 
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
-          {/* Image Column - Modernized */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
-            className="lg:col-span-5 lg:sticky lg:top-32"
-          >
-            <div className="relative group">
-              {/* Animated border gradient - Subtle in light mode */}
-              <div className="absolute -inset-1 bg-gradient-to-br from-portfolio-accent/20 via-transparent to-portfolio-accent/20 rounded-3xl opacity-5 dark:opacity-20 blur-sm group-hover:opacity-10 dark:group-hover:opacity-40 transition-opacity duration-500" />
+				<div className="grid lg:grid-cols-12 gap-16 items-start">
+					{/* Image Column - Modernized */}
+					<motion.div
+						initial={{ opacity: 0, scale: 0.95 }}
+						whileInView={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+						viewport={{ once: true }}
+						className="lg:col-span-5 lg:sticky lg:top-32"
+					>
+						<div className="relative group">
+							{/* Animated border gradient - Subtle in light mode */}
+							<div className="absolute -inset-1 bg-gradient-to-br from-portfolio-accent/20 via-transparent to-portfolio-accent/20 rounded-3xl opacity-5 dark:opacity-20 blur-sm group-hover:opacity-10 dark:group-hover:opacity-40 transition-opacity duration-500" />
 
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-card border border-border/50 shadow-sm dark:shadow-md">
-                <LazyImage
-                  src={profileImage}
-                  alt="Prabhjot Singh Assi"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  priority={false}
-                />
+							<div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-card border border-border/50 shadow-sm dark:shadow-md">
+								<LazyImage
+									src={profileImage}
+									alt="Prabhjot Singh Assi"
+									className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+									priority={false}
+								/>
 
-                {/* Floating badge */}
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
-                  viewport={{ once: true }}
-                  className="absolute bottom-6 left-6 right-6"
-                >
-                  <div className="glass-morphism rounded-xl p-4 backdrop-blur-xl border border-white/10 shadow-lg">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="relative flex h-3 w-3">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-                      </div>
-                      <p className="text-sm font-medium text-foreground">
-                        Open to opportunities
-                      </p>
-                    </div>
-                    <p className="text-xs dark:text-white text-opacity-100">
-                      AI/ML • Full Stack • Research
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </motion.div>
+								{/* Floating badge */}
+								<motion.div
+									initial={{ opacity: 0, x: 20 }}
+									whileInView={{ opacity: 1, x: 0 }}
+									transition={{ delay: 0.5, duration: 0.5 }}
+									viewport={{ once: true }}
+									className="absolute bottom-6 left-6 right-6"
+								>
+									<div className="glass-morphism rounded-xl p-4 backdrop-blur-xl border border-white/10 shadow-lg">
+										<div className="flex items-center gap-3 mb-2">
+											<div className="relative flex h-3 w-3">
+												<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+												<span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+											</div>
+											<p className="text-sm font-medium text-foreground">
+												Open to opportunities
+											</p>
+										</div>
+										<p className="text-xs dark:text-white text-opacity-100">
+											AI/ML • Full Stack • Research
+										</p>
+									</div>
+								</motion.div>
+							</div>
+						</div>
+					</motion.div>
 
-          {/* Content Column */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="lg:col-span-7 space-y-10"
-          >
-            {/* Main heading */}
-            <motion.div variants={itemVariants} className="space-y-2 sm:space-y-4">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                <TextScramble className="text-foreground">
-                  Software Engineer
-                </TextScramble>
-                <span className="block text-muted-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-1 sm:mt-2">
-                  & AI Enthusiast
-                </span>
-              </h2>
-            </motion.div>
+					{/* Content Column */}
+					<motion.div
+						variants={containerVariants}
+						initial="hidden"
+						whileInView="visible"
+						viewport={{ once: true }}
+						className="lg:col-span-7 space-y-10"
+					>
+						{/* Main heading */}
+						<motion.div
+							variants={itemVariants}
+							className="space-y-2 sm:space-y-4"
+						>
+							<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+								<TextScramble className="text-foreground">
+									Software Engineer
+								</TextScramble>
+								<span className="block text-muted-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-1 sm:mt-2">
+									& AI Enthusiast
+								</span>
+							</h2>
+						</motion.div>
 
-            {/* Bio paragraphs */}
-            <motion.div variants={itemVariants} className="space-y-4 sm:space-y-6">
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                I engineer intelligent systems that bridge the gap between
-                complex{" "}
-                <span className="text-foreground font-medium">AI research</span>{" "}
-                and practical user needs. With a deep focus on{" "}
-                <span className="text-foreground font-medium">
-                  Full Stack Development
-                </span>{" "}
-                and{" "}
-                <span className="text-foreground font-medium">
-                  Machine Learning
-                </span>
-                , I build scalable applications that are not just functional but
-                intuitive and impactful.
-              </p>
+						{/* Bio paragraphs */}
+						<motion.div
+							variants={itemVariants}
+							className="space-y-4 sm:space-y-6"
+						>
+							<p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+								I engineer intelligent systems that bridge the gap between
+								complex{" "}
+								<span className="text-foreground font-medium">AI research</span>{" "}
+								and practical user needs. With a deep focus on{" "}
+								<span className="text-foreground font-medium">
+									Full Stack Development
+								</span>{" "}
+								and{" "}
+								<span className="text-foreground font-medium">
+									Machine Learning
+								</span>
+								, I build scalable applications that are not just functional but
+								intuitive and impactful.
+							</p>
 
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                Driven by{" "}
-                <span className="text-foreground font-medium">
-                  first-principles thinking
-                </span>
-                , I thrive on solving hard problems—whether it's optimizing
-                inference latency, designing event-driven architectures, or
-                crafting pixel-perfect UIs.
-              </p>
-            </motion.div>
+							<p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+								Driven by{" "}
+								<span className="text-foreground font-medium">
+									first-principles thinking
+								</span>
+								, I thrive on solving hard problems—whether it's optimizing
+								inference latency, designing event-driven architectures, or
+								crafting pixel-perfect UIs.
+							</p>
+						</motion.div>
 
-            {/* Achievements Bento Grid */}
-            <motion.div variants={itemVariants}>
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                {achievements.map((item, index) => (
-                  <SpotlightCard
-                    key={index}
-                    className={`group p-3 sm:p-4 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-border/80`}
-                    spotlightColor="rgba(255, 255, 255, 0.05)"
-                  >
-                    <div className="relative flex flex-col sm:flex-row items-start gap-2 sm:gap-4">
-                      <div
-                        className={`p-2 sm:p-3 rounded-lg ${item.bg} ${item.color} ring-1 ring-inset ${item.border} flex-shrink-0`}
-                      >
-                        <item.icon className="w-4 h-4 sm:w-6 sm:h-6" />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="font-semibold text-foreground text-sm sm:text-base mb-0.5 sm:mb-1 leading-tight">
-                          {item.label}
-                        </p>
-                        <p className="text-xs sm:text-sm text-muted-foreground leading-tight">
-                          {item.sublabel}
-                        </p>
-                      </div>
-                    </div>
-                  </SpotlightCard>
-                ))}
-              </div>
-            </motion.div>
+						{/* Achievements Bento Grid */}
+						<motion.div variants={itemVariants}>
+							<div className="grid grid-cols-2 gap-3 sm:gap-4">
+								{achievements.map((item, index) => (
+									<SpotlightCard
+										key={index}
+										className={`group p-3 sm:p-4 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-border/80`}
+										spotlightColor="rgba(255, 255, 255, 0.05)"
+									>
+										<div className="relative flex flex-col sm:flex-row items-start gap-2 sm:gap-4">
+											<div
+												className={`p-2 sm:p-3 rounded-lg ${item.bg} ${item.color} ring-1 ring-inset ${item.border} flex-shrink-0`}
+											>
+												<item.icon className="w-4 h-4 sm:w-6 sm:h-6" />
+											</div>
+											<div className="min-w-0">
+												<p className="font-semibold text-foreground text-sm sm:text-base mb-0.5 sm:mb-1 leading-tight">
+													{item.label}
+												</p>
+												<p className="text-xs sm:text-sm text-muted-foreground leading-tight">
+													{item.sublabel}
+												</p>
+											</div>
+										</div>
+									</SpotlightCard>
+								))}
+							</div>
+						</motion.div>
 
-            {/* CTA */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-row gap-3 sm:gap-4"
-            >
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-foreground text-background font-medium hover:bg-background hover:text-foreground border border-foreground transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
-              >
-                Connect
-                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </a>
-              <a
-                href="#projects"
-                className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-secondary/80 transition-colors text-sm sm:text-base"
-              >
-                View Projects
-                <Code2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </a>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
+						{/* CTA */}
+						<motion.div
+							variants={itemVariants}
+							className="flex flex-row gap-3 sm:gap-4"
+						>
+							<a
+								href="#contact"
+								className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-foreground text-background font-medium hover:bg-background hover:text-foreground border border-foreground transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
+							>
+								Connect
+								<ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+							</a>
+							<a
+								href="#projects"
+								className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-secondary/80 transition-colors text-sm sm:text-base"
+							>
+								View Projects
+								<Code2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+							</a>
+						</motion.div>
+					</motion.div>
+				</div>
+			</div>
+		</section>
+	);
 };
 
 export default About;

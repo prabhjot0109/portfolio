@@ -1,17 +1,18 @@
-import React from 'react';
+import React from "react";
 
 export const useServiceWorker = () => {
-  React.useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then((registration) => {
-            console.log('SW registered: ', registration);
-          })
-          .catch((registrationError) => {
-            console.log('SW registration failed: ', registrationError);
-          });
-      });
-    }
-  }, []);
+	React.useEffect(() => {
+		if ("serviceWorker" in navigator) {
+			window.addEventListener("load", () => {
+				navigator.serviceWorker
+					.register("/sw.js")
+					.then((registration) => {
+						console.log("SW registered: ", registration);
+					})
+					.catch((registrationError) => {
+						console.log("SW registration failed: ", registrationError);
+					});
+			});
+		}
+	}, []);
 };

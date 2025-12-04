@@ -64,23 +64,21 @@ const Navigation: React.FC<NavigationProps> = ({ onOpenCommandPalette }) => {
               Portfolio
             </a>
 
-            {/* Search / Command Palette Trigger */}
+            {/* Search / Command Palette Trigger - Apple Liquid Glass Design */}
             <button
+              type="button"
               onClick={onOpenCommandPalette}
-              className="group flex items-center gap-2 sm:gap-3 px-2.5 py-1.5 sm:px-4 sm:py-2.5 rounded-full 
-                       bg-white/5 dark:bg-black/5 backdrop-blur-xl border border-white/10 dark:border-white/5
-                       shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]
-                       transition-all duration-300 ease-out
+              className="group flex items-center gap-2 sm:gap-3 px-3 py-2 sm:px-4 sm:py-2.5
+                       liquid-glass-search
                        flex-1 max-w-md mx-auto
-                       hover:bg-white/10 dark:hover:bg-white/5
-                       active:scale-[0.98]"
+                       focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-0"
               aria-label="Search and Command Palette"
             >
-              <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-              <span className="flex-1 text-left text-xs sm:text-sm text-muted-foreground group-hover:text-foreground transition-colors truncate font-medium">
+              <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-200" />
+              <span className="flex-1 text-left text-xs sm:text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-200 truncate font-medium">
                 Navigate and search...
               </span>
-              <kbd className="hidden sm:flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold text-muted-foreground bg-white/10 dark:bg-white/5 rounded-md border border-white/10">
+              <kbd className="hidden sm:flex items-center gap-1 px-2 py-1 text-[10px] font-semibold text-muted-foreground liquid-glass-kbd">
                 ⌘ + K / Ctrl + K
               </kbd>
             </button>

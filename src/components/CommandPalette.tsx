@@ -239,63 +239,73 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50"
+            transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+            className="fixed inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-xl z-50"
             onClick={onClose}
             aria-hidden="true"
           />
           <motion.div
             ref={focusTrapRef}
-            initial={{ opacity: 0, scale: 0.95, x: "-50%", y: "-55%" }}
-            animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
-            exit={{ opacity: 0, scale: 0.95, x: "-50%", y: "-55%" }}
-            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, scale: 0.96, y: "-48%", x: "-50%" }}
+            animate={{ opacity: 1, scale: 1, y: "-50%", x: "-50%" }}
+            exit={{ opacity: 0, scale: 0.96, y: "-48%", x: "-50%" }}
+            transition={{
+              duration: 0.35,
+              ease: [0.32, 0.72, 0, 1],
+              opacity: { duration: 0.2 },
+            }}
             className="fixed top-1/2 left-1/2 w-full max-w-lg z-50 px-4"
             role="dialog"
             aria-modal="true"
             aria-label="Command palette"
           >
-            <div className="bg-background/20 backdrop-blur-3xl border border-white/10 dark:border-white/5 rounded-xl shadow-[0_8px_32px_0_rgba(30,38,135,0.07)] overflow-hidden">
-              {/* Search Input */}
-              <div className="flex items-center gap-3 px-4 py-3 border-b border-white/10 dark:border-white/5">
-                <Search className="w-5 h-5 text-muted-foreground" />
+            <div className="liquid-glass-modal">
+              {/* Search Input - Liquid Glass Style */}
+              <div className="flex items-center gap-3 px-5 py-4 border-b liquid-glass-divider">
+                <Search className="w-5 h-5 text-muted-foreground/80" />
                 <input
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Navigate and search..."
-                  className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground outline-none text-sm"
+                  className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground/70 outline-none text-[15px] font-medium"
                   autoFocus
                   aria-label="Search commands"
                 />
-                <kbd className="hidden sm:flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground bg-white/10 dark:bg-white/5 rounded border border-white/10 dark:border-white/5">
-                   ⌘ + K / Ctrl + K
+                <kbd className="hidden sm:flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-muted-foreground/70 liquid-glass-kbd">
+                  ⌘ + K / Ctrl + K
                 </kbd>
                 <button
+                  type="button"
                   onClick={onClose}
-                  className="p-1 hover:bg-white/10 dark:hover:bg-white/5 rounded transition-colors"
+                  className="p-1.5 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-all duration-200"
                   aria-label="Close command palette"
                 >
-                  <X className="w-4 h-4 text-muted-foreground" />
+                  <X className="w-4 h-4 text-muted-foreground/70 hover:text-foreground transition-colors" />
                 </button>
               </div>
 
-              {/* Results */}
-              <div className="max-h-80 overflow-y-auto py-2" role="listbox">
+              {/* Results - Liquid Glass Style */}
+              <div
+                className="max-h-80 overflow-y-auto py-2 px-2"
+                role="listbox"
+              >
                 {isPending && (
-                  <div className="px-4 py-2 text-sm text-muted-foreground">
+                  <div className="px-4 py-3 text-sm text-muted-foreground/70 font-medium">
                     Searching...
                   </div>
                 )}
                 {!isPending && flatItems.length === 0 && (
-                  <div className="px-4 py-8 text-center text-muted-foreground">
-                    No results found for "{query}"
+                  <div className="px-4 py-10 text-center text-muted-foreground/70">
+                    <p className="text-sm font-medium">
+                      No results found for "{query}"
+                    </p>
                   </div>
                 )}
                 {Object.entries(groupedItems).map(([category, items]) => (
-                  <div key={category}>
-                    <div className="px-4 py-2 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  <div key={category} className="mb-1">
+                    <div className="px-3 py-2 text-[11px] font-semibold text-muted-foreground/60 uppercase tracking-widest">
                       {categoryLabels[category]}
                     </div>
                     {items.map((item) => {
@@ -303,21 +313,40 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
                       const isSelected = globalIndex === selectedIndex;
                       return (
                         <button
+                          type="button"
                           key={item.id}
                           onClick={() => executeCommand(item)}
                           onMouseEnter={() => setSelectedIndex(globalIndex)}
-                          className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors ${
-                            isSelected
-                              ? "bg-black/10 dark:bg-white/10 text-foreground"
-                              : "hover:bg-black/10 dark:hover:bg-black/5"
+                          className={`liquid-glass-item w-full flex items-center gap-3 px-3 py-2.5 mx-1 text-left transition-all duration-150 ${
+                            isSelected ? "active" : ""
                           }`}
                           role="option"
                           aria-selected={isSelected}
                         >
-                          <item.icon className="w-4 h-4 text-muted-foreground" />
-                          <span className="flex-1 text-sm">{item.label}</span>
+                          <div
+                            className={`p-1.5 rounded-lg transition-colors duration-150 ${
+                              isSelected ? "bg-foreground/10" : "bg-transparent"
+                            }`}
+                          >
+                            <item.icon
+                              className={`w-4 h-4 transition-colors duration-150 ${
+                                isSelected
+                                  ? "text-foreground"
+                                  : "text-muted-foreground/70"
+                              }`}
+                            />
+                          </div>
+                          <span
+                            className={`flex-1 text-sm font-medium transition-colors duration-150 ${
+                              isSelected
+                                ? "text-foreground"
+                                : "text-foreground/80"
+                            }`}
+                          >
+                            {item.label}
+                          </span>
                           {isSelected && (
-                            <kbd className="text-xs text-muted-foreground">
+                            <kbd className="text-xs text-muted-foreground/60 font-semibold liquid-glass-kbd px-2 py-0.5">
                               ↵
                             </kbd>
                           )}
@@ -328,25 +357,25 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
                 ))}
               </div>
 
-              {/* Footer */}
-              <div className="flex items-center justify-between px-4 py-2 border-t border-white/10 dark:border-white/5 text-xs text-muted-foreground bg-white/5 dark:bg-white/[0.02]">
-                <div className="flex items-center gap-4">
-                  <span className="flex items-center gap-1">
-                    <kbd className="px-1.5 py-0.5 bg-white/10 dark:bg-white/5 rounded border border-white/10 dark:border-white/5">
+              {/* Footer - Liquid Glass Style */}
+              <div className="flex items-center justify-between px-5 py-3 border-t liquid-glass-divider">
+                <div className="flex items-center gap-5">
+                  <span className="flex items-center gap-1.5 text-xs text-muted-foreground/60 font-medium">
+                    <kbd className="px-1.5 py-0.5 liquid-glass-kbd text-[10px] font-semibold">
                       ↑↓
-                    </kbd>{" "}
+                    </kbd>
                     Navigate
                   </span>
-                  <span className="flex items-center gap-1">
-                    <kbd className="px-1.5 py-0.5 bg-white/10 dark:bg-white/5 rounded border border-white/10 dark:border-white/5">
+                  <span className="flex items-center gap-1.5 text-xs text-muted-foreground/60 font-medium">
+                    <kbd className="px-1.5 py-0.5 liquid-glass-kbd text-[10px] font-semibold">
                       ↵
-                    </kbd>{" "}
+                    </kbd>
                     Select
                   </span>
-                  <span className="flex items-center gap-1">
-                    <kbd className="px-1.5 py-0.5 bg-white/10 dark:bg-white/5 rounded border border-white/10 dark:border-white/5">
+                  <span className="flex items-center gap-1.5 text-xs text-muted-foreground/60 font-medium">
+                    <kbd className="px-1.5 py-0.5 liquid-glass-kbd text-[10px] font-semibold">
                       Esc
-                    </kbd>{" "}
+                    </kbd>
                     Close
                   </span>
                 </div>

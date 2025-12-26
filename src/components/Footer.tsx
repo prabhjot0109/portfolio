@@ -107,7 +107,7 @@ const Footer = () => {
 							</h4>
 							<ul className="space-y-3 sm:space-y-4">
 								{[
-									"App Development",
+									"Software Development",
 									"AI Development",
 									"AI Integration",
 									"UI/UX Design",

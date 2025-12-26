@@ -19,7 +19,7 @@ const Skills = () => {
 					level: 95,
 				},
 				{
-					name: "C++",
+					name: "SQL",
 					logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
 					level: 90,
 				},

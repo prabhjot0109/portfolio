@@ -1,5 +1,5 @@
 import React from "react";
-import { Github, Linkedin, Mail, Download, Command } from "lucide-react";
+import { Github, Linkedin, Mail, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Meteors } from "@/components/ui/shadcn-io/meteors";
@@ -7,11 +7,7 @@ import Starfield from "@/components/Starfield";
 import ShootingStars from "@/components/ShootingStars";
 import { useTheme } from "@/components/ThemeProvider";
 
-interface HeroProps {
-  onOpenCommandPalette?: () => void;
-}
-
-const Hero = ({ onOpenCommandPalette }: HeroProps) => {
+const Hero = () => {
   const [animated, setAnimated] = React.useState(false);
   const sectionRef = React.useRef<HTMLElement | null>(null);
   const enableAnimation = React.useCallback(() => setAnimated(true), []);
@@ -156,7 +152,7 @@ const Hero = ({ onOpenCommandPalette }: HeroProps) => {
         </div>
       )}
 
-      <div className="container mx-auto px-6 text-center relative z-10 pt-20 flex items-center justify-center min-h-screen">
+      <div className="container mx-auto px-6 text-center relative z-10 flex items-center justify-center min-h-screen">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}

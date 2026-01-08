@@ -1,5 +1,5 @@
 import React, { lazy, useState, useCallback, Suspense } from "react";
-import Navigation from "@/components/Navigation";
+import BottomNav from "@/components/BottomNav";
 import SkipNavigation from "@/components/SkipNavigation";
 import Hero from "@/components/Hero";
 import LazySection from "@/components/LazySection";
@@ -17,74 +17,76 @@ const Contact = lazy(() => import("@/components/Contact"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
-	// Register service worker for caching
-	useServiceWorker();
+  // Register service worker for caching
+  useServiceWorker();
 
-	// Command palette state
-	const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  // Command palette state
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
 
-	const openCommandPalette = useCallback(() => {
-		setIsCommandPaletteOpen(true);
-	}, []);
+  const openCommandPalette = useCallback(() => {
+    setIsCommandPaletteOpen(true);
+  }, []);
 
-	const closeCommandPalette = useCallback(() => {
-		setIsCommandPaletteOpen(false);
-	}, []);
+  const closeCommandPalette = useCallback(() => {
+    setIsCommandPaletteOpen(false);
+  }, []);
 
-	// Keyboard shortcut for command palette (Cmd/Ctrl + K)
-	useKeyboardShortcut(
-		[
-			{ key: "k", meta: true },
-			{ key: "k", ctrl: true },
-		],
-		openCommandPalette,
-		{ enabled: !isCommandPaletteOpen },
-	);
+  // Keyboard shortcut for command palette (Cmd/Ctrl + K)
+  useKeyboardShortcut(
+    [
+      { key: "k", meta: true },
+      { key: "k", ctrl: true },
+    ],
+    openCommandPalette,
+    { enabled: !isCommandPaletteOpen }
+  );
 
-	return (
-		<div className="min-h-screen bg-background">
-			<SkipNavigation />
-			<Navigation onOpenCommandPalette={openCommandPalette} />
+  return (
+    <div className="min-h-screen bg-background">
+      <SkipNavigation />
 
-			{/* Command Palette */}
-			<CommandPalette
-				isOpen={isCommandPaletteOpen}
-				onClose={closeCommandPalette}
-			/>
+      {/* Command Palette */}
+      <CommandPalette
+        isOpen={isCommandPaletteOpen}
+        onClose={closeCommandPalette}
+      />
 
-			<main id="main-content">
-				<Hero onOpenCommandPalette={openCommandPalette} />
+      {/* Bottom Navigation */}
+      <BottomNav onOpenCommandPalette={openCommandPalette} />
 
-				<LazySection>
-					<About />
-				</LazySection>
+      <main id="main-content">
+        <Hero />
 
-				<LazySection>
-					<Skills />
-				</LazySection>
+        <LazySection>
+          <About />
+        </LazySection>
 
-				<LazySection>
-					<Achievements />
-				</LazySection>
+        <LazySection>
+          <Skills />
+        </LazySection>
 
-				<LazySection>
-					<Projects />
-				</LazySection>
+        <LazySection>
+          <Achievements />
+        </LazySection>
 
-				<LazySection>
-					<Experience />
-				</LazySection>
+        <LazySection>
+          <Projects />
+        </LazySection>
 
-				<LazySection>
-					<Contact />
-				</LazySection>
-			</main>
+        <LazySection>
+          <Experience />
+        </LazySection>
 
-			<LazySection>
-				<Footer />
-			</LazySection>
-		</div>
-	);
+        <LazySection>
+          <Contact />
+        </LazySection>
+      </main>
+
+      <LazySection>
+        <Footer />
+      </LazySection>
+    </div>
+  );
 };
 
 export default Index;

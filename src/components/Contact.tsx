@@ -35,7 +35,7 @@ const Contact = () => {
 					<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-space font-bold tracking-tight mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60 px-2">
 						Let's create something
 						<br />
-						extraordinary.
+						extraordinary
 					</h2>
 
 					<p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed px-4">

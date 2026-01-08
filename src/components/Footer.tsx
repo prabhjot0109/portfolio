@@ -1,13 +1,9 @@
 import React from "react";
-import { Heart, Github, Linkedin, Mail, ArrowUp, Twitter } from "lucide-react";
+import { Heart, Github, Linkedin, Mail, Twitter } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/prabhjot0109", label: "GitHub" },
@@ -135,13 +131,6 @@ const Footer = () => {
               Made with{" "}
               <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500 fill-red-500 animate-pulse" />{" "}
             </p>
-            <button
-              onClick={scrollToTop}
-              className="p-2.5 sm:p-3 rounded-full border-2 border-border/60 text-foreground hover:text-portfolio-accent hover:border-portfolio-accent hover:bg-portfolio-accent/10 dark:hover:bg-portfolio-accent/20 transition-all duration-300 hover:shadow-lg hover:shadow-portfolio-accent/20"
-              aria-label="Scroll to top"
-            >
-              <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
           </div>
         </div>
       </div>

@@ -55,13 +55,26 @@ const BottomNav: React.FC<BottomNavProps> = ({ onOpenCommandPalette }) => {
   React.useEffect(() => {
     const handleScroll = () => {
       const sections = navItems.map((item) => item.id);
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
 
+      // Check if we are at the bottom of the page
+      if (scrollPosition + windowHeight >= docHeight - 100) {
+        setActiveSection("contact");
+        return;
+      }
+
+      // Check each section
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
-          break;
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          // If the top of the section is above the threshold (e.g., 40% of viewport)
+          if (rect.top <= windowHeight * 0.4) {
+            setActiveSection(sections[i]);
+            break;
+          }
         }
       }
     };
@@ -82,7 +95,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ onOpenCommandPalette }) => {
   };
 
   return (
-    <div className="fixed bottom-3 sm:bottom-4 left-0 right-0 flex justify-center z-50 px-4 pointer-events-none">
+    <div className="fixed bottom-6 sm:bottom-2 left-0 right-0 flex justify-center z-50 px-4 pointer-events-none">
       <motion.nav
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

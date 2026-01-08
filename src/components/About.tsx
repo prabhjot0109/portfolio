@@ -126,8 +126,9 @@ const About = () => {
                 <LazyImage
                   src={profileImage}
                   alt="Prabhjot Singh Assi"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full transition-transform duration-700 group-hover:scale-105"
                   priority={false}
+                  objectFit="cover"
                 />
 
                 {/* Floating badge */}

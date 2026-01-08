@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code, Database, Brain, Wrench } from "lucide-react";
+import { Code, Database, Brain, Wrench, Layers } from "lucide-react";
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = React.useState("languages");
@@ -8,7 +8,7 @@ const Skills = () => {
   const skillCategories = [
     {
       id: "languages",
-      title: "Languages & Frameworks",
+      title: "Languages",
       icon: Code,
       color: "from-blue-500 to-cyan-500", // Kept for hover glow only
       shadow: "shadow-blue-500/20",
@@ -24,6 +24,50 @@ const Skills = () => {
           level: 90,
         },
         {
+          name: "HTML",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+          level: 95,
+        },
+        {
+          name: "CSS",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+          level: 90,
+        },
+        {
+          name: "JavaScript",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+          level: 95,
+        },
+        {
+          name: "TypeScript",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+          level: 90,
+        },
+      ],
+    },
+    {
+      id: "frameworks",
+      title: "Frameworks & Libraries",
+      icon: Layers,
+      color: "from-indigo-500 to-purple-500",
+      shadow: "shadow-indigo-500/20",
+      skills: [
+        {
+          name: "React",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+          level: 90,
+        },
+        {
+          name: "Django",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg",
+          level: 85,
+        },
+        {
+          name: "Flask",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg",
+          level: 85,
+        },
+        {
           name: "NumPy",
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg",
           level: 90,
@@ -37,11 +81,6 @@ const Skills = () => {
           name: "Matplotlib",
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg",
           level: 80,
-        },
-        {
-          name: "Flask",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg",
-          level: 85,
         },
       ],
     },
@@ -92,14 +131,9 @@ const Skills = () => {
       shadow: "shadow-purple-500/20",
       skills: [
         {
-          name: "TensorFlow",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg",
-          level: 85,
-        },
-        {
           name: "PyTorch",
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg",
-          level: 90,
+          level: 80,
         },
         {
           name: "Scikit-learn",
@@ -121,6 +155,11 @@ const Skills = () => {
           logo: "https://developers.google.com/static/mediapipe/images/mediapipe_icon.svg",
           level: 80,
         },
+        {
+          name: "FastAPI",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+          level: 85,
+        },
       ],
     },
     {
@@ -141,8 +180,8 @@ const Skills = () => {
           level: 95,
         },
         {
-          name: "Anaconda",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/anaconda/anaconda-original.svg",
+          name: "Arduino",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/arduino/arduino-original.svg",
           level: 85,
         },
         {
@@ -166,6 +205,7 @@ const Skills = () => {
 
   const filterCategories = [
     { id: "languages", label: "Languages" },
+    { id: "frameworks", label: "Frameworks" },
     { id: "database", label: "Databases" },
     { id: "ai", label: "Gen AI" },
     { id: "tools", label: "Tools" },
@@ -210,18 +250,18 @@ const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="mb-10 md:mb-16 px-2"
+          className="mb-10 md:mb-16 px-4"
         >
-          <div className="w-full max-w-sm mx-auto md:w-auto md:max-w-none md:flex md:justify-center">
-            <div className="grid grid-cols-4 gap-0.5 p-1 rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50 md:inline-flex md:gap-0">
+          <div className="flex justify-center">
+            <div className="flex items-center justify-start md:justify-center gap-2 p-1.5 rounded-2xl bg-muted/50 backdrop-blur-md border border-border/50 shadow-inner overflow-x-auto scrollbar-hidden max-w-full">
               {filterCategories.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`px-1.5 sm:px-2 md:px-6 py-2 md:py-2.5 rounded-lg text-[11px] sm:text-xs md:text-sm font-medium transition-all duration-300 text-center whitespace-nowrap ${
+                  className={`px-4 sm:px-6 py-2 md:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 whitespace-nowrap ${
                     activeCategory === category.id
-                      ? "bg-background text-foreground shadow-lg"
-                      : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                      ? "bg-background text-foreground shadow-md ring-1 ring-border/50"
+                      : "text-muted-foreground hover:text-foreground hover:bg-background/40"
                   }`}
                 >
                   {category.label}

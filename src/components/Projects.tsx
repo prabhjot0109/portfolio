@@ -152,7 +152,7 @@ const projects = [
     achievements: "Built with Modern Manifest V3 Standards",
     impact: "Enhanced Productivity for Power Users",
     demoUrl: "#",
-    githubUrl: "https://github.com/prabhjot0109/tab_flow",
+    githubUrl: "https://github.com/prabhjot0109/TabFlow",
     status: "Completed",
     role: "Full Stack Developer",
   },

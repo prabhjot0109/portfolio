@@ -7,7 +7,7 @@
 
 A high-performance, minimalist digital garden built to showcase my journey at the intersection of **Software Engineering** and **AI**.
 
-[**Explore the Live Demo**](https://prabhjot-portfolio.vercel.app) • [**Report Bug**](https://github.com/prabhjot0109/portfolio/issues)
+[**Explore the Live Demo**](https://prabhjot0109.vercel.app) • [**Report Bug**](https://github.com/prabhjot0109/portfolio/issues)
 
 ---
 

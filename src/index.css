@@ -176,7 +176,6 @@ All colors MUST be HSL.
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-display: swap;
-    overflow-y: hidden;
   }
 
   /* Typography scale for professional layouts */

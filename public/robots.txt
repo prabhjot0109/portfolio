@@ -1,11 +1,10 @@
 User-agent: *
 Allow: /
 Disallow: /private/
-Disallow: /_next/
 Disallow: /api/
 
 # Sitemap
-Sitemap: https://prabhjotassi.lovable.app/sitemap.xml
+Sitemap: https://prabhjot0109.vercel.app/sitemap.xml
 
 # Crawl-delay for better server performance
 Crawl-delay: 1

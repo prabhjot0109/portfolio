@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code, Database, Brain, Wrench, Layers } from "lucide-react";
+import { Code, Layers, Database, Brain, Wrench } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = React.useState("languages");
@@ -12,6 +13,7 @@ const Skills = () => {
       icon: Code,
       color: "from-blue-500 to-cyan-500", // Kept for hover glow only
       shadow: "shadow-blue-500/20",
+      accent: "blue",
       skills: [
         {
           name: "Python",
@@ -51,6 +53,7 @@ const Skills = () => {
       icon: Layers,
       color: "from-indigo-500 to-purple-500",
       shadow: "shadow-indigo-500/20",
+      accent: "indigo",
       skills: [
         {
           name: "React",
@@ -90,6 +93,7 @@ const Skills = () => {
       icon: Database,
       color: "from-green-500 to-emerald-500",
       shadow: "shadow-green-500/20",
+      accent: "green",
       skills: [
         {
           name: "MySQL",
@@ -129,6 +133,7 @@ const Skills = () => {
       icon: Brain,
       color: "from-purple-500 to-pink-500",
       shadow: "shadow-purple-500/20",
+      accent: "purple",
       skills: [
         {
           name: "PyTorch",
@@ -168,6 +173,7 @@ const Skills = () => {
       icon: Wrench,
       color: "from-orange-500 to-red-500",
       shadow: "shadow-orange-500/20",
+      accent: "orange",
       skills: [
         {
           name: "Git",
@@ -296,8 +302,36 @@ const Skills = () => {
 
                   {/* Header */}
                   <div className="relative z-10 flex items-center gap-4 md:gap-6 mb-6 md:mb-10 pb-4 md:pb-8 border-b border-border/50">
-                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-foreground text-background flex items-center justify-center shadow-lg flex-shrink-0">
-                      <activeSkillCategory.icon className="w-6 h-6 md:w-8 md:h-8" />
+                    <div
+                      className={cn(
+                        "w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-300",
+                        activeSkillCategory.accent === "blue" &&
+                          "bg-blue-500/10",
+                        activeSkillCategory.accent === "indigo" &&
+                          "bg-indigo-500/10",
+                        activeSkillCategory.accent === "green" &&
+                          "bg-green-500/10",
+                        activeSkillCategory.accent === "purple" &&
+                          "bg-purple-500/10",
+                        activeSkillCategory.accent === "orange" &&
+                          "bg-orange-500/10"
+                      )}
+                    >
+                      <activeSkillCategory.icon
+                        className={cn(
+                          "w-6 h-6 md:w-8 md:h-8",
+                          activeSkillCategory.accent === "blue" &&
+                            "text-blue-500",
+                          activeSkillCategory.accent === "indigo" &&
+                            "text-indigo-500",
+                          activeSkillCategory.accent === "green" &&
+                            "text-green-500",
+                          activeSkillCategory.accent === "purple" &&
+                            "text-purple-500",
+                          activeSkillCategory.accent === "orange" &&
+                            "text-orange-500"
+                        )}
+                      />
                     </div>
                     <div className="min-w-0">
                       <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-1 md:mb-2 truncate">

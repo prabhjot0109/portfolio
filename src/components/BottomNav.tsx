@@ -95,7 +95,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ onOpenCommandPalette }) => {
   };
 
   return (
-    <div className="fixed bottom-6 sm:bottom-2 left-0 right-0 flex justify-center z-50 px-4 pointer-events-none">
+    <div className="fixed bottom-6 sm:bottom-3 left-0 right-0 flex justify-center z-50 px-4 pointer-events-none">
       <motion.nav
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

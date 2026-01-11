@@ -506,7 +506,7 @@ const ProjectCard = React.forwardRef<
         className="h-full"
       >
         <motion.div
-          className="group relative h-full bg-card/20 dark:bg-card/20 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30 transition-all duration-500 flex flex-col"
+          className="group relative h-full bg-card/20 dark:bg-card/20 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30 transition-all duration-500 flex flex-col"
           whileHover={{ y: -8, scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}

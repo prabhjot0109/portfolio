@@ -17,7 +17,7 @@ const Experience = () => {
       type: "experience",
       category: "leadership",
       icon: Briefcase,
-      title: "Project Lead",
+      title: "Project Tech Lead",
       organization: "IEEE Humanitarian Technologies",
       location: "Indore, India (On-site)",
       date: "Jul 2024 - Jan 2025",

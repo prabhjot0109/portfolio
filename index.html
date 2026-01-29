@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -18,7 +18,10 @@
       content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     />
     <link rel="canonical" href="https://prabhjot0109.vercel.app/" />
-
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <!-- DNS Prefetch and Preconnect for Performance -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//github.com" />
@@ -31,7 +34,10 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
       rel="preload"
       as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
     />
     <noscript>
       <link
@@ -52,7 +58,7 @@
     <meta property="og:url" content="https://prabhjot0109.vercel.app/" />
     <meta
       property="og:image"
-      content="https://prabhjot0109.vercel.app/og-image.jpg"
+      content="https://prabhjot0109.vercel.app/customimage.png"
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -75,7 +81,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://prabhjot0109.vercel.app/og-image.jpg"
+      content="https://prabhjot0109.vercel.app/customimage.png"
     />
 
     <!-- Structured Data (JSON-LD) -->
@@ -117,7 +123,7 @@
           "Flutter",
           "TypeScript"
         ],
-        "image": "https://prabhjot0109.vercel.app/profile-photo.jpg"
+        "image": "https://prabhjot0109.vercel.app/customimage.png"
       }
     </script>
   </head>

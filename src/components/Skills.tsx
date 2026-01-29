@@ -23,7 +23,7 @@ const Skills = () => {
         {
           name: "C++",
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
-          level: 90,
+          level: 80,
         },
         {
           name: "HTML",
@@ -35,16 +35,16 @@ const Skills = () => {
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
           level: 90,
         },
-        {
-          name: "JavaScript",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-          level: 95,
-        },
-        {
-          name: "TypeScript",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
-          level: 90,
-        },
+        // {
+        //   name: "JavaScript",
+        //   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+        //   level: 95,
+        // },
+        // {
+        //   name: "TypeScript",
+        //   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+        //   level: 90,
+        // },
       ],
     },
     {
@@ -55,21 +55,32 @@ const Skills = () => {
       shadow: "shadow-indigo-500/20",
       accent: "indigo",
       skills: [
-        {
-          name: "React",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-          level: 90,
-        },
-        {
-          name: "Django",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg",
-          level: 85,
-        },
+        // {
+        //   name: "React",
+        //   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+        //   level: 90,
+        // },
+        // {
+        //   name: "Django",
+        //   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg",
+        //   level: 85,
+        // },
         {
           name: "Flask",
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg",
           level: 85,
         },
+        {
+          name: "FastAPI",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+          level: 85,
+        },
+        {
+          name: "Streamlit",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/streamlit/streamlit-original.svg",
+          level: 85,
+        },
+
         {
           name: "NumPy",
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg",
@@ -135,11 +146,11 @@ const Skills = () => {
       shadow: "shadow-purple-500/20",
       accent: "purple",
       skills: [
-        {
-          name: "PyTorch",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg",
-          level: 80,
-        },
+        // {
+        //   name: "PyTorch",
+        //   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg",
+        //   level: 80,
+        // },
         {
           name: "Scikit-learn",
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg",
@@ -159,11 +170,6 @@ const Skills = () => {
           name: "MediaPipe",
           logo: "https://developers.google.com/static/mediapipe/images/mediapipe_icon.svg",
           level: 80,
-        },
-        {
-          name: "FastAPI",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
-          level: 85,
         },
       ],
     },

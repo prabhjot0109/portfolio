@@ -30,9 +30,13 @@ import AutoCarousel from "@/components/AutoCarousel";
 import LazyImage from "@/components/LazyImage";
 
 // Import images
-import islImage from "@/assets/project-isl.jpg";
-import islImage2 from "@/assets/project-isl-2.jpg";
-import islImage3 from "@/assets/project-isl-3.jpg";
+import islImage from "@/assets/isl1.jpg";
+import islImage2 from "@/assets/isl2.png";
+import islImage3 from "@/assets/isl3.png";
+import islImage4 from "@/assets/isl4.png";
+import islImage5 from "@/assets/isl5.png";
+import islImage6 from "@/assets/isl6.png";
+import islImage7 from "@/assets/isl7.png";
 import medaiImage from "@/assets/project-medai.png";
 import medaiImage2 from "@/assets/project-medai-2.png";
 import medaiImage3 from "@/assets/project-medai-3.png";
@@ -77,7 +81,7 @@ const projects = [
     description:
       "Bridging communication gaps with AI-powered ISL-to-text and text-to-ISL conversion.",
     image: islImage,
-    images: [islImage, islImage2, islImage3],
+    images: [islImage, islImage2, islImage3, islImage4, islImage5, islImage6, islImage7],
     tags: ["Flutter", "Python", "MediaPipe", "Computer Vision", "ML"],
     category: ["ai", "mobile"] as CategoryId[],
     longDescription:

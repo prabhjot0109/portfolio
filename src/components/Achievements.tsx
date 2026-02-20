@@ -95,7 +95,7 @@ const Achievements = () => {
     { icon: "🏆", number: "6", label: "Hackathon Wins" },
     { icon: "💰", number: "$4K", label: "Grant Received" },
     { icon: "📱", number: "8+", label: "Projects Built" },
-    { icon: "🤖", number: "20+", label: "AI Models Trained" },
+    // { icon: "🤖", number: "20+", label: "AI Models Trained" },
   ];
 
   return (
@@ -139,9 +139,8 @@ const Achievements = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true, margin: "-50px" }}
-                className={`relative flex items-center gap-8 mb-16 md:mb-24 ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
+                className={`relative flex items-center gap-8 mb-16 md:mb-24 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  }`}
               >
                 {/* Content Card */}
                 <div className="flex-1 w-full md:w-auto">
@@ -149,7 +148,7 @@ const Achievements = () => {
                     className={`group relative p-6 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-xl transition-all duration-500 hover:border-white/20 shadow-xl hover:shadow-2xl hover:-translate-y-1 ${
                       // Only apply colored shadow on hover
                       `hover:${achievement.shadow}`
-                    }`}
+                      }`}
                   >
                     {/* Gradient Glow - Only on Hover */}
                     <div
@@ -162,17 +161,17 @@ const Achievements = () => {
                           className={cn(
                             "w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300",
                             achievement.color.includes("indigo") &&
-                              "bg-indigo-500/10",
+                            "bg-indigo-500/10",
                             achievement.color.includes("orange") &&
-                              "bg-orange-500/10",
+                            "bg-orange-500/10",
                             achievement.color.includes("yellow") &&
-                              "bg-yellow-500/10",
+                            "bg-yellow-500/10",
                             achievement.color.includes("green") &&
-                              "bg-green-500/10",
+                            "bg-green-500/10",
                             achievement.color.includes("blue") &&
-                              "bg-blue-500/10",
+                            "bg-blue-500/10",
                             achievement.color.includes("purple") &&
-                              "bg-purple-500/10",
+                            "bg-purple-500/10",
                             achievement.color.includes("red") && "bg-red-500/10"
                           )}
                         >
@@ -180,19 +179,19 @@ const Achievements = () => {
                             className={cn(
                               "w-6 h-6",
                               achievement.color.includes("indigo") &&
-                                "text-indigo-500",
+                              "text-indigo-500",
                               achievement.color.includes("orange") &&
-                                "text-orange-500",
+                              "text-orange-500",
                               achievement.color.includes("yellow") &&
-                                "text-yellow-500",
+                              "text-yellow-500",
                               achievement.color.includes("green") &&
-                                "text-green-500",
+                              "text-green-500",
                               achievement.color.includes("blue") &&
-                                "text-blue-500",
+                              "text-blue-500",
                               achievement.color.includes("purple") &&
-                                "text-purple-500",
+                              "text-purple-500",
                               achievement.color.includes("red") &&
-                                "text-red-500"
+                              "text-red-500"
                             )}
                           />
                         </div>
@@ -224,11 +223,10 @@ const Achievements = () => {
                 <div className="hidden md:flex relative items-center justify-center w-12 flex-shrink-0">
                   {/* Connector Line */}
                   <div
-                    className={`absolute top-1/2 w-12 h-0.5 bg-gradient-to-r ${
-                      index % 2 === 0
+                    className={`absolute top-1/2 w-12 h-0.5 bg-gradient-to-r ${index % 2 === 0
                         ? "right-1/2 from-transparent to-primary/30"
                         : "left-1/2 from-primary/30 to-transparent"
-                    }`}
+                      }`}
                   />
 
                   {/* Dot */}
@@ -248,7 +246,7 @@ const Achievements = () => {
         </div>
 
         {/* Impact Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-4 md:gap-6 max-w-4xl mx-auto">
           {impactStats.map((stat, index) => {
             const colors = [
               {
@@ -278,7 +276,7 @@ const Achievements = () => {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                className={`group relative p-5 md:p-6 rounded-2xl bg-card/20 border border-white/10 backdrop-blur-xl text-center transition-all duration-500 hover:border-white/20 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:${color.shadow}`}
+                className={`group relative p-5 md:p-6 rounded-2xl bg-card/20 border border-white/10 backdrop-blur-xl text-center transition-all duration-500 hover:border-white/20 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:${color.shadow} w-full sm:w-[calc(50%-1rem)] md:w-[calc(25%-1.5rem)] min-w-[200px]`}
               >
                 {/* Gradient Glow - Only on Hover */}
                 <div

@@ -270,11 +270,10 @@ const Skills = () => {
                 <button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`px-4 sm:px-6 py-2 md:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 whitespace-nowrap ${
-                    activeCategory === category.id
+                  className={`px-4 sm:px-6 py-2 md:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 whitespace-nowrap ${activeCategory === category.id
                       ? "bg-background text-foreground shadow-md ring-1 ring-border/50"
                       : "text-muted-foreground hover:text-foreground hover:bg-background/40"
-                  }`}
+                    }`}
                 >
                   {category.label}
                 </button>
@@ -296,10 +295,10 @@ const Skills = () => {
                 layout
               >
                 <div
-                  className={`group relative p-4 sm:p-6 md:p-10 rounded-2xl md:rounded-3xl border border-white/10 bg-card/20 backdrop-blur-xl transition-all duration-500 hover:border-white/20 shadow-xl hover:shadow-2xl ${
+                  className={`group relative p-4 sm:p-6 md:p-10 rounded-2xl md:rounded-3xl border border-border/50 dark:border-white/10 bg-card/80 dark:bg-card/20 backdrop-blur-xl transition-all duration-500 hover:border-border dark:hover:border-white/20 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-hover)] ${
                     // Only apply colored shadow on hover
                     `hover:${activeSkillCategory.shadow}`
-                  }`}
+                    }`}
                 >
                   {/* Gradient Glow - Only on Hover */}
                   <div
@@ -312,30 +311,30 @@ const Skills = () => {
                       className={cn(
                         "w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-300",
                         activeSkillCategory.accent === "blue" &&
-                          "bg-blue-500/10",
+                        "bg-blue-500/10",
                         activeSkillCategory.accent === "indigo" &&
-                          "bg-indigo-500/10",
+                        "bg-indigo-500/10",
                         activeSkillCategory.accent === "green" &&
-                          "bg-green-500/10",
+                        "bg-green-500/10",
                         activeSkillCategory.accent === "purple" &&
-                          "bg-purple-500/10",
+                        "bg-purple-500/10",
                         activeSkillCategory.accent === "orange" &&
-                          "bg-orange-500/10"
+                        "bg-orange-500/10"
                       )}
                     >
                       <activeSkillCategory.icon
                         className={cn(
                           "w-6 h-6 md:w-8 md:h-8",
                           activeSkillCategory.accent === "blue" &&
-                            "text-blue-500",
+                          "text-blue-500",
                           activeSkillCategory.accent === "indigo" &&
-                            "text-indigo-500",
+                          "text-indigo-500",
                           activeSkillCategory.accent === "green" &&
-                            "text-green-500",
+                          "text-green-500",
                           activeSkillCategory.accent === "purple" &&
-                            "text-purple-500",
+                          "text-purple-500",
                           activeSkillCategory.accent === "orange" &&
-                            "text-orange-500"
+                          "text-orange-500"
                         )}
                       />
                     </div>
@@ -358,7 +357,7 @@ const Skills = () => {
                       >
                         <div className="flex justify-between items-center">
                           <div className="flex items-center gap-3 md:gap-4">
-                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-white/5 p-1.5 md:p-2 flex items-center justify-center border border-white/10 group-hover/skill:border-foreground/20 transition-colors flex-shrink-0">
+                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-muted/80 dark:bg-white/5 p-1.5 md:p-2 flex items-center justify-center border border-border/60 dark:border-white/10 group-hover/skill:border-border dark:group-hover/skill:border-foreground/20 transition-colors flex-shrink-0">
                               <img
                                 src={skill.logo}
                                 alt={skill.name}

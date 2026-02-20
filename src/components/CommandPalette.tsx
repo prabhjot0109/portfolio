@@ -243,29 +243,28 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
-						transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-						className="fixed inset-0 bg-black/40 dark:bg-black/60 backdrop-blur-xl z-50"
+						transition={{ duration: 0.15, ease: "easeOut" }}
+						className="fixed inset-0 bg-black/60 z-50"
 						onClick={onClose}
 						aria-hidden="true"
 					/>
 					<motion.div
 						ref={focusTrapRef}
-						initial={{ opacity: 0, scale: 0.96, y: "-48%", x: "-50%" }}
+						initial={{ opacity: 0, scale: 0.98, y: "-48%", x: "-50%" }}
 						animate={{ opacity: 1, scale: 1, y: "-50%", x: "-50%" }}
-						exit={{ opacity: 0, scale: 0.96, y: "-48%", x: "-50%" }}
+						exit={{ opacity: 0, scale: 0.98, y: "-48%", x: "-50%" }}
 						transition={{
-							duration: 0.35,
-							ease: [0.32, 0.72, 0, 1],
-							opacity: { duration: 0.2 },
+							duration: 0.15,
+							ease: "easeOut",
 						}}
-						className="fixed top-1/2 left-1/2 w-full max-w-lg z-50 px-4"
+						className="fixed top-1/2 left-1/2 w-full max-w-2xl z-50 px-4"
 						role="dialog"
 						aria-modal="true"
 						aria-label="Command palette"
 					>
-						<div className="liquid-glass-modal">
-							{/* Search Input - Liquid Glass Style */}
-							<div className="flex items-center gap-3 px-5 py-4 border-b liquid-glass-divider">
+						<div className="bg-background rounded-2xl border border-border overflow-hidden shadow-2xl">
+							{/* Search Input */}
+							<div className="flex items-center gap-3 px-5 py-4 border-b border-border">
 								<Search className="w-5 h-5 text-muted-foreground/80" />
 								<input
 									type="text"
@@ -277,7 +276,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
 									autoFocus
 									aria-label="Search commands"
 								/>
-								<kbd className="hidden sm:flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-muted-foreground/70 liquid-glass-kbd">
+								<kbd className="hidden sm:flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-muted-foreground/70 bg-muted/50 border border-border rounded-md">
 									⌘ + K / Ctrl + K
 								</kbd>
 								<button
@@ -290,7 +289,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
 								</button>
 							</div>
 
-							{/* Results - Liquid Glass Style */}
+							{/* Results */}
 							<div
 								className="max-h-80 overflow-y-auto py-2 px-2"
 								role="listbox"
@@ -321,36 +320,32 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
 													key={item.id}
 													onClick={() => executeCommand(item)}
 													onMouseEnter={() => setSelectedIndex(globalIndex)}
-													className={`liquid-glass-item w-full flex items-center gap-3 px-3 py-2.5 mx-1 text-left transition-all duration-150 ${
-														isSelected ? "active" : ""
-													}`}
+													className={`w-full flex items-center gap-3 px-3 py-2.5 text-left rounded-xl transition-all duration-150 ${isSelected ? "bg-muted/50" : "hover:bg-muted/30"
+														}`}
 													role="option"
 													aria-selected={isSelected}
 												>
 													<div
-														className={`p-1.5 rounded-lg transition-colors duration-150 ${
-															isSelected ? "bg-foreground/10" : "bg-transparent"
-														}`}
+														className={`p-1.5 rounded-lg transition-colors duration-150 ${isSelected ? "bg-foreground/10" : "bg-transparent"
+															}`}
 													>
 														<item.icon
-															className={`w-4 h-4 transition-colors duration-150 ${
-																isSelected
-																	? "text-foreground"
-																	: "text-muted-foreground/70"
-															}`}
+															className={`w-4 h-4 transition-colors duration-150 ${isSelected
+																? "text-foreground"
+																: "text-muted-foreground/70"
+																}`}
 														/>
 													</div>
 													<span
-														className={`flex-1 text-sm font-medium transition-colors duration-150 ${
-															isSelected
-																? "text-foreground"
-																: "text-foreground/80"
-														}`}
+														className={`flex-1 text-sm font-medium transition-colors duration-150 ${isSelected
+															? "text-foreground"
+															: "text-foreground/80"
+															}`}
 													>
 														{item.label}
 													</span>
 													{isSelected && (
-														<kbd className="text-xs text-muted-foreground/60 font-semibold liquid-glass-kbd px-2 py-0.5">
+														<kbd className="text-xs text-muted-foreground/60 font-semibold bg-muted border border-border rounded-md px-2 py-0.5">
 															↵
 														</kbd>
 													)}
@@ -361,23 +356,23 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
 								))}
 							</div>
 
-							{/* Footer - Liquid Glass Style */}
-							<div className="flex items-center justify-between px-5 py-3 border-t liquid-glass-divider">
+							{/* Footer */}
+							<div className="flex items-center justify-between px-5 py-3 bg-muted/20 border-t border-border">
 								<div className="flex items-center gap-5">
 									<span className="flex items-center gap-1.5 text-xs text-muted-foreground/60 font-medium">
-										<kbd className="px-1.5 py-0.5 liquid-glass-kbd text-[10px] font-semibold">
+										<kbd className="px-1.5 py-0.5 bg-muted border border-border rounded-md text-[10px] font-semibold">
 											↑↓
 										</kbd>
 										Navigate
 									</span>
 									<span className="flex items-center gap-1.5 text-xs text-muted-foreground/60 font-medium">
-										<kbd className="px-1.5 py-0.5 liquid-glass-kbd text-[10px] font-semibold">
+										<kbd className="px-1.5 py-0.5 bg-muted border border-border rounded-md text-[10px] font-semibold">
 											↵
 										</kbd>
 										Select
 									</span>
 									<span className="flex items-center gap-1.5 text-xs text-muted-foreground/60 font-medium">
-										<kbd className="px-1.5 py-0.5 liquid-glass-kbd text-[10px] font-semibold">
+										<kbd className="px-1.5 py-0.5 bg-muted border border-border rounded-md text-[10px] font-semibold">
 											Esc
 										</kbd>
 										Close

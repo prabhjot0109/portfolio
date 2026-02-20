@@ -59,6 +59,10 @@ import tabflow1 from "@/assets/tabflow1.png";
 import tabflow2 from "@/assets/tabflow2.png";
 import tabflow3 from "@/assets/tabflow3.png";
 import sentient1 from "@/assets/sentient1.png";
+import recall1 from "@/assets/recall1.png";
+import recall2 from "@/assets/recall2.png";
+import recall3 from "@/assets/recall3.png";
+import recall4 from "@/assets/recall4.png";
 
 // Category definitions
 const categories = [
@@ -77,7 +81,7 @@ const projects = [
   {
     id: 1,
     title: "Signify",
-    subtitle: "AI Sign Language Translator",
+    subtitle: "AI Sign Language Translator App",
     description:
       "Bridging communication gaps with AI-powered ISL-to-text and text-to-ISL conversion.",
     image: islImage,
@@ -104,7 +108,7 @@ const projects = [
   {
     id: 3,
     title: "Vrinda",
-    subtitle: "Smart Farming Assistant",
+    subtitle: "Smart Farming Assistant App",
     description:
       "Revolutionizing agriculture with IoT sensors and AI-based crop management insights.",
     image: vrindaImage,
@@ -126,6 +130,32 @@ const projects = [
     githubUrl: "https://github.com/prabhjot0109/vrinda/tree/main",
     status: "Ongoing",
     role: "Lead Developer",
+  },
+  {
+    id: 10,
+    title: "Recall",
+    subtitle: "Smart Bookmark Manager",
+    description:
+      "A modern, real-time bookmark manager that synchronizes instantly across all devices. Uses Gemini AI to auto-generate website descriptions via web scraping. Built with Next.js 14 and Supabase.",
+    image: recall1,
+    images: [recall1, recall2, recall3, recall4],
+    tags: ["Next.js 14", "TypeScript", "Tailwind CSS", "Supabase", "Gemini AI", "Web Scraping"],
+    category: ["web", "software"] as CategoryId[],
+    longDescription:
+      "Recall is a modern, real-time bookmark manager that keeps your bookmarks synchronized across all your devices instantly. Perfect for organizing your digital life without worrying about manual syncing, featuring Google OAuth authentication, optimistic UI updates, and intelligent link preservation. It automatically generates AI descriptions of bookmarked websites using Gemini AI and web scraping in a clean, intuitive layout.",
+    features: [
+      "Real-time bookmark synchronization across devices",
+      "Secure Google OAuth authentication via Supabase",
+      "Interactive UI with optimistic updates and favicon fetching",
+      "Privacy-first with Row Level Security (RLS)",
+      "Fully responsive, mobile-first design",
+    ],
+    achievements: "Custom useRealtime synchronization hook, Realtime Sync, AI Summary generation",
+    impact: "Efficient web browsing and digital organization",
+    demoUrl: "https://recallbookmark.vercel.app/",
+    githubUrl: "https://github.com/prabhjot0109/Recall",
+    status: "Completed",
+    role: "Full Stack Developer",
   },
   {
     id: 8,
@@ -229,7 +259,7 @@ const projects = [
   {
     id: 4,
     title: "Kavach",
-    subtitle: "Emergency SOS System",
+    subtitle: "Emergency SOS App",
     description:
       "A voice-activated safety app designed for rapid emergency response in critical situations.",
     image: kavachImage,
@@ -255,7 +285,7 @@ const projects = [
   {
     id: 5,
     title: "Swara",
-    subtitle: "Vocal Analysis Tool",
+    subtitle: "Vocal Analysis Software",
     description:
       "Helping singers perfect their craft through data-driven pitch analysis and session tracking.",
     image: swaraImage,
@@ -423,13 +453,15 @@ const ProjectDialogContent = ({
             </h3>
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag, idx) => (
-                <Badge
+                <span
                   key={idx}
-                  variant="secondary"
-                  className="bg-background hover:bg-background/80 border border-border/50"
+                  className="text-xs px-2.5 py-1 rounded-full
+                    bg-muted text-muted-foreground
+                    border border-border
+                    select-none"
                 >
                   {tag}
-                </Badge>
+                </span>
               ))}
             </div>
           </div>
@@ -457,37 +489,49 @@ const ProjectDialogContent = ({
       </div>
 
       <div className="flex flex-row gap-3 pt-4 border-t border-border/50">
-        <Button
-          className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20"
-          size="lg"
-          asChild
-        >
+        {project.demoUrl !== "#" ? (
           <a
             href={project.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center cursor-pointer"
+            className="no-hover flex-1 group/demo inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl font-semibold text-sm tracking-wide
+              bg-foreground text-background
+              border border-foreground/10
+              shadow-sm
+              transition-all duration-200 ease-out
+              hover:bg-foreground/85 hover:shadow-md hover:-translate-y-[1px]
+              active:scale-[0.97] active:shadow-none"
           >
-            <Globe className="h-4 w-4 mr-2" />
+            <Globe className="h-4 w-4 transition-transform duration-200 group-hover/demo:rotate-12" />
             Live Demo
+            <ExternalLink className="h-3.5 w-3.5 opacity-60 transition-all duration-200 group-hover/demo:opacity-100 group-hover/demo:translate-x-0.5 group-hover/demo:-translate-y-0.5" />
           </a>
-        </Button>
-        <Button
-          variant="outline"
-          className="flex-1 border-2 hover:bg-muted hover:text-foreground"
-          size="lg"
-          asChild
-        >
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center cursor-pointer"
+        ) : (
+          <span
+            className="flex-1 inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl font-semibold text-sm tracking-wide
+              bg-muted/60 text-muted-foreground
+              border border-border/60
+              cursor-not-allowed select-none opacity-70"
           >
-            <Github className="h-4 w-4 mr-2" />
-            Code
-          </a>
-        </Button>
+            <Globe className="h-4 w-4" />
+            No Demo
+          </span>
+        )}
+        <a
+          href={project.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="no-hover flex-1 group/code inline-flex items-center justify-center gap-2 h-11 px-6 rounded-xl font-semibold text-sm tracking-wide
+            bg-transparent text-foreground
+            border-2 border-border
+            shadow-sm
+            transition-all duration-200 ease-out
+            hover:border-foreground/50 hover:bg-foreground/5 hover:shadow-md hover:-translate-y-[1px]
+            active:scale-[0.97] active:shadow-none"
+        >
+          <Github className="h-4 w-4 transition-transform duration-200 group-hover/code:scale-110" />
+          View Code
+        </a>
       </div>
     </div>
   </DialogContent>
@@ -510,7 +554,7 @@ const ProjectCard = React.forwardRef<
         className="h-full"
       >
         <motion.div
-          className="group relative h-full bg-card/20 dark:bg-card/20 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30 transition-all duration-500 flex flex-col"
+          className="group relative h-full bg-card/90 dark:bg-card/20 backdrop-blur-xl border border-border dark:border-white/10 rounded-2xl overflow-hidden hover:shadow-[var(--shadow-hover)] hover:border-primary/20 transition-all duration-500 flex flex-col shadow-[var(--shadow-card)]"
           whileHover={{ y: -8, scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -530,10 +574,9 @@ const ProjectCard = React.forwardRef<
             <div className="absolute top-4 right-4 z-20">
               <Badge
                 className={`
-                  ${
-                    project.status === "Completed"
-                      ? "bg-green-500/90"
-                      : project.status === "Ongoing"
+                  ${project.status === "Completed"
+                    ? "bg-green-500/90"
+                    : project.status === "Ongoing"
                       ? "bg-blue-500/90"
                       : "bg-orange-500/90"
                   } 
@@ -574,64 +617,54 @@ const ProjectCard = React.forwardRef<
             <div className="mt-auto space-y-4">
               <div className="flex flex-wrap gap-2">
                 {project.tags.slice(0, 3).map((tag, idx) => (
-                  <motion.span
+                  <span
                     key={idx}
-                    className="text-xs px-2.5 py-1 rounded-full bg-muted/50 text-muted-foreground border border-border/50 group-hover:border-primary/20 transition-colors cursor-default"
-                    whileHover={{
-                      scale: 1.1,
-                      backgroundColor: "hsl(var(--primary) / 0.1)",
-                    }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    className="text-xs px-2.5 py-1 rounded-full
+                      bg-muted text-muted-foreground
+                      border border-border
+                      hover:bg-muted/70 hover:text-foreground hover:border-border
+                      transition-colors duration-150 cursor-default select-none"
                   >
                     {tag}
-                  </motion.span>
+                  </span>
                 ))}
                 {project.tags.length > 3 && (
-                  <motion.span
-                    className="text-xs px-2.5 py-1 rounded-full bg-muted/50 text-muted-foreground border border-border/50"
-                    whileHover={{ scale: 1.1 }}
+                  <span
+                    className="text-xs px-2.5 py-1 rounded-full
+                      bg-muted text-muted-foreground
+                      border border-border
+                      cursor-default select-none"
                   >
                     +{project.tags.length - 3}
-                  </motion.span>
+                  </span>
                 )}
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-border/50">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
+              <div className="flex items-center justify-between pt-4 border-t border-border/50 gap-2">
+                <motion.a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="no-hover group/gh inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-lg
+                    text-muted-foreground bg-transparent
+                    border border-transparent
+                    transition-all duration-200
+                    hover:text-foreground hover:bg-muted/70 hover:border-border/60"
+                  whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-muted-foreground hover:text-foreground hover:bg-primary/10 p-0 h-auto px-2 py-1"
-                    asChild
-                  >
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center"
-                    >
-                      <Github className="w-4 h-4 mr-1.5" />
-                      Code
-                    </a>
-                  </Button>
-                </motion.div>
+                  <Github className="w-3.5 h-3.5 transition-transform duration-200 group-hover/gh:scale-110" />
+                  Code
+                </motion.a>
                 <DialogTrigger asChild>
-                  <motion.div
-                    whileHover={{ scale: 1.05, x: 3 }}
+                  <motion.button
+                    className="inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary/80 transition-colors duration-150"
+                    whileHover={{ scale: 1.05, x: 2 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Button
-                      variant="link"
-                      size="sm"
-                      className="text-primary p-0 h-auto group/btn"
-                    >
-                      Learn More
-                      <ChevronDown className="w-4 h-4 ml-1 -rotate-90 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
-                  </motion.div>
+                    Details
+                    <ChevronDown className="w-3.5 h-3.5 -rotate-90 transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </motion.button>
                 </DialogTrigger>
               </div>
             </div>
@@ -649,17 +682,29 @@ const Projects = () => {
   const [showAll, setShowAll] = React.useState(false);
   const [activeCategory, setActiveCategory] = React.useState<CategoryId>("all");
   const firstHiddenProjectRef = React.useRef<HTMLDivElement>(null);
+  const sectionRef = React.useRef<HTMLElement>(null);
 
-  React.useEffect(() => {
-    if (showAll && firstHiddenProjectRef.current) {
+  const handleToggleShowAll = () => {
+    if (showAll) {
+      // Closing: first hide extras, then scroll back to section top
+      setShowAll(false);
+      setTimeout(() => {
+        sectionRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 50);
+    } else {
+      // Opening: show all, then scroll to first new card after animation
+      setShowAll(true);
       setTimeout(() => {
         firstHiddenProjectRef.current?.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
-      }, 100);
+      }, 350);
     }
-  }, [showAll]);
+  };
 
   const filteredProjects = React.useMemo(() => {
     if (activeCategory === "all") return projects;
@@ -674,6 +719,7 @@ const Projects = () => {
 
   return (
     <section
+      ref={sectionRef}
       id="projects"
       className="py-24 bg-background relative overflow-hidden"
     >
@@ -718,11 +764,10 @@ const Projects = () => {
                       setActiveCategory(category.id);
                       setShowAll(false);
                     }}
-                    className={`px-2.5 sm:px-3 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg text-[11px] sm:text-xs md:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
-                      activeCategory === category.id
-                        ? "bg-background text-foreground shadow-lg"
-                        : "text-muted-foreground hover:text-foreground hover:bg-background/50"
-                    }`}
+                    className={`px-2.5 sm:px-3 md:px-5 py-1.5 sm:py-2 md:py-2.5 rounded-lg text-[11px] sm:text-xs md:text-sm font-medium transition-all duration-300 whitespace-nowrap ${activeCategory === category.id
+                      ? "bg-background text-foreground shadow-lg"
+                      : "text-muted-foreground hover:text-foreground hover:bg-background/50"
+                      }`}
                   >
                     {category.label}
                   </button>
@@ -753,17 +798,20 @@ const Projects = () => {
             viewport={{ once: true }}
             className="text-center mt-16"
           >
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-block"
+            >
               <Button
-                onClick={() => setShowAll(!showAll)}
-                size="lg"
+                onClick={handleToggleShowAll}
                 variant="outline"
-                className="group min-w-[200px] border-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                className="group min-w-[180px] rounded-full border-2 hover:bg-primary/10 hover:text-primary transition-all duration-300 flex items-center justify-center gap-2 h-10 px-6 text-sm"
               >
                 {showAll ? (
                   <>
-                    Show Less{" "}
-                    <ChevronUp className="ml-2 h-4 w-4 group-hover:-translate-y-1 transition-transform" />
+                    Show Less
+                    <ChevronUp className="h-4 w-4 group-hover:-translate-y-1 transition-transform" />
                   </>
                 ) : (
                   <>
@@ -771,9 +819,9 @@ const Projects = () => {
                     {activeCategory === "all"
                       ? "Projects"
                       : categories.find((c) => c.id === activeCategory)
-                          ?.label}{" "}
+                        ?.label}{" "}
                     ({filteredProjects.length - 3} more)
-                    <ChevronDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform" />
+                    <ChevronDown className="h-4 w-4 group-hover:translate-y-1 transition-transform" />
                   </>
                 )}
               </Button>

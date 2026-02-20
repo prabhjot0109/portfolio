@@ -81,16 +81,13 @@ const About = () => {
       className="py-16 sm:py-24 md:py-32 relative overflow-hidden"
       aria-label="About Prabhjot Singh Assi"
     >
-      {/* Dynamic Glow Effect - Sky Blue (Light) / Cosmos (Dark) */}
-      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[160%] h-[700px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-300/40 via-sky-200/20 to-transparent dark:from-indigo-500/25 dark:via-blue-900/15 dark:to-transparent pointer-events-none blur-[100px] opacity-70" />
-
-      {/* Noise texture overlay */}
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay pointer-events-none" />
+      {/* Dynamic Glow Effect - Neutral (Light) / Cosmos (Dark) */}
+      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[160%] h-[700px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-200/60 via-neutral-100/30 to-transparent dark:from-indigo-500/25 dark:via-blue-900/15 dark:to-transparent pointer-events-none blur-[100px] opacity-70" />
 
       {/* Subtle background elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-portfolio-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-portfolio-accent/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-neutral-200/40 dark:bg-portfolio-accent/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-neutral-200/40 dark:bg-portfolio-accent/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">

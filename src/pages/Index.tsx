@@ -23,6 +23,10 @@ const Index = () => {
   // Command palette state
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
 
+  const toggleCommandPalette = useCallback(() => {
+    setIsCommandPaletteOpen((prev) => !prev);
+  }, []);
+
   const openCommandPalette = useCallback(() => {
     setIsCommandPaletteOpen(true);
   }, []);
@@ -52,7 +56,7 @@ const Index = () => {
       />
 
       {/* Bottom Navigation */}
-      <BottomNav onOpenCommandPalette={openCommandPalette} />
+      <BottomNav onOpenCommandPalette={toggleCommandPalette} />
 
       <main id="main-content">
         <Hero />

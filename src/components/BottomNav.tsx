@@ -108,7 +108,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ onOpenCommandPalette }) => {
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="liquid-glass-nav flex items-center justify-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-1.5 sm:py-2">
+        <div className="liquid-glass-nav flex items-center justify-center gap-0.5 sm:gap-1 px-2 sm:px-2 py-2 sm:py-2">
           {/* Navigation Items */}
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
@@ -119,30 +119,28 @@ const BottomNav: React.FC<BottomNavProps> = ({ onOpenCommandPalette }) => {
                 key={item.id}
                 type="button"
                 onClick={() => handleNavClick(item.href)}
-                className={`nav-item group relative flex flex-row items-center justify-center gap-1 px-2 sm:px-2.5 py-1.5 rounded-xl transition-all duration-200
+                className={`nav-item group relative flex flex-row items-center justify-center gap-1 px-2.5 sm:px-2.5 py-2 sm:py-1.5 rounded-xl transition-all duration-200
 								${isActive ? "nav-item-active" : ""}
 							`}
                 aria-label={item.label}
                 aria-current={isActive ? "page" : undefined}
               >
                 <Icon
-                  className={`w-4 h-4 sm:w-5 sm:h-5 transition-all duration-200
-									${
-                    isActive
+                  className={`w-5 h-5 sm:w-5 sm:h-5 transition-all duration-200
+									${isActive
                       ? "text-foreground"
                       : "text-muted-foreground group-hover:text-foreground"
-                  }
+                    }
 								`}
                   aria-hidden="true"
                 />
                 {/* Label - Hidden on mobile, shown on right side on desktop */}
                 <span
                   className={`hidden sm:inline text-xs font-medium transition-colors duration-200
-									${
-                    isActive
+									${isActive
                       ? "text-foreground"
                       : "text-muted-foreground group-hover:text-foreground"
-                  }
+                    }
 								`}
                 >
                   {item.label}
@@ -155,18 +153,18 @@ const BottomNav: React.FC<BottomNavProps> = ({ onOpenCommandPalette }) => {
           <button
             type="button"
             onClick={toggleTheme}
-            className="nav-item group flex flex-row items-center justify-center gap-1 px-2 sm:px-2.5 py-1.5 rounded-xl transition-all duration-200"
+            className="nav-item group flex flex-row items-center justify-center gap-1 px-2.5 sm:px-2.5 py-2 sm:py-1.5 rounded-xl transition-all duration-200"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             aria-pressed={theme === "dark"}
           >
             {theme === "dark" ? (
               <Sun
-                className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground group-hover:text-foreground transition-colors duration-200"
+                className="w-5 h-5 sm:w-5 sm:h-5 text-muted-foreground group-hover:text-foreground transition-colors duration-200"
                 aria-hidden="true"
               />
             ) : (
               <Moon
-                className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground group-hover:text-foreground transition-colors duration-200"
+                className="w-5 h-5 sm:w-5 sm:h-5 text-muted-foreground group-hover:text-foreground transition-colors duration-200"
                 aria-hidden="true"
               />
             )}
@@ -179,11 +177,11 @@ const BottomNav: React.FC<BottomNavProps> = ({ onOpenCommandPalette }) => {
           <button
             type="button"
             onClick={onOpenCommandPalette}
-            className="nav-item group flex flex-row items-center justify-center gap-1 px-2 sm:px-2.5 py-1.5 rounded-xl transition-all duration-200"
+            className="nav-item group flex flex-row items-center justify-center gap-1 px-2.5 sm:px-2.5 py-2 sm:py-1.5 rounded-xl transition-all duration-200"
             aria-label="Open command palette (Ctrl+K or Cmd+K)"
           >
             <Command
-              className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground group-hover:text-foreground transition-colors duration-200"
+              className="w-5 h-5 sm:w-5 sm:h-5 text-muted-foreground group-hover:text-foreground transition-colors duration-200"
               aria-hidden="true"
             />
             <span className="hidden sm:inline text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-200">

@@ -29,62 +29,71 @@ All colors MUST be HSL.
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
 }
 
 @layer base {
-  /* Custom Portfolio Colors - Pure White Light Theme */
+
+  /* Vercel-Inspired Light Theme — Clean, Crisp, Premium */
   :root {
-    /* Pure white background with neutral grays */
+    /* Vercel-like neutral white backgrounds */
     --background: 0 0% 100%;
-    --foreground: 0 0% 8%;
+    --foreground: 0 0% 9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 8%;
+    --card-foreground: 0 0% 9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
+    --popover-foreground: 0 0% 9%;
 
-    --primary: 0 0% 10%;
+    /* Vercel primary = pure black on white */
+    --primary: 0 0% 9%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 10%;
+    /* Soft neutral secondary */
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 0 0% 9%;
 
+    /* Muted = Vercel's faint gray bg for subtle areas */
     --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 35%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 0 0% 10%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
 
-    --destructive: 0 65% 48%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 30%;
+    /* Vercel's thin, precise borders */
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 0% 9%;
 
     --radius: 0.75rem;
 
-    /* Portfolio specific colors - neutral grays */
-    --portfolio-dark: 0 0% 10%;
-    --portfolio-accent: 0 0% 20%;
-    --portfolio-glow: 0 0% 35%;
+    /* Portfolio design tokens — Vercel-aligned */
+    --portfolio-dark: 0 0% 9%;
+    --portfolio-accent: 0 0% 9%;
+    --portfolio-glow: 0 0% 40%;
 
-    /* Gradients - Pure white to subtle gray */
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%), hsl(0 0% 98%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(0 0% 98%));
-    --gradient-accent: linear-gradient(135deg, hsl(0 0% 10%), hsl(0 0% 25%));
-    --gradient-section: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 98%));
+    /* Gradients — pure white, zero blue cast */
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(0 0% 98%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(0 0% 98%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(0 0% 9%) 0%, hsl(0 0% 20%) 100%);
+    --gradient-section: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(0 0% 97%) 100%);
 
-    /* Shadows - Proper gray shades */
-    --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.06),
-      0 4px 16px -4px hsl(0 0% 0% / 0.04);
-    --shadow-hover: 0 8px 24px -4px hsl(0 0% 0% / 0.1),
-      0 16px 48px -8px hsl(0 0% 0% / 0.06);
-    --shadow-glow: 0 0 32px hsl(0 0% 0% / 0.08);
+    /* Vercel-quality shadows — precise, subtle */
+    --shadow-card: 0 0 0 1px hsl(0 0% 0% / 0.06),
+      0 2px 4px hsl(0 0% 0% / 0.04),
+      0 4px 12px hsl(0 0% 0% / 0.05);
+    --shadow-hover: 0 0 0 1px hsl(0 0% 0% / 0.08),
+      0 4px 8px hsl(0 0% 0% / 0.06),
+      0 12px 32px hsl(0 0% 0% / 0.08);
+    --shadow-glow: 0 0 0 1px hsl(0 0% 0% / 0.05),
+      0 8px 24px hsl(0 0% 0% / 0.06);
 
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -92,12 +101,12 @@ All colors MUST be HSL.
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 20%;
-    --sidebar-primary: 0 0% 10%;
+    --sidebar-primary: 0 0% 9%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 95%;
-    --sidebar-accent-foreground: 0 0% 10%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 0 0% 30%;
+    --sidebar-accent-foreground: 0 0% 9%;
+    --sidebar-border: 0 0% 89%;
+    --sidebar-ring: 0 0% 9%;
   }
 
   .dark {
@@ -157,6 +166,7 @@ All colors MUST be HSL.
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .theme {
     --animate-meteor-effect: meteor 5s linear infinite;
   }
@@ -212,21 +222,17 @@ All colors MUST be HSL.
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(
-      180deg,
-      hsl(var(--portfolio-accent)),
-      hsl(var(--portfolio-glow))
-    );
+    background: linear-gradient(180deg,
+        hsl(var(--portfolio-accent)),
+        hsl(var(--portfolio-glow)));
     border-radius: 4px;
     transition: all 0.3s ease;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(
-      180deg,
-      hsl(var(--portfolio-glow)),
-      hsl(var(--portfolio-accent))
-    );
+    background: linear-gradient(180deg,
+        hsl(var(--portfolio-glow)),
+        hsl(var(--portfolio-accent)));
     box-shadow: 0 0 10px hsl(var(--portfolio-accent) / 0.5);
   }
 
@@ -242,16 +248,20 @@ All colors MUST be HSL.
 
   /* Hidden scrollbar while maintaining scroll functionality */
   .scrollbar-hidden {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 
   .scrollbar-hidden::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+    display: none;
+    /* Chrome, Safari and Opera */
   }
 }
 
 @layer components {
+
   /* Portfolio specific animations */
   .animate-float {
     animation: float 6s ease-in-out infinite;
@@ -295,12 +305,10 @@ All colors MUST be HSL.
   .portfolio-button::before {
     @apply absolute inset-0 opacity-0 transition-opacity duration-300;
     content: "";
-    background: linear-gradient(
-      45deg,
-      transparent 30%,
-      hsl(var(--portfolio-glow) / 0.5) 50%,
-      transparent 70%
-    );
+    background: linear-gradient(45deg,
+        transparent 30%,
+        hsl(var(--portfolio-glow) / 0.5) 50%,
+        transparent 70%);
     transform: translateX(-100%);
   }
 
@@ -326,7 +334,7 @@ All colors MUST be HSL.
 
   /* Pulse Animation */
   .pulse {
-    @apply animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite];
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
   /* Button Press Animation */
@@ -335,14 +343,19 @@ All colors MUST be HSL.
   }
 
   .portfolio-card {
-    @apply bg-card rounded-xl shadow-[var(--shadow-card)] border border-border;
-    @apply transition-all duration-300 hover:shadow-[var(--shadow-hover)] hover:scale-[1.02];
+    @apply bg-card rounded-xl border border-border;
+    @apply transition-all duration-300 hover:scale-[1.02];
     background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
   }
 
-  /* Light mode card border enhancement */
+  .portfolio-card:hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Light mode card border — Vercel precision */
   :root .portfolio-card {
-    border: 1px solid hsl(0 0% 88%);
+    border: 1px solid hsl(0 0% 89%);
   }
 
   .dark .portfolio-card {
@@ -405,30 +418,24 @@ All colors MUST be HSL.
   }
 
   .dialog-scrollable::-webkit-scrollbar-thumb {
-    background: linear-gradient(
-      180deg,
-      hsl(var(--portfolio-accent)),
-      hsl(var(--portfolio-glow))
-    );
+    background: linear-gradient(180deg,
+        hsl(var(--portfolio-accent)),
+        hsl(var(--portfolio-glow)));
     border-radius: 3px;
   }
 
   .dialog-scrollable::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(
-      180deg,
-      hsl(var(--portfolio-glow)),
-      hsl(var(--portfolio-accent))
-    );
+    background: linear-gradient(180deg,
+        hsl(var(--portfolio-glow)),
+        hsl(var(--portfolio-accent)));
   }
 
   /* Gradient text effect */
   .gradient-text {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--portfolio-accent)),
-      hsl(var(--portfolio-glow)),
-      hsl(var(--portfolio-accent))
-    );
+    background: linear-gradient(135deg,
+        hsl(var(--portfolio-accent)),
+        hsl(var(--portfolio-glow)),
+        hsl(var(--portfolio-accent)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -454,12 +461,10 @@ All colors MUST be HSL.
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      hsl(var(--portfolio-accent)),
-      transparent
-    );
+    background: linear-gradient(90deg,
+        transparent,
+        hsl(var(--portfolio-accent)),
+        transparent);
     transition: left 0.5s;
   }
 
@@ -470,12 +475,10 @@ All colors MUST be HSL.
   /* Apple Liquid Glass Design System */
   .liquid-glass {
     position: relative;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(250, 250, 250, 0.9) 50%,
-      rgba(255, 255, 255, 0.95) 100%
-    );
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(250, 250, 250, 0.9) 50%,
+        rgba(255, 255, 255, 0.95) 100%);
     backdrop-filter: blur(24px) saturate(140%) brightness(100%);
     -webkit-backdrop-filter: blur(24px) saturate(140%) brightness(100%);
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -495,11 +498,9 @@ All colors MUST be HSL.
     left: 0;
     right: 0;
     height: 50%;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.6) 0%,
-      transparent 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.6) 0%,
+        transparent 100%);
     border-radius: 1.25rem 1.25rem 0 0;
     pointer-events: none;
   }
@@ -508,12 +509,10 @@ All colors MUST be HSL.
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      135deg,
-      transparent 40%,
-      rgba(255, 255, 255, 0.2) 50%,
-      transparent 60%
-    );
+    background: linear-gradient(135deg,
+        transparent 40%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 60%);
     border-radius: 1.25rem;
     pointer-events: none;
     opacity: 0;
@@ -534,12 +533,10 @@ All colors MUST be HSL.
 
   /* Dark mode liquid glass */
   .dark .liquid-glass {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(255, 255, 255, 0.03) 50%,
-      rgba(255, 255, 255, 0.08) 100%
-    );
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(255, 255, 255, 0.03) 50%,
+        rgba(255, 255, 255, 0.08) 100%);
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.15),
@@ -548,11 +545,9 @@ All colors MUST be HSL.
   }
 
   .dark .liquid-glass::before {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.08) 0%,
-      transparent 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.08) 0%,
+        transparent 100%);
   }
 
   .dark .liquid-glass:hover {
@@ -565,11 +560,9 @@ All colors MUST be HSL.
   /* Liquid glass dialog/modal variant */
   .liquid-glass-modal {
     position: relative;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.98) 0%,
-      rgba(250, 250, 250, 0.95) 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(250, 250, 250, 0.95) 100%);
     backdrop-filter: blur(40px) saturate(160%) brightness(100%);
     -webkit-backdrop-filter: blur(40px) saturate(160%) brightness(100%);
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -588,21 +581,17 @@ All colors MUST be HSL.
     left: 0;
     right: 0;
     height: 60%;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.7) 0%,
-      transparent 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.7) 0%,
+        transparent 100%);
     border-radius: 1.5rem 1.5rem 0 0;
     pointer-events: none;
   }
 
   .dark .liquid-glass-modal {
-    background: linear-gradient(
-      180deg,
-      rgba(30, 30, 35, 0.92) 0%,
-      rgba(20, 20, 25, 0.88) 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(30, 30, 35, 0.92) 0%,
+        rgba(20, 20, 25, 0.88) 100%);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 12px 40px rgba(0, 0, 0, 0.35),
       inset 0 1px 0 rgba(255, 255, 255, 0.15),
@@ -611,20 +600,16 @@ All colors MUST be HSL.
   }
 
   .dark .liquid-glass-modal::before {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.08) 0%,
-      transparent 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.08) 0%,
+        transparent 100%);
   }
 
   /* Liquid glass keyboard shortcut badge */
   .liquid-glass-kbd {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(245, 245, 245, 0.9) 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(245, 245, 245, 0.9) 100%);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -634,11 +619,9 @@ All colors MUST be HSL.
   }
 
   .dark .liquid-glass-kbd {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.12) 0%,
-      rgba(255, 255, 255, 0.06) 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.06) 100%);
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -653,20 +636,16 @@ All colors MUST be HSL.
 
   .liquid-glass-item:hover,
   .liquid-glass-item.active {
-    background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.03) 0%,
-      rgba(0, 0, 0, 0.01) 100%
-    );
+    background: linear-gradient(135deg,
+        rgba(0, 0, 0, 0.03) 0%,
+        rgba(0, 0, 0, 0.01) 100%);
   }
 
   .dark .liquid-glass-item:hover,
   .dark .liquid-glass-item.active {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(255, 255, 255, 0.05) 100%
-    );
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 100%);
   }
 
   /* Liquid glass divider */
@@ -683,18 +662,17 @@ All colors MUST be HSL.
     0% {
       background-position: -200% center;
     }
+
     100% {
       background-position: 200% center;
     }
   }
 
   .liquid-glass-shimmer {
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.15) 50%,
-      transparent 100%
-    );
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        transparent 100%);
     background-size: 200% 100%;
     animation: liquid-shimmer 3s ease-in-out infinite;
   }
@@ -702,11 +680,9 @@ All colors MUST be HSL.
   /* Bottom Navigation - Liquid Glass Design */
   .liquid-glass-nav {
     position: relative;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(250, 250, 250, 0.8) 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(250, 250, 250, 0.8) 100%);
     backdrop-filter: blur(20px) saturate(140%) brightness(100%);
     -webkit-backdrop-filter: blur(20px) saturate(140%) brightness(100%);
     border: 1px solid rgba(0, 0, 0, 0.06);
@@ -725,11 +701,9 @@ All colors MUST be HSL.
     left: 0;
     right: 0;
     height: 50%;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.7) 0%,
-      transparent 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.7) 0%,
+        transparent 100%);
     border-radius: 1.5rem 1.5rem 0 0;
     pointer-events: none;
   }
@@ -741,21 +715,17 @@ All colors MUST be HSL.
     left: 10%;
     right: 10%;
     height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.9),
-      transparent
-    );
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.9),
+        transparent);
     pointer-events: none;
   }
 
   .dark .liquid-glass-nav {
-    background: linear-gradient(
-      180deg,
-      rgba(15, 15, 20, 0.4) 0%,
-      rgba(10, 10, 15, 0.2) 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(15, 15, 20, 0.4) 0%,
+        rgba(10, 10, 15, 0.2) 100%);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.2), 0 8px 40px rgba(0, 0, 0, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.1),
@@ -764,20 +734,16 @@ All colors MUST be HSL.
   }
 
   .dark .liquid-glass-nav::before {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.08) 0%,
-      transparent 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.08) 0%,
+        transparent 100%);
   }
 
   .dark .liquid-glass-nav::after {
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent);
   }
 
   /* Nav Item Styling */
@@ -811,10 +777,12 @@ All colors MUST be HSL.
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-20px);
   }
@@ -824,6 +792,7 @@ All colors MUST be HSL.
   0% {
     box-shadow: 0 0 5px hsl(var(--portfolio-glow) / 0.4);
   }
+
   100% {
     box-shadow: 0 0 20px hsl(var(--portfolio-glow) / 0.8);
   }
@@ -834,6 +803,7 @@ All colors MUST be HSL.
     opacity: 0;
     transform: translateY(30px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -844,6 +814,7 @@ All colors MUST be HSL.
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -853,17 +824,20 @@ All colors MUST be HSL.
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
 }
 
 @keyframes twinkle {
+
   0%,
   100% {
     opacity: 0.3;
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.2);
@@ -871,11 +845,13 @@ All colors MUST be HSL.
 }
 
 @keyframes sparkle {
+
   0%,
   100% {
     opacity: 0.2;
     transform: scale(0.8);
   }
+
   50% {
     opacity: 0.8;
     transform: scale(1.3);
@@ -894,6 +870,7 @@ All colors MUST be HSL.
     opacity: 0;
     transform: scale(0.95) translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -905,6 +882,7 @@ All colors MUST be HSL.
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+
   to {
     opacity: 0;
     transform: scale(0.95) translateY(-10px);
@@ -913,10 +891,12 @@ All colors MUST be HSL.
 
 /* Parallax star glow effect */
 @keyframes starGlow {
+
   0%,
   100% {
     filter: brightness(1) blur(0px);
   }
+
   50% {
     filter: brightness(1.3) blur(0.5px);
   }
@@ -928,14 +908,17 @@ All colors MUST be HSL.
 
 /* Meteor head twinkle */
 @keyframes meteorTwinkle {
+
   0%,
   100% {
     opacity: 0.85;
   }
+
   50% {
     opacity: 0.35;
   }
 }
+
 .meteor-twinkle {
   animation: meteorTwinkle 2.4s ease-in-out infinite;
 }
@@ -947,6 +930,7 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -961,9 +945,11 @@ All colors MUST be HSL.
       transform: rotate(215deg) translateX(0);
       opacity: 1;
     }
+
     70% {
       opacity: 1;
     }
+
     100% {
       transform: rotate(215deg) translateX(-500px);
       opacity: 0;

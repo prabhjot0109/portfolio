@@ -32,11 +32,11 @@ const Contact = () => {
 						</span>
 					</motion.div>
 
-					<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-space font-bold tracking-tight mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60 px-2">
+					<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-space font-bold tracking-tight mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60 px-2 pb-1 md:pb-2">
 						Let's create something
 						<br />
 						extraordinary
-					</h2>
+					</h1>
 
 					<p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed px-4">
 						I am actively seeking full-time software engineering roles and
@@ -49,34 +49,49 @@ const Contact = () => {
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.5, delay: 0.4 }}
-						className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-6 px-4"
+						className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 px-4"
 					>
-						<Button
-							size="lg"
-							className="h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg gap-2 bg-foreground text-background hover:bg-foreground/90 shadow-lg hover:shadow-xl transition-all duration-300 group w-full sm:w-auto"
-							onClick={() =>
-								(window.location.href = "mailto:prabhjotassi16@gmail.com")
-							}
+						<motion.div
+							whileHover={{ y: -2 }}
+							whileTap={{ scale: 0.97 }}
+							transition={{ type: "spring", stiffness: 420, damping: 22 }}
+							className="w-full sm:w-auto"
 						>
-							<Mail className="w-4 h-4 sm:w-5 sm:h-5" />
-							Send an email
-							<ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
-						</Button>
+							<Button
+								size="lg"
+								className="cta-button cta-button-primary !bg-transparent hover:!bg-transparent !text-foreground hover:!text-foreground group"
+								onClick={() =>
+									(window.location.href = "mailto:prabhjotassi16@gmail.com")
+								}
+							>
+								<Mail className="w-4 h-4 sm:w-[18px] sm:h-[18px] shrink-0" />
+								<span>Send an email</span>
+								<ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-200 shrink-0" />
+							</Button>
+						</motion.div>
 
-						<Button
-							variant="outline"
-							size="lg"
-							className="h-12 sm:h-14 px-6 sm:px-8 rounded-full text-base sm:text-lg gap-2 border-2 border-border/60 text-foreground hover:text-portfolio-accent hover:border-portfolio-accent hover:bg-portfolio-accent/10 dark:hover:bg-portfolio-accent/20 transition-all duration-300 w-full sm:w-auto"
-							onClick={() =>
-								window.open(
-									"https://linkedin.com/in/prabhjotsinghassi",
-									"_blank",
-								)
-							}
+						<motion.div
+							whileHover={{ y: -2 }}
+							whileTap={{ scale: 0.97 }}
+							transition={{ type: "spring", stiffness: 420, damping: 22 }}
+							className="w-full sm:w-auto"
 						>
-							<MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
-							DM on LinkedIn
-						</Button>
+							<Button
+								variant="outline"
+								size="lg"
+								className="cta-button cta-button-secondary !bg-transparent hover:!bg-transparent !text-foreground hover:!text-foreground group"
+								onClick={() =>
+									window.open(
+										"https://linkedin.com/in/prabhjotsinghassi",
+										"_blank",
+									)
+								}
+							>
+								<MessageSquare className="w-4 h-4 sm:w-[18px] sm:h-[18px] shrink-0" />
+								<span>DM on LinkedIn</span>
+								<ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-200 shrink-0" />
+							</Button>
+						</motion.div>
 					</motion.div>
 				</motion.div>
 			</div>

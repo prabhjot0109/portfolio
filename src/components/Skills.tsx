@@ -265,12 +265,12 @@ const Skills = () => {
           className="mb-10 md:mb-16 px-4"
         >
           <div className="flex justify-center">
-            <div className="flex items-center justify-start md:justify-center gap-2 p-1.5 rounded-2xl bg-muted/50 backdrop-blur-md border border-border/50 shadow-inner overflow-x-auto scrollbar-hidden max-w-full">
+            <div className="flex items-center justify-start md:justify-center gap-2 p-1.5 rounded-full bg-muted/50 backdrop-blur-md border border-border/50 shadow-inner overflow-x-auto scrollbar-hidden max-w-full">
               {filterCategories.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`px-4 sm:px-6 py-2 md:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 whitespace-nowrap ${activeCategory === category.id
+                  className={`px-4 sm:px-6 py-2 md:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 whitespace-nowrap ${activeCategory === category.id
                       ? "bg-background text-foreground shadow-md ring-1 ring-border/50"
                       : "text-muted-foreground hover:text-foreground hover:bg-background/40"
                     }`}
@@ -357,7 +357,7 @@ const Skills = () => {
                       >
                         <div className="flex justify-between items-center">
                           <div className="flex items-center gap-3 md:gap-4">
-                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-muted/80 dark:bg-white/5 p-1.5 md:p-2 flex items-center justify-center border border-border/60 dark:border-white/10 group-hover/skill:border-border dark:group-hover/skill:border-foreground/20 transition-colors flex-shrink-0">
+                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-muted/80 dark:bg-white/5 p-1.5 md:p-2 flex items-center justify-center border border-border/60 dark:border-white/10 group-hover/skill:border-border dark:group-hover/skill:border-foreground/20 group-hover/skill:scale-110 group-hover/skill:shadow-md transition-all duration-200 flex-shrink-0">
                               <img
                                 src={skill.logo}
                                 alt={skill.name}
@@ -372,15 +372,18 @@ const Skills = () => {
                             {skill.level}%
                           </span>
                         </div>
-                        <div className="h-2 md:h-2.5 bg-muted/30 rounded-full overflow-hidden">
+                        <div className="h-2 md:h-2.5 bg-muted/30 rounded-full overflow-hidden group-hover/skill:bg-muted/50 transition-colors duration-200">
                           <motion.div
-                            className="h-full bg-foreground"
+                            className="h-full bg-foreground group-hover/skill:opacity-80 rounded-full"
                             initial={{ width: 0 }}
                             animate={{ width: `${skill.level}%` }}
                             transition={{
                               duration: 1,
                               delay: 0.4 + skillIndex * 0.1,
                               ease: "easeOut",
+                            }}
+                            style={{
+                              boxShadow: `0 0 8px rgba(150,150,150,0.35)`,
                             }}
                           />
                         </div>

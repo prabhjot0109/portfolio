@@ -221,9 +221,14 @@ const About = () => {
             <motion.div variants={itemVariants}>
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 {achievements.map((item, index) => (
-                  <SpotlightCard
+                  <motion.div
                     key={index}
-                    className={`group p-3 sm:p-4 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-border/80`}
+                    whileHover={{ scale: 1.04, y: -4 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 350, damping: 18 }}
+                  >
+                  <SpotlightCard
+                    className={`group p-3 sm:p-4 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-border/80 hover:shadow-lg`}
                     spotlightColor="rgba(255, 255, 255, 0.05)"
                   >
                     <div className="relative flex flex-col sm:flex-row items-start gap-2 sm:gap-4">
@@ -242,6 +247,7 @@ const About = () => {
                       </div>
                     </div>
                   </SpotlightCard>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
@@ -249,22 +255,37 @@ const About = () => {
             {/* CTA */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-row gap-3 sm:gap-4"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-5"
             >
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-foreground text-background font-medium hover:bg-background hover:text-foreground border border-foreground transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
+              <motion.div
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 420, damping: 22 }}
+                className="w-full sm:w-auto"
               >
-                Connect
-                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </a>
-              <a
-                href="#projects"
-                className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-secondary text-secondary-foreground font-medium hover:bg-secondary/80 transition-colors text-sm sm:text-base"
+                <a
+                  href="#contact"
+                  className="no-hover cta-button cta-button-primary !text-foreground hover:!text-foreground group"
+                >
+                  <span>Connect</span>
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-200 shrink-0" />
+                </a>
+              </motion.div>
+              <motion.div
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 420, damping: 22 }}
+                className="w-full sm:w-auto"
               >
-                View Projects
-                <Code2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              </a>
+                <a
+                  href="#projects"
+                  className="no-hover cta-button cta-button-secondary !text-foreground hover:!text-foreground group"
+                >
+                  <Code2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+                  <span>View Projects</span>
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-200 shrink-0" />
+                </a>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>

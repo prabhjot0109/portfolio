@@ -163,14 +163,14 @@ const Experience = () => {
 
           {/* Filter Tabs */}
           <div className="w-full max-w-sm mx-auto md:w-auto md:max-w-none">
-            <div className="grid grid-cols-3 gap-1 p-1 rounded-xl bg-muted/50 backdrop-blur-sm border border-border/50 md:inline-flex md:gap-0">
+            <div className="grid grid-cols-3 gap-1 p-1 rounded-full bg-muted/50 backdrop-blur-sm border border-border/50 md:inline-flex md:gap-0">
               {["all", "experience", "education"].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setFilter(tab)}
-                  className={`px-3 md:px-6 py-2.5 rounded-lg text-xs md:text-sm font-medium transition-all duration-300 capitalize text-center ${
+                  className={`px-3 md:px-6 py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 capitalize text-center ${
                     filter === tab
-                      ? "bg-background text-foreground shadow-lg"
+                      ? "bg-background text-foreground shadow-md"
                       : "text-muted-foreground hover:text-foreground hover:bg-background/50"
                   }`}
                 >
@@ -196,6 +196,8 @@ const Experience = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 250, damping: 22 }}
                 className="group relative"
               >
                 <div

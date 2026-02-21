@@ -144,22 +144,22 @@ const Achievements = () => {
               >
                 {/* Content Card */}
                 <div className="flex-1 w-full md:w-auto">
-                  <div
-                    className={`group relative p-6 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-xl transition-all duration-500 hover:border-white/20 shadow-xl hover:shadow-2xl hover:-translate-y-1 ${
-                      // Only apply colored shadow on hover
-                      `hover:${achievement.shadow}`
-                      }`}
+                  <motion.div
+                    className={`group relative p-6 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-xl transition-all duration-300 hover:border-white/20 shadow-xl`}
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   >
                     {/* Gradient Glow - Only on Hover */}
                     <div
-                      className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                      className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
                     />
 
                     <div className="relative z-10">
                       <div className="flex items-start justify-between mb-4">
                         <div
                           className={cn(
-                            "w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300",
+                            "w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3",
                             achievement.color.includes("indigo") &&
                             "bg-indigo-500/10",
                             achievement.color.includes("orange") &&
@@ -216,7 +216,7 @@ const Achievements = () => {
                         {achievement.impact}
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Center Point & Connector (Desktop) */}

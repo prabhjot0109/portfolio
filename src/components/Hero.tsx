@@ -1,5 +1,5 @@
 import React from "react";
-import { Github, Linkedin, Mail, Download } from "lucide-react";
+import { Github, Linkedin, Mail, Download, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Meteors } from "@/components/ui/shadcn-io/meteors";
@@ -203,46 +203,65 @@ const Hero = () => {
               },
               { icon: Mail, link: "mailto:prabhjotassi16@gmail.com" },
             ].map((social, index) => (
-              <Button
+              <motion.div
                 key={index}
+                whileHover={{ scale: 1.15, y: -3 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              >
+              <Button
                 variant="ghost"
                 size="icon"
-                className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 hover:scale-110 w-14 h-14 transition-all duration-300 border border-border/50 rounded-full hover:border-portfolio-accent hover:shadow-[0_0_20px_rgba(var(--portfolio-accent),0.3)]"
+                className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 w-14 h-14 transition-all duration-300 border border-border/50 rounded-full hover:border-portfolio-accent hover:shadow-[0_0_20px_rgba(var(--portfolio-accent),0.3)]"
                 onClick={() => window.open(social.link, "_blank")}
               >
                 <social.icon className="h-6 w-6" />
               </Button>
+              </motion.div>
             ))}
           </motion.div>
 
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8 px-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-8 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Button
-              variant="outline"
-              size="lg"
-              className="bg-transparent text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/5 border-2 border-foreground/20 hover:border-portfolio-accent rounded-full px-10 py-6 font-bold text-lg w-[260px] transition-all duration-300"
-              onClick={() =>
-                document
-                  .getElementById("projects")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
+            <motion.div
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 420, damping: 22 }}
+              className="w-full sm:w-auto"
             >
-              View My Work
-            </Button>
+              <Button
+                size="lg"
+                className="cta-button cta-button-primary !bg-transparent hover:!bg-transparent !text-foreground hover:!text-foreground group"
+                onClick={() =>
+                  document
+                    .getElementById("projects")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+              >
+                <span>View My Work</span>
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-200 shrink-0" />
+              </Button>
+            </motion.div>
 
-            <Button
-              variant="outline"
-              size="lg"
-              className="bg-transparent text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/5 border-2 border-foreground/20 hover:border-portfolio-accent rounded-full px-10 py-6 font-bold text-lg w-[260px] transition-all duration-300"
-              onClick={() => window.open("/resume.pdf", "_blank")}
+            <motion.div
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 420, damping: 22 }}
+              className="w-full sm:w-auto"
             >
-              <Download className="h-5 w-5 mr-2" />
-              Download Resume
-            </Button>
+              <Button
+                size="lg"
+                className="cta-button cta-button-secondary !bg-transparent hover:!bg-transparent !text-foreground hover:!text-foreground group"
+                onClick={() => window.open("/resume.pdf", "_blank")}
+              >
+                <Download className="w-4 h-4 sm:w-[18px] sm:h-[18px] shrink-0 group-hover:translate-y-0.5 transition-transform duration-200" />
+                <span>Download Resume</span>
+              </Button>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>

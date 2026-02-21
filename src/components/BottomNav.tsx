@@ -108,20 +108,23 @@ const BottomNav: React.FC<BottomNavProps> = ({ onOpenCommandPalette }) => {
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="liquid-glass-nav flex items-center justify-center gap-0.5 sm:gap-1 px-2 sm:px-2 py-2 sm:py-2">
+        <div className="liquid-glass-nav flex items-center justify-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-2 sm:py-2">
           {/* Navigation Items */}
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             const Icon = item.icon;
 
             return (
-              <button
+              <motion.button
                 key={item.id}
                 type="button"
                 onClick={() => handleNavClick(item.href)}
-                className={`nav-item group relative flex flex-row items-center justify-center gap-1 px-2.5 sm:px-2.5 py-2 sm:py-1.5 rounded-xl transition-all duration-200
-								${isActive ? "nav-item-active" : ""}
-							`}
+                className={`nav-item group relative flex flex-row items-center justify-center gap-1 px-2 sm:px-2.5 py-2 sm:py-1.5 rounded-xl transition-all duration-200
+							${isActive ? "nav-item-active" : ""}
+						`}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.88 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
                 aria-label={item.label}
                 aria-current={isActive ? "page" : undefined}
               >
@@ -145,15 +148,18 @@ const BottomNav: React.FC<BottomNavProps> = ({ onOpenCommandPalette }) => {
                 >
                   {item.label}
                 </span>
-              </button>
+              </motion.button>
             );
           })}
 
           {/* Theme Toggle */}
-          <button
+          <motion.button
             type="button"
             onClick={toggleTheme}
-            className="nav-item group flex flex-row items-center justify-center gap-1 px-2.5 sm:px-2.5 py-2 sm:py-1.5 rounded-xl transition-all duration-200"
+            className="nav-item group flex flex-row items-center justify-center gap-1 px-2 sm:px-2.5 py-2 sm:py-1.5 rounded-xl transition-all duration-200"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.88 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             aria-pressed={theme === "dark"}
           >
@@ -171,13 +177,16 @@ const BottomNav: React.FC<BottomNavProps> = ({ onOpenCommandPalette }) => {
             <span className="hidden sm:inline text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-200">
               Theme
             </span>
-          </button>
+          </motion.button>
 
           {/* Command Palette Toggle */}
-          <button
+          <motion.button
             type="button"
             onClick={onOpenCommandPalette}
-            className="nav-item group flex flex-row items-center justify-center gap-1 px-2.5 sm:px-2.5 py-2 sm:py-1.5 rounded-xl transition-all duration-200"
+            className="nav-item group flex flex-row items-center justify-center gap-1 px-2 sm:px-2.5 py-2 sm:py-1.5 rounded-xl transition-all duration-200"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.88 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
             aria-label="Open command palette (Ctrl+K or Cmd+K)"
           >
             <Command
@@ -187,7 +196,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ onOpenCommandPalette }) => {
             <span className="hidden sm:inline text-xs font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-200">
               Menu
             </span>
-          </button>
+          </motion.button>
         </div>
       </motion.nav>
     </div>

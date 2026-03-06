@@ -81,13 +81,25 @@ const About = () => {
       className="py-16 sm:py-24 md:py-32 relative overflow-hidden"
       aria-label="About Prabhjot Singh Assi"
     >
-      {/* Dynamic Glow Effect - Neutral (Light) / Cosmos (Dark) */}
-      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[160%] h-[700px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-200/60 via-neutral-100/30 to-transparent dark:from-indigo-500/25 dark:via-blue-900/15 dark:to-transparent pointer-events-none blur-[100px] opacity-70" />
+      {/* Dynamic Glow Effect - Slate mist (Light) / Cosmos (Dark) */}
+      <div
+        className="absolute -top-20 left-1/2 -translate-x-1/2 w-[160%] h-[700px] pointer-events-none blur-[100px] opacity-70"
+        style={{
+          background:
+            "radial-gradient(ellipse at top, hsl(var(--portfolio-glow) / 0.18), hsl(var(--secondary) / 0.32) 38%, transparent 72%)",
+        }}
+      />
 
       {/* Subtle background elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-neutral-200/40 dark:bg-portfolio-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-neutral-200/40 dark:bg-portfolio-accent/5 rounded-full blur-3xl" />
+        <div
+          className="absolute top-1/4 -left-32 h-96 w-96 rounded-full blur-3xl dark:bg-portfolio-accent/5"
+          style={{ backgroundColor: "hsl(var(--portfolio-accent) / 0.08)" }}
+        />
+        <div
+          className="absolute bottom-1/4 -right-32 h-96 w-96 rounded-full blur-3xl dark:bg-portfolio-accent/5"
+          style={{ backgroundColor: "hsl(var(--portfolio-glow) / 0.08)" }}
+        />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -136,7 +148,7 @@ const About = () => {
                   viewport={{ once: true }}
                   className="absolute bottom-6 left-6 right-6"
                 >
-                  <div className="glass-morphism rounded-xl p-4 backdrop-blur-xl border border-white/10 shadow-lg">
+                  <div className="glass-morphism rounded-xl border border-border/60 p-4 shadow-lg backdrop-blur-xl">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="relative flex h-3 w-3">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -146,7 +158,7 @@ const About = () => {
                         Open to opportunities
                       </p>
                     </div>
-                    <p className="text-xs dark:text-white text-opacity-100">
+                    <p className="text-xs text-muted-foreground dark:text-white">
                       AI/ML • Full Stack • SDE
                     </p>
                   </div>

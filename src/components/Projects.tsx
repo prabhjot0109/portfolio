@@ -395,185 +395,185 @@ const ProjectDialogContent = ({
     .join(", ");
 
   return (
-    <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0 gap-0 border border-white/10 bg-background/95 backdrop-blur-xl shadow-2xl scrollbar-hidden rounded-3xl">
-    {/* Custom Close Button */}
-    <DialogClose className="absolute top-4 right-4 z-50 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-md border border-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50">
-      <X className="w-5 h-5" />
-      <span className="sr-only">Close</span>
-    </DialogClose>
+    <DialogContent className="max-h-[90vh] max-w-4xl gap-0 overflow-y-auto rounded-3xl border border-border/70 bg-background p-0 shadow-2xl backdrop-blur-xl scrollbar-hidden dark:border-white/10 dark:bg-background/92">
+      {/* Custom Close Button */}
+      <DialogClose className="absolute top-4 right-4 z-50 rounded-full border border-border/70 bg-background/80 p-2 text-foreground backdrop-blur-md transition-all duration-300 hover:bg-background focus:outline-none focus:ring-2 focus:ring-ring dark:border-white/20 dark:bg-black/50 dark:text-white dark:hover:bg-black/70 dark:focus:ring-white/50">
+        <X className="w-5 h-5" />
+        <span className="sr-only">Close</span>
+      </DialogClose>
 
-    <div className="relative h-64 md:h-80 w-full overflow-hidden rounded-t-3xl">
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
-      <AutoCarousel images={project.images} alt={project.title} />
-      <div className="absolute bottom-0 left-0 p-6 z-20 w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          {project.title === "Sentient AI" && (
-            <div className="flex items-center gap-3 mb-2">
-              <Badge
-                variant="secondary"
-                className="bg-primary/20 text-primary hover:bg-primary/30 backdrop-blur-md border-primary/20"
-              >
-                Ongoing
-              </Badge>
-            </div>
-          )}
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-1">
-            {project.title}
-          </h2>
-          <p className="text-lg text-white/80 font-medium">
-            {project.subtitle}
-          </p>
-        </motion.div>
-      </div>
-    </div>
-
-    <div className="p-6 md:p-8 space-y-6 rounded-b-3xl">
-      <div className="grid gap-3 sm:grid-cols-3">
-        <div className="rounded-2xl border border-border/60 bg-muted/20 p-4">
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
-            Status
-          </p>
-          <p className="text-sm font-semibold text-foreground">{project.status}</p>
-        </div>
-        <div className="rounded-2xl border border-border/60 bg-muted/20 p-4">
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
-            Role
-          </p>
-          <p className="text-sm font-semibold text-foreground">{project.role}</p>
-        </div>
-        <div className="rounded-2xl border border-border/60 bg-muted/20 p-4">
-          <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
-            Category
-          </p>
-          <p className="text-sm font-semibold text-foreground">{projectCategories}</p>
-        </div>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)]">
-        <div className="space-y-6">
-          <div className="rounded-2xl border border-border/60 bg-card/50 p-5 md:p-6">
-            <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-              <Layers className="w-5 h-5 text-primary" />
-              Overview
-            </h3>
-            <p className="text-muted-foreground leading-relaxed text-lg">
-              {project.longDescription}
+      <div className="relative h-64 md:h-80 w-full overflow-hidden rounded-t-3xl">
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
+        <AutoCarousel images={project.images} alt={project.title} />
+        <div className="absolute bottom-0 left-0 p-6 z-20 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            {project.title === "Sentient AI" && (
+              <div className="flex items-center gap-3 mb-2">
+                <Badge
+                  variant="secondary"
+                  className="bg-primary/20 text-primary hover:bg-primary/30 backdrop-blur-md border-primary/20"
+                >
+                  Ongoing
+                </Badge>
+              </div>
+            )}
+            <h2 className="mb-1 text-3xl font-bold text-foreground md:text-4xl dark:text-white">
+              {project.title}
+            </h2>
+            <p className="text-lg font-medium text-foreground/80 dark:text-white/80">
+              {project.subtitle}
             </p>
-          </div>
-
-          <div className="rounded-2xl border border-border/60 bg-card/50 p-5 md:p-6">
-            <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-              <Zap className="w-5 h-5 text-primary" />
-              Key Features
-            </h3>
-            <ul className="grid sm:grid-cols-2 gap-3">
-              {project.features.map((feature, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-start gap-2 text-muted-foreground bg-muted/30 p-3 rounded-xl border border-border/50 hover:border-primary/30 transition-colors"
-                >
-                  <span className="mt-1.5 w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0" />
-                  <span className="text-sm">{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          <div className="bg-muted/30 p-5 rounded-2xl border border-border/50">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">
-              Tech Stack
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag, idx) => (
-                <span
-                  key={idx}
-                  className="text-xs px-2.5 py-1 rounded-full
-                    bg-muted text-muted-foreground
-                    border border-border
-                    select-none"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-            <div className="bg-primary/5 p-5 rounded-2xl border border-primary/10">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-3 flex items-center gap-2">
-                <Trophy className="w-4 h-4" />
-                Achievements
-              </h3>
-              <p className="text-sm font-medium text-foreground">
-                {project.achievements}
-              </p>
-            </div>
-
-            <div className="bg-green-500/5 p-5 rounded-2xl border border-green-500/10">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-green-600 dark:text-green-400 mb-3 flex items-center gap-2">
-                <Target className="w-4 h-4" />
-                Impact
-              </h3>
-              <p className="text-sm font-medium text-foreground">
-                {project.impact}
-              </p>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-border/50">
-        {project.demoUrl !== "#" ? (
-          <a
-            href={project.demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="no-hover flex-1 group/demo inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full font-semibold text-sm tracking-wide
+      <div className="rounded-b-3xl bg-gradient-to-b from-background via-background to-secondary/60 p-6 space-y-6 md:p-8 dark:from-background dark:via-background dark:to-background">
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="rounded-2xl border border-border/70 bg-background/90 p-4 shadow-sm dark:border-border/60 dark:bg-muted/20">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+              Status
+            </p>
+            <p className="text-sm font-semibold text-foreground">{project.status}</p>
+          </div>
+          <div className="rounded-2xl border border-border/70 bg-background/90 p-4 shadow-sm dark:border-border/60 dark:bg-muted/20">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+              Role
+            </p>
+            <p className="text-sm font-semibold text-foreground">{project.role}</p>
+          </div>
+          <div className="rounded-2xl border border-border/70 bg-background/90 p-4 shadow-sm dark:border-border/60 dark:bg-muted/20">
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
+              Category
+            </p>
+            <p className="text-sm font-semibold text-foreground">{projectCategories}</p>
+          </div>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)]">
+          <div className="space-y-6">
+            <div className="rounded-2xl border border-border/70 bg-background/92 p-5 shadow-sm md:p-6 dark:border-border/60 dark:bg-card/50">
+              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                <Layers className="w-5 h-5 text-primary" />
+                Overview
+              </h3>
+              <p className="text-muted-foreground leading-relaxed text-lg">
+                {project.longDescription}
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-border/70 bg-background/92 p-5 shadow-sm md:p-6 dark:border-border/60 dark:bg-card/50">
+              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                <Zap className="w-5 h-5 text-primary" />
+                Key Features
+              </h3>
+              <ul className="grid sm:grid-cols-2 gap-3">
+                {project.features.map((feature, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-start gap-2 rounded-xl border border-border/60 bg-secondary/55 p-3 text-muted-foreground transition-colors hover:border-primary/30 dark:border-border/50 dark:bg-muted/30"
+                  >
+                    <span className="mt-1.5 w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0" />
+                    <span className="text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="rounded-2xl border border-border/70 bg-background/92 p-5 shadow-sm dark:border-border/50 dark:bg-muted/30">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">
+                Tech Stack
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag, idx) => (
+                  <span
+                    key={idx}
+                    className="text-xs px-2.5 py-1 rounded-full
+                    bg-secondary text-muted-foreground
+                    border border-border/70
+                    select-none"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              <div className="rounded-2xl border border-primary/15 bg-primary/5 p-5 shadow-sm dark:border-primary/10">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-3 flex items-center gap-2">
+                  <Trophy className="w-4 h-4" />
+                  Achievements
+                </h3>
+                <p className="text-sm font-medium text-foreground">
+                  {project.achievements}
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-green-500/15 bg-green-500/5 p-5 shadow-sm dark:border-green-500/10">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-green-600 dark:text-green-400 mb-3 flex items-center gap-2">
+                  <Target className="w-4 h-4" />
+                  Impact
+                </h3>
+                <p className="text-sm font-medium text-foreground">
+                  {project.impact}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-row gap-3 pt-6 border-t border-border/50">
+          {project.demoUrl !== "#" ? (
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="no-hover flex-1 group/demo inline-flex items-center justify-center gap-2 h-10 px-4 rounded-full font-semibold text-sm tracking-wide whitespace-nowrap
               bg-foreground text-background
               border border-foreground/10
               shadow-sm
               transition-all duration-200 ease-out
               hover:bg-foreground/85 hover:shadow-md hover:-translate-y-[1px]
               active:scale-[0.97] active:shadow-none"
-          >
-            <Globe className="h-4 w-4 transition-transform duration-200 group-hover/demo:rotate-12" />
-            Live Demo
-            <ExternalLink className="h-3.5 w-3.5 opacity-60 transition-all duration-200 group-hover/demo:opacity-100 group-hover/demo:translate-x-0.5 group-hover/demo:-translate-y-0.5" />
-          </a>
-        ) : (
-          <span
-            className="flex-1 inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full font-semibold text-sm tracking-wide
+            >
+              <Globe className="h-4 w-4 transition-transform duration-200 group-hover/demo:rotate-12" />
+              Live Demo
+              <ExternalLink className="h-3.5 w-3.5 opacity-60 transition-all duration-200 group-hover/demo:opacity-100 group-hover/demo:translate-x-0.5 group-hover/demo:-translate-y-0.5" />
+            </a>
+          ) : (
+            <span
+              className="flex-1 inline-flex items-center justify-center gap-2 h-10 px-4 rounded-full font-semibold text-sm tracking-wide whitespace-nowrap
               bg-muted/60 text-muted-foreground
               border border-border/60
               cursor-not-allowed select-none opacity-70"
-          >
-            <Globe className="h-4 w-4" />
-            No Demo
-          </span>
-        )}
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="no-hover flex-1 group/code inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full font-semibold text-sm tracking-wide
+            >
+              <Globe className="h-4 w-4" />
+              No Demo
+            </span>
+          )}
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="no-hover flex-1 group/code inline-flex items-center justify-center gap-2 h-10 px-4 rounded-full font-semibold text-sm tracking-wide whitespace-nowrap
             bg-transparent text-foreground
             border-2 border-border
             shadow-sm
             transition-all duration-200 ease-out
             hover:border-foreground/50 hover:bg-foreground/5 hover:shadow-md hover:-translate-y-[1px]
             active:scale-[0.97] active:shadow-none"
-        >
-          <Github className="h-4 w-4 transition-transform duration-200 group-hover/code:scale-110" />
-          View Code
-        </a>
+          >
+            <Github className="h-4 w-4 transition-transform duration-200 group-hover/code:scale-110" />
+            View Code
+          </a>
+        </div>
       </div>
-    </div>
     </DialogContent>
   );
 };
@@ -658,8 +658,8 @@ const ProjectCard = React.forwardRef<
                   <motion.span
                     key={idx}
                     className="text-xs px-2.5 py-1 rounded-full
-                      bg-muted text-muted-foreground
-                      border border-border
+                      bg-secondary text-muted-foreground
+                      border border-border/70
                       hover:bg-primary/10 hover:text-foreground hover:border-primary/30
                       transition-colors duration-150 cursor-default select-none"
                     whileHover={{ scale: 1.08, y: -1 }}
@@ -672,8 +672,8 @@ const ProjectCard = React.forwardRef<
                 {project.tags.length > 3 && (
                   <span
                     className="text-xs px-2.5 py-1 rounded-full
-                      bg-muted text-muted-foreground
-                      border border-border
+                      bg-secondary text-muted-foreground
+                      border border-border/70
                       cursor-default select-none"
                   >
                     +{project.tags.length - 3}
@@ -681,16 +681,16 @@ const ProjectCard = React.forwardRef<
                 )}
               </div>
 
-              <div className="flex items-center justify-between pt-4 border-t border-border/50 gap-2">
+              <div className="flex items-center justify-between pt-6 border-t border-border/50 gap-4">
                 {/* Left side: GitHub + Live Demo */}
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-2.5 flex-1">
                   <motion.a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="no-hover group/gh inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-lg
+                    className="no-hover group/gh flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-semibold h-9 px-4 rounded-lg
                       text-muted-foreground bg-transparent
-                      border border-transparent
+                      border border-border/40
                       transition-all duration-200
                       hover:text-foreground hover:bg-muted/70 hover:border-border/60"
                     whileHover={{ scale: 1.04 }}
@@ -706,11 +706,11 @@ const ProjectCard = React.forwardRef<
                       href={project.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="no-hover group/demo inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-lg
+                      className="no-hover group/demo flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-semibold h-9 px-4 rounded-lg
                         text-emerald-600 dark:text-emerald-400 bg-transparent
-                        border border-transparent
+                        border border-emerald-500/20
                         transition-all duration-200
-                        hover:text-emerald-700 dark:hover:text-emerald-300 hover:bg-emerald-500/10 hover:border-emerald-500/20"
+                        hover:text-emerald-700 dark:hover:text-emerald-300 hover:bg-emerald-500/10 hover:border-emerald-500/30"
                       whileHover={{ scale: 1.04 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -722,9 +722,9 @@ const ProjectCard = React.forwardRef<
                     <Popover>
                       <PopoverTrigger asChild>
                         <motion.button
-                          className="group/nodemo inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-lg
+                          className="group/nodemo flex-1 inline-flex items-center justify-center gap-1.5 text-xs font-semibold h-9 px-4 rounded-lg
                             text-muted-foreground/60 bg-transparent
-                            border border-transparent
+                            border border-border/20
                             transition-all duration-200
                             hover:text-muted-foreground hover:bg-muted/50 hover:border-border/40"
                           whileHover={{ scale: 1.04 }}

@@ -139,10 +139,21 @@ const Hero = () => {
           </div>
         </>
       ) : (
-        /* Light Theme: Subtle noon day sky gradient with particles */
         <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-sky-200 via-sky-100 to-white" />
-          <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-sky-200/10" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(circle at top, hsl(var(--background)) 0%, hsl(210 27% 97%) 42%, hsl(207 24% 93%) 100%)",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(circle at 18% 22%, hsl(var(--portfolio-glow) / 0.2), transparent 28%), radial-gradient(circle at 82% 20%, hsl(var(--portfolio-accent) / 0.14), transparent 26%), linear-gradient(180deg, hsl(var(--background) / 0.55) 0%, transparent 55%, hsl(var(--secondary) / 0.9) 100%)",
+            }}
+          />
           <Starfield
             density={0.15}
             speed={0.1}

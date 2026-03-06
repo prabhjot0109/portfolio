@@ -94,7 +94,7 @@ const Achievements = () => {
   const impactStats = [
     { icon: "🏆", number: "6", label: "Hackathon Wins" },
     { icon: "💰", number: "$4K", label: "Grant Received" },
-    { icon: "📱", number: "8+", label: "Projects Built" },
+    { icon: "📱", number: "10+", label: "Projects Built" },
     // { icon: "🤖", number: "20+", label: "AI Models Trained" },
   ];
 
@@ -145,7 +145,7 @@ const Achievements = () => {
                 {/* Content Card */}
                 <div className="flex-1 w-full md:w-auto">
                   <motion.div
-                    className={`group relative p-6 rounded-2xl border border-white/10 bg-card/20 backdrop-blur-xl transition-all duration-300 hover:border-white/20 shadow-xl`}
+                    className={`group relative rounded-2xl border border-border/60 bg-card/80 p-6 backdrop-blur-xl transition-all duration-300 hover:border-border shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-hover)] dark:border-white/10 dark:bg-card/20 dark:hover:border-white/20`}
                     whileHover={{ y: -6, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
@@ -276,7 +276,7 @@ const Achievements = () => {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                className={`group relative p-5 md:p-6 rounded-2xl bg-card/20 border border-white/10 backdrop-blur-xl text-center transition-all duration-500 hover:border-white/20 shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:${color.shadow} w-full sm:w-[calc(50%-1rem)] md:w-[calc(25%-1.5rem)] min-w-[200px]`}
+                className={`group relative w-full min-w-[200px] rounded-2xl border border-border/60 bg-card/80 p-5 text-center backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-border hover:shadow-[var(--shadow-hover)] sm:w-[calc(50%-1rem)] md:w-[calc(25%-1.5rem)] md:p-6 dark:border-white/10 dark:bg-card/20 dark:hover:border-white/20 hover:${color.shadow}`}
               >
                 {/* Gradient Glow - Only on Hover */}
                 <div

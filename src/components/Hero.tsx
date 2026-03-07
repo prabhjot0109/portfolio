@@ -171,19 +171,16 @@ const Hero = () => {
           className="max-w-4xl mx-auto relative z-10"
         >
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-space font-bold text-foreground mb-8 leading-tight tracking-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-space font-bold text-foreground mb-2 leading-tight tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <span className="text-muted-foreground text-lg sm:text-xl md:text-2xl font-nunito font-light block mb-4 tracking-widest uppercase">
-              Hello, I'm
+              Hi, I'm
             </span>
             <span className="gradient-text animate-text-gradient font-space block mb-4 drop-shadow-sm pb-2 leading-relaxed">
               Prabhjot Singh
-            </span>
-            <span className="block text-xl sm:text-2xl md:text-3xl font-space font-medium text-muted-foreground/80 h-[1.5em]">
-              CSE Student & Aspiring SDE / AI Engineer
             </span>
           </motion.h1>
 
@@ -193,10 +190,10 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            CSE student seeking{" "}
-            <span className="text-foreground font-medium">SDE</span> or{" "}
-            <span className="text-foreground font-medium">AI Engineer</span>{" "}
-            roles, building the future with AI-powered solutions.
+            CS graduate passionate about{" "}
+            <span className="text-foreground font-medium">AI engineering</span> and{" "}
+            <span className="text-foreground font-medium">software development</span>{" "}
+            — building real-world projects with LLMs, ML pipelines, and AI Agents.
           </motion.p>
 
           {/* Social Links */}
@@ -212,7 +209,7 @@ const Hero = () => {
                 icon: Linkedin,
                 link: "https://linkedin.com/in/prabhjotsinghassi",
               },
-              { icon: Mail, link: "mailto:prabhjotassi16@gmail.com" },
+              { icon: Mail, link: "mailto:prabhjotnovus@gmail.com" },
             ].map((social, index) => (
               <motion.div
                 key={index}
@@ -220,14 +217,14 @@ const Hero = () => {
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
               >
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 w-14 h-14 transition-all duration-300 border border-border/50 rounded-full hover:border-portfolio-accent hover:shadow-[0_0_20px_rgba(var(--portfolio-accent),0.3)]"
-                onClick={() => window.open(social.link, "_blank")}
-              >
-                <social.icon className="h-6 w-6" />
-              </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-foreground hover:text-portfolio-accent hover:bg-portfolio-accent/10 w-14 h-14 transition-all duration-300 border border-border/50 rounded-full hover:border-portfolio-accent hover:shadow-[0_0_20px_rgba(var(--portfolio-accent),0.3)]"
+                  onClick={() => window.open(social.link, "_blank")}
+                >
+                  <social.icon className="h-6 w-6" />
+                </Button>
               </motion.div>
             ))}
           </motion.div>

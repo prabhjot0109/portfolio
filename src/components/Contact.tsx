@@ -33,16 +33,16 @@ const Contact = () => {
 					</motion.div>
 
 					<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-space font-bold tracking-tight mb-6 md:mb-8 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/60 px-2 pb-1 md:pb-2">
-						Let's create something
+						Let's build something
 						<br />
-						extraordinary
+						together
 					</h1>
 
 					<p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed px-4">
-						I am actively seeking full-time software engineering roles and
-						freelance opportunities. If you're looking for a developer who can
-						deliver robust web solutions and innovative AI integrations, I'd
-						love to discuss how I can contribute to your team.
+						I'm actively looking for full-time{" "}
+						<strong className="text-foreground font-medium">AI Engineer</strong> and{" "}
+						<strong className="text-foreground font-medium">Software Engineer</strong>{" "}
+						roles. If you think I'd be a good fit for your team or project, I'd love to connect.
 					</p>
 
 					<motion.div
@@ -61,7 +61,7 @@ const Contact = () => {
 								size="lg"
 								className="cta-button cta-button-primary !bg-transparent hover:!bg-transparent !text-foreground hover:!text-foreground group"
 								onClick={() =>
-									(window.location.href = "mailto:prabhjotassi16@gmail.com")
+									(window.location.href = "mailto:prabhjotnovus@gmail.com")
 								}
 							>
 								<Mail className="w-4 h-4 sm:w-[18px] sm:h-[18px] shrink-0" />

@@ -13,7 +13,7 @@ const Footer = () => {
       label: "LinkedIn",
     },
     // { icon: Twitter, href: "#", label: "X (Twitter)" }, // Uncomment if needed
-    { icon: Mail, href: "mailto:prabhjotassi16@gmail.com", label: "Email" },
+    { icon: Mail, href: "mailto:prabhjotnovus@gmail.com", label: "Email" },
   ];
 
   const footerLinks = [
@@ -59,8 +59,8 @@ const Footer = () => {
               </span>
             </motion.div>
             <p className="text-muted-foreground max-w-sm leading-relaxed text-base sm:text-lg">
-              Crafting digital experiences that merge art with functionality.
-              Let's build the future software together.
+              CS graduate interested in AI engineering and software development.
+              Open to full-time roles and interesting projects.
             </p>
 
             <div className="flex items-center gap-3 sm:gap-4 pt-1 sm:pt-2">
@@ -109,10 +109,10 @@ const Footer = () => {
               </h4>
               <ul className="space-y-3 sm:space-y-4">
                 {[
-                  "SDE / Software Development",
-                  "AI Engineering",
-                  "Machine Learning",
-                  "Full Stack Development",
+                  "AI Engineer",
+                  "Software Engineer",
+                  "Machine Learning Engineer",
+                  "Full Stack Developer",
                 ].map((item, idx) => (
                   <li
                     key={idx}

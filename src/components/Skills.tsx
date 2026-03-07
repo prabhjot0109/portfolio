@@ -25,26 +25,6 @@ const Skills = () => {
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
           level: 80,
         },
-        {
-          name: "HTML",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
-          level: 95,
-        },
-        {
-          name: "CSS",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
-          level: 90,
-        },
-        // {
-        //   name: "JavaScript",
-        //   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-        //   level: 95,
-        // },
-        // {
-        //   name: "TypeScript",
-        //   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
-        //   level: 90,
-        // },
       ],
     },
     {
@@ -55,21 +35,6 @@ const Skills = () => {
       shadow: "shadow-indigo-500/20",
       accent: "indigo",
       skills: [
-        // {
-        //   name: "React",
-        //   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-        //   level: 90,
-        // },
-        // {
-        //   name: "Django",
-        //   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg",
-        //   level: 85,
-        // },
-        {
-          name: "Flask",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg",
-          level: 85,
-        },
         {
           name: "FastAPI",
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
@@ -94,6 +59,11 @@ const Skills = () => {
         {
           name: "Matplotlib",
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg",
+          level: 80,
+        },
+        {
+          name: "HuggingFace",
+          logo: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
           level: 80,
         },
       ],
@@ -132,44 +102,39 @@ const Skills = () => {
           level: 80,
         },
         {
-          name: "ChromaDB",
-          logo: "https://avatars.githubusercontent.com/u/109211307?s=200&v=4",
-          level: 80,
+          name: "Pinecone",
+          logo: "https://avatars.githubusercontent.com/u/54333248?s=200&v=4",
+          level: 75,
         },
       ],
     },
     {
       id: "ai",
-      title: "Gen AI",
+      title: "AI / ML",
       icon: Brain,
       color: "from-purple-500 to-pink-500",
       shadow: "shadow-purple-500/20",
       accent: "purple",
       skills: [
-        // {
-        //   name: "PyTorch",
-        //   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg",
-        //   level: 80,
-        // },
         {
           name: "Scikit-learn",
           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg",
           level: 90,
         },
         {
-          name: "OpenCV",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg",
-          level: 85,
+          name: "LangGraph",
+          logo: "https://avatars.githubusercontent.com/u/139558948?s=200&v=4",
+          level: 80,
+        },
+        {
+          name: "LlamaIndex",
+          logo: "https://avatars.githubusercontent.com/u/130722866?s=200&v=4",
+          level: 80,
         },
         {
           name: "LangChain",
           logo: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4",
           level: 85,
-        },
-        {
-          name: "MediaPipe",
-          logo: "https://developers.google.com/static/mediapipe/images/mediapipe_icon.svg",
-          level: 80,
         },
       ],
     },
@@ -192,24 +157,14 @@ const Skills = () => {
           level: 95,
         },
         {
-          name: "Arduino",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/arduino/arduino-original.svg",
-          level: 85,
-        },
-        {
-          name: "VS Code",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
-          level: 95,
-        },
-        {
-          name: "Android Studio",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg",
-          level: 80,
-        },
-        {
-          name: "Figma",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg",
+          name: "Docker",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
           level: 75,
+        },
+        {
+          name: "Linux",
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg",
+          level: 80,
         },
       ],
     },
@@ -219,7 +174,7 @@ const Skills = () => {
     { id: "languages", label: "Languages" },
     { id: "frameworks", label: "Frameworks" },
     { id: "database", label: "Databases" },
-    { id: "ai", label: "Gen AI" },
+    { id: "ai", label: "AI / ML" },
     { id: "tools", label: "Tools" },
   ];
 
@@ -271,8 +226,8 @@ const Skills = () => {
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
                   className={`px-4 sm:px-6 py-2 md:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 whitespace-nowrap ${activeCategory === category.id
-                      ? "bg-background text-foreground shadow-md ring-1 ring-border/50"
-                      : "text-muted-foreground hover:text-foreground hover:bg-background/40"
+                    ? "bg-background text-foreground shadow-md ring-1 ring-border/50"
+                    : "text-muted-foreground hover:text-foreground hover:bg-background/40"
                     }`}
                 >
                   {category.label}

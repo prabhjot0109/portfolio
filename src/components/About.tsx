@@ -27,28 +27,12 @@ const About = () => {
       border: "border-emerald-500/20",
     },
     {
-      icon: Target,
-      label: "IEEE Grant Recipient",
-      sublabel: "Research Funding",
-      color: "text-blue-500",
-      bg: "bg-blue-500/10",
-      border: "border-blue-500/20",
-    },
-    {
       icon: Zap,
       label: "6+ Hackathon Wins",
       sublabel: "Innovation & Speed",
       color: "text-violet-500",
       bg: "bg-violet-500/10",
       border: "border-violet-500/20",
-    },
-    {
-      icon: Brain,
-      label: "AI Research Published",
-      sublabel: "Contribution to Science",
-      color: "text-amber-500",
-      bg: "bg-amber-500/10",
-      border: "border-amber-500/20",
     },
   ];
 
@@ -159,7 +143,7 @@ const About = () => {
                       </p>
                     </div>
                     <p className="text-xs text-muted-foreground dark:text-white">
-                      AI/ML • Full Stack • SDE
+                      AI/ML • SDE
                     </p>
                   </div>
                 </motion.div>
@@ -182,10 +166,10 @@ const About = () => {
             >
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
                 <TextScramble className="text-foreground">
-                  CSE Student
+                  CS Graduate
                 </TextScramble>
                 <span className="block text-muted-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl mt-1 sm:mt-2">
-                  & Aspiring SDE / AI Engineer
+                  Targeting AI Engineer & SDE Roles
                 </span>
               </h2>
             </motion.div>
@@ -196,36 +180,30 @@ const About = () => {
               className="space-y-4 sm:space-y-6"
             >
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                I am a{" "}
+                I'm a{" "}
                 <span className="text-foreground font-medium">
-                  Computer Science Engineering
+                  Computer Science & Engineering
                 </span>{" "}
-                student dedicated to building intelligent systems that bridge
-                the gap between complex{" "}
-                <span className="text-foreground font-medium">AI research</span>{" "}
-                and practical{" "}
-                <span className="text-foreground font-medium">
-                  Software Engineering
-                </span>
-                . With a strong foundation in{" "}
-                <span className="text-foreground font-medium">
-                  Full Stack Development
-                </span>{" "}
+                graduate with a strong interest in{" "}
+                <span className="text-foreground font-medium">AI engineering</span>{" "}
                 and{" "}
-                <span className="text-foreground font-medium">
-                  Machine Learning
-                </span>
-                , I create scalable applications that are both intuitive and
-                impactful.
+                <span className="text-foreground font-medium">software development</span>.
+                I've worked on end-to-end projects involving{" "}
+                <span className="text-foreground font-medium">LLMs</span>,{" "}
+                <span className="text-foreground font-medium">RAG pipelines</span>, and{" "} 
+                <span className="text-foreground font-medium">AI Agents.</span> I enjoy turning ideas into
+                working, usable software.
               </p>
 
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                Currently seeking{" "}
-                <span className="text-foreground font-medium">SDE</span> or{" "}
+                Looking for{" "}
                 <span className="text-foreground font-medium">AI Engineer</span>{" "}
-                roles where I can apply my problem-solving skills—whether it's
-                optimizing inference latency, designing robust architectures, or
-                crafting seamless user experiences.
+                or{" "}
+                <span className="text-foreground font-medium">SDE</span>{" "}
+                roles where I can keep growing — contributing to intelligent
+                systems, whether that's{" "}
+                <span className="text-foreground font-medium">RAG pipelines</span>,
+                model integration, or building solid full-stack products.
               </p>
             </motion.div>
 
@@ -239,26 +217,26 @@ const About = () => {
                     whileTap={{ scale: 0.97 }}
                     transition={{ type: "spring", stiffness: 350, damping: 18 }}
                   >
-                  <SpotlightCard
-                    className={`group p-3 sm:p-4 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-border/80 hover:shadow-lg`}
-                    spotlightColor="rgba(255, 255, 255, 0.05)"
-                  >
-                    <div className="relative flex flex-col sm:flex-row items-start gap-2 sm:gap-4">
-                      <div
-                        className={`p-2 sm:p-3 rounded-lg ${item.bg} ${item.color} ring-1 ring-inset ${item.border} flex-shrink-0`}
-                      >
-                        <item.icon className="w-4 h-4 sm:w-6 sm:h-6" />
+                    <SpotlightCard
+                      className={`group p-3 sm:p-4 rounded-xl bg-card/50 border border-border/50 backdrop-blur-sm transition-all duration-300 hover:border-border/80 hover:shadow-lg`}
+                      spotlightColor="rgba(255, 255, 255, 0.05)"
+                    >
+                      <div className="relative flex flex-col sm:flex-row items-start gap-2 sm:gap-4">
+                        <div
+                          className={`p-2 sm:p-3 rounded-lg ${item.bg} ${item.color} ring-1 ring-inset ${item.border} flex-shrink-0`}
+                        >
+                          <item.icon className="w-4 h-4 sm:w-6 sm:h-6" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-semibold text-foreground text-sm sm:text-base mb-0.5 sm:mb-1 leading-tight">
+                            {item.label}
+                          </p>
+                          <p className="text-xs sm:text-sm text-muted-foreground leading-tight">
+                            {item.sublabel}
+                          </p>
+                        </div>
                       </div>
-                      <div className="min-w-0">
-                        <p className="font-semibold text-foreground text-sm sm:text-base mb-0.5 sm:mb-1 leading-tight">
-                          {item.label}
-                        </p>
-                        <p className="text-xs sm:text-sm text-muted-foreground leading-tight">
-                          {item.sublabel}
-                        </p>
-                      </div>
-                    </div>
-                  </SpotlightCard>
+                    </SpotlightCard>
                   </motion.div>
                 ))}
               </div>

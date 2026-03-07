@@ -20,7 +20,7 @@ const Experience = () => {
       title: "Project Tech Lead",
       organization: "IEEE Humanitarian Technologies",
       location: "Indore, India (On-site)",
-      date: "Jul 2024 - Jan 2025",
+      date: "Jul 2024 - Mar 2025",
       description:
         "Designed and led an AI-based soil evaluation system empowering 10+ rural families with crop insights. Integrated vision-based crop disease detection (92% accuracy) and deployed a scalable AI pipeline.",
       skills: [
@@ -80,7 +80,7 @@ const Experience = () => {
         "NLP",
       ],
       highlights: [
-        "Current CGPA: 7.22/10",
+        "Current CGPA: 7.32/10",
         "Core subjects: Machine Learning, Computer Vision, Natural Language Processing",
         "Active leadership role in IEEE SIGHT student chapter",
         "Research focus: AI applications in Healthcare & Accessibility",
@@ -99,7 +99,7 @@ const Experience = () => {
       location: "Indore, India",
       date: "2021 - 2022",
       description:
-        "Completed higher secondary education with PCM (Physics, Chemistry, Mathematics) and Computer Science stream. Developed strong foundation in analytical thinking, problem-solving, and programming fundamentals.",
+        "Completed higher secondary education with PCM (Physics, Chemistry, Mathematics) and Computer Science stream.",
       skills: ["Physics", "Mathematics", "Python", "Chemistry"],
       highlights: [
         "Percentage: 73.0%",

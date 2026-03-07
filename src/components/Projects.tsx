@@ -34,7 +34,6 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import AutoCarousel from "@/components/AutoCarousel";
-import LazyImage from "@/components/LazyImage";
 
 // Import images
 import islImage from "@/assets/isl1.jpg";
@@ -118,7 +117,7 @@ const projects = [
     impact: "Recognizes 40+ Gestures with 95% Accuracy",
     demoUrl: "#",
     githubUrl: "https://github.com/prabhjot0109/signify_sih",
-    status: "Ongoing",
+    status: "Completed",
     role: "App & Backend Developer",
   },
   {
@@ -144,8 +143,42 @@ const projects = [
     impact: "Empowered 10+ Farmers in Indore Region",
     demoUrl: "#",
     githubUrl: "https://github.com/prabhjot0109/vrinda/tree/main",
-    status: "Ongoing",
+    status: "Completed",
     role: "Lead Developer",
+  },
+  {
+    id: 9,
+    title: "Sentient AI",
+    subtitle: "RAG-based AI NPC Engine",
+    description:
+      "A RAG-based AI NPC engine that processes game manuals and custom styles to deliver personalized dialogues via RESTful API.",
+    image: sentient1,
+    images: [sentient1],
+    tags: [
+      "FastAPI",
+      "LangChain",
+      "FAISS",
+      "Next.js",
+      "Python",
+      "TypeScript",
+      "RESTful API",
+    ],
+    category: ["ai", "web"] as CategoryId[],
+    longDescription:
+      "Sentient is a sophisticated RAG (Retrieval-Augmented Generation) based AI NPC system. Through the web frontend, developers can upload game manuals, custom instructions, and dialogue style PDFs. This data is processed by the RAG engine and made accessible via a RESTful API. The system connects to live game instances, allowing NPCs to deliver personalized, conversational dialogues that remain contextually accurate to the game's lore and character personas.",
+    features: [
+      "Dynamic upload of game manuals and custom style PDFs",
+      "Context-aware dialogue generation via RESTful API",
+      "Real-time integration with live game instances",
+      "Semantic search and retrieval with FAISS vector store",
+      "Personalized NPC personas with RAG-driven intelligence",
+    ],
+    achievements: "Advanced RAG-based NPC Interaction",
+    impact: "Revolutionizing In-game NPC Conversationality",
+    demoUrl: "#",
+    githubUrl: "https://github.com/prabhjot0109/sentient",
+    status: "Ongoing",
+    role: "Full Stack Developer",
   },
   {
     id: 10,
@@ -204,40 +237,6 @@ const projects = [
     demoUrl: "#",
     githubUrl: "https://github.com/prabhjot0109/TabFlow",
     status: "Completed",
-    role: "Full Stack Developer",
-  },
-  {
-    id: 9,
-    title: "Sentient AI",
-    subtitle: "RAG-based AI NPC Engine",
-    description:
-      "A RAG-based AI NPC engine that processes game manuals and custom styles to deliver personalized dialogues via RESTful API.",
-    image: sentient1,
-    images: [sentient1],
-    tags: [
-      "FastAPI",
-      "LangChain",
-      "FAISS",
-      "Next.js",
-      "Python",
-      "TypeScript",
-      "RESTful API",
-    ],
-    category: ["ai", "web"] as CategoryId[],
-    longDescription:
-      "Sentient is a sophisticated RAG (Retrieval-Augmented Generation) based AI NPC system. Through the web frontend, developers can upload game manuals, custom instructions, and dialogue style PDFs. This data is processed by the RAG engine and made accessible via a RESTful API. The system connects to live game instances, allowing NPCs to deliver personalized, conversational dialogues that remain contextually accurate to the game's lore and character personas.",
-    features: [
-      "Dynamic upload of game manuals and custom style PDFs",
-      "Context-aware dialogue generation via RESTful API",
-      "Real-time integration with live game instances",
-      "Semantic search and retrieval with FAISS vector store",
-      "Personalized NPC personas with RAG-driven intelligence",
-    ],
-    achievements: "Advanced RAG-based NPC Interaction",
-    impact: "Revolutionizing In-game NPC Conversationality",
-    demoUrl: "#",
-    githubUrl: "https://github.com/prabhjot0109/sentient",
-    status: "Ongoing",
     role: "Full Stack Developer",
   },
   {
@@ -402,9 +401,16 @@ const ProjectDialogContent = ({
         <span className="sr-only">Close</span>
       </DialogClose>
 
-      <div className="relative h-64 md:h-80 w-full overflow-hidden rounded-t-3xl">
+      <div className="relative h-72 md:h-[26rem] w-full overflow-hidden rounded-t-3xl">
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
-        <AutoCarousel images={project.images} alt={project.title} />
+        <AutoCarousel
+          images={project.images}
+          alt={project.title}
+          alwaysShowControls={true}
+          showEdgePreview={project.images.length > 1}
+          viewportClassName="h-full"
+          imageClassName="scale-[1.04] md:scale-[1.08]"
+        />
         <div className="absolute bottom-0 left-0 p-6 z-20 w-full">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -606,13 +612,14 @@ const ProjectCard = React.forwardRef<
           <div className="relative aspect-video overflow-hidden border-b border-border/10 group-hover:border-primary/20 transition-colors duration-500">
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
 
-            <LazyImage
-              src={project.image}
+            <AutoCarousel
+              images={project.images}
               alt={project.title}
-              className="w-full h-full transition-transform duration-700 group-hover:scale-110 group-hover:brightness-110"
-              priority={index < 3}
-              objectFit="contain"
-              showBlurBackground={true}
+              showControls={false}
+              showIndicators={false}
+              showEdgePreview={project.images.length > 1}
+              viewportClassName="h-full"
+              imageClassName="transition-transform duration-700 group-hover:scale-105 group-hover:brightness-110"
             />
 
             {project.title === "Sentient AI" && (
@@ -625,12 +632,12 @@ const ProjectCard = React.forwardRef<
               </div>
             )}
 
-            <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute inset-x-0 bottom-5 z-20 flex items-center justify-center opacity-100 transition-opacity duration-300">
               <DialogTrigger asChild>
                 <Button
                   variant="secondary"
                   size="sm"
-                  className="rounded-full px-5 bg-white/20 hover:bg-white/30 text-white border border-white/30 backdrop-blur-md shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300"
+                  className="rounded-full px-5 bg-white/20 hover:bg-white/30 text-white border border-white/30 backdrop-blur-md shadow-lg transition-all duration-300"
                 >
                   <Eye className="w-4 h-4 mr-2" />
                   View Details
@@ -965,3 +972,6 @@ const Projects = () => {
 };
 
 export default Projects;
+
+
+

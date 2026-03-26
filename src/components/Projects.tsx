@@ -65,6 +65,7 @@ import tabflow1 from "@/assets/tabflow1.png";
 import tabflow2 from "@/assets/tabflow2.png";
 import tabflow3 from "@/assets/tabflow3.png";
 import sentient1 from "@/assets/sentient1.png";
+import quizGenerationBackend from "@/assets/quiz-generation-backend.png";
 import recall1 from "@/assets/recall1.png";
 import recall2 from "@/assets/recall2.png";
 import recall3 from "@/assets/recall3.png";
@@ -179,6 +180,40 @@ const projects = [
     githubUrl: "https://github.com/prabhjot0109/sentient",
     status: "Ongoing",
     role: "Full Stack Developer",
+  },
+  {
+    id: 11,
+    title: "Quiz Generation Backend",
+    subtitle: "Peblo Quiz Engine",
+    description:
+      "An AI-powered backend that turns PDFs or plain text into adaptive quizzes with real-time difficulty tuning.",
+    image: quizGenerationBackend,
+    images: [quizGenerationBackend],
+    tags: [
+      "FastAPI",
+      "Python",
+      "PostgreSQL",
+      "SQLAlchemy",
+      "Google Gemini",
+      "Alembic",
+      "PyPDF",
+    ],
+    category: ["ai", "web"] as CategoryId[],
+    longDescription:
+      "Peblo Quiz Engine is a backend system that transforms raw educational content (PDFs or plain text) into structured, adaptive quiz experiences. It covers the full pipeline from ingestion and chunking to AI question generation, scoring, and difficulty progression using a sliding-window rule.",
+    features: [
+      "Content ingestion pipeline for PDF uploads and plain text input",
+      "Generates MCQ, True/False, Fill-in-the-blank, and Short Answer questions",
+      "Source traceability with chunk references for every generated question",
+      "Adaptive difficulty engine based on recent student answer patterns",
+    ],
+    achievements:
+      "End-to-end adaptive quiz pipeline with source traceability and duplicate detection",
+    impact: "Converts raw learning content into dynamic, performance-aware assessments",
+    demoUrl: "#",
+    githubUrl: "https://github.com/prabhjot0109/Quiz-Generation-Backend.git",
+    status: "Completed",
+    role: "Backend Developer",
   },
   {
     id: 10,

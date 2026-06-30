@@ -16,7 +16,11 @@ import {
   X,
   MonitorX,
   SmartphoneNfc,
+  GitBranch,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { projectExtras } from "@/data/projectExtras";
+import ProjectArchitecture from "@/components/ProjectArchitecture";
 import {
   Popover,
   PopoverContent,
@@ -419,6 +423,85 @@ const projects = [
   },
 ];
 
+type ProjectTab = "overview" | "architecture";
+
+const ProjectOverview = ({ project }: { project: (typeof projects)[0] }) => (
+  <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)]">
+    <div className="space-y-6">
+      <div className="rounded-2xl border border-border/70 bg-background/92 p-5 shadow-sm md:p-6 dark:border-border/60 dark:bg-card/50">
+        <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+          <Layers className="w-5 h-5 text-primary" />
+          Overview
+        </h3>
+        <p className="text-muted-foreground leading-relaxed text-lg">
+          {project.longDescription}
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-border/70 bg-background/92 p-5 shadow-sm md:p-6 dark:border-border/60 dark:bg-card/50">
+        <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+          <Zap className="w-5 h-5 text-primary" />
+          Key Features
+        </h3>
+        <ul className="grid sm:grid-cols-2 gap-3">
+          {project.features.map((feature, idx) => (
+            <li
+              key={idx}
+              className="flex items-start gap-2 rounded-xl border border-border/60 bg-secondary/55 p-3 text-muted-foreground transition-colors hover:border-primary/30 dark:border-border/50 dark:bg-muted/30"
+            >
+              <span className="mt-1.5 w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0" />
+              <span className="text-sm">{feature}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div className="space-y-4">
+      <div className="rounded-2xl border border-border/70 bg-background/92 p-5 shadow-sm dark:border-border/50 dark:bg-muted/30">
+        <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">
+          Tech Stack
+        </h3>
+        <div className="flex flex-wrap gap-2">
+          {project.tags.map((tag, idx) => (
+            <span
+              key={idx}
+              className="text-xs px-2.5 py-1 rounded-full
+              bg-secondary text-muted-foreground
+              border border-border/70
+              select-none"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+        <div className="rounded-2xl border border-primary/15 bg-primary/5 p-5 shadow-sm dark:border-primary/10">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-3 flex items-center gap-2">
+            <Trophy className="w-4 h-4" />
+            Achievements
+          </h3>
+          <p className="text-sm font-medium text-foreground">
+            {project.achievements}
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-green-500/15 bg-green-500/5 p-5 shadow-sm dark:border-green-500/10">
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-green-600 dark:text-green-400 mb-3 flex items-center gap-2">
+            <Target className="w-4 h-4" />
+            Impact
+          </h3>
+          <p className="text-sm font-medium text-foreground">
+            {project.impact}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 const ProjectDialogContent = ({
   project,
 }: {
@@ -427,6 +510,14 @@ const ProjectDialogContent = ({
   const projectCategories = project.category
     .map((categoryId) => categoryLabels[categoryId])
     .join(", ");
+
+  const extra = projectExtras[project.id];
+  const [activeTab, setActiveTab] = React.useState<ProjectTab>("overview");
+
+  const tabs: { id: ProjectTab; label: string; icon: typeof Layers }[] = [
+    { id: "overview", label: "Overview", icon: Layers },
+    { id: "architecture", label: "How it works", icon: GitBranch },
+  ];
 
   return (
     <DialogContent className="max-h-[90vh] max-w-4xl gap-0 overflow-y-auto rounded-3xl border border-border/70 bg-background p-0 shadow-2xl backdrop-blur-xl scrollbar-hidden dark:border-white/10 dark:bg-background/92">
@@ -494,80 +585,46 @@ const ProjectDialogContent = ({
           </div>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)]">
-          <div className="space-y-6">
-            <div className="rounded-2xl border border-border/70 bg-background/92 p-5 shadow-sm md:p-6 dark:border-border/60 dark:bg-card/50">
-              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                <Layers className="w-5 h-5 text-primary" />
-                Overview
-              </h3>
-              <p className="text-muted-foreground leading-relaxed text-lg">
-                {project.longDescription}
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-border/70 bg-background/92 p-5 shadow-sm md:p-6 dark:border-border/60 dark:bg-card/50">
-              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                <Zap className="w-5 h-5 text-primary" />
-                Key Features
-              </h3>
-              <ul className="grid sm:grid-cols-2 gap-3">
-                {project.features.map((feature, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-start gap-2 rounded-xl border border-border/60 bg-secondary/55 p-3 text-muted-foreground transition-colors hover:border-primary/30 dark:border-border/50 dark:bg-muted/30"
+        {/* Tab switcher */}
+        {extra && (
+          <div className="flex justify-center">
+            <div className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-muted/50 p-1 backdrop-blur-md">
+              {tabs.map((tab) => {
+                const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={cn(
+                      "inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-semibold transition-all duration-300 sm:px-5 sm:text-sm",
+                      isActive
+                        ? "bg-background text-foreground shadow-sm ring-1 ring-border/50"
+                        : "text-muted-foreground hover:text-foreground"
+                    )}
                   >
-                    <span className="mt-1.5 w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0" />
-                    <span className="text-sm">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+                    <Icon className="h-3.5 w-3.5" />
+                    {tab.label}
+                  </button>
+                );
+              })}
             </div>
           </div>
+        )}
 
-          <div className="space-y-4">
-            <div className="rounded-2xl border border-border/70 bg-background/92 p-5 shadow-sm dark:border-border/50 dark:bg-muted/30">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">
-                Tech Stack
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag, idx) => (
-                  <span
-                    key={idx}
-                    className="text-xs px-2.5 py-1 rounded-full
-                    bg-secondary text-muted-foreground
-                    border border-border/70
-                    select-none"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+        {/* Tab panels — keyed so each tab remounts and animates in reliably */}
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {activeTab === "overview" && <ProjectOverview project={project} />}
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-              <div className="rounded-2xl border border-primary/15 bg-primary/5 p-5 shadow-sm dark:border-primary/10">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-3 flex items-center gap-2">
-                  <Trophy className="w-4 h-4" />
-                  Achievements
-                </h3>
-                <p className="text-sm font-medium text-foreground">
-                  {project.achievements}
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-green-500/15 bg-green-500/5 p-5 shadow-sm dark:border-green-500/10">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-green-600 dark:text-green-400 mb-3 flex items-center gap-2">
-                  <Target className="w-4 h-4" />
-                  Impact
-                </h3>
-                <p className="text-sm font-medium text-foreground">
-                  {project.impact}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+          {activeTab === "architecture" && extra && (
+            <ProjectArchitecture architecture={extra.architecture} />
+          )}
+        </motion.div>
 
         <div className="flex flex-row gap-3 pt-6 border-t border-border/50">
           {project.demoUrl !== "#" ? (

@@ -69,6 +69,11 @@ import tabflow1 from "@/assets/tabflow1.png";
 import tabflow2 from "@/assets/tabflow2.png";
 import tabflow3 from "@/assets/tabflow3.png";
 import sentient1 from "@/assets/sentient1.png";
+import sentient2 from "@/assets/sentient2.png";
+import sentient3 from "@/assets/sentient3.png";
+import sentient4 from "@/assets/sentient4.png";
+import sentient5 from "@/assets/sentient5.png";
+import sentient6 from "@/assets/sentient6.png";
 import quizGenerationBackend from "@/assets/quiz-generation-backend.png";
 import recall1 from "@/assets/recall1.png";
 import recall2 from "@/assets/recall2.png";
@@ -153,12 +158,12 @@ const projects = [
   },
   {
     id: 9,
-    title: "Sentient AI",
+    title: "Sentient",
     subtitle: "RAG-based AI NPC Engine",
     description:
       "A RAG-based AI NPC engine that processes game manuals and custom styles to deliver personalized dialogues via RESTful API.",
     image: sentient1,
-    images: [sentient1],
+    images: [sentient1,sentient2,sentient3,sentient4,sentient5,sentient6],
     tags: [
       "FastAPI",
       "LangChain",
@@ -182,7 +187,7 @@ const projects = [
     impact: "Revolutionizing In-game NPC Conversationality",
     demoUrl: "#",
     githubUrl: "https://github.com/prabhjot0109/sentient",
-    status: "Ongoing",
+    status: "Completed",
     role: "Full Stack Developer",
   },
   {

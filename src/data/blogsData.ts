@@ -33,6 +33,11 @@ export type BlogBlock =
       height: number;
     }
   | {
+      type: "video";
+      src: string;
+      caption?: string;
+    }
+  | {
       type: "list";
       items: string[];
     }

@@ -161,6 +161,7 @@ function BlogContentBlock({ block }: { block: BlogBlock }) {
               alt={block.alt}
               width={block.width}
               height={block.height}
+              unoptimized={block.src.startsWith("http")}
               sizes="(min-width: 768px) 40vw, 100vw"
               className="h-auto w-full object-cover"
             />
@@ -168,6 +169,27 @@ function BlogContentBlock({ block }: { block: BlogBlock }) {
           <figcaption className="mt-2 text-[11px] leading-5 text-zinc-500 dark:text-zinc-500">
             {block.caption}
           </figcaption>
+        </figure>
+      );
+
+    case "video":
+      return (
+        <figure className="my-8">
+          <div className="relative overflow-hidden rounded-[6px] border border-black/20 bg-black shadow-sm shadow-black/10 dark:border-white/[0.12] dark:shadow-black/50">
+            <video
+              controls
+              preload="metadata"
+              className="h-auto w-full object-cover"
+              src={block.src}
+            >
+              Your browser does not support HTML video.
+            </video>
+          </div>
+          {block.caption && (
+            <figcaption className="mt-2 text-[11px] leading-5 text-zinc-500 dark:text-zinc-500">
+              {block.caption}
+            </figcaption>
+          )}
         </figure>
       );
 

@@ -12,6 +12,7 @@ import { FooterBackground } from "@/components/FooterBackground";
 import { RightNavbar } from "@/components/RightNavbar";
 import { CommandMenu } from "@/components/command-menu";
 import { PortfolioSpotlight } from "@/components/PortfolioSpotlight";
+import { InteractiveParticles } from "@/components/ui/interactive-particles";
 import Link from "next/link";
 import SoftPillButton from "@/components/pixel-perfect/soft-pill-button";
 import SocialHoverCard from "@/components/pixel-perfect/social-hover-card";
@@ -114,8 +115,8 @@ export default function Home() {
       {/* Cell 1: Banner */}
       <div className="absolute left-0 right-0 md:left-[30%] md:right-[30%] top-0 h-[22vh] -z-0 pointer-events-auto overflow-hidden bg-white dark:bg-black shadow-[0_4px_12px_rgba(2,6,23,0.04)] dark:shadow-[0_4px_12px_rgba(2,6,23,0.10)]">
         <Image
-          src="/ChatGPT%20Image%20May%2022%2C%202026%2C%2012_40_29%20AM.jpg"
-          alt=""
+          src="/space_light.webp"
+          alt="Space Light Banner"
           fill
           fetchPriority="high"
           sizes="(min-width: 768px) 40vw, 100vw"
@@ -123,18 +124,17 @@ export default function Home() {
           className="object-cover object-center dark:hidden"
         />
         <Image
-          src="/ChatGPT%20Image%20May%2022%2C%202026%2C%2012_49_39%20AM.jpg"
-          alt=""
+          src="/space.webp"
+          alt="Space Dark Banner"
           fill
           fetchPriority="high"
           sizes="(min-width: 768px) 40vw, 100vw"
           quality={100}
           className="hidden object-cover object-center dark:block"
         />
-        <BannerParticles />
-        <div className="absolute inset-x-0 bottom-0 h-10 pointer-events-none z-[5] bg-gradient-to-t from-white/90 to-transparent dark:from-black/50 dark:to-transparent" />
-        <div className="absolute left-0 top-0 bottom-0 w-8 pointer-events-none z-20 bg-gradient-to-r from-white/90 to-transparent dark:from-black/40 dark:to-transparent" />
-        <div className="absolute right-0 top-0 bottom-0 w-8 pointer-events-none z-20 bg-gradient-to-l from-white/90 to-transparent dark:from-black/40 dark:to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-8 pointer-events-none z-[5] bg-gradient-to-t from-white/55 to-transparent dark:from-black/50 dark:to-transparent" />
+        <div className="absolute left-0 top-0 bottom-0 w-6 pointer-events-none z-20 bg-gradient-to-r from-white/45 to-transparent dark:from-black/40 dark:to-transparent" />
+        <div className="absolute right-0 top-0 bottom-0 w-6 pointer-events-none z-20 bg-gradient-to-l from-white/45 to-transparent dark:from-black/40 dark:to-transparent" />
         <div className="absolute bottom-3 right-2 z-10 pointer-events-auto">
           <CurrentTime />
         </div>

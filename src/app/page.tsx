@@ -200,7 +200,7 @@ export default function Home() {
           <li className="flex gap-1.5">
             <span>•</span>
             <span>
-              Currently deep into Agentic AI and software systems that scale.
+              Currently exploring Agentic AI and building software systems that scale.
             </span>
           </li>
         </ul>
@@ -340,6 +340,37 @@ export default function Home() {
                 </span>
               </SoftPillButton>
             </Link>
+          </div>
+        </div>
+
+        {/* Interactive GPU Particles Showcase */}
+        <div id="particles" className="mt-8 flex flex-col relative z-10 scroll-mt-24">
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-[14px] font-medium text-zinc-800 dark:text-zinc-200 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              Interactive GPU Particles Demo
+            </h2>
+            <Link
+              href="/particles"
+              className="text-[11px] font-medium text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1"
+            >
+              Open Interactive Playground →
+            </Link>
+          </div>
+          <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-black/20 dark:border-white/15 bg-black shadow-lg">
+            <InteractiveParticles
+              src="/risen.webp"
+              color="#06b6d4"
+              size={1.2}
+              randomness={1.6}
+              depth={4.0}
+              touchRadius={0.16}
+              threshold={32}
+              maxDimension={360}
+              background="#000000"
+              allowUpload={true}
+              uploadLabel="Upload image"
+            />
           </div>
         </div>
 

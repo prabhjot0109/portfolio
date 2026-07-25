@@ -174,11 +174,11 @@ function ResearchContentBlock({ block }: { block: BlogBlock }) {
     case "video":
       return (
         <figure className="my-8">
-          <div className="relative overflow-hidden rounded-[6px] border border-black/20 bg-black shadow-sm shadow-black/10 dark:border-white/[0.12] dark:shadow-black/50">
+          <div className="relative overflow-hidden rounded-[6px] border border-black/20 bg-black shadow-sm shadow-black/10 dark:border-white/[0.12] dark:shadow-black/50 flex items-center justify-center">
             <video
               controls
               preload="metadata"
-              className="h-auto w-full object-cover"
+              className="h-auto w-full max-h-[70vh] object-contain"
               src={block.src}
             >
               Your browser does not support HTML video.

@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-const darkBannerImage = "/ChatGPT%20Image%20May%2022%2C%202026%2C%2012_49_39%20AM.jpg";
+const darkBannerImage = "/samurai_dark.jpg";
 
 interface SocialProfile {
   name: string;
@@ -52,9 +52,7 @@ const socialProfiles: Record<string, SocialProfile> = {
     banner: darkBannerImage,
     bio: "20 • Artist / Engineer ||",
     location: "Lucknow, Uttar Pradesh, India",
-    stats: [
-      { value: "195", label: "Connections" },
-    ],
+    stats: [{ value: "195", label: "Connections" }],
   },
   Medium: {
     name: "Prabhjot Singh Assi",
@@ -67,14 +65,6 @@ const socialProfiles: Record<string, SocialProfile> = {
       { value: "85", label: "Followers" },
     ],
   },
-  Discord: {
-    name: "Prabhjot Singh Assi",
-    handle: "prabhjot0109",
-    avatar: "/discord-avatar.png",
-    bio: "Even if it's dark, keep moving forward.",
-    location: "",
-    stats: [],
-  },
 };
 
 interface SocialHoverCardProps {
@@ -82,7 +72,10 @@ interface SocialHoverCardProps {
   children: React.ReactNode;
 }
 
-export default function SocialHoverCard({ socialName, children }: SocialHoverCardProps) {
+export default function SocialHoverCard({
+  socialName,
+  children,
+}: SocialHoverCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const profile = socialProfiles[socialName];
 
@@ -120,7 +113,7 @@ export default function SocialHoverCard({ socialName, children }: SocialHoverCar
                 className={cn(
                   "w-[230px] sm:w-[250px] rounded-xl shadow-2xl backdrop-blur-md overflow-hidden",
                   "bg-white/95 dark:bg-[#0c0c0e]/95 border border-black/5 dark:border-white/5",
-                  "text-zinc-900 dark:text-zinc-100 select-none"
+                  "text-zinc-900 dark:text-zinc-100 select-none",
                 )}
               >
                 {socialName === "GitHub" || socialName === "Discord" ? (
@@ -154,12 +147,14 @@ export default function SocialHoverCard({ socialName, children }: SocialHoverCar
                         <h3 className="text-[13.5px] font-bold tracking-tight text-zinc-950 dark:text-zinc-50 truncate leading-tight">
                           {profile.name}
                         </h3>
-                        <span className={cn(
-                          "text-[11.5px] mt-0.5 leading-none",
-                          socialName === "Discord"
-                            ? "text-zinc-400 dark:text-zinc-500 font-sans"
-                            : "text-zinc-400 dark:text-zinc-500 font-mono"
-                        )}>
+                        <span
+                          className={cn(
+                            "text-[11.5px] mt-0.5 leading-none",
+                            socialName === "Discord"
+                              ? "text-zinc-400 dark:text-zinc-500 font-sans"
+                              : "text-zinc-400 dark:text-zinc-500 font-mono",
+                          )}
+                        >
                           {profile.handle}
                         </span>
                       </div>
@@ -177,9 +172,13 @@ export default function SocialHoverCard({ socialName, children }: SocialHoverCar
                       <div className="mt-3.5 pt-3 border-t border-black/5 dark:border-white/5 flex items-center justify-between text-[11.5px]">
                         <div className="flex items-center gap-2">
                           <div className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />
-                          <span className="text-zinc-700 dark:text-zinc-300 font-semibold">Online</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-semibold">
+                            Online
+                          </span>
                         </div>
-                        <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-sans uppercase tracking-wider font-semibold">Active Status</span>
+                        <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-sans uppercase tracking-wider font-semibold">
+                          Active Status
+                        </span>
                       </div>
                     )}
 
@@ -227,7 +226,9 @@ export default function SocialHoverCard({ socialName, children }: SocialHoverCar
                     {profile.banner ? (
                       <div className="relative w-full h-[64px] bg-zinc-200 dark:bg-zinc-800 overflow-hidden">
                         {profile.banner.startsWith("bg-") ? (
-                          <div className={cn("w-full h-full", profile.banner)} />
+                          <div
+                            className={cn("w-full h-full", profile.banner)}
+                          />
                         ) : (
                           <Image
                             src={profile.banner}
@@ -251,12 +252,14 @@ export default function SocialHoverCard({ socialName, children }: SocialHoverCar
                     <div className="p-3.5 pt-0">
                       {/* Avatar Section (with absolute overlap) */}
                       <div className="relative h-9 mb-1.5">
-                        <div className={cn(
-                          "absolute -top-7 left-0 rounded-full overflow-hidden border-2 bg-zinc-100 dark:bg-zinc-900 shadow-sm shrink-0",
-                          profile.banner
-                            ? "w-14 h-14 border-white dark:border-[#0c0c0e]"
-                            : "w-12 h-12 border-black/5 dark:border-white/10 -top-4"
-                        )}>
+                        <div
+                          className={cn(
+                            "absolute -top-7 left-0 rounded-full overflow-hidden border-2 bg-zinc-100 dark:bg-zinc-900 shadow-sm shrink-0",
+                            profile.banner
+                              ? "w-14 h-14 border-white dark:border-[#0c0c0e]"
+                              : "w-12 h-12 border-black/5 dark:border-white/10 -top-4",
+                          )}
+                        >
                           <Image
                             src={profile.avatar}
                             alt={profile.name}
@@ -279,7 +282,10 @@ export default function SocialHoverCard({ socialName, children }: SocialHoverCar
                           </h3>
                           {/* verified blue badge for Twitter */}
                           {socialName === "Twitter" && (
-                            <svg viewBox="0 0 24 24" className="w-[13.5px] h-[13.5px] text-[#1d9bf0] fill-current shrink-0 select-none">
+                            <svg
+                              viewBox="0 0 24 24"
+                              className="w-[13.5px] h-[13.5px] text-[#1d9bf0] fill-current shrink-0 select-none"
+                            >
                               <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.99-3.818-3.99-.48 0-.94.1-1.348.27C14.825 2.515 13.512 1.5 12 1.5s-2.825 1.015-3.422 2.28c-.408-.17-.867-.27-1.348-.27-2.108 0-3.818 1.78-3.818 3.99 0 .495.084.965.238 1.4-1.273.65-2.148 2.02-2.148 3.6 0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.71 3.99 3.818 3.99.48 0 .94-.1 1.348-.27.597 1.265 1.91 2.28 3.422 2.28s2.825-1.015 3.422-2.28c.408.17.867.27 1.348.27 2.108 0 3.818-1.78 3.818-3.99 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6zm-12.72 3.28L6.47 12.5c-.39-.39-.39-1.03 0-1.42s1.02-.39 1.41 0l2.2 2.2 5.09-5.09c.39-.39 1.03-.39 1.42 0s.39 1.03 0 1.42l-5.8 5.8c-.2.2-.46.3-.71.3s-.51-.1-.71-.3z" />
                             </svg>
                           )}

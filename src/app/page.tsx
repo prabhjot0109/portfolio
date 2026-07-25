@@ -21,26 +21,40 @@ import { FileText } from "lucide-react";
 import Image from "next/image";
 
 const skills = [
-  { name: "Python", icon: "python" },
-  { name: "C/C++", icon: "cplusplus" },
-  { name: "SQL", icon: "databricks" },
-  { name: "FastAPI", icon: "fastapi" },
-  { name: "REST APIs", icon: "postman" },
-  { name: "React", icon: "react" },
-  { name: "Next.js", icon: "nextdotjs" },
-  { name: "LangChain", icon: "langchain" },
-  { name: "RAG Systems", icon: "python" },
-  { name: "Vector DBs (FAISS, Qdrant)", icon: "postgresql" },
-  { name: "LLMs & Agentic AI", icon: "openai" },
-  { name: "Hugging Face", icon: "huggingface" },
-  { name: "PostgreSQL", icon: "postgresql" },
-  { name: "Supabase", icon: "supabase" },
-  { name: "Docker", icon: "docker" },
-  { name: "Git", icon: "git" },
-  { name: "GitHub", icon: "github" },
-  { name: "Azure Databricks", icon: "databricks" },
-  { name: "VS Code", icon: "visualstudiocode" },
-  { name: "Android Studio", icon: "androidstudio" },
+  { name: "Python", icon: "python", color: "3776AB" },
+  { name: "TypeScript", icon: "typescript", color: "3178C6" },
+  { name: "C/C++", icon: "cplusplus", color: "00599C" },
+  { name: "PyTorch", icon: "pytorch", color: "EE4C2C" },
+  { name: "scikit-learn", icon: "scikitlearn", color: "F7931E" },
+  { name: "NumPy", icon: "numpy", color: "013243" },
+  { name: "Pandas", icon: "pandas", color: "150458" },
+  {
+    name: "Matplotlib",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg",
+    color: "11557C",
+  },
+  { name: "Streamlit", icon: "streamlit", color: "FF4B4B" },
+  { name: "OpenCV", icon: "opencv", color: "5C3391" },
+  { name: "Pydantic", icon: "pydantic", color: "E92063" },
+  { name: "LangChain", icon: "langchain", color: "1C3C3C" },
+  { name: "LangGraph", icon: "graphql", color: "FF6B35" },
+  { name: "Hugging Face", icon: "huggingface", color: "FFD21E" },
+  { name: "Jupyter", icon: "jupyter", color: "F37626" },
+  { name: "Qdrant", icon: "qdrant", color: "D45FDD" },
+  { name: "FAISS", icon: "meta", color: "0467DF" },
+  { name: "FastAPI", icon: "fastapi", color: "009688" },
+  { name: "PostgreSQL", icon: "postgresql", color: "4169E1" },
+  { name: "MySQL", icon: "mysql", color: "4479A1" },
+  { name: "SQLite", icon: "sqlite", color: "07405E" },
+  { name: "Firebase", icon: "firebase", color: "FFCA28" },
+  { name: "Supabase", icon: "supabase", color: "3ECF8E" },
+  { name: "Docker", icon: "docker", color: "2496ED" },
+  { name: "Git", icon: "git", color: "F05032" },
+  {
+    name: "GitHub",
+    icon: "github"},
+  { name: "Figma", icon: "figma", color: "F24E1E" },
+  { name: "React", icon: "react", color: "61DAFB" },
 ];
 
 export default function Home() {
@@ -114,8 +128,8 @@ export default function Home() {
       {/* Cell 1: Banner */}
       <div className="absolute left-0 right-0 md:left-[30%] md:right-[30%] top-0 h-[22vh] -z-0 pointer-events-auto overflow-hidden bg-white dark:bg-black shadow-[0_4px_12px_rgba(2,6,23,0.04)] dark:shadow-[0_4px_12px_rgba(2,6,23,0.10)]">
         <Image
-          src="/space_light.webp"
-          alt="Space Light Banner"
+          src="/samurai_light.jpg"
+          alt="Samurai Light Banner"
           fill
           fetchPriority="high"
           sizes="(min-width: 768px) 40vw, 100vw"
@@ -123,17 +137,18 @@ export default function Home() {
           className="object-cover object-center dark:hidden"
         />
         <Image
-          src="/space.webp"
-          alt="Space Dark Banner"
+          src="/samurai_dark.jpg"
+          alt="Samurai Dark Banner"
           fill
           fetchPriority="high"
           sizes="(min-width: 768px) 40vw, 100vw"
           quality={100}
           className="hidden object-cover object-center dark:block"
         />
-        <div className="absolute inset-x-0 bottom-0 h-8 pointer-events-none z-[5] bg-gradient-to-t from-white/55 to-transparent dark:from-black/50 dark:to-transparent" />
-        <div className="absolute left-0 top-0 bottom-0 w-6 pointer-events-none z-20 bg-gradient-to-r from-white/45 to-transparent dark:from-black/40 dark:to-transparent" />
-        <div className="absolute right-0 top-0 bottom-0 w-6 pointer-events-none z-20 bg-gradient-to-l from-white/45 to-transparent dark:from-black/40 dark:to-transparent" />
+        <BannerParticles />
+        <div className="absolute inset-x-0 bottom-0 h-10 pointer-events-none z-[5] bg-gradient-to-t from-white/90 to-transparent dark:from-black/50 dark:to-transparent" />
+        <div className="absolute left-0 top-0 bottom-0 w-8 pointer-events-none z-20 bg-gradient-to-r from-white/90 to-transparent dark:from-black/40 dark:to-transparent" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 pointer-events-none z-20 bg-gradient-to-l from-white/90 to-transparent dark:from-black/40 dark:to-transparent" />
         <div className="absolute bottom-3 right-2 z-10 pointer-events-auto">
           <CurrentTime />
         </div>
@@ -147,7 +162,7 @@ export default function Home() {
               {/* The inner image */}
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-[3px] sm:rounded-[5px] overflow-hidden bg-zinc-100 dark:bg-zinc-900">
                 <Image
-                  src="/risen.webp"
+                  src="/man.webp"
                   alt="Profile"
                   width={240}
                   height={240}
@@ -177,7 +192,10 @@ export default function Home() {
       </div>
 
       {/* Flowing Content Section */}
-      <div id="about" className="ml-0 mr-0 md:ml-[30%] md:mr-[30%] pt-[calc(22vh+112px)] pb-0 px-4 flex flex-col z-10 relative min-h-screen scroll-mt-32">
+      <div
+        id="about"
+        className="ml-0 mr-0 md:ml-[30%] md:mr-[30%] pt-[calc(22vh+112px)] pb-0 px-4 flex flex-col z-10 relative min-h-screen scroll-mt-32"
+      >
         <p className="text-[14px] sm:text-[15px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-4">
           I like building things that didn&apos;t exist yesterday.
         </p>
@@ -186,8 +204,8 @@ export default function Home() {
           <li className="flex gap-1.5">
             <span>•</span>
             <span>
-              AI, software systems, and building products that solve real problems
-              excite me.
+              AI, software systems, and building products that solve real
+              problems excite me.
             </span>
           </li>
           <li className="flex gap-1.5">
@@ -200,7 +218,8 @@ export default function Home() {
           <li className="flex gap-1.5">
             <span>•</span>
             <span>
-              Currently exploring Agentic AI and building software systems that scale.
+              Currently exploring Agentic AI and building software systems that
+              scale.
             </span>
           </li>
         </ul>
@@ -299,16 +318,7 @@ export default function Home() {
                   ></path>
                 ),
               },
-              {
-                name: "Discord",
-                href: "#",
-                icon: (
-                  <path
-                    d="M18 5c-1.5-.7-3.2-1-5-1s-3.5.3-5 1c-1.5 3.5-2.5 8-2.5 8 1.5 2 4.5 3 7.5 3s6-1 7.5-3c0 0-1-4.5-2.5-8zM9 13c-.8 0-1.5-.7-1.5-1.5S8.2 10 9 10s1.5.7 1.5 1.5S9.8 13 9 13zm6 0c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5z"
-                    fill="currentColor"
-                  ></path>
-                ),
-              },
+
             ].map((social, i) => (
               <SocialHoverCard key={i} socialName={social.name}>
                 <SoftPillButton
@@ -340,37 +350,6 @@ export default function Home() {
                 </span>
               </SoftPillButton>
             </Link>
-          </div>
-        </div>
-
-        {/* Interactive GPU Particles Showcase */}
-        <div id="particles" className="mt-8 flex flex-col relative z-10 scroll-mt-24">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="text-[14px] font-medium text-zinc-800 dark:text-zinc-200 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              Interactive GPU Particles Demo
-            </h2>
-            <Link
-              href="/particles"
-              className="text-[11px] font-medium text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1"
-            >
-              Open Interactive Playground →
-            </Link>
-          </div>
-          <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-black/20 dark:border-white/15 bg-black shadow-lg">
-            <InteractiveParticles
-              src="/risen.webp"
-              color="#06b6d4"
-              size={1.2}
-              randomness={1.6}
-              depth={4.0}
-              touchRadius={0.16}
-              threshold={32}
-              maxDimension={360}
-              background="#000000"
-              allowUpload={true}
-              uploadLabel="Upload image"
-            />
           </div>
         </div>
 
@@ -673,29 +652,30 @@ export default function Home() {
 
           <div className="relative pt-6 pb-2">
             <div className="flex flex-wrap gap-2 w-full">
-              {skills.map((skill, index) => (
-                <div
-                  key={index}
-                  className="grow flex items-center justify-center gap-2 px-3 py-1.5 bg-zinc-50 hover:bg-zinc-100 dark:bg-[#0a0a0a] dark:hover:bg-[#121214] border border-black/30 dark:border-white/[0.15] rounded-[6px] transition-colors duration-200 cursor-default"
-                >
-                  <img
-                    src={
-                      skill.icon.startsWith("http")
-                        ? skill.icon
-                        : `https://cdn.simpleicons.org/${skill.icon}/71717a`
-                    }
-                    alt={skill.name}
-                    width={14}
-                    height={14}
-                    loading="lazy"
-                    decoding="async"
-                    className={`h-3.5 w-3.5 opacity-80 ${skill.icon.startsWith("http") ? "rounded-sm grayscale" : ""}`}
-                  />
-                  <span className="text-[13px] font-medium text-zinc-600 dark:text-zinc-400">
-                    {skill.name}
-                  </span>
-                </div>
-              ))}
+              {skills.map((skill, index) => {
+                const iconSrc = skill.icon.startsWith("http")
+                  ? skill.icon
+                  : `https://cdn.simpleicons.org/${skill.icon}/${skill.color}`;
+                return (
+                  <div
+                    key={index}
+                    className="group flex flex-1 min-w-[118px] items-center justify-center gap-2 px-2.5 py-2 bg-zinc-50 hover:bg-zinc-100 dark:bg-[#0a0a0a] dark:hover:bg-[#121214] border border-black/30 dark:border-white/[0.15] rounded-[6px] transition-all duration-200 cursor-default text-center"
+                  >
+                    <img
+                      src={iconSrc}
+                      alt={skill.name}
+                      width={14}
+                      height={14}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-3.5 w-3.5 opacity-70 grayscale group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-200 object-contain"
+                    />
+                    <span className="text-[13px] font-medium text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100 transition-colors whitespace-nowrap">
+                      {skill.name}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -753,12 +733,7 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
             <div className="absolute bottom-0 right-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
 
-            <Link
-              href="https://medium.com/@prabhjotnovus"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative group block mt-0"
-            >
+            <Link href="/blogs" className="relative group block mt-0">
               <div className="absolute -inset-[5px] border border-black/5 dark:border-white/5 rounded-[11px] pointer-events-none transition-colors duration-300 group-hover:border-black/10 dark:group-hover:border-white/10" />
               <div className="relative flex items-center gap-1.5 px-4 py-2 bg-zinc-50 hover:bg-zinc-100 dark:bg-[#09090b] dark:hover:bg-[#121214] text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-[6px] text-[13px] font-medium transition-all duration-300 border border-black/5 dark:border-white/5 shadow-sm shadow-black/20 dark:shadow-lg dark:shadow-black/80">
                 View All

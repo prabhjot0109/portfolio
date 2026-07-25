@@ -4,14 +4,14 @@ import { ArrowLeft } from "lucide-react";
 import { CommandMenu } from "@/components/command-menu";
 import { CurrentTime } from "@/components/CurrentTime";
 import { FooterBackground } from "@/components/FooterBackground";
-import { ResearchList } from "@/components/ResearchList";
+import { BlogList } from "@/components/BlogList";
 import { RightNavbar } from "@/components/RightNavbar";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export const metadata: Metadata = {
-  title: "Research & Publications | Prabhjot Singh Assi",
+  title: "Blogs & Articles | Prabhjot Singh Assi",
   description:
-    "Peer-reviewed research publications, IEEE papers, and technical contributions in Computer Vision, Accessibility, and AI.",
+    "Technical articles, engineering insights, open source guides, and thoughts on AI.",
 };
 
 const horizontalDashes = {
@@ -70,7 +70,7 @@ function BlueprintFrame() {
   );
 }
 
-export default function ResearchPage() {
+export default function BlogsPage() {
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden bg-white transition-colors duration-300 dark:bg-black">
       <RightNavbar />
@@ -95,10 +95,10 @@ export default function ResearchPage() {
             </Link>
             <div className="flex min-w-0 flex-col justify-center">
               <h1 className="text-[20px] font-bold leading-none tracking-tight text-zinc-800 [text-shadow:-1.5px_0_0_rgba(0,200,255,0.3),1.5px_0_0_rgba(255,80,0,0.3)] dark:text-zinc-100 dark:[text-shadow:-1.5px_0_0_rgba(0,200,255,0.6),1.5px_0_0_rgba(255,80,0,0.6)] sm:text-[24px]">
-                Research & Publications
+                All Blogs & Articles
               </h1>
               <p className="mt-1 truncate text-[12px] font-medium text-zinc-500 dark:text-zinc-400">
-                IEEE Papers & Technical Publications
+                Tech Writings, Engineering Insights & Open Source
               </p>
             </div>
           </div>
@@ -112,7 +112,7 @@ export default function ResearchPage() {
 
       <main className="relative z-10 ml-0 mr-0 flex flex-col px-4 pb-16 pt-[calc(22vh+112px)] md:ml-[30%] md:mr-[30%]">
         <div className="pt-0 pb-6">
-          <ResearchList />
+          <BlogList />
         </div>
 
         <div className="relative mt-12 h-[220px] w-[calc(100%+32px)] -mx-4 overflow-hidden">

@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ashutoshx7",
+  title: "Prabhjot Singh Assi",
   description:
     "Software Engineer specializing in Gen AI systems, RAG pipelines, and agentic workflows. 6x Hackathon Winner.",
   icons: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-icon.png", type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
-    title: "Ashutoshx7",
+    title: "Prabhjot Singh Assi",
     description:
       "Software Engineer specializing in Gen AI systems, RAG pipelines, and agentic workflows.",
     type: "website",

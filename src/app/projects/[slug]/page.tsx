@@ -169,22 +169,62 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         {/* Title and Status */}
         <div className="flex items-center justify-between w-full mb-4">
-          <h1 className="text-[24px] sm:text-[28px] font-bold text-zinc-900 dark:text-zinc-50 tracking-tight leading-none">
-            {project.title}
-          </h1>
-          <div className="flex items-center gap-2">
+          <div>
+            <h1 className="text-[24px] sm:text-[28px] font-bold text-zinc-900 dark:text-zinc-50 tracking-tight leading-none mb-1">
+              {project.title}
+            </h1>
+            {project.subtitle && (
+              <p className="text-[13px] text-zinc-500 dark:text-zinc-400 font-medium">
+                {project.subtitle}
+              </p>
+            )}
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="text-[13px] font-medium text-emerald-600 dark:text-emerald-400">Live</span>
+            <span className="text-[13px] font-medium text-emerald-600 dark:text-emerald-400">{project.status || "Completed"}</span>
           </div>
         </div>
 
         {/* Description */}
         <p className="text-[14px] sm:text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-300">
-          {project.description}
+          {project.longDescription || project.description}
         </p>
+
+        {/* Key Features */}
+        {project.features && project.features.length > 0 && (
+          <div className="mt-6">
+            <h2 className="text-[15px] font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-3">Key Features</h2>
+            <ul className="grid sm:grid-cols-2 gap-2.5">
+              {project.features.map((feature, idx) => (
+                <li key={idx} className="flex items-start gap-2 text-[13px] text-zinc-600 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-900/50 p-2.5 rounded-md border border-black/5 dark:border-white/5">
+                  <span className="mt-1.5 w-1.5 h-1.5 bg-emerald-500 rounded-full shrink-0" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Achievements & Impact */}
+        {(project.achievements || project.impact) && (
+          <div className="grid sm:grid-cols-2 gap-3 mt-6">
+            {project.achievements && (
+              <div className="p-3 bg-amber-500/5 border border-amber-500/20 rounded-md">
+                <h3 className="text-[11px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-1">Achievements</h3>
+                <p className="text-[13px] text-zinc-700 dark:text-zinc-300 font-medium">{project.achievements}</p>
+              </div>
+            )}
+            {project.impact && (
+              <div className="p-3 bg-emerald-500/5 border border-emerald-500/20 rounded-md">
+                <h3 className="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-1">Impact</h3>
+                <p className="text-[13px] text-zinc-700 dark:text-zinc-300 font-medium">{project.impact}</p>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Dashed Divider before Stack */}
         <div className="relative mt-8 mb-6">

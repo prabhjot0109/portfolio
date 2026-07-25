@@ -23,22 +23,22 @@ interface SocialProfile {
 
 const socialProfiles: Record<string, SocialProfile> = {
   GitHub: {
-    name: "Ashutosh Singh",
-    handle: "Ashutoshx7",
-    avatar: "https://github.com/ashutoshx7.png",
-    bio: "20 • Artist / Engineer",
-    location: "Delhi, India (UTC +05:30)",
+    name: "Prabhjot Singh Assi",
+    handle: "prabhjot0109",
+    avatar: "https://github.com/prabhjot0109.png",
+    bio: "21 • AI Engineer",
+    location: "Indore, India (UTC +05:30)",
     stats: [
       { value: "138", label: "Repositories" },
       { value: "236", label: "Followers" },
     ],
   },
   Twitter: {
-    name: "Ashutoshx7",
-    handle: "@Ashutosh_7x7",
-    avatar: "https://unavatar.io/twitter/Ashutosh_7x7",
+    name: "Prabhjot Singh Assi",
+    handle: "@prabhjotnovus",
+    avatar: "https://unavatar.io/twitter/prabhjotnovus",
     banner: darkBannerImage,
-    bio: "Artist / Engineer 20 • Backed by Vercel • Building Draco",
+    bio: "Artist / Engineer 21 • Backed by Vercel • Building Draco",
     location: "Delhi, India (UTC +05:30)",
     stats: [
       { value: "395", label: "Following" },
@@ -46,9 +46,9 @@ const socialProfiles: Record<string, SocialProfile> = {
     ],
   },
   LinkedIn: {
-    name: "Ashutosh Singh",
-    handle: "in/ashutosh-singh-855177329",
-    avatar: "https://github.com/ashutoshx7.png",
+    name: "Prabhjot Singh Assi",
+    handle: "in/prabhjotsinghassi",
+    avatar: "https://github.com/prabhjot0109.png",
     banner: darkBannerImage,
     bio: "20 • Artist / Engineer ||",
     location: "Lucknow, Uttar Pradesh, India",
@@ -57,9 +57,9 @@ const socialProfiles: Record<string, SocialProfile> = {
     ],
   },
   Medium: {
-    name: "Ashutosh Singh",
-    handle: "@ashutoshx7",
-    avatar: "https://github.com/ashutoshx7.png",
+    name: "Prabhjot Singh Assi",
+    handle: "@prabhjot0109",
+    avatar: "https://github.com/prabhjot0109.png",
     bio: "Writing about modern web engineering, pixel-perfect design systems, and frontend optimizations.",
     location: "Delhi, India (UTC +05:30)",
     stats: [
@@ -68,8 +68,8 @@ const socialProfiles: Record<string, SocialProfile> = {
     ],
   },
   Discord: {
-    name: "Ashutoshx7",
-    handle: "ashutoshsingh71",
+    name: "Prabhjot Singh Assi",
+    handle: "prabhjot0109",
     avatar: "/discord-avatar.png",
     bio: "Even if it's dark, keep moving forward.",
     location: "",

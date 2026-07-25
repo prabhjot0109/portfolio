@@ -15,7 +15,7 @@ export interface ResearchPaper {
 export const researchPapers: ResearchPaper[] = [
   {
     title: "Signify — Bridging Communication Through Technology",
-    date: "IEEE 2025",
+    date: "Jul 2026",
     tags: ["IEEE Xplore", "Computer Vision", "Flutter", "Accessibility", "AI & ML"],
     link: "/research/signify",
     isExternal: false,

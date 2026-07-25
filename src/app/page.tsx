@@ -11,6 +11,7 @@ import { Highlights } from "@/components/Highlights";
 import { FooterBackground } from "@/components/FooterBackground";
 import { RightNavbar } from "@/components/RightNavbar";
 import { CommandMenu } from "@/components/command-menu";
+import { PortfolioSpotlight } from "@/components/PortfolioSpotlight";
 import Link from "next/link";
 import SoftPillButton from "@/components/pixel-perfect/soft-pill-button";
 import SocialHoverCard from "@/components/pixel-perfect/social-hover-card";
@@ -44,8 +45,12 @@ const skills = [
 export default function Home() {
   return (
     <div className="min-h-screen w-full bg-white dark:bg-black relative overflow-x-hidden transition-colors duration-300">
+      {/* Interactive Cursor Spotlight Grid */}
+      <PortfolioSpotlight />
+
       {/* Right Side Blueprint Navigation */}
       <RightNavbar />
+
 
       {/* Vertical Lines - Ultra-fine Micro Dots */}
       <div
@@ -807,14 +812,12 @@ export default function Home() {
         <div className="mt-12 flex flex-col items-center justify-center relative py-12">
           <div className="max-w-[480px] w-full flex flex-col items-center">
             <h3 className="text-[16px] font-medium text-center leading-relaxed text-zinc-500 dark:text-zinc-400 mb-6 italic">
-              &quot;Do so much work that it would be unreasonable
-              <br className="hidden md:block" /> for you to not be
-              successful.&quot;
+              &quot;Build What Matters&quot;
             </h3>
 
             <div className="flex items-center gap-3 text-[10px] font-medium tracking-[0.2em] text-zinc-400 dark:text-zinc-600 uppercase">
               <div className="w-4 h-[1px] bg-zinc-200 dark:bg-zinc-800" />
-              ALEX HORMOZI
+              PRABHJOT SINGH
               <div className="w-4 h-[1px] bg-zinc-200 dark:bg-zinc-800" />
             </div>
           </div>

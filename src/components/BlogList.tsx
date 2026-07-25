@@ -5,19 +5,6 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Calendar } from "lucide-react";
 import { blogsData } from "@/data/blogsData";
 
-const RealClapIcon = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M10 20v-5.5"></path>
-    <path d="M14 20v-5.5"></path>
-    <path d="M10.5 7A2.5 2.5 0 0 1 13 4.5V2"></path>
-    <path d="M13.5 7A2.5 2.5 0 0 0 11 4.5V2"></path>
-    <path d="M16 12.5V9a2.5 2.5 0 0 0-5 0"></path>
-    <path d="M8 12.5V9a2.5 2.5 0 0 1 5 0"></path>
-    <path d="M12 20a4 4 0 0 1-4-4V7a2 2 0 0 1 4 0v9"></path>
-    <path d="M16 16a4 4 0 0 0 4-4v-3a2 2 0 0 0-4 0"></path>
-    <path d="M8 16a4 4 0 0 1-4-4v-3a2 2 0 0 1 4 0"></path>
-  </svg>
-);
 
 export function BlogList() {
   return (
@@ -69,11 +56,6 @@ export function BlogList() {
                   <div className="flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5" />
                     <span>{blog.date}</span>
-                  </div>
-
-                  <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-500 font-medium">
-                    <RealClapIcon className="w-3.5 h-3.5" />
-                    <span>{blog.claps}</span>
                   </div>
 
                   {/* Vertical Divider */}

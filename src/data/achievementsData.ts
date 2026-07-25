@@ -21,6 +21,7 @@ export const majorAchievements: Achievement[] = [
       "National level hackathon winner recognized for creating the best software solution.",
     impact: "National recognition for innovation excellence",
     iconName: "Trophy",
+    imageSrc: "/achievements/marwadi.png",
   },
   {
     id: "code-for-bharat-s2",
@@ -32,6 +33,7 @@ export const majorAchievements: Achievement[] = [
       "Secured 1st runner-up among top teams across India in the National Project Building Challenge.",
     impact: "Recognized for innovation and execution",
     iconName: "Trophy",
+    imageSrc: "/achievements/microsoft.svg",
   },
   {
     id: "sih-2024",
@@ -43,7 +45,7 @@ export const majorAchievements: Achievement[] = [
       "Won against 10,000+ teams nationwide with Signify - An AI-powered ISL translator.",
     impact: "40+ ISL gestures, 90%+ accuracy",
     iconName: "Medal",
-    imageSrc: "/Screenshot%202026-02-07%20234301.png",
+    imageSrc: "/achievements/sih.jpg",
   },
   {
     id: "ieee-grant-2024",
@@ -55,7 +57,7 @@ export const majorAchievements: Achievement[] = [
       "$4000 grant for IoT-enabled smart agriculture platform empowering farmers.",
     impact: "10+ farmers impacted, 20% yield improvement",
     iconName: "Target",
-    imageSrc: "/Experience-image/Google_Summer_of_Code_sun_logo_2022.svg (1).png",
+    imageSrc: "/achievements/ieee.svg",
   },
   {
     id: "hackwave-2024",
@@ -67,6 +69,7 @@ export const majorAchievements: Achievement[] = [
       "First place for urban transport optimization using machine learning.",
     impact: "Traffic congestion reduction solution",
     iconName: "Award",
+    imageSrc: "/achievements/cdgi.png",
   },
   {
     id: "prayatna-2024",
@@ -78,6 +81,7 @@ export const majorAchievements: Achievement[] = [
       "AI-powered healthcare diagnostic assistant with computer vision.",
     impact: "15% diagnostic accuracy improvement",
     iconName: "Star",
+    imageSrc: "/achievements/acropolis.png",
   },
   {
     id: "codespire-2023",
@@ -89,5 +93,6 @@ export const majorAchievements: Achievement[] = [
       "Early achievement demonstrating exceptional problem-solving skills.",
     impact: "Technical excellence recognition",
     iconName: "TrendingUp",
+    imageSrc: "/achievements/acropolis.png",
   },
 ];

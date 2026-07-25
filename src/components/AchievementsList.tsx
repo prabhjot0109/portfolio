@@ -72,8 +72,7 @@ export function AchievementsList() {
                         alt={item.title}
                         width={40}
                         height={40}
-                        sizes="40px"
-                        quality={80}
+                        unoptimized
                         className="object-contain w-full h-full p-0.5"
                       />
                     ) : (

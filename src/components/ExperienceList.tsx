@@ -24,9 +24,9 @@ const experiences: ExperienceData[] = [
     role: "SDE 1",
     dates: "May 2026 - Present",
     location: "Indore, India",
-    src: "/Experience-image/pngegg (1).png",
+    src: "/Experience-image/vected-dark.svg",
     imageFit: "contain",
-    imageZoom: 1.2,
+    imageZoom: 1.1,
     description: `
       Worked on MLOps pipelines on Azure Databricks to eliminate silent failures and improve deployment reliability
       Developed RAG-based Gen AI applications using LangChain, vector databases, and LLMs, enabling intelligent document retrieval and context-aware Q&A across enterprise knowledge bases
@@ -55,9 +55,9 @@ const experiences: ExperienceData[] = [
     role: "Tech Lead - Harvesting Hope ($4,000 IEEE HTB Grant)",
     dates: "Jul 2024 - Mar 2025",
     location: "Indore, India",
-    src: "/Experience-image/Google_Summer_of_Code_sun_logo_2022.svg (1).png",
+    src: "/Experience-image/ieee-sight.png",
     imageFit: "contain",
-    imageZoom: 0.9,
+    imageZoom: 1.0,
     description: `
       Led end-to-end development of “Harvesting Hope,” a humanitarian AI+IoT platform awarded a $4,000 grant by IEEE HTB to help farmers improve crop yields through AI-driven soil analysis and IoT sensors
       Coordinated a team of 5 engineers with Git branching strategies and structured code reviews to build and ship the Krishi mobile application

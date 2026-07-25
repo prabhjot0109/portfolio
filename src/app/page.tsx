@@ -23,11 +23,10 @@ import Image from "next/image";
 const skills = [
   { name: "Python", icon: "python", color: "3776AB" },
   { name: "TypeScript", icon: "typescript", color: "3178C6" },
-  { name: "C/C++", icon: "cplusplus", color: "00599C" },
   { name: "PyTorch", icon: "pytorch", color: "EE4C2C" },
   { name: "scikit-learn", icon: "scikitlearn", color: "F7931E" },
   { name: "NumPy", icon: "numpy", color: "013243" },
-  { name: "Pandas", icon: "pandas", color: "150458" },
+  { name: "Pandas", icon: "pandas" },
   {
     name: "Matplotlib",
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg",
@@ -35,26 +34,21 @@ const skills = [
   },
   { name: "Streamlit", icon: "streamlit", color: "FF4B4B" },
   { name: "OpenCV", icon: "opencv", color: "5C3391" },
+  { name: "Qdrant", icon: "qdrant", color: "D45FDD" },
+  { name: "FAISS", icon: "meta", color: "D45FDD" },
+  { name: "Jupyter", icon: "jupyter", color: "F37626" },
+  { name: "Django", icon: "django", color: "092E20" },
   { name: "Pydantic", icon: "pydantic", color: "E92063" },
   { name: "LangChain", icon: "langchain", color: "1C3C3C" },
   { name: "LangGraph", icon: "graphql", color: "FF6B35" },
   { name: "Hugging Face", icon: "huggingface", color: "FFD21E" },
-  { name: "Jupyter", icon: "jupyter", color: "F37626" },
-  { name: "Qdrant", icon: "qdrant", color: "D45FDD" },
-  { name: "FAISS", icon: "meta", color: "0467DF" },
   { name: "FastAPI", icon: "fastapi", color: "009688" },
   { name: "PostgreSQL", icon: "postgresql", color: "4169E1" },
-  { name: "MySQL", icon: "mysql", color: "4479A1" },
-  { name: "SQLite", icon: "sqlite", color: "07405E" },
-  { name: "Firebase", icon: "firebase", color: "FFCA28" },
-  { name: "Supabase", icon: "supabase", color: "3ECF8E" },
+  { name: "SQLite", icon: "sqlite", color: "003B5C" },
   { name: "Docker", icon: "docker", color: "2496ED" },
   { name: "Git", icon: "git", color: "F05032" },
-  {
-    name: "GitHub",
-    icon: "github"},
+  { name: "GitHub", icon: "github" },
   { name: "Figma", icon: "figma", color: "F24E1E" },
-  { name: "React", icon: "react", color: "61DAFB" },
 ];
 
 export default function Home() {
@@ -318,7 +312,6 @@ export default function Home() {
                   ></path>
                 ),
               },
-
             ].map((social, i) => (
               <SocialHoverCard key={i} socialName={social.name}>
                 <SoftPillButton

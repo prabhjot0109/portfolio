@@ -52,7 +52,6 @@ export default function Home() {
       {/* Right Side Blueprint Navigation */}
       <RightNavbar />
 
-
       {/* Vertical Lines - Ultra-fine Micro Dots */}
       <div
         className="absolute top-0 bottom-0 left-[30%] w-0 border-r border-black/30 dark:border-white/[0.15] pointer-events-none hidden md:block"
@@ -148,7 +147,7 @@ export default function Home() {
               {/* The inner image */}
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-[3px] sm:rounded-[5px] overflow-hidden bg-zinc-100 dark:bg-zinc-900">
                 <Image
-                  src="https://github.com/prabhjot0109.png"
+                  src="/risen.webp"
                   alt="Profile"
                   width={240}
                   height={240}
@@ -165,7 +164,7 @@ export default function Home() {
                 Prabhjot Singh Assi
               </h1>
               <p className="text-[13px] sm:text-[14px] text-zinc-500 dark:text-zinc-400">
-                Software Engineer (AI/ML)
+                Engineer • Learner • Builder
               </p>
             </div>
           </div>
@@ -178,40 +177,30 @@ export default function Home() {
       </div>
 
       {/* Flowing Content Section */}
-      <div className="ml-0 mr-0 md:ml-[30%] md:mr-[30%] pt-[calc(22vh+112px)] pb-0 px-4 flex flex-col z-10 relative min-h-screen">
+      <div id="about" className="ml-0 mr-0 md:ml-[30%] md:mr-[30%] pt-[calc(22vh+112px)] pb-0 px-4 flex flex-col z-10 relative min-h-screen scroll-mt-32">
         <p className="text-[14px] sm:text-[15px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-4">
-          Software Engineer specializing in Gen AI systems, RAG pipelines, and
-          agentic workflows.
+          I like building things that didn&apos;t exist yesterday.
         </p>
 
         <ul className="text-[14px] sm:text-[15px] text-zinc-600 dark:text-zinc-300 leading-relaxed mt-4 pl-4">
           <li className="flex gap-1.5">
             <span>•</span>
             <span>
-              <span className="font-semibold text-zinc-900 dark:text-white">
-                SDE 1
-              </span>{" "}
-              at Vected Technologies building MLOps pipelines on Azure
-              Databricks & RAG applications.
+              AI, software systems, and building products that solve real problems
+              excite me.
             </span>
           </li>
           <li className="flex gap-1.5">
             <span>•</span>
             <span>
-              <span className="font-semibold text-zinc-900 dark:text-white">
-                6x Hackathon Winner
-              </span>{" "}
-              including National Winner at Smart India Hackathon (SIH) 2024.
+              Driven by curiosity, I enjoy reading, learning, and exploring new
+              ideas.
             </span>
           </li>
           <li className="flex gap-1.5">
             <span>•</span>
             <span>
-              Tech Lead for{" "}
-              <span className="font-semibold text-zinc-900 dark:text-white">
-                $4,000 IEEE HTB Grant
-              </span>{" "}
-              project &quot;Harvesting Hope&quot; managing 5 engineers.
+              Currently deep into Agentic AI and software systems that scale.
             </span>
           </li>
         </ul>
@@ -375,7 +364,7 @@ export default function Home() {
 
           <div className="py-2 relative">
             <h2 className="text-[18px] font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
-              Experiences
+              Experience
             </h2>
             {/* Bottom full-width line */}
             <div
@@ -610,10 +599,7 @@ export default function Home() {
             <div className="absolute bottom-0 left-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
             <div className="absolute bottom-0 right-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
 
-            <Link
-              href="/research"
-              className="relative group block mt-0"
-            >
+            <Link href="/research" className="relative group block mt-0">
               <div className="absolute -inset-[5px] border border-black/5 dark:border-white/5 rounded-[11px] pointer-events-none transition-colors duration-300 group-hover:border-black/10 dark:group-hover:border-white/10" />
               <div className="relative flex items-center gap-1.5 px-4 py-2 bg-zinc-50 hover:bg-zinc-100 dark:bg-[#09090b] dark:hover:bg-[#121214] text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-[6px] text-[13px] font-medium transition-all duration-300 border border-black/5 dark:border-white/5 shadow-sm shadow-black/20 dark:shadow-lg dark:shadow-black/80">
                 View All
@@ -633,11 +619,7 @@ export default function Home() {
         </div>
 
         {/* Skills */}
-        <div
-          id="skills"
-          className="flex flex-col relative z-10 scroll-mt-24"
-        >
-
+        <div id="skills" className="flex flex-col relative z-10 scroll-mt-24">
           <div className="py-2 relative mt-1">
             <h2 className="text-[18px] font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
               Skills & Technologies
@@ -769,7 +751,6 @@ export default function Home() {
           id="highlights"
           className="flex flex-col relative z-10 scroll-mt-24"
         >
-
           <div className="py-2 relative mt-1">
             <h2 className="text-[18px] font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
               Highlights

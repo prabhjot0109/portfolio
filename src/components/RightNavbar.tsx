@@ -6,13 +6,20 @@ import { usePathname } from "next/navigation";
 
 export function RightNavbar() {
   const pathname = usePathname();
-  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string | null>("about");
 
   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY < 150) {
+        setActiveSection("about");
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && window.scrollY >= 150) {
             setActiveSection(entry.target.id);
           }
         });
@@ -20,16 +27,20 @@ export function RightNavbar() {
       { rootMargin: "-20% 0px -60% 0px", threshold: 0.1 }
     );
 
-    const sections = ["experience", "projects", "opensource", "achievements", "research", "skills", "blogs", "highlights"];
+    const sections = ["about", "experience", "projects", "opensource", "achievements", "research", "skills", "blogs", "highlights"];
     sections.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const links = [
+    { name: "About", href: "#about" },
     { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" },
     { name: "Open Source", href: "#opensource" },
@@ -39,6 +50,14 @@ export function RightNavbar() {
     { name: "Blog", href: "#blogs" },
     { name: "Highlights", href: "#highlights" },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href === "#about") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.history.pushState(null, "", "#about");
+    }
+  };
 
   // Only render on the homepage where the #hash sections exist
   if (pathname !== "/") return null;
@@ -56,6 +75,7 @@ export function RightNavbar() {
             <Link
               key={link.name}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className={`text-[12px] font-medium tracking-[0.05em] transition-all duration-300 ease-out flex items-center gap-3 ${isActive
                   ? "text-zinc-800 dark:text-zinc-200"
                   : "text-zinc-400 dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400"

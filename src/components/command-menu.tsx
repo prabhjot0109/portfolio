@@ -14,7 +14,8 @@ import {
     CornerDownLeft,
     Copy,
     Briefcase,
-    BookOpen
+    BookOpen,
+    User
 } from "lucide-react"
 import { SiGithub } from "react-icons/si"
 
@@ -74,7 +75,10 @@ export function CommandMenu() {
                 const key = e.key.toLowerCase()
 
                 // Navigation
-                if (key === 'e') {
+                if (key === 'a') {
+                    e.preventDefault()
+                    runCommand(() => { window.scrollTo({ top: 0, behavior: "smooth" }); window.location.hash = "#about"; })
+                } else if (key === 'e') {
                     e.preventDefault()
                     runCommand(() => window.location.hash = "#experience")
                 } else if (key === 'p') {
@@ -154,6 +158,11 @@ export function CommandMenu() {
                     <CommandEmpty>No results found.</CommandEmpty>
 
                     <CommandGroup heading="Sections">
+                        <CommandItem onSelect={() => runCommand(() => { window.scrollTo({ top: 0, behavior: "smooth" }); window.location.hash = "#about"; })} className="rounded-lg py-3 cursor-pointer">
+                            <User className="mr-2 h-4 w-4 text-zinc-500" />
+                            <span>About</span>
+                            <CommandShortcut className="font-mono text-[10px] bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">shift + A</CommandShortcut>
+                        </CommandItem>
                         <CommandItem onSelect={() => runCommand(() => window.location.hash = "#experience")} className="rounded-lg py-3 cursor-pointer">
                             <Briefcase className="mr-2 h-4 w-4 text-zinc-500" />
                             <span>Experience</span>

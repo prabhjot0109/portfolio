@@ -28,7 +28,7 @@ export function TopNavbar() {
       { rootMargin: "-20% 0px -60% 0px", threshold: 0.1 }
     );
 
-    const sections = ["experience", "projects", "blogs", "opensource", "skills"];
+    const sections = ["about", "experience", "projects", "blogs", "opensource", "skills"];
     sections.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
@@ -38,10 +38,19 @@ export function TopNavbar() {
   }, []);
 
   const links = [
+    { name: "About", href: "#about" },
     { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" },
     { name: "Blog", href: "#blogs" },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href === "#about") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.history.pushState(null, "", "#about");
+    }
+  };
 
   return (
     <nav className="fixed top-2 right-4 md:right-[31%] z-[100] pointer-events-auto">
@@ -57,6 +66,7 @@ export function TopNavbar() {
             <Link
               key={link.name}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className={`text-[12px] font-medium tracking-[0.05em] transition-colors duration-500 relative ${isActive
                 ? "text-zinc-900 dark:text-zinc-100"
                 : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"

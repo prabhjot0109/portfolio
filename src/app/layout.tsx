@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Prabhjot Singh Assi",
   description:
-    "Software Engineer specializing in Gen AI systems, RAG pipelines, and agentic workflows. 6x Hackathon Winner.",
+    "AI Engineer building Gen AI systems at scale.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Prabhjot Singh Assi",
     description:
-      "Software Engineer specializing in Gen AI systems, RAG pipelines, and agentic workflows.",
+      "AI Engineer building Gen AI systems at scale.",
     type: "website",
   },
 };

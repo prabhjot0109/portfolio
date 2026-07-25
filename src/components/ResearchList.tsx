@@ -20,8 +20,7 @@ export function ResearchList() {
         const isLast = idx === researchPapers.length - 1;
 
         return (
-          <Link
-            href={paper.link}
+          <div
             key={paper.link}
             className="group relative block -mx-4 px-4 py-4 hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors cursor-pointer"
           >
@@ -54,7 +53,9 @@ export function ResearchList() {
             <div className="flex items-start sm:items-center justify-between w-full">
               <div className="flex flex-col gap-2.5">
                 <h3 className="text-[14px] md:text-[15px] font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors pr-6">
-                  {paper.title}
+                  <Link href={paper.link} className="before:absolute before:inset-0">
+                    {paper.title}
+                  </Link>
                 </h3>
 
                 <div className="flex flex-wrap items-center gap-4 text-[12px] text-zinc-500 dark:text-zinc-400">
@@ -67,8 +68,7 @@ export function ResearchList() {
                     href="https://ieeexplore.ieee.org/document/11609020"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-blue-600 dark:text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-400 transition-colors"
-                    onClick={(e) => e.stopPropagation()}
+                    className="relative z-20 flex items-center gap-1.5 text-blue-600 dark:text-blue-500 font-medium hover:text-blue-700 dark:hover:text-blue-400 transition-colors"
                   >
                     <IEEEIcon className="w-3.5 h-3.5" />
                     <span>IEEE Xplore</span>
@@ -94,7 +94,7 @@ export function ResearchList() {
                 <ArrowRight className="w-4 h-4" />
               </div>
             </div>
-          </Link>
+          </div>
         );
       })}
     </div>

@@ -46,7 +46,7 @@ const experiences: ExperienceData[] = [
     metrics: [
       { label: "Role", value: "SDE 1" },
       { label: "Domain", value: "GenAI & MLOps" },
-      { label: "Platform", value: "Azure Databricks" },
+      { label: "Platform", value: "Databricks" },
       { label: "Focus", value: "AI Agents & RAG" },
     ],
   },
@@ -76,7 +76,7 @@ const experiences: ExperienceData[] = [
     metrics: [
       { label: "IEEE Grant", value: "$4,000" },
       { label: "Team Managed", value: "5 Engineers" },
-      { label: "Pest Model Accuracy", value: "90%" },
+      { label: "AI Model", value: "Gemini" },
       { label: "Custom Dataset", value: "1,000+ Images" },
     ],
   },

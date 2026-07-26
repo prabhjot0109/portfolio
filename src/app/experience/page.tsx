@@ -59,7 +59,7 @@ const experiences: ExperienceData[] = [
   },
   {
     title: "IEEE SIGHT",
-    role: "Tech Lead - Harvesting Hope ($4,000 IEEE HTB Grant)",
+    role: "Tech Lead - IEEE HTB",
     dates: "Jul 2024 - Mar 2025",
     location: "Indore, India",
     src: "/Experience-image/ieee-sight.png",
@@ -83,7 +83,7 @@ const experiences: ExperienceData[] = [
     metrics: [
       { label: "IEEE Grant", value: "$4,000" },
       { label: "Team Managed", value: "5 Engineers" },
-      { label: "Pest Model Accuracy", value: "90%" },
+      { label: "AI Model", value: "Gemini" },
       { label: "Custom Dataset", value: "1,000+ Images" },
     ],
   },

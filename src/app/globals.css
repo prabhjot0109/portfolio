@@ -191,4 +191,13 @@ body {
     animation-play-state: paused;
   }
 
+  /* Scrollbar-hide utility for carousel thumbnails */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
 }

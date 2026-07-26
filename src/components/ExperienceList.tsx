@@ -52,7 +52,7 @@ const experiences: ExperienceData[] = [
   },
   {
     title: "IEEE SIGHT",
-    role: "Tech Lead - Harvesting Hope ($4,000 IEEE HTB Grant)",
+    role: "Tech Lead - IEEE HTB Grant Project",
     dates: "Jul 2024 - Mar 2025",
     location: "Indore, India",
     src: "/Experience-image/ieee-sight.png",

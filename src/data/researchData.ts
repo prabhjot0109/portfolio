@@ -181,12 +181,12 @@ export const researchPapers: ResearchPaper[] = [
       {
         type: "list",
         items: [
-          "Swastik Bansal — Lead Developer & ML Engineer",
+          "Swastik Bansal — Lead Developer",
           "Vidit Sharma — Backend & Cloud Architecture",
           "Yatharth Patankar — Computer Vision Pipeline",
-          "Prabhjot Singh Assi — Frontend & Integration",
-          "Ujjwal Seth — 3D Animation & UX",
-          "Zahara Rangwala — Research & Documentation"
+          "Prabhjot Singh Assi — App Developer & AI Engineer",
+          "Ujjwal Seth — ML Model Training & Evaluation",
+          "Zahara Rangwala — App Developer"
         ],
       },
       {

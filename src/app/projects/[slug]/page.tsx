@@ -117,22 +117,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 />
               )}
             </div>
-          ) : project.galleryImages && project.galleryImages.length > 1 ? (
+          ) : (
             <ProjectImageCarousel
-              images={project.galleryImages}
+              images={project.galleryImages || [project.src]}
               alt={project.imageTitle}
             />
-          ) : (
-            <div className="w-full aspect-video relative rounded-lg overflow-hidden border border-black/10 dark:border-white/[0.15] shadow-sm bg-black">
-              <Image 
-                src={project.src} 
-                alt={project.imageTitle} 
-                fill 
-                sizes="(min-width: 768px) 40vw, 100vw"
-                quality={75}
-                className="object-cover"
-              />
-            </div>
           )}
         </div>
 

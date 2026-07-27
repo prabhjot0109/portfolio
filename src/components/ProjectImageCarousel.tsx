@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { motion, AnimatePresence, type PanInfo } from "framer-motion";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
@@ -43,6 +44,11 @@ const springTransition = {
 export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps) {
   const [[page, direction], setPage] = useState([0, 0]);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const imageIndex = ((page % images.length) + images.length) % images.length;
 
@@ -127,35 +133,39 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
         </div>
 
         {/* Lightbox Modal */}
-        <AnimatePresence>
-          {isLightboxOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsLightboxOpen(false)}
-              className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 cursor-zoom-out"
-            >
-              <button
-                onClick={() => setIsLightboxOpen(false)}
-                className="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-zinc-800/80 hover:bg-zinc-700 text-white transition-colors cursor-pointer border border-white/10"
-                aria-label="Close lightbox"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              <div className="relative max-w-6xl max-h-[88vh] w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-                <Image
-                  src={images[0]}
-                  alt={`${alt} full view`}
-                  width={1920}
-                  height={1080}
-                  quality={95}
-                  className="object-contain max-h-[88vh] max-w-[92vw] rounded-lg shadow-2xl"
-                />
-              </div>
-            </motion.div>
+        {mounted &&
+          createPortal(
+            <AnimatePresence>
+              {isLightboxOpen && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setIsLightboxOpen(false)}
+                  className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 cursor-zoom-out"
+                >
+                  <button
+                    onClick={() => setIsLightboxOpen(false)}
+                    className="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-zinc-800/80 hover:bg-zinc-700 text-white transition-colors cursor-pointer border border-white/10"
+                    aria-label="Close lightbox"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                  <div className="relative max-w-6xl max-h-[88vh] w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+                    <Image
+                      src={images[0]}
+                      alt={`${alt} full view`}
+                      width={1920}
+                      height={1080}
+                      quality={95}
+                      className="object-contain max-h-[88vh] max-w-[92vw] rounded-lg shadow-2xl"
+                    />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>,
+            document.body
           )}
-        </AnimatePresence>
       </>
     );
   }
@@ -319,75 +329,79 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
       )}
 
       {/* Fullscreen Lightbox Modal */}
-      <AnimatePresence>
-        {isLightboxOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsLightboxOpen(false)}
-            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 cursor-zoom-out"
-          >
-            {/* Header Controls */}
-            <div
-              className="absolute top-4 right-4 z-10 flex items-center gap-3"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <span className="text-white/90 text-xs font-medium bg-zinc-900/80 border border-white/15 px-3 py-1.5 rounded-full backdrop-blur-md shadow-md">
-                {imageIndex + 1} / {images.length}
-              </span>
-              <button
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {isLightboxOpen && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 onClick={() => setIsLightboxOpen(false)}
-                className="p-2 rounded-full bg-zinc-800/80 hover:bg-zinc-700 text-white transition-colors cursor-pointer border border-white/15 shadow-md"
-                aria-label="Close lightbox"
+                className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 cursor-zoom-out"
               >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
+                {/* Header Controls */}
+                <div
+                  className="absolute top-4 right-4 z-10 flex items-center gap-3"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <span className="text-white/90 text-xs font-medium bg-zinc-900/80 border border-white/15 px-3 py-1.5 rounded-full backdrop-blur-md shadow-md">
+                    {imageIndex + 1} / {images.length}
+                  </span>
+                  <button
+                    onClick={() => setIsLightboxOpen(false)}
+                    className="p-2 rounded-full bg-zinc-800/80 hover:bg-zinc-700 text-white transition-colors cursor-pointer border border-white/15 shadow-md"
+                    aria-label="Close lightbox"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
 
-            {/* Navigation Arrows */}
-            {images.length > 1 && (
-              <>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    paginate(-1);
-                  }}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-white transition-all cursor-pointer border border-white/15 hover:scale-110 shadow-lg"
-                  aria-label="Previous image"
+                {/* Navigation Arrows */}
+                {images.length > 1 && (
+                  <>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        paginate(-1);
+                      }}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-white transition-all cursor-pointer border border-white/15 hover:scale-110 shadow-lg"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        paginate(1);
+                      }}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-white transition-all cursor-pointer border border-white/15 hover:scale-110 shadow-lg"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                  </>
+                )}
+
+                {/* Image Box */}
+                <div
+                  className="relative max-w-6xl max-h-[88vh] w-full h-full flex items-center justify-center"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    paginate(1);
-                  }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-white transition-all cursor-pointer border border-white/15 hover:scale-110 shadow-lg"
-                  aria-label="Next image"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </>
+                  <Image
+                    src={images[imageIndex]}
+                    alt={`${alt} - full view`}
+                    width={1920}
+                    height={1080}
+                    quality={95}
+                    className="object-contain max-h-[88vh] max-w-[92vw] rounded-lg shadow-2xl"
+                  />
+                </div>
+              </motion.div>
             )}
-
-            {/* Image Box */}
-            <div
-              className="relative max-w-6xl max-h-[88vh] w-full h-full flex items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Image
-                src={images[imageIndex]}
-                alt={`${alt} - full view`}
-                width={1920}
-                height={1080}
-                quality={95}
-                className="object-contain max-h-[88vh] max-w-[92vw] rounded-lg shadow-2xl"
-              />
-            </div>
-          </motion.div>
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </div>
   );
 }

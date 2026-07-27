@@ -54,7 +54,7 @@ export const majorAchievements: Achievement[] = [
     year: "2024",
     product: "Worked as Tech Lead",
     description:
-      "$4000 grant for IoT-enabled smart agriculture platform empowering farmers.",
+           "Served as Tech Lead for a $4000 grant for IoT-enabled smart agriculture app empowering farmers.",
     impact: "10+ farmers impacted",
     iconName: "Target",
     imageSrc: "/achievements/ieee.svg",

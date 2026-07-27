@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -213,8 +214,10 @@ export const ProjectCard = ({
 
 export function ProjectsGrid() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") setActiveVideo(null);
     };
@@ -250,42 +253,46 @@ export function ProjectsGrid() {
       </div>
 
       {/* MODAL */}
-      <AnimatePresence>
-        {activeVideo && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActiveVideo(null)}
-            className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-[100] cursor-pointer"
-          >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative bg-black rounded-xl overflow-hidden w-[90%] max-w-3xl shadow-2xl"
-            >
-              <button
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {activeVideo && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 onClick={() => setActiveVideo(null)}
-                className="absolute top-3 right-3 p-2 bg-neutral-800/80 hover:bg-neutral-700 rounded-full cursor-pointer transition-colors z-50"
+                className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-[99999] cursor-pointer"
               >
-                <X size={20} className="text-neutral-200" />
-              </button>
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.95, opacity: 0 }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="relative bg-black rounded-xl overflow-hidden w-[90%] max-w-3xl shadow-2xl"
+                >
+                  <button
+                    onClick={() => setActiveVideo(null)}
+                    className="absolute top-3 right-3 p-2 bg-neutral-800/80 hover:bg-neutral-700 rounded-full cursor-pointer transition-colors z-50"
+                  >
+                    <X size={20} className="text-neutral-200" />
+                  </button>
 
-              {activeVideo.includes("youtube") ? (
-                <iframe
-                  src={activeVideo}
-                  className="w-full aspect-video border-0"
-                  allowFullScreen
-                ></iframe>
-              ) : (
-                <video src={activeVideo} className="w-full h-auto" controls autoPlay />
-              )}
-            </motion.div>
-          </motion.div>
+                  {activeVideo.includes("youtube") ? (
+                    <iframe
+                      src={activeVideo}
+                      className="w-full aspect-video border-0"
+                      allowFullScreen
+                    ></iframe>
+                  ) : (
+                    <video src={activeVideo} className="w-full h-auto" controls autoPlay />
+                  )}
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </>
   );
 }

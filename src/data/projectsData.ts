@@ -68,6 +68,7 @@ export interface Project {
   tech: TechItem[];
   github: string;
   live: string;
+  blogLink?: string;
   starsText?: string;
   backgroundImage?: string;
   hasPin?: boolean;
@@ -106,7 +107,7 @@ export const projectsData: Project[] = [
     src: "/project-image/signify.webp",
     lightModeSrc: "/project-image/signify.webp",
     video: "",
-    description: "Translates Indian Sign Language to text and speech in real-time using computer vision and ML.",
+    description: "App that translates Indian Sign Language to text and speech and vice versa in real-time using ML and Computer Vision.",
     longDescription: "A Flutter app that uses MediaPipe hand tracking to recognize Indian Sign Language gestures from a live camera feed, converting them to text and speech. Also supports text-to-ISL conversion for two-way communication. Built during Smart India Hackathon 2024.",
     features: [
       "Recognizes 40+ ISL gestures at 30fps via MediaPipe",
@@ -118,9 +119,10 @@ export const projectsData: Project[] = [
     impact: "95% gesture recognition accuracy across 40+ signs",
     status: "Completed",
     role: "App & Backend Developer",
-    tech: ["flutter", "dart", "python", "fastapi", "scikitlearn", "opencv", "blender", { label: "MediaPipe" }, { label: "Computer Vision" }, { label: "ML" }],
+    tech: ["flutter", "python", "fastapi", "scikitlearn", "opencv", "blender", { label: "MediaPipe" }, { label: "Computer Vision" }, { label: "ML" }],
     github: "https://github.com/prabhjot0109/signify",
     live: "",
+    blogLink: "/blogs/signify",
     starsText: "SIH 2024 Winner",
     backgroundImage: "/image copy 5.png",
     hasPin: true,
@@ -150,6 +152,7 @@ export const projectsData: Project[] = [
     tech: ["fastapi", "langchain", { label: "FAISS" }, "next", "python", "ts"],
     github: "https://github.com/prabhjot0109/sentient",
     live: "",
+    blogLink: "/blogs/sentient",
     backgroundImage: "/image copy 3.png",
     hasPin: true,
     galleryImages: ["/project-image/sentient1.png", "/project-image/sentient2.png", "/project-image/sentient3.png", "/project-image/sentient4.png", "/project-image/sentient5.png", "/project-image/sentient6.png"],

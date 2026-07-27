@@ -59,7 +59,7 @@ export function AchievementsList() {
 
             {/* Clickable Header Row */}
             <div
-              className="flex flex-col items-start gap-2.5 py-3.5 px-4 -mx-4 hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors cursor-pointer relative z-20 rounded-lg sm:gap-3 sm:py-4 2xl:flex-row 2xl:items-center 2xl:justify-between"
+              className="flex flex-row items-start justify-between gap-2 py-3.5 px-4 -mx-4 hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors cursor-pointer relative z-20 rounded-lg sm:gap-3 sm:py-4"
               onClick={() => setOpenIdx(isOpen ? null : idx)}
             >
               <div className="flex items-start gap-3 sm:gap-4 flex-1 min-w-0">
@@ -92,12 +92,12 @@ export function AchievementsList() {
               </div>
 
               {/* Right Side: Year + Chevron */}
-              <div className="flex flex-col items-start gap-0.5 text-left pr-5 pl-[52px] shrink-0 sm:pl-[56px] 2xl:mt-0 2xl:items-end 2xl:pl-0 2xl:text-right">
-                <div className="flex items-center text-[13px] sm:text-[14px] font-medium text-zinc-900 dark:text-zinc-100 relative">
+              <div className="flex flex-col items-end text-right shrink-0 pr-5 pl-2">
+                <div className="flex items-center text-[12px] sm:text-[14px] font-medium text-zinc-900 dark:text-zinc-100 relative whitespace-nowrap">
                   <span>{item.year}</span>
                   <svg
                     viewBox="0 0 24 24"
-                    className={`w-3.5 h-3.5 text-zinc-500 absolute -right-5 top-1/2 -translate-y-1/2 -mt-[1.5px] transition-transform duration-300 ${
+                    className={`w-3.5 h-3.5 text-zinc-500 absolute -right-4 sm:-right-5 top-1/2 -translate-y-1/2 -mt-[1.5px] transition-transform duration-300 ${
                       isOpen ? "rotate-180" : ""
                     }`}
                     fill="none"
@@ -107,7 +107,7 @@ export function AchievementsList() {
                     <polyline points="6 9 12 15 18 9"></polyline>
                   </svg>
                 </div>
-                <span className="text-[13px] sm:text-[14px] text-zinc-500 dark:text-zinc-400">
+                <span className="text-[12px] sm:text-[14px] text-zinc-500 dark:text-zinc-400">
                   {item.organization.includes(",")
                     ? item.organization.split(",")[1].trim()
                     : "National"}
@@ -176,12 +176,7 @@ export function AchievementsList() {
                   <ul className="mb-4 space-y-2 text-[13px] leading-relaxed">
                     <li className="flex items-start gap-1.5">
                       <span className="text-zinc-400 dark:text-zinc-500 mt-[2px] text-[14px] leading-none">•</span>
-                      <span>
-                        <strong className="font-semibold text-zinc-800 dark:text-zinc-200">
-                          {item.title}:
-                        </strong>{" "}
-                        {item.description}
-                      </span>
+                      <span>{item.description}</span>
                     </li>
                   </ul>
 

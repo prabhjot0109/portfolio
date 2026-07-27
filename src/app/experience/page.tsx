@@ -192,7 +192,7 @@ export default function AllExperiencePage() {
                   )}
 
                   <div
-                    className="flex flex-col items-start gap-2.5 py-3.5 px-4 -mx-4 hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors cursor-pointer relative z-20 rounded-lg sm:gap-3 sm:py-4 2xl:flex-row 2xl:items-center 2xl:justify-between"
+                    className="flex flex-row items-start justify-between gap-2 py-3.5 px-4 -mx-4 hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors cursor-pointer relative z-20 rounded-lg sm:gap-3 sm:py-4"
                     onClick={() => setOpenIdx(isOpen ? null : idx)}
                   >
                     <div className="flex min-w-0 flex-1 items-start gap-3 sm:gap-4">
@@ -261,12 +261,12 @@ export default function AllExperiencePage() {
                         </span>
                       </div>
                     </div>
-                    <div className="flex shrink-0 flex-col items-start gap-0.5 pr-5 pl-[52px] text-left sm:pl-[56px] 2xl:items-end 2xl:pl-0 2xl:text-right">
-                      <div className="relative flex items-center text-[13px] font-medium text-zinc-900 dark:text-zinc-100 sm:text-[14px]">
+                    <div className="flex shrink-0 flex-col items-end text-right pr-5 pl-2">
+                      <div className="relative flex items-center text-[12px] font-medium text-zinc-900 dark:text-zinc-100 sm:text-[14px] whitespace-nowrap">
                         <span>{item.dates}</span>
                         <svg
                           viewBox="0 0 24 24"
-                          className={`w-3.5 h-3.5 text-zinc-500 absolute -right-5 top-1/2 -translate-y-1/2 transition-transform duration-300 ${isOpen ? "rotate-180" : ""
+                          className={`w-3.5 h-3.5 text-zinc-500 absolute -right-4 sm:-right-5 top-1/2 -translate-y-1/2 transition-transform duration-300 ${isOpen ? "rotate-180" : ""
                             }`}
                           fill="none"
                           stroke="currentColor"
@@ -275,7 +275,7 @@ export default function AllExperiencePage() {
                           <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                       </div>
-                      <span className="text-[13px] text-zinc-500 dark:text-zinc-400 sm:text-[14px]">
+                      <span className="text-[12px] text-zinc-500 dark:text-zinc-400 sm:text-[14px]">
                         {item.location}
                       </span>
                     </div>

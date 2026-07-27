@@ -90,7 +90,7 @@ export const majorAchievements: Achievement[] = [
     year: "2023",
     product: "1st Runner-up",
     description:
-      "Early achievement demonstrating exceptional problem-solving skills.",
+      "Smart Python based Audio analysis software using advanced statistical methods.",
     impact: "Smart Audio Analysis Software",
     iconName: "TrendingUp",
     imageSrc: "/achievements/acropolis.png",

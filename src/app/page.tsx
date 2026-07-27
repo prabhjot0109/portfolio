@@ -10,6 +10,7 @@ import { BlogList } from "@/components/BlogList";
 import { Highlights } from "@/components/Highlights";
 import { FooterBackground } from "@/components/FooterBackground";
 import { RightNavbar } from "@/components/RightNavbar";
+import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { CommandMenu } from "@/components/command-menu";
 import { PortfolioSpotlight } from "@/components/PortfolioSpotlight";
 import { InteractiveParticles } from "@/components/ui/interactive-particles";
@@ -59,6 +60,9 @@ export default function Home() {
 
       {/* Right Side Blueprint Navigation */}
       <RightNavbar />
+
+      {/* Mobile Bottom Navigation */}
+      <MobileBottomNav />
 
       {/* Vertical Lines - Ultra-fine Micro Dots */}
       <div
@@ -198,8 +202,8 @@ export default function Home() {
           <li className="flex gap-1.5">
             <span>•</span>
             <span>
-              AI, software systems, and building products that solve real
-              problems excite me.
+              AI and building products that solve real
+              problems excites me.
             </span>
           </li>
           <li className="flex gap-1.5">
@@ -212,8 +216,19 @@ export default function Home() {
           <li className="flex gap-1.5">
             <span>•</span>
             <span>
-              Currently exploring Agentic AI and building software systems that
-              scale.
+              6x hackathon winner including Smart India Hackathon 2024.
+            </span>
+          </li>
+          <li className="flex gap-1.5">
+            <span>•</span>
+            <span>
+              Served as Tech Lead for $4000 IEEE HTB Tech4Good Grant funded project.
+            </span>
+          </li>
+          <li className="flex gap-1.5">
+            <span>•</span>
+            <span>
+              Currently building AI Agents and Generative AI systems that scale.
             </span>
           </li>
         </ul>

@@ -28,7 +28,7 @@ type ExperienceData = {
 const experiences: ExperienceData[] = [
   {
     title: "Vected Technologies Pvt. Ltd.",
-    role: "SDE 1",
+    role: "Software Engineer",
     dates: "May 2026 - Present",
     location: "Indore, India",
     src: "/Experience-image/vected-dark.svg",

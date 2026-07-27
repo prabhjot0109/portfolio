@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { CommandMenu } from "@/components/command-menu";
 import { CurrentTime } from "@/components/CurrentTime";
@@ -15,6 +16,31 @@ export async function generateStaticParams() {
   return projectsData.map((project) => ({
     slug: project.slug,
   }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projectsData.find((p) => p.slug === slug);
+  if (!project) return { title: "Project Not Found" };
+
+  const title = `${project.title} | Prabhjot Singh Assi`;
+  const description = project.subtitle || project.description;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: project.src ? [{ url: project.src }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: project.src ? [project.src] : [],
+    },
+  };
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {

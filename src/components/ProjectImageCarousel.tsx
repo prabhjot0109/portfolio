@@ -62,9 +62,10 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
   const handleDragEnd = useCallback(
     (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
       const swipe = swipePower(info.offset.x, info.velocity.x);
-      if (swipe < -swipeConfidenceThreshold) {
+      const offset = info.offset.x;
+      if (offset < -40 || swipe < -2000) {
         paginate(1);
-      } else if (swipe > swipeConfidenceThreshold) {
+      } else if (offset > 40 || swipe > 2000) {
         paginate(-1);
       }
     },
@@ -125,8 +126,9 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
           </div>
           <button
             onClick={() => setIsLightboxOpen(true)}
-            className="absolute top-3 right-3 z-20 p-1.5 rounded-md bg-black/60 hover:bg-black/80 backdrop-blur-md text-white border border-white/15 shadow-sm transition-all hover:scale-105 cursor-pointer opacity-0 group-hover:opacity-100"
+            className="absolute top-3 right-3 z-20 p-1.5 rounded-md bg-black/60 hover:bg-black/80 backdrop-blur-md text-white border border-white/15 shadow-sm transition-all hover:scale-105 cursor-pointer opacity-90 sm:opacity-0 sm:group-hover:opacity-100"
             title="View Fullscreen"
+            aria-label="View Fullscreen"
           >
             <Maximize2 className="w-4 h-4" />
           </button>
@@ -146,7 +148,7 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
                 >
                   <button
                     onClick={() => setIsLightboxOpen(false)}
-                    className="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-zinc-800/80 hover:bg-zinc-700 text-white transition-colors cursor-pointer border border-white/10"
+                    className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-zinc-800/80 hover:bg-zinc-700 text-white transition-colors cursor-pointer border border-white/10"
                     aria-label="Close lightbox"
                   >
                     <X className="w-5 h-5" />
@@ -209,9 +211,9 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
             transition={springTransition}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={1}
+            dragElastic={0.7}
             onDragEnd={handleDragEnd}
-            className="absolute inset-0 flex items-center justify-center p-2 sm:p-4 cursor-grab active:cursor-grabbing"
+            className="absolute inset-0 flex items-center justify-center p-2 sm:p-4 cursor-grab active:cursor-grabbing touch-pan-y"
           >
             <div className="relative w-full h-full flex items-center justify-center" onClick={() => setIsLightboxOpen(true)}>
               <Image
@@ -234,7 +236,7 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
             e.stopPropagation();
             paginate(-1);
           }}
-          className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-md"
+          className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-md"
           aria-label="Previous image"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -244,20 +246,20 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
             e.stopPropagation();
             paginate(1);
           }}
-          className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-md"
+          className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-90 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer shadow-md"
           aria-label="Next image"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
 
         {/* Counter and Fullscreen Trigger */}
-        <div className="absolute top-3 right-3 z-10 flex items-center gap-2">
+        <div className="absolute top-3 right-3 z-20 flex items-center gap-2">
           <div className="px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md text-white text-[11px] font-medium tabular-nums border border-white/15 shadow-sm">
             {imageIndex + 1} / {images.length}
           </div>
           <button
             onClick={() => setIsLightboxOpen(true)}
-            className="p-1.5 rounded-md bg-black/60 hover:bg-black/80 backdrop-blur-md text-white border border-white/15 shadow-sm transition-all hover:scale-105 cursor-pointer opacity-0 group-hover:opacity-100"
+            className="p-1.5 rounded-md bg-black/60 hover:bg-black/80 backdrop-blur-md text-white border border-white/15 shadow-sm transition-all hover:scale-105 cursor-pointer opacity-90 sm:opacity-0 sm:group-hover:opacity-100"
             title="View Fullscreen"
             aria-label="View Fullscreen"
           >
@@ -303,7 +305,7 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
 
       {/* Thumbnail Strip with padding around selection */}
       {images.length > 1 && (
-        <div className="flex items-center gap-2.5 overflow-x-auto py-2.5 px-1.5 scrollbar-hide max-w-full">
+        <div className="flex items-center gap-2.5 overflow-x-auto py-2.5 px-1.5 scrollbar-hide max-w-full touch-pan-x">
           {images.map((img, idx) => (
             <button
               key={idx}
@@ -342,7 +344,7 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
               >
                 {/* Header Controls */}
                 <div
-                  className="absolute top-4 right-4 z-10 flex items-center gap-3"
+                  className="absolute top-4 right-4 z-30 flex items-center gap-3"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <span className="text-white/90 text-xs font-medium bg-zinc-900/80 border border-white/15 px-3 py-1.5 rounded-full backdrop-blur-md shadow-md">
@@ -365,7 +367,7 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
                         e.stopPropagation();
                         paginate(-1);
                       }}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-white transition-all cursor-pointer border border-white/15 hover:scale-110 shadow-lg"
+                      className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 p-2.5 sm:p-3 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-white transition-all cursor-pointer border border-white/15 hover:scale-110 active:scale-95 shadow-lg"
                       aria-label="Previous image"
                     >
                       <ChevronLeft className="w-6 h-6" />
@@ -375,7 +377,7 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
                         e.stopPropagation();
                         paginate(1);
                       }}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-white transition-all cursor-pointer border border-white/15 hover:scale-110 shadow-lg"
+                      className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 p-2.5 sm:p-3 rounded-full bg-zinc-900/80 hover:bg-zinc-800 text-white transition-all cursor-pointer border border-white/15 hover:scale-110 active:scale-95 shadow-lg"
                       aria-label="Next image"
                     >
                       <ChevronRight className="w-6 h-6" />
@@ -383,19 +385,37 @@ export function ProjectImageCarousel({ images, alt }: ProjectImageCarouselProps)
                   </>
                 )}
 
-                {/* Image Box */}
+                {/* Image Box with Touch & Drag Support */}
                 <div
-                  className="relative max-w-6xl max-h-[88vh] w-full h-full flex items-center justify-center"
+                  className="relative max-w-6xl max-h-[88vh] w-full h-full flex items-center justify-center overflow-hidden touch-pan-y"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Image
-                    src={images[imageIndex]}
-                    alt={`${alt} - full view`}
-                    width={1920}
-                    height={1080}
-                    quality={95}
-                    className="object-contain max-h-[88vh] max-w-[92vw] rounded-lg shadow-2xl"
-                  />
+                  <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                    <motion.div
+                      key={page}
+                      custom={direction}
+                      variants={slideVariants}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={springTransition}
+                      drag={images.length > 1 ? "x" : false}
+                      dragConstraints={{ left: 0, right: 0 }}
+                      dragElastic={0.7}
+                      onDragEnd={handleDragEnd}
+                      className="relative w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing"
+                    >
+                      <Image
+                        src={images[imageIndex]}
+                        alt={`${alt} - full view`}
+                        width={1920}
+                        height={1080}
+                        quality={95}
+                        className="object-contain max-h-[88vh] max-w-[92vw] rounded-lg shadow-2xl pointer-events-none select-none"
+                        draggable={false}
+                      />
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               </motion.div>
             )}

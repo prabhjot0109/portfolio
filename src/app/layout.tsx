@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Doto } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from '@vercel/analytics/next';
@@ -13,6 +13,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const dotoFont = Doto({
+  variable: "--font-doto",
+  subsets: ["latin"],
+  weight: ["400", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -53,6 +59,31 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Prabhjot Singh Assi",
+  "url": "https://prabhjotsinghassi.vercel.app",
+  "jobTitle": "AI Engineer",
+  "description": "AI Engineer building Gen AI systems at scale.",
+  "sameAs": [
+    "https://github.com/prabhjot0109",
+    "https://x.com/prabhjotnovus",
+    "https://www.linkedin.com/in/prabhjotsinghassi"
+  ],
+  "knowsAbout": [
+    "Artificial Intelligence",
+    "Generative AI",
+    "Machine Learning",
+    "Full Stack Development",
+    "Python",
+    "TypeScript",
+    "Next.js",
+    "LangChain",
+    "PyTorch"
+  ]
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -62,8 +93,14 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${dotoFont.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col dark:bg-black dark:text-zinc-50 transition-colors duration-300">
         <ThemeProvider
           attribute="class"

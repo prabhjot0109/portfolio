@@ -136,7 +136,7 @@ export const projectsData: Project[] = [
     src: "/project-image/sentient4.webp",
     lightModeSrc: "/project-image/sentient4.png",
     video: "",
-    description: "Upload game manuals and style guides, then generate context-aware NPC dialogues via a REST API using RAG.",
+    description: "Upload game lore and style guides, get context-aware NPC dialogues via RAG through a OpenAI compatible API for live game integration.",
     longDescription: "A RAG-powered NPC dialogue engine. Developers upload game manuals, lore documents, and dialogue style PDFs through a Next.js frontend. The FastAPI backend chunks and indexes content using FAISS, then serves context-aware dialogue responses through a REST API that plugs into live game instances.",
     features: [
       "PDF upload and processing for game manuals and style guides",
@@ -159,8 +159,8 @@ export const projectsData: Project[] = [
   },
   {
     slug: "vrinda",
-    title: "Vrinda – Smart Farming Assistant",
-    subtitle: "Smart Farming Assistant App",
+    title: "Vrinda – Smart Farming AI+IoT Assistant App",
+    subtitle: "Smart Farming AI+IoT Assistant App",
     imageTitle: "Smart Agriculture Dashboard",
     src: "/project-image/vrinda1.webp",
     lightModeSrc: "/project-image/vrinda1.png",

@@ -126,8 +126,8 @@ export default function Home() {
       {/* Cell 1: Banner */}
       <div className="absolute left-0 right-0 md:left-[30%] md:right-[30%] top-0 h-[22vh] -z-0 pointer-events-auto overflow-hidden bg-white dark:bg-black shadow-[0_4px_12px_rgba(2,6,23,0.04)] dark:shadow-[0_4px_12px_rgba(2,6,23,0.10)]">
         <Image
-          src="/samurai_light.jpg"
-          alt="Samurai Light Banner"
+          src="/space_light.webp"
+          alt="Space Light Banner"
           fill
           fetchPriority="high"
           sizes="(min-width: 768px) 40vw, 100vw"
@@ -135,8 +135,8 @@ export default function Home() {
           className="object-cover object-center dark:hidden"
         />
         <Image
-          src="/samurai_dark.jpg"
-          alt="Samurai Dark Banner"
+          src="/space.webp"
+          alt="Space Dark Banner"
           fill
           fetchPriority="high"
           sizes="(min-width: 768px) 40vw, 100vw"

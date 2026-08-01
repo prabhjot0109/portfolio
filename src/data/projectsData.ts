@@ -139,7 +139,7 @@ export const projectsData: Project[] = [
     subtitle: "RAG-based AI NPC Engine",
     imageTitle: "AI Dialogue Engine",
     src: "/project-image/sentient.webp",
-    lightModeSrc: "/project-image/sentient4.png",
+    lightModeSrc: "/project-image/sentient.webp",
     video: "",
     description: "Upload game lore and style guides, get context-aware NPC dialogues via RAG through a OpenAI compatible API for live game integration.",
     longDescription: "A RAG-powered NPC dialogue engine. Developers upload game manuals, lore documents, and dialogue style PDFs through a Next.js frontend. The FastAPI backend chunks and indexes content using FAISS, then serves context-aware dialogue responses through a REST API that plugs into live game instances.",

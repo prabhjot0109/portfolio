@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import { Network, Search } from "lucide-react";
+import { Network, Search, Mic, Terminal, AudioWaveform } from "lucide-react";
 import {
   SiNextdotjs,
   SiTypescript,
@@ -38,6 +38,8 @@ import {
   SiBlender,
   SiDart,
   SiOpencv,
+  SiOpenai,
+  SiHuggingface,
 } from "react-icons/si";
 
 export type TechIcon = ComponentType<{ className?: string }>;
@@ -46,7 +48,7 @@ export type TechKey =
   | "node" | "motion" | "tailwind" | "bun" | "eslint" | "radixui" | "charts" | "github" | "fastapi"
   | "redis" | "celery" | "tldraw" | "css3" | "python" | "anthropic" | "claude" | "gemini" | "llama"
   | "flutter" | "supabase" | "postgresql" | "pytorch" | "arduino" | "chrome" | "vite" | "android"
-  | "scikitlearn" | "blender" | "dart" | "opencv";
+  | "scikitlearn" | "blender" | "dart" | "opencv" | "openai" | "huggingface" | "whisper" | "terminal" | "voice";
 
 export type TechItem = TechKey | { label: string; tooltip?: string; };
 
@@ -84,6 +86,7 @@ export const iconMap: Record<TechKey, TechIcon> = {
   gemini: SiGooglegemini, llama: SiMeta, flutter: SiFlutter, supabase: SiSupabase, postgresql: SiPostgresql,
   pytorch: SiPytorch, arduino: SiArduino, chrome: SiGooglechrome, vite: SiVite, android: SiAndroid,
   scikitlearn: SiScikitlearn, blender: SiBlender, dart: SiDart, opencv: SiOpencv,
+  openai: SiOpenai, huggingface: SiHuggingface, whisper: Mic, terminal: Terminal, voice: AudioWaveform,
 };
 
 export const techNames: Record<TechKey, string> = {
@@ -95,10 +98,70 @@ export const techNames: Record<TechKey, string> = {
   claude: "Claude", gemini: "Gemini", llama: "LLaMA", flutter: "Flutter", supabase: "Supabase",
   postgresql: "PostgreSQL", pytorch: "PyTorch", arduino: "Arduino", chrome: "Chrome Extension",
   vite: "Vite", android: "Android", scikitlearn: "Scikit-learn", blender: "Blender", dart: "Dart",
-  opencv: "OpenCV",
+  opencv: "OpenCV", openai: "OpenAI", huggingface: "Hugging Face", whisper: "Whisper STT",
+  terminal: "Textual TUI", voice: "Voice AI",
 };
 
 export const projectsData: Project[] = [
+  {
+    slug: "pyrrhon",
+    title: "Pyrrhon – Voice First Agent",
+    subtitle: "Voice First Senior Engineer Agent in Terminal",
+    imageTitle: "Voice First Terminal Agent",
+    src: "/project-image/pyrrhon_white.webp",
+    lightModeSrc: "/project-image/pyrrhon_black.webp",
+    video: "",
+    description: "Voice first reviewer agent living in your terminal, an agent that have a taste for design and architecture, enables you to talk to your work.",
+    longDescription: "Pyrrhon is a voice first senior-engineer reviewer agent that lives in your terminal. You talk to it; it talks back — grounded in real file:line citations, interruptible mid-sentence. Named after Pyrrho of Elis (founder of philosophical skepticism), it serves three core acts: 1) Understand a codebase — point it at a repo to ask how features work, where to add code, and what changed, with every claim strictly verified against real file:line citations. 2) Design a system — interrogates architectural ideas like a senior architect before generating structured design artifacts (PRD, HLD, LLD, API, DB, Risks). 3) Review your design and help you improve it.",
+    features: [
+      "Voice first TUI & REPL interface with real-time barge-in interruption",
+      "Grounded speech: strictly verifies file:line citations against the repo before speaking",
+      "Architectural interrogation: generates PRD, HLD, LLD, API, DB, & risk markdown specs",
+      "Multi-provider LLM support (Groq, OpenAI, Gemini, DeepSeek, Cerebras, Ollama, LM Studio)",
+      "Extensible architecture supporting stdio/HTTP MCP servers & trust-gated plugins",
+      "Read-only safety invariants and secure owner-only credential storage",
+    ],
+    achievements: "Headless core architecture with event-driven real-time audio pipeline",
+    impact: "Bridges the gap between conversational learning and codebase mastery out loud",
+    status: "Building",
+    role: "Creator & Lead Architect",
+    tech: ["python", "openai", "gemini", "claude", "terminal", "huggingface", { label: "Groq" }, { label: "MCP" }, { label: "Tree-sitter" }, { label: "Pipecat" }],
+    github: "https://github.com/prabhjot0109/Pyrrhon",
+    live: "",
+    starsText: "Voice AI Agent",
+    backgroundImage: "/image copy 3.png",
+    hasPin: true,
+    galleryImages: ["/project-image/pyrrhon_cli.webp", "/project-image/pyrrhon.png"],
+  },
+  {
+    slug: "sentient",
+    title: "Sentient – AI NPC Engine",
+    subtitle: "RAG-based AI NPC Engine",
+    imageTitle: "AI Dialogue Engine",
+    src: "/project-image/sentient4.webp",
+    lightModeSrc: "/project-image/sentient4.png",
+    video: "",
+    description: "Upload game lore and style guides, get context-aware NPC dialogues via RAG through a OpenAI compatible API for live game integration.",
+    longDescription: "A RAG-powered NPC dialogue engine. Developers upload game manuals, lore documents, and dialogue style PDFs through a Next.js frontend. The FastAPI backend chunks and indexes content using FAISS, then serves context-aware dialogue responses through a REST API that plugs into live game instances.",
+    features: [
+      "PDF upload and processing for game manuals and style guides",
+      "FAISS vector store for semantic search across game lore",
+      "Context-aware dialogue generation via LangChain + RAG",
+      "REST API endpoint for live game integration",
+      "Custom NPC persona configuration per game",
+    ],
+    achievements: "Full RAG pipeline from document upload to live API responses",
+    impact: "Sub-second dialogue generation with document-grounded accuracy",
+    status: "Completed",
+    role: "Full Stack Developer",
+    tech: ["fastapi", "langchain", { label: "FAISS" }, "next", "python", "ts"],
+    github: "https://github.com/prabhjot0109/sentient",
+    live: "",
+    blogLink: "/blogs/sentient",
+    backgroundImage: "/image copy 3.png",
+    hasPin: true,
+    galleryImages: ["/project-image/sentient1.png", "/project-image/sentient2.png", "/project-image/sentient3.webp", "/project-image/sentient4.webp", "/project-image/sentient5.webp", "/project-image/sentient6.webp"],
+  },
   {
     slug: "signify",
     title: "Signify – Real-Time ISL Translation",
@@ -129,35 +192,6 @@ export const projectsData: Project[] = [
     galleryImages: ["/project-image/signify.webp", "/project-image/isl2.png", "/project-image/isl3.png", "/project-image/isl4.png", "/project-image/isl5.png", "/project-image/isl6.png", "/project-image/isl7.png"],
   },
   {
-    slug: "sentient",
-    title: "Sentient – RAG-based AI NPC Engine",
-    subtitle: "RAG-based AI NPC Engine",
-    imageTitle: "AI Dialogue Engine",
-    src: "/project-image/sentient4.webp",
-    lightModeSrc: "/project-image/sentient4.png",
-    video: "",
-    description: "Upload game lore and style guides, get context-aware NPC dialogues via RAG through a OpenAI compatible API for live game integration.",
-    longDescription: "A RAG-powered NPC dialogue engine. Developers upload game manuals, lore documents, and dialogue style PDFs through a Next.js frontend. The FastAPI backend chunks and indexes content using FAISS, then serves context-aware dialogue responses through a REST API that plugs into live game instances.",
-    features: [
-      "PDF upload and processing for game manuals and style guides",
-      "FAISS vector store for semantic search across game lore",
-      "Context-aware dialogue generation via LangChain + RAG",
-      "REST API endpoint for live game integration",
-      "Custom NPC persona configuration per game",
-    ],
-    achievements: "Full RAG pipeline from document upload to live API responses",
-    impact: "Sub-second dialogue generation with document-grounded accuracy",
-    status: "Completed",
-    role: "Full Stack Developer",
-    tech: ["fastapi", "langchain", { label: "FAISS" }, "next", "python", "ts"],
-    github: "https://github.com/prabhjot0109/sentient",
-    live: "",
-    blogLink: "/blogs/sentient",
-    backgroundImage: "/image copy 3.png",
-    hasPin: true,
-    galleryImages: ["/project-image/sentient1.png", "/project-image/sentient2.png", "/project-image/sentient3.webp", "/project-image/sentient4.webp", "/project-image/sentient5.webp", "/project-image/sentient6.webp"],
-  },
-  {
     slug: "vrinda",
     title: "Vrinda – Smart Farming AI+IoT Assistant App",
     subtitle: "Smart Farming AI+IoT Assistant App",
@@ -178,7 +212,7 @@ export const projectsData: Project[] = [
     impact: "20% yield improvement across 10+ pilot farms",
     status: "Completed",
     role: "Lead Developer",
-    tech: ["flutter", "arduino", { label: "IoT" }, { label: "OpenWeather API" }, "gemini"],
+    tech: ["flutter", "arduino", "fastapi", "opencv", { label: "IoT" }, { label: "OpenWeather API" }, "gemini"],
     github: "https://github.com/prabhjot0109/vrinda/tree/main",
     live: "",
     backgroundImage: "/image copy 4.png",

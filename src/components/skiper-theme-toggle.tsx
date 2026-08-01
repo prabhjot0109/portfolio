@@ -464,10 +464,7 @@ export const useThemeToggle = ({
 
   // Sync isDark state with resolved theme after hydration
   useEffect(() => {
-    const timer = window.setTimeout(() => {
-      setIsDark(resolvedTheme === "dark");
-    }, 0);
-    return () => window.clearTimeout(timer);
+    setIsDark(resolvedTheme === "dark");
   }, [resolvedTheme]);
 
   const styleId = "theme-transition-styles";
@@ -607,8 +604,7 @@ export const ThemeToggleButton = ({
   const [mounted, setMounted] = React.useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setMounted(true), 0);
-    return () => window.clearTimeout(timer);
+    setMounted(true);
   }, []);
 
   if (!mounted) {

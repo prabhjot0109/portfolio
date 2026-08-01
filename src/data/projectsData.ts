@@ -138,7 +138,7 @@ export const projectsData: Project[] = [
     title: "Sentient – AI NPC Engine",
     subtitle: "RAG-based AI NPC Engine",
     imageTitle: "AI Dialogue Engine",
-    src: "/project-image/sentient4.webp",
+    src: "/project-image/sentient.webp",
     lightModeSrc: "/project-image/sentient4.png",
     video: "",
     description: "Upload game lore and style guides, get context-aware NPC dialogues via RAG through a OpenAI compatible API for live game integration.",
@@ -160,7 +160,7 @@ export const projectsData: Project[] = [
     blogLink: "/blogs/sentient",
     backgroundImage: "/image copy 3.png",
     hasPin: true,
-    galleryImages: ["/project-image/sentient1.png", "/project-image/sentient2.png", "/project-image/sentient3.webp", "/project-image/sentient4.webp", "/project-image/sentient5.webp", "/project-image/sentient6.webp"],
+    galleryImages: ["/project-image/sentient.webp", "/project-image/sentient2.png",  "/project-image/sentient4.webp", "/project-image/sentient6.webp"],
   },
   {
     slug: "signify",

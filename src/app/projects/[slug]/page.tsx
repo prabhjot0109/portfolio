@@ -159,33 +159,33 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </div>
 
         {/* Action Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 items-center justify-between py-4 relative">
+        <div className="grid grid-cols-3 items-center justify-between py-4 relative">
           {project.github ? (
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 text-[13px] font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-              <SiGithub className="w-4 h-4" /> Github
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 sm:gap-2 text-[12px] sm:text-[13px] font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+              <SiGithub className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Github
             </a>
           ) : <div />}
           
           {/* Vertical Divider 1 */}
-          <div className="hidden md:block absolute left-1/3 top-0 bottom-0 w-0 border-l border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)' }} />
+          <div className="absolute left-1/3 top-0 bottom-0 w-0 border-l border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)' }} />
 
           {project.live ? (
-            <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 text-[13px] font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-              <ExternalLink className="w-4 h-4" /> Website
+            <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 sm:gap-2 text-[12px] sm:text-[13px] font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+              <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Website
             </a>
           ) : <div />}
           
           {/* Vertical Divider 2 */}
-          <div className="hidden md:block absolute left-2/3 top-0 bottom-0 w-0 border-l border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)' }} />
+          <div className="absolute left-2/3 top-0 bottom-0 w-0 border-l border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)' }} />
 
           {project.blogLink ? (
-            <Link href={project.blogLink} className="flex items-center justify-center gap-2 text-[13px] font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="9" x2="15" y1="9" y2="9"/><line x1="9" x2="15" y1="15" y2="15"/></svg>
+            <Link href={project.blogLink} className="flex items-center justify-center gap-1.5 sm:gap-2 text-[12px] sm:text-[13px] font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5 sm:w-4 sm:h-4"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="9" x2="15" y1="9" y2="9"/><line x1="9" x2="15" y1="15" y2="15"/></svg>
               Post
             </Link>
           ) : (
-            <span className="hidden md:flex items-center justify-center gap-2 text-[13px] font-medium text-zinc-400 dark:text-zinc-600 opacity-50 cursor-not-allowed">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="9" x2="15" y1="9" y2="9"/><line x1="9" x2="15" y1="15" y2="15"/></svg>
+            <span className="flex items-center justify-center gap-1.5 sm:gap-2 text-[12px] sm:text-[13px] font-medium text-zinc-400 dark:text-zinc-600 opacity-50 cursor-not-allowed">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5 sm:w-4 sm:h-4"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="9" x2="15" y1="9" y2="9"/><line x1="9" x2="15" y1="15" y2="15"/></svg>
               Post
             </span>
           )}

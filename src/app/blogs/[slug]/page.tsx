@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
-  ArrowLeft,
   ArrowUpRight,
   Calendar,
   Clock,
 } from "lucide-react";
+import { BackButton } from "@/components/BackButton";
 import { CommandMenu } from "@/components/command-menu";
 import { CurrentTime } from "@/components/CurrentTime";
 import { FooterBackground } from "@/components/FooterBackground";
@@ -256,13 +255,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
       <div className="absolute left-0 right-0 top-[22vh] z-50 flex h-[112px] items-center px-4 md:left-[30%] md:right-[30%]">
         <div className="flex w-full items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-5">
-            <Link
-              href="/#blogs"
-              className="group flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-zinc-200/50 bg-zinc-100 text-zinc-400 transition-all hover:bg-zinc-200 hover:text-zinc-900 dark:border-zinc-800/50 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
-              aria-label="Back to blogs"
-            >
-              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-            </Link>
+            <BackButton fallbackHref="/#blogs" ariaLabel="Back to blogs" />
             <div className="flex min-w-0 flex-col justify-center">
               <h1 className="text-[20px] font-bold leading-none tracking-tight text-zinc-800 [text-shadow:-1.5px_0_0_rgba(0,200,255,0.3),1.5px_0_0_rgba(255,80,0,0.3)] dark:text-zinc-100 dark:[text-shadow:-1.5px_0_0_rgba(0,200,255,0.6),1.5px_0_0_rgba(255,80,0,0.6)] sm:text-[24px]">
                 Blog

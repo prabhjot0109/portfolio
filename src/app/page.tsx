@@ -23,6 +23,11 @@ import Image from "next/image";
 
 const skills = [
   { name: "Python", icon: "python", color: "3776AB" },
+  {
+    name: "Java",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    color: "EA2D2E",
+  },
   { name: "TypeScript", icon: "typescript", color: "3178C6" },
   { name: "PyTorch", icon: "pytorch", color: "EE4C2C" },
   { name: "scikit-learn", icon: "scikitlearn", color: "F7931E" },
@@ -39,16 +44,19 @@ const skills = [
   { name: "FAISS", icon: "meta", color: "D45FDD" },
   { name: "Jupyter", icon: "jupyter", color: "F37626" },
   { name: "Django", icon: "django", color: "092E20" },
+  { name: "FastAPI", icon: "fastapi", color: "009688" },
+  { name: "Spring Boot", icon: "springboot", color: "6DB33F" },
   { name: "Pydantic", icon: "pydantic", color: "E92063" },
   { name: "LangChain", icon: "langchain", color: "1C3C3C" },
   { name: "LangGraph", icon: "graphql", color: "FF6B35" },
   { name: "Hugging Face", icon: "huggingface", color: "FFD21E" },
-  { name: "FastAPI", icon: "fastapi", color: "009688" },
   { name: "PostgreSQL", icon: "postgresql", color: "4169E1" },
   { name: "SQLite", icon: "sqlite", color: "003B5C" },
   { name: "Docker", icon: "docker", color: "2496ED" },
+  { name: "Kubernetes", icon: "kubernetes", color: "326CE5" },
   { name: "Git", icon: "git", color: "F05032" },
   { name: "GitHub", icon: "github" },
+  { name: "GitLab", icon: "gitlab", color: "FC6D26" },
   { name: "Figma", icon: "figma", color: "F24E1E" },
 ];
 

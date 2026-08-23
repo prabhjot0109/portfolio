@@ -20,9 +20,42 @@ type ExperienceData = {
 
 const experiences: ExperienceData[] = [
   {
+    title: "ClearTrail Technologies Pvt. Ltd.",
+    role: "Associate Software Engineer",
+    dates: "Aug 2026 - Present",
+    location: "Indore, India",
+    src: "/Experience-image/cleartrail.png",
+    imageFit: "contain",
+    imageZoom: 1.1,
+    description: `
+      Engineered and optimized backend application features and microservices using Java and Spring Boot to power high-throughput, mission-critical intelligence platforms
+      Designed, consumed, and integrated robust REST APIs with relational SQL databases for streamlined CRUD operations and data workflows
+      Containerized backend services using Docker and managed container orchestration with Kubernetes for scalable, resilient deployments
+      Collaborated with senior developers, QA, and product teams on code reviews, bug fixes, and agile sprint ceremonies following strict coding standards
+    `,
+    tech: [
+      "Java",
+      "Spring Boot",
+      "Spring Framework",
+      "Docker",
+      "Kubernetes",
+      "REST APIs",
+      "SQL",
+      "PostgreSQL",
+      "Microservices",
+      "Git",
+    ],
+    metrics: [
+      { label: "Role", value: "ASE" },
+      { label: "Domain", value: "Backend" },
+      { label: "Stack", value: "Spring Boot" },
+      { label: "DevOps", value: "Docker & K8s" },
+    ],
+  },
+  {
     title: "Vected Technologies Pvt. Ltd.",
     role: "Software Engineer (Generative AI)",
-    dates: "May 2026 - Present",
+    dates: "May 2026 - Aug 2026",
     location: "Indore, India",
     src: "/Experience-image/vected-dark.svg",
     imageFit: "contain",
@@ -232,11 +265,12 @@ export function ExperienceList() {
                             className="relative min-w-0 px-3 py-2 after:absolute after:bottom-0 after:right-0 after:top-0 after:w-0 after:border-r after:border-black/30 after:[mask-image:repeating-linear-gradient(to_bottom,black_0,black_1px,transparent_1px,transparent_6px)] dark:after:border-white/[0.15] [&:nth-child(2n)]:after:hidden 2xl:[&:not(:last-child)]:after:block 2xl:[&:last-child]:after:hidden"
                           >
                             <p
-                              className={`${metric.value.includes(" - ") ? "text-[13px]" : "text-[16px]"} whitespace-nowrap font-bold leading-none text-zinc-900 dark:text-zinc-100`}
+                              className={`${metric.value.length > 13 ? "text-[13px] sm:text-[14px]" : "text-[15px] sm:text-[16px]"} truncate font-bold leading-none text-zinc-900 dark:text-zinc-100`}
+                              title={metric.value}
                             >
                               {metric.value}
                             </p>
-                            <p className="mt-1 text-[10px] font-medium uppercase text-zinc-400 dark:text-zinc-600">
+                            <p className="mt-1 text-[10px] font-medium uppercase text-zinc-400 dark:text-zinc-600 truncate">
                               {metric.label}
                             </p>
                           </div>

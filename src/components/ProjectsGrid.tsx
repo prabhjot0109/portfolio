@@ -28,6 +28,13 @@ export {
   projectsData,
 };
 
+const STATUS_COLORS: Record<NonNullable<Project["status"]>, string> = {
+  Live: "bg-emerald-500",
+  Building: "bg-amber-500",
+  Completed: "bg-sky-500",
+  Archived: "bg-zinc-400",
+};
+
 export const ProjectCard = ({
   project,
   setActiveVideo,
@@ -44,10 +51,8 @@ export const ProjectCard = ({
 
   const imageSrc = resolvedTheme === "light" && project.lightModeSrc ? project.lightModeSrc : project.src;
 
-  const isNotStarted = project.title === "Inquiro";
-  const isBuilding = project.title === "Blueprint" || project.title === "Scribble3D";
-  const statusColor = isNotStarted ? "bg-zinc-400" : isBuilding ? "bg-red-500" : "bg-emerald-500";
-  const statusLabel = isNotStarted ? "Not Started" : isBuilding ? "Building" : "Live";
+  const statusLabel = project.status ?? "Live";
+  const statusColor = STATUS_COLORS[statusLabel];
 
   return (
     <div
@@ -152,7 +157,8 @@ export const ProjectCard = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0">
           <h3 className="text-[15px] font-bold text-zinc-900 dark:text-zinc-100 leading-tight">{project.title}</h3>
 
-          {statusLabel !== "Live" && (
+          {/* Only surface states that need explaining — Live/Completed are the quiet default */}
+          {(statusLabel === "Building" || statusLabel === "Archived") && (
             <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-zinc-200/50 dark:border-zinc-800/50 bg-white dark:bg-zinc-900/50 w-fit shrink-0">
               <div className={`w-1.5 h-1.5 rounded-full ${statusColor}`} />
               <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400">{statusLabel}</span>

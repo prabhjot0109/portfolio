@@ -6,9 +6,9 @@ import { RightNavbar } from "@/components/RightNavbar";
 import { FooterBackground } from "@/components/FooterBackground";
 import { ProjectImageCarousel } from "@/components/ProjectImageCarousel";
 import { BackButton } from "@/components/BackButton";
-import { projectsData, iconMap, techNames, TechItem, TechKey } from "@/data/projectsData";
+import { CopyField } from "@/components/CopyField";
+import { projectsData, iconMap, techNames, type TechItem, type TechKey } from "@/data/projectsData";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ExternalLink } from "lucide-react";
 import { SiGithub } from "react-icons/si";
@@ -100,7 +100,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 {project.title}
               </h1>
               <p className="text-[12px] text-zinc-500 dark:text-zinc-400 font-medium">
-                Projects/{project.title}
+                {project.subtitle ?? "Projects"}
               </p>
             </div>
           </div>
@@ -194,41 +194,112 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <div className="absolute right-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-[-1px] pointer-events-none z-20" />
         </div>
 
-        {/* Title */}
-        <div className="w-full mb-4">
-          <h1 className="text-[24px] sm:text-[28px] font-bold text-zinc-900 dark:text-zinc-50 tracking-tight leading-none mb-1">
-            {project.title}
-          </h1>
-          {project.subtitle && (
-            <p className="text-[13px] text-zinc-500 dark:text-zinc-400 font-medium">
-              {project.subtitle}
-            </p>
-          )}
-        </div>
+        {/* Overview — the title and subtitle live in the header cell above, not repeated here */}
+        <p className="text-[14px] sm:text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-300">
+          {project.longDescription || project.description}
+        </p>
 
-        {/* Description (includes achievements & impact inline) */}
-        <div className="text-[14px] sm:text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-300 space-y-2">
-          <p>{project.longDescription || project.description}</p>
-          {(project.achievements || project.impact) && (
-            <p className="text-zinc-500 dark:text-zinc-400">
-              {project.achievements && <>{project.achievements}. </>}
-              {project.impact && <>{project.impact}.</>}
-            </p>
-          )}
-        </div>
+        {/* Recognition and outcome — kept on separate lines so they never read as one run-on */}
+        {(project.achievements || project.impact) && (
+          <div className="mt-4 border-l-2 border-zinc-300 dark:border-zinc-700 pl-3.5 space-y-1">
+            {project.achievements && (
+              <p className="text-[13px] leading-relaxed font-medium text-zinc-600 dark:text-zinc-300">
+                {project.achievements}
+              </p>
+            )}
+            {project.impact && (
+              <p className="text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">
+                {project.impact}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Key Features */}
         {project.features && project.features.length > 0 && (
-          <div className="mt-6">
-            <h2 className="text-[11px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-medium mb-3">Key Features</h2>
-            <ul className="flex flex-col gap-1">
+          <div className="mt-8">
+            <h2 className="text-[11px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-medium mb-3">What it does</h2>
+            <ul className="flex flex-col">
               {project.features.map((feature, idx) => (
-                <li key={idx} className="flex items-start gap-2.5 text-[13px] text-zinc-600 dark:text-zinc-300 py-1.5">
-                  <span className="mt-1.5 w-1 h-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0" />
+                <li
+                  key={idx}
+                  className="group flex items-start gap-2.5 -mx-2 px-2 py-2 rounded-md text-[13px] leading-relaxed text-zinc-600 dark:text-zinc-300 transition-colors hover:bg-zinc-100/70 dark:hover:bg-zinc-900/60"
+                >
+                  <span className="mt-[7px] w-1 h-1 rounded-full bg-zinc-400 dark:bg-zinc-500 shrink-0 transition-colors group-hover:bg-zinc-800 dark:group-hover:bg-zinc-200" />
                   <span>{feature}</span>
                 </li>
               ))}
             </ul>
+          </div>
+        )}
+
+        {/* Setup — only for projects a visitor can install and run themselves */}
+        {project.setup && (
+          <div className="mt-8">
+            <h2 className="text-[11px] uppercase tracking-wider text-zinc-400 dark:text-zinc-500 font-medium mb-3">
+              {project.setup.title}
+            </h2>
+
+            {project.setup.endpoint && (
+              <div className="mb-5">
+                <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mb-1.5">
+                  {project.setup.endpoint.label}
+                </p>
+                <CopyField
+                  value={project.setup.endpoint.value}
+                  label={`Copy ${project.setup.endpoint.label}`}
+                />
+                {project.setup.endpoint.note && (
+                  <p className="mt-2 text-[12px] leading-relaxed text-zinc-500 dark:text-zinc-400">
+                    {project.setup.endpoint.note}
+                  </p>
+                )}
+              </div>
+            )}
+
+            {project.setup.steps && project.setup.steps.length > 0 && (
+              <ol className="flex flex-col gap-4">
+                {project.setup.steps.map((step, idx) => (
+                  <li key={idx} className="flex gap-3">
+                    <span className="shrink-0 mt-0.5 w-5 h-5 rounded-full border border-black/15 dark:border-white/15 flex items-center justify-center text-[10px] font-medium tabular-nums text-zinc-500 dark:text-zinc-400">
+                      {idx + 1}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-[13px] font-medium text-zinc-800 dark:text-zinc-100 mb-1">
+                        {step.title}
+                      </p>
+                      <p className="text-[13px] leading-relaxed text-zinc-600 dark:text-zinc-300">
+                        {step.body}
+                      </p>
+                      {step.code && (
+                        <div className="mt-2">
+                          <CopyField value={step.code} label={`Copy the command for step ${idx + 1}`} />
+                        </div>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            )}
+
+            {project.setup.links && project.setup.links.length > 0 && (
+              <div className="mt-5 flex flex-col gap-1.5">
+                {project.setup.links.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-1.5 w-fit text-[12px] text-zinc-500 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+                  >
+                    <ExternalLink className="w-3 h-3 shrink-0" />
+                    <span className="underline decoration-zinc-300 dark:decoration-zinc-700 underline-offset-2 group-hover:decoration-current">
+                      {link.label}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -249,7 +320,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               const Icon = isKey ? iconMap[t as TechKey] : null;
 
               return (
-                <div key={i} className="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-100 dark:bg-zinc-900 border border-black/10 dark:border-white/5 rounded-md text-[12px] font-medium text-zinc-700 dark:text-zinc-300">
+                <div key={i} className="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-100 dark:bg-zinc-900 border border-black/10 dark:border-white/5 rounded-md text-[12px] font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:border-black/25 dark:hover:border-white/20 hover:text-zinc-900 dark:hover:text-zinc-100">
                   {Icon && <Icon className="w-3.5 h-3.5" />}
                   <span>{label}</span>
                 </div>

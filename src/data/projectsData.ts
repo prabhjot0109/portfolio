@@ -177,7 +177,7 @@ export const projectsData: Project[] = [
     github: "https://github.com/prabhjot0109/sentient",
     live: "https://sentient-npc.vercel.app",
     blogLink: "/blogs/sentient",
-    backgroundImage: "/image copy 3.png",
+    backgroundImage: "/image copy 4.png",
     hasPin: true,
     galleryImages: ["/project-image/sentient.webp", "/project-image/sentient2.png", "/project-image/sentient4.webp", "/project-image/sentient6.webp"],
   },
@@ -213,13 +213,13 @@ export const projectsData: Project[] = [
   },
   {
     slug: "generative-ui",
-    title: "GenUI – Interfaces over Paragraphs",
+    title: "GenUI – Interfaces over Text",
     subtitle: "MCP server that renders in your design system",
     imageTitle: "GenUI MCP server",
     src: "/project-image/genui_dark.png",
     lightModeSrc: "/project-image/genui_light.png",
     video: "",
-    description: "An MCP server that makes any assistant answer with a working interface instead of paragraphs — drawn in a real design system.",
+    description: "An MCP server that makes any AI assistant answer with a working interface instead of paragraphs — drawn in a real design system.",
     longDescription:
       "Assistants can already draw UI, but it comes out generic and a tap on it goes nowhere. GenUI fixes both halves. A design brief — palette, type, shape, density, voice — grounds every surface in an actual system, and on hosts supporting MCP Apps a click on “Book the 06:10 flight” arrives back as the user's next message. It never calls a model of its own: the host's LLM reads the brief and writes the HTML, so a stronger host model improves output for free. Briefs are deliberately prose rather than extracted tokens — an earlier machine-readable version with a class allowlist and lint gates was measured head-to-head against the model designing freely, and lost.",
     features: [
@@ -297,7 +297,7 @@ export const projectsData: Project[] = [
     tech: ["flutter", "arduino", "fastapi", "opencv", "gemini", { label: "IoT" }, { label: "YOLOv8" }],
     github: "https://github.com/prabhjot0109/vrinda/tree/main",
     live: "",
-    backgroundImage: "/image copy 4.png",
+    backgroundImage: "/image copy 3.png",
     hasPin: false,
     galleryImages: ["/project-image/vrinda1.webp", "/project-image/vrinda2.png", "/project-image/vrinda3.png"],
   },
@@ -309,7 +309,7 @@ export const projectsData: Project[] = [
     src: "/project-image/leetgit_dark.png",
     lightModeSrc: "/project-image/leetgit_light.png",
     video: "",
-    description: "Chrome extension that commits your LeetCode solution to GitHub the moment all tests pass — no backend, no OAuth, no telemetry.",
+    description: "Chrome extension that commits your LeetCode solution to GitHub the moment all tests passes.",
     longDescription:
       "Keeping a LeetCode archive on GitHub normally means copying code out by hand after every accepted run. LeetGit does it for you: it detects the accepted submission, reads it back through LeetCode's GraphQL API, and commits it to your repository. Authentication is a personal access token you create and paste in yourself — held in chrome.storage.local and sent only to api.github.com — so there is no OAuth app, no server, and no third party ever holding your credentials.",
     features: [

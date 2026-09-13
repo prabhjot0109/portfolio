@@ -81,8 +81,15 @@ export interface Project {
     title: string;
     /** A copyable value — a server URL, an install command. */
     endpoint?: { label: string; value: string; note?: string };
-    /** Ordered steps. `code` renders as a copyable line under the step. */
-    steps?: { title: string; body: string; code?: string }[];
+    /** Tabbed copyable commands — e.g. uv tool and pip. */
+    commands?: { label: string; value: string; note?: string }[];
+    /** Ordered steps. `code` or `codes` renders as copyable lines under the step. */
+    steps?: {
+      title: string;
+      body: string;
+      code?: string;
+      codes?: { label: string; value: string }[];
+    }[];
     /** Outbound links: repo files, docs, downloads. */
     links?: { label: string; href: string }[];
   };
@@ -144,6 +151,34 @@ export const projectsData: Project[] = [
     impact: "Turns codebase onboarding into a conversation instead of a file hunt",
     status: "Live",
     role: "Creator",
+    setup: {
+      title: "Install & Use",
+      steps: [
+        {
+          title: "Install Pyrrhon",
+          body: "Install with uv (recommended for an isolated CLI environment on your PATH) or standard pip into Python 3.12 or 3.13.",
+          codes: [
+            { label: "uv tool (recommended)", value: "uv tool install pyrrhon" },
+            { label: "pip", value: "pip install pyrrhon" },
+          ],
+        },
+        {
+          title: "Configure providers",
+          body: "Configure your provider API keys (Groq is the default, with OpenAI, Gemini, Claude, DeepSeek, and local Ollama supported).",
+          code: "pyrrhon setup",
+        },
+        {
+          title: "Run in your repository",
+          body: "Navigate into any codebase you want to explore or design architecture for, and run Pyrrhon to start a voice-first conversation.",
+          code: "pyrrhon",
+        },
+      ],
+      links: [
+        { label: "PyPI package — pypi.org/project/pyrrhon", href: "https://pypi.org/project/pyrrhon/" },
+        { label: "Documentation & Website — pyrrhon.vercel.app", href: "https://pyrrhon.vercel.app" },
+        { label: "GitHub repository — prabhjot0109/Pyrrhon", href: "https://github.com/prabhjot0109/Pyrrhon" },
+      ],
+    },
     tech: ["python", "openai", "gemini", "claude", "terminal", "huggingface", { label: "Groq" }, { label: "MCP" }, { label: "Tree-sitter" }, { label: "Pipecat" }],
     github: "https://github.com/prabhjot0109/Pyrrhon",
     live: "https://pyrrhon.vercel.app",

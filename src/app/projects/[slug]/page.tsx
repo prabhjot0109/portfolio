@@ -7,6 +7,7 @@ import { FooterBackground } from "@/components/FooterBackground";
 import { ProjectImageCarousel } from "@/components/ProjectImageCarousel";
 import { BackButton } from "@/components/BackButton";
 import { CopyField } from "@/components/CopyField";
+import { CommandTabs } from "@/components/CommandTabs";
 import { projectsData, iconMap, techNames, type TechItem, type TechKey } from "@/data/projectsData";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -240,6 +241,15 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               {project.setup.title}
             </h2>
 
+            {project.setup.commands && project.setup.commands.length > 0 && (
+              <div className="mb-5">
+                <CommandTabs
+                  title="Install command"
+                  commands={project.setup.commands}
+                />
+              </div>
+            )}
+
             {project.setup.endpoint && (
               <div className="mb-5">
                 <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mb-1.5">
@@ -274,6 +284,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                       {step.code && (
                         <div className="mt-2">
                           <CopyField value={step.code} label={`Copy the command for step ${idx + 1}`} />
+                        </div>
+                      )}
+                      {step.codes && step.codes.length > 0 && (
+                        <div className="mt-2.5 flex flex-col gap-2">
+                          {step.codes.map((c) => (
+                            <div key={c.label} className="flex flex-col gap-1">
+                              <span className="text-[11px] text-zinc-500 dark:text-zinc-400 font-medium">
+                                {c.label}
+                              </span>
+                              <CopyField value={c.value} label={`Copy ${c.label}`} />
+                            </div>
+                          ))}
                         </div>
                       )}
                     </div>

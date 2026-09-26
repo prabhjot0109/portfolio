@@ -8,8 +8,12 @@ import { playSound } from "@/lib/sound-engine";
 import { click003Sound } from "@/lib/click-003";
 import { cn } from "@/lib/utils";
 
+type ViewTransition = {
+  finished: Promise<void>;
+};
+
 type ViewTransitionDocument = Document & {
-  startViewTransition?: (callback: () => void) => void;
+  startViewTransition?: (callback: () => void) => ViewTransition;
 };
 
 function subscribeToClient() {
@@ -51,11 +55,20 @@ export function ThemeToggle({ className }: { className?: string }) {
       return;
     }
 
-    transitionDocument.startViewTransition(() => {
+    document.documentElement.classList.add("theme-transition");
+    const transition = transitionDocument.startViewTransition(() => {
       flushSync(() => {
         setTheme(nextTheme);
       });
     });
+
+    transition?.finished
+      ?.then(() => {
+        document.documentElement.classList.remove("theme-transition");
+      })
+      .catch(() => {
+        document.documentElement.classList.remove("theme-transition");
+      });
   };
 
   return (

@@ -2,11 +2,6 @@ import Image from "next/image";
 import { BannerParticles } from "@/components/BannerParticles";
 import { CurrentTime } from "@/components/CurrentTime";
 
-const lightBannerPlaceholder =
-  "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAAAwAQCdASoKAAUAAkA4JaQAA3AA/vsP+gAAAAB6eZ2XpLm4f3l/d4V1gnn/u9O5uL+7vrm6t7axsrGwsLOvs7m0sbSxtLSytLSwsrCyrrCysLGwsbCzsrGysbKxsrCyAAA=";
-const darkBannerPlaceholder =
-  "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAAAwAgCdASoKAAUAAkA4JZwAA3AA/s4s+A43eYV8eIqAiYOCfX9/g3l6eXl6e3t7e318fH19fX5+fn9/f4CAgIGAgYCBgoGDgoKCgoKDg4ODg4KDg4ODg4ODg4OEg4SEhAAAAAA=";
-
 export function TopHeroBanner({ className = "" }: { className?: string }) {
   return (
     <div
@@ -16,22 +11,18 @@ export function TopHeroBanner({ className = "" }: { className?: string }) {
         src="/space_light.webp"
         alt=""
         fill
-        fetchPriority="high"
+        priority
         sizes="(min-width: 768px) 40vw, 100vw"
         quality={70}
-        placeholder="blur"
-        blurDataURL={lightBannerPlaceholder}
         className="object-cover object-center dark:hidden"
       />
       <Image
         src="/space.webp"
         alt=""
         fill
-        fetchPriority="high"
+        priority
         sizes="(min-width: 768px) 40vw, 100vw"
         quality={70}
-        placeholder="blur"
-        blurDataURL={darkBannerPlaceholder}
         className="hidden object-cover object-center dark:block"
       />
       <BannerParticles />

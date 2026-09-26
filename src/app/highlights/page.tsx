@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { BackButton } from "@/components/BackButton";
 import { CommandMenu } from "@/components/command-menu";
 import { FooterBackground } from "@/components/FooterBackground";
 import { CurrentTime } from "@/components/CurrentTime";
@@ -74,13 +73,7 @@ export default function AllHighlightsPage() {
       <header className="absolute left-0 right-0 top-[22vh] z-20 flex h-[112px] items-center px-4 md:left-[30%] md:right-[30%]">
         <div className="flex w-full items-center justify-between">
           <div className="flex items-center gap-5">
-            <Link
-              href="/#highlights"
-              aria-label="Back to highlights"
-              className="group flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-zinc-200/50 bg-zinc-100 text-zinc-400 transition-all hover:bg-zinc-200 hover:text-zinc-900 dark:border-zinc-800/50 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
-            >
-              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-            </Link>
+            <BackButton fallbackHref="/#highlights" ariaLabel="Back to highlights" />
             <div className="flex flex-col justify-center">
               <h1 className="mb-0.5 text-[20px] font-bold leading-none tracking-tight text-zinc-800 [text-shadow:-1.5px_0_0_rgba(0,200,255,0.3),1.5px_0_0_rgba(255,80,0,0.3)] dark:text-zinc-100 dark:[text-shadow:-1.5px_0_0_rgba(0,200,255,0.6),1.5px_0_0_rgba(255,80,0,0.6)] sm:text-[24px]">
                 All Highlights

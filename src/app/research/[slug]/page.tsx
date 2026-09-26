@@ -255,7 +255,7 @@ export default async function ResearchPaperPage({ params }: ResearchPageProps) {
       <div className="absolute left-0 right-0 top-[22vh] z-50 flex h-[112px] items-center px-4 md:left-[30%] md:right-[30%]">
         <div className="flex w-full items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-5">
-            <BackButton fallbackHref="/#research" ariaLabel="Back to research" />
+            <BackButton fallbackHref="/research" ariaLabel="Back to research" />
             <div className="flex min-w-0 flex-col justify-center">
               <h1 className="text-[20px] font-bold leading-none tracking-tight text-zinc-800 [text-shadow:-1.5px_0_0_rgba(0,200,255,0.3),1.5px_0_0_rgba(255,80,0,0.3)] dark:text-zinc-100 dark:[text-shadow:-1.5px_0_0_rgba(0,200,255,0.6),1.5px_0_0_rgba(255,80,0,0.6)] sm:text-[24px]">
                 Research

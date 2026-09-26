@@ -1,4 +1,4 @@
-# Prabhjot Singh Assi Portfolio
+# Portfolio
 
 A minimal, fast, and interactive developer portfolio built with **Next.js 16**, **React 19**, **Tailwind CSS v4**, and **TypeScript**.
 

@@ -142,7 +142,7 @@ export default function Home() {
                   width={240}
                   height={240}
                   quality={90}
-                  fetchPriority="high"
+                  priority
                   sizes="(min-width: 640px) 120px, 96px"
                   className="h-full w-full origin-center translate-y-1 scale-[1.1] object-cover opacity-90 grayscale contrast-100 mix-blend-multiply dark:mix-blend-normal"
                 />

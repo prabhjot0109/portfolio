@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { CommandMenu } from "@/components/command-menu";
-import { CurrentTime } from "@/components/CurrentTime";
 import { RightNavbar } from "@/components/RightNavbar";
 import { FooterBackground } from "@/components/FooterBackground";
+import { CurrentTime } from "@/components/CurrentTime";
 import { ProjectImageCarousel } from "@/components/ProjectImageCarousel";
 import { BackButton } from "@/components/BackButton";
 import { CopyField } from "@/components/CopyField";
@@ -117,35 +117,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {/* Content Section */}
       <div className="ml-0 mr-0 md:ml-[30%] md:mr-[30%] pt-[calc(22vh+112px)] pb-16 px-4 flex flex-col z-10 relative">
 
-        {/* Media (Carousel or Video or Single Image) */}
+        {/* Media (Unified Video + Image Carousel Frame) */}
         <div className="w-full mt-8 z-20">
-          {project.video ? (
-            <div className="w-full aspect-video relative rounded-lg overflow-hidden border border-black/10 dark:border-white/[0.15] shadow-sm bg-black">
-              {project.video.includes('youtube') ? (
-                <iframe
-                  src={project.video}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              ) : (
-                <video 
-                  src={project.video} 
-                  className="w-full h-full object-cover" 
-                  controls 
-                  autoPlay 
-                  muted 
-                  loop 
-                  playsInline 
-                />
-              )}
-            </div>
-          ) : (
-            <ProjectImageCarousel
-              images={project.galleryImages || [project.src]}
-              alt={project.imageTitle}
-            />
-          )}
+          <ProjectImageCarousel
+            images={project.galleryImages || (project.src ? [project.src] : [])}
+            video={project.video}
+            alt={project.imageTitle}
+          />
         </div>
 
         {/* Top Dashed Divider (Blueprint system) */}

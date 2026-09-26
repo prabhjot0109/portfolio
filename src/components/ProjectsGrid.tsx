@@ -45,7 +45,6 @@ export const ProjectCard = ({
   isPriority?: boolean;
 }) => {
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
-  const [shouldLoadHoverImage, setShouldLoadHoverImage] = useState(false);
   const { resolvedTheme } = useTheme();
   const router = useRouter();
 
@@ -58,13 +57,10 @@ export const ProjectCard = ({
     <div
       className="flex flex-col group cursor-pointer"
       onClick={() => router.push(`/projects/${project.slug}`)}
-      onMouseEnter={() => setShouldLoadHoverImage(true)}
-      onFocus={() => setShouldLoadHoverImage(true)}
-      onTouchStart={() => setShouldLoadHoverImage(true)}
     >
       {/* Outer Wrapper exactly like screenshot */}
       <motion.div
-        className="relative w-full aspect-[1.25] rounded-xl border border-black/5 dark:border-white/5 bg-zinc-50/80 dark:bg-[#09090b]/80 shadow-sm p-3.5 pb-0 flex flex-col overflow-hidden transition-all duration-300 hover:shadow-md hover:border-black/10 dark:hover:border-white/10 sm:aspect-[1.4] sm:p-4 sm:pb-0"
+        className="relative w-full aspect-[1.25] rounded-xl border border-black/5 dark:border-white/5 bg-zinc-50/80 dark:bg-[#09090b]/80 shadow-sm p-3.5 pb-0 flex flex-col overflow-hidden transition-[border-color,box-shadow] duration-200 hover:shadow-md hover:border-black/10 dark:hover:border-white/10 sm:aspect-[1.4] sm:p-4 sm:pb-0"
         initial="rest"
         whileHover="hover"
         animate="rest"
@@ -80,62 +76,61 @@ export const ProjectCard = ({
         </div>
 
         {/* Ambient Hover Background */}
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: shouldLoadHoverImage
-              && project.backgroundImage
-              ? `url('${project.backgroundImage}')`
-              : undefined,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-          variants={{
-            rest: { opacity: 0, scale: 1 },
-            hover: { opacity: 1, scale: 1.05 },
-          }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-        />
-
-        <motion.h1
-          className="absolute top-4 left-4 text-[10px] font-bold text-zinc-500 dark:text-zinc-400 z-30 uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
-          variants={{
-            rest: { left: "1rem", top: "1rem", x: "0%", color: "#71717a", opacity: 0 },
-            hover: { left: "50%", top: "25%", x: "-50%", color: "#ffffff", opacity: 1 },
-          }}
-          transition={{ type: "spring", stiffness: 200, damping: 25 }}
-        >
-          Play Video
-        </motion.h1>
+        {project.backgroundImage && (
+          <div className="absolute inset-0 scale-100 opacity-0 transition-[opacity,transform] duration-200 ease-out group-hover:scale-[1.03] group-hover:opacity-100">
+            <Image
+              src={project.backgroundImage}
+              alt=""
+              aria-hidden="true"
+              fill
+              sizes="(min-width: 768px) 320px, calc(100vw - 2rem)"
+              quality={70}
+              className="object-cover"
+            />
+          </div>
+        )}
 
         {project.video && (
-          <motion.div
-            className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto"
-            variants={{ rest: { scale: 0.5, opacity: 0 }, hover: { scale: 1, opacity: 1 } }}
-            transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.05 }}
-          >
-            <div 
-              className="h-10 w-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 active:scale-95 transition-transform duration-200 border border-white/50"
-              onClick={(e) => {
-                e.stopPropagation();
-                if (project.video) setActiveVideo(project.video);
+          <>
+            <motion.h1
+              className="absolute left-1/2 top-1/4 z-30 text-[10px] font-bold uppercase tracking-widest text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]"
+              variants={{
+                rest: { x: "-50%", y: -8, opacity: 0 },
+                hover: { x: "-50%", y: 0, opacity: 1 },
               }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
             >
-              <svg className="w-4 h-4 text-zinc-900 ml-0.5 fill-current" viewBox="0 0 24 24">
-                <path d="M5.25 5.653v12.694c0 .856.926 1.39 1.668.958l11.1-6.347a1.125 1.125 0 000-1.916L6.918 4.695c-.742-.432-1.668.102-1.668.958z" />
-              </svg>
-            </div>
-          </motion.div>
+              Play Video
+            </motion.h1>
+
+            <motion.div
+              className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto"
+              variants={{ rest: { scale: 0.5, opacity: 0 }, hover: { scale: 1, opacity: 1 } }}
+              transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.05 }}
+            >
+              <div 
+                className="h-10 w-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 active:scale-95 transition-transform duration-200 border border-white/50"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (project.video) setActiveVideo(project.video);
+                }}
+              >
+                <svg className="w-4 h-4 text-zinc-900 ml-0.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M5.25 5.653v12.694c0 .856.926 1.39 1.668.958l11.1-6.347a1.125 1.125 0 000-1.916L6.918 4.695c-.742-.432-1.668.102-1.668.958z" />
+                </svg>
+              </div>
+            </motion.div>
+          </>
         )}
 
         {/* Floating screenshot sitting directly at the bottom of the outer wrapper */}
         <motion.div
-          className="absolute bottom-0 left-1/2 w-[85%] rounded-t-[10px] bg-white dark:bg-[#0a0a0a] p-0 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.5)] z-20 border border-black/5 dark:border-white/[0.15] border-b-0"
+          className="absolute bottom-0 left-1/2 z-20 h-[78%] w-[85%] origin-bottom rounded-t-[10px] border border-b-0 border-black/5 bg-white p-0 shadow-[0_-8px_30px_rgba(0,0,0,0.06)] dark:border-white/[0.15] dark:bg-[#0a0a0a] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.5)]"
           variants={{
-            rest: { height: "78%", y: 0, x: "-50%" },
-            hover: { height: "72%", y: 4, x: "-50%" },
+            rest: { y: 0, x: "-50%", scale: 1 },
+            hover: { y: 4, x: "-50%", scale: 0.94 },
           }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
         >
           <div className="size-full overflow-hidden rounded-t-[9px]">
             <Image

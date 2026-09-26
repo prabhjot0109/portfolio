@@ -2,9 +2,9 @@
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { CommandMenu } from "@/components/command-menu";
-import { CurrentTime } from "@/components/CurrentTime";
 import { RightNavbar } from "@/components/RightNavbar";
 import { FooterBackground } from "@/components/FooterBackground";
+import { CurrentTime } from "@/components/CurrentTime";
 import { ProjectCard } from "@/components/ProjectsGrid";
 import { projectsData } from "@/data/projectsData";
 import Link from "next/link";

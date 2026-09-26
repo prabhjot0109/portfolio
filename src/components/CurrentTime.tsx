@@ -42,8 +42,8 @@ export function CurrentTime() {
   return (
     <div className="flex items-center h-[24px]">
       <div 
-        className="text-[20px] sm:text-[24px] tracking-[0.15em] flex items-center text-zinc-400 dark:text-zinc-500 h-full" 
-        style={{ fontFamily: '"Doto", monospace', fontWeight: 700 }}
+        className="text-[20px] sm:text-[24px] tracking-[0.15em] flex items-center tabular-nums text-zinc-400 dark:text-zinc-500 h-full" 
+        style={{ fontFamily: 'var(--font-doto), monospace', fontWeight: 700 }}
       >
         <span>{hours}</span>
         <TwoDots />

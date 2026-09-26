@@ -6,8 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-const darkBannerImage = "/samurai_dark.jpg";
-
 interface SocialProfile {
   name: string;
   handle: string;

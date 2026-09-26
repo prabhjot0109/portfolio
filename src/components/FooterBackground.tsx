@@ -1,13 +1,11 @@
-"use client";
-
 import React from "react";
 
-export function FooterBackground() {
+export function FooterBackground({ className = "" }: { className?: string }) {
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden">
+    <div className={`absolute inset-0 w-full h-full overflow-hidden ${className}`}>
       {/* Base dots that fade out */}
       <div
-        className="absolute inset-0 w-full h-full text-zinc-400 dark:text-zinc-500 opacity-20 dark:opacity-[0.1] pointer-events-none transition-opacity duration-500"
+        className="absolute inset-0 w-full h-full text-zinc-400 dark:text-zinc-500 opacity-20 dark:opacity-[0.1] pointer-events-none"
         style={{
           backgroundImage:
             "radial-gradient(circle, currentColor 1px, transparent 1px)",
@@ -22,5 +20,4 @@ export function FooterBackground() {
   );
 }
 
-
-
+export default FooterBackground;

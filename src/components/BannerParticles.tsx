@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 
 const settings = {
-  minWind: 0.5,
-  maxWind: 3,
+  minWind: 1.2,
+  maxWind: 4.8,
   minSize: 6,
   maxSize: 18,
   emitterY: 0.2,
@@ -14,7 +14,7 @@ const settings = {
   rotationSpeed: 0,
   tumbleStrength: 0.3,
   staticTilt: 0,
-  particleCount: 40,
+  particleCount: 56,
   direction: 1 // 1 = left to right
 };
 
@@ -105,6 +105,10 @@ export function BannerParticles() {
     let height = 0;
     let animationFrameId: number;
     let isUnmounted = false;
+    let isInViewport = true;
+    let isPageVisible = !document.hidden;
+    let isRunning = false;
+    let lastFrameTime = 0;
 
     updateCache();
     const particleImage = createDefaultImage();
@@ -144,9 +148,11 @@ export function BannerParticles() {
         if (initOnScreen) {
           this.x = Math.random() * width;
         } else {
+          // Keep new leaves close to the edge so the stream never goes sparse.
+          const entryDistance = Math.min(width * 0.12, 80);
           this.x = settings.direction === -1
-            ? width + this.width + Math.random() * width
-            : -this.width - Math.random() * width;
+            ? width + this.width + Math.random() * entryDistance
+            : -this.width - Math.random() * entryDistance;
         }
 
         const sizeFactor = (this.width - cache.minSize) / (cache.maxSize - cache.minSize || 1);
@@ -204,7 +210,7 @@ export function BannerParticles() {
         ctx.transform(vecU.x, vecU.y, vecV.x, vecV.y, 0, 0);
         
         // Add a slight opacity for visual blending
-        ctx.globalAlpha = 0.45;
+        ctx.globalAlpha = 0.6;
         ctx.drawImage(particleImage, -this.width / 2, -this.height / 2, this.width, this.height);
         ctx.restore();
       }
@@ -224,41 +230,84 @@ export function BannerParticles() {
 
     const initParticles = () => {
       particles = [];
-      for (let i = 0; i < settings.particleCount; i++) {
-        // Init half on screen for immediate effect, half off screen
-        const initOnScreen = Math.random() > 0.5;
-        const particle = new Particle(initOnScreen);
-        particles.push(particle);
+      const count = Math.min(
+        settings.particleCount,
+        Math.max(32, Math.round((width * height) / 2500)),
+      );
+
+      // Seed the full banner immediately; replacements then flow in from the edge.
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle(true));
       }
     };
 
-    const animate = () => {
-      if (isUnmounted) return;
+    const drawFrame = () => {
       ctx.clearRect(0, 0, width, height);
 
       for (const particle of particles) {
         particle.update();
         particle.draw();
       }
+    };
 
+    const animate = (timestamp: number) => {
+      if (isUnmounted || !isRunning) return;
+
+      animationFrameId = requestAnimationFrame(animate);
+      if (timestamp - lastFrameTime < 1000 / 30) return;
+
+      lastFrameTime = timestamp;
+      drawFrame();
+    };
+
+    const stopAnimation = () => {
+      isRunning = false;
+      cancelAnimationFrame(animationFrameId);
+    };
+
+    const startAnimation = () => {
+      if (isUnmounted || isRunning || !isInViewport || !isPageVisible || prefersReducedMotion) return;
+
+      isRunning = true;
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    setTimeout(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const initialFrameId = requestAnimationFrame(() => {
       if (isUnmounted) return;
       resize();
       initParticles();
-      animate();
-    }, 0);
+
+      if (prefersReducedMotion) {
+        drawFrame();
+      } else {
+        startAnimation();
+      }
+    });
+
+    const observer = new IntersectionObserver(([entry]) => {
+      isInViewport = entry.isIntersecting;
+      if (isInViewport) startAnimation();
+      else stopAnimation();
+    });
+    observer.observe(canvas);
+
+    const handleVisibilityChange = () => {
+      isPageVisible = !document.hidden;
+      if (isPageVisible) startAnimation();
+      else stopAnimation();
+    };
 
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
       isUnmounted = true;
+      observer.disconnect();
       window.removeEventListener("resize", resize);
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      cancelAnimationFrame(initialFrameId);
+      stopAnimation();
     };
   }, []);
 

@@ -58,6 +58,17 @@ const sections = [
     ),
   },
   {
+    id: "education",
+    label: "Education",
+    icon: (
+      <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-[14px] h-[14px]">
+        <path d="M1.5 7.5L9 3.5l7.5 4-7.5 4-7.5-4z" strokeLinejoin="round" />
+        <path d="M4 9v4.5c0 1.5 2.2 2.5 5 2.5s5-1 5-2.5V9" strokeLinejoin="round" />
+        <path d="M16.5 7.5v5" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
     id: "research",
     label: "Research",
     icon: (

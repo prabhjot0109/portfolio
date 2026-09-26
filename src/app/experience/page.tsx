@@ -2,9 +2,9 @@
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { CommandMenu } from "@/components/command-menu";
-import { CurrentTime } from "@/components/CurrentTime";
 import { RightNavbar } from "@/components/RightNavbar";
 import { FooterBackground } from "@/components/FooterBackground";
+import { CurrentTime } from "@/components/CurrentTime";
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
@@ -131,27 +131,62 @@ export default function AllExperiencePage() {
       <RightNavbar />
 
       {/* Vertical Lines - Ultra-fine Micro Dots */}
-      <div className="absolute top-0 bottom-0 left-[30%] w-0 border-r border-black/30 dark:border-white/[0.15] pointer-events-none hidden md:block" style={{ maskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-      <div className="absolute top-0 bottom-0 right-[30%] w-0 border-r border-black/30 dark:border-white/[0.15] pointer-events-none hidden md:block" style={{ maskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)' }} />
+      <div
+        className="absolute top-0 bottom-0 left-[30%] w-0 border-r border-black/30 dark:border-white/[0.15] pointer-events-none hidden md:block"
+        style={{
+          maskImage:
+            "repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)",
+          WebkitMaskImage:
+            "repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)",
+        }}
+      />
+      <div
+        className="absolute top-0 bottom-0 right-[30%] w-0 border-r border-black/30 dark:border-white/[0.15] pointer-events-none hidden md:block"
+        style={{
+          maskImage:
+            "repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)",
+          WebkitMaskImage:
+            "repeating-linear-gradient(to bottom, black 0, black 1px, transparent 1px, transparent 6px)",
+        }}
+      />
 
       {/* Horizontal Lines - Ultra-fine Micro Dots */}
-      <div className="absolute left-0 right-0 top-[22vh] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
-      <div className="absolute left-0 right-0 top-[calc(22vh+112px)] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
+      <div
+        className="absolute left-0 right-0 top-[22vh] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none"
+        style={{
+          maskImage:
+            "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
+          WebkitMaskImage:
+            "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
+        }}
+      />
+      <div
+        className="absolute left-0 right-0 top-[calc(22vh+112px)] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none"
+        style={{
+          maskImage:
+            "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
+          WebkitMaskImage:
+            "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
+        }}
+      />
 
       {/* Ultra-Tiny Solid Nodes */}
       {[
-        { top: '22vh', left: '30%' },
-        { top: '22vh', right: '30%' },
-        { top: 'calc(22vh + 112px)', left: '30%' },
-        { top: 'calc(22vh + 112px)', right: '30%' },
+        { top: "22vh", left: "30%" },
+        { top: "22vh", right: "30%" },
+        { top: "calc(22vh + 112px)", left: "30%" },
+        { top: "calc(22vh + 112px)", right: "30%" },
       ].map((pos, i) => (
-        <div key={i} className="absolute w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] pointer-events-none z-10 hidden md:block"
+        <div
+          key={i}
+          className="absolute w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] pointer-events-none z-10 hidden md:block"
           style={{
             top: pos.top,
             left: pos.left,
             right: pos.right,
-            transform: `translate(${pos.right ? '50%' : '-50%'}, -50%)`
-          }} />
+            transform: `translate(${pos.right ? "50%" : "-50%"}, -50%)`,
+          }}
+        />
       ))}
 
       {/* Cell 1: Dot Matrix Background */}
@@ -192,11 +227,8 @@ export default function AllExperiencePage() {
       </div>
 
       {/* Content Section */}
-      <div
-        className="ml-0 mr-0 md:ml-[30%] md:mr-[30%] pt-[calc(22vh+112px)] pb-16 px-4 flex flex-col z-10 relative"
-      >
+      <div className="ml-0 mr-0 md:ml-[30%] md:mr-[30%] pt-[calc(22vh+112px)] pb-16 px-4 flex flex-col z-10 relative">
         <div className="relative pt-0 pb-6">
-
           {/* Experience Items */}
           <div className="flex flex-col relative z-10 w-full">
             {experiences.map((item, idx) => {
@@ -204,10 +236,18 @@ export default function AllExperiencePage() {
               const isLast = idx === experiences.length - 1;
 
               return (
-                <div key={idx} className="group relative">
+                <div
+                  key={idx}
+                  id={`experience-${idx}`}
+                  className="group relative scroll-mt-6"
+                >
                   {/* Dashed bottom border for all items */}
                   <div
-                    className={`absolute bottom-0 ${isLast ? 'left-[-100vw] right-[-100vw]' : 'left-[-16px] right-[-16px]'} h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none z-10`}
+                    className={`absolute bottom-0 ${
+                      isLast
+                        ? "left-[-100vw] right-[-100vw]"
+                        : "left-[-16px] right-[-16px]"
+                    } h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none z-10`}
                     style={{
                       maskImage:
                         "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
@@ -238,48 +278,23 @@ export default function AllExperiencePage() {
                             height={40}
                             sizes="40px"
                             quality={60}
-                            style={item.imageZoom ? { transform: `scale(${item.imageZoom})` } : undefined}
-                            className={`${item.imageFit === "contain" ? "object-contain" : "object-cover"} w-full h-full p-0.5`}
+                            style={
+                              item.imageZoom
+                                ? { transform: `scale(${item.imageZoom})` }
+                                : undefined
+                            }
+                            className={`${
+                              item.imageFit === "contain"
+                                ? "object-contain"
+                                : "object-cover"
+                            } w-full h-full p-0.5`}
                           />
                         </div>
                       </div>
                       <div className="flex min-w-0 flex-col gap-0.5 pr-2 sm:pr-4">
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="text-[14px] font-bold leading-tight text-zinc-900 dark:text-zinc-100 sm:text-[17px]">
-                            {item.title === "Vercel OSS Program x VengenceUI" ? (
-                              <>
-                                <span className="sm:hidden">Vercel OSS Program x VengenceUI</span>
-                                <span className="hidden flex-wrap items-center gap-x-2 gap-y-1 align-middle sm:inline-flex">
-                                  <span className="inline-flex h-10 items-center">
-                                    Vercel OSS Program
-                                  </span>
-                                  <span className="inline-flex h-10 items-center text-[13px] font-semibold leading-none text-zinc-500 dark:text-zinc-500">
-                                    x
-                                  </span>
-                                  <span className="inline-flex h-10 items-center gap-2 leading-none">
-                                    <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-[10px] border border-black/10 bg-zinc-50 p-[2px] shadow-sm shadow-black/15 dark:border-zinc-800 dark:bg-[#111111] dark:shadow-md dark:shadow-black/50">
-                                      <span className="inline-flex size-full items-center justify-center overflow-hidden rounded-[7px] border border-black/5 bg-white dark:border-black/20">
-                                        <Image
-                                          src="/Experience-image/vengenceui-title-bg-less.png"
-                                          alt=""
-                                          width={113}
-                                          height={96}
-                                          sizes="40px"
-                                          quality={60}
-                                          aria-hidden="true"
-                                          className="h-[18px] w-auto -translate-x-px translate-y-px rotate-180 object-contain"
-                                        />
-                                      </span>
-                                    </span>
-                                    <span className="inline-flex h-10 items-center">
-                                      VengenceUI
-                                    </span>
-                                  </span>
-                                </span>
-                              </>
-                            ) : (
-                              item.title
-                            )}
+                            {item.title}
                           </span>
                           {item.type && (
                             <span className="self-center whitespace-nowrap px-1.5 py-[1px] rounded-[4px] text-[11px] font-medium text-zinc-600 dark:text-zinc-400 bg-zinc-200/50 dark:bg-zinc-800/50 border border-zinc-300/50 dark:border-zinc-700/50">
@@ -287,9 +302,7 @@ export default function AllExperiencePage() {
                             </span>
                           )}
                         </div>
-                        <span
-                          className={`${item.title === "Vercel OSS Program x VengenceUI" ? "sm:-mt-2" : ""} truncate text-[14px] text-zinc-600 dark:text-zinc-400 sm:text-[15px]`}
-                        >
+                        <span className="truncate text-[14px] text-zinc-600 dark:text-zinc-400 sm:text-[15px]">
                           {item.role}
                         </span>
                       </div>
@@ -299,8 +312,9 @@ export default function AllExperiencePage() {
                         <span>{item.dates}</span>
                         <svg
                           viewBox="0 0 24 24"
-                          className={`w-3.5 h-3.5 text-zinc-500 absolute -right-4 sm:-right-5 top-1/2 -translate-y-1/2 transition-transform duration-300 ${isOpen ? "rotate-180" : ""
-                            }`}
+                          className={`w-3.5 h-3.5 text-zinc-500 absolute -right-4 sm:-right-5 top-1/2 -translate-y-1/2 transition-transform duration-300 ${
+                            isOpen ? "rotate-180" : ""
+                          }`}
                           fill="none"
                           stroke="currentColor"
                           strokeWidth="2.5"
@@ -316,13 +330,17 @@ export default function AllExperiencePage() {
 
                   {/* Expandable Details Section */}
                   <div
-                    className={`-mx-4 grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                      }`}
+                    className={`-mx-4 grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] ${
+                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                    }`}
                   >
                     <div className="overflow-hidden">
                       <div
-                        className={`${isOpen ? "pb-4 pt-0 opacity-100 translate-y-0" : "pb-0 pt-0 opacity-0 -translate-y-2"
-                          } transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] pl-6 pr-8 text-[14px] text-zinc-600 dark:text-zinc-400`}
+                        className={`${
+                          isOpen
+                            ? "pb-4 pt-0 opacity-100 translate-y-0"
+                            : "pb-0 pt-0 opacity-0 -translate-y-2"
+                        } transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] pl-6 pr-8 text-[14px] text-zinc-600 dark:text-zinc-400`}
                       >
                         {item.metrics && (
                           <div className="relative -ml-6 -mr-8 mb-4">
@@ -333,7 +351,11 @@ export default function AllExperiencePage() {
                                   className="relative min-w-0 px-3 py-2 after:absolute after:bottom-0 after:right-0 after:top-0 after:w-0 after:border-r after:border-black/30 after:[mask-image:repeating-linear-gradient(to_bottom,black_0,black_1px,transparent_1px,transparent_6px)] dark:after:border-white/[0.15] [&:nth-child(2n)]:after:hidden 2xl:[&:not(:last-child)]:after:block 2xl:[&:last-child]:after:hidden"
                                 >
                                   <p
-                                    className={`${metric.value.length > 13 ? "text-[13px] sm:text-[14px]" : "text-[15px] sm:text-[16px]"} truncate font-bold leading-none text-zinc-900 dark:text-zinc-100`}
+                                    className={`${
+                                      metric.value.length > 13
+                                        ? "text-[13px] sm:text-[14px]"
+                                        : "text-[15px] sm:text-[16px]"
+                                    } truncate font-bold leading-none text-zinc-900 dark:text-zinc-100`}
                                     title={metric.value}
                                   >
                                     {metric.value}
@@ -397,36 +419,25 @@ export default function AllExperiencePage() {
                             .split("\n")
                             .filter((line) => line.trim() !== "")
                             .map((point, i) => {
-                              const [label, ...detail] = point.trim().split(":");
+                              const [label, ...detail] = point
+                                .trim()
+                                .split(":");
 
                               return (
-                                <li key={i} className="flex items-start gap-1.5">
-                                  <span className="text-zinc-400 dark:text-zinc-500 mt-[2px] text-[14px] leading-none">•</span>
+                                <li
+                                  key={i}
+                                  className="flex items-start gap-1.5"
+                                >
+                                  <span className="text-zinc-400 dark:text-zinc-500 mt-[2px] text-[14px] leading-none">
+                                    •
+                                  </span>
                                   <span>
                                     {detail.length > 0 ? (
                                       <>
                                         <strong className="font-semibold text-zinc-800 dark:text-zinc-200">
                                           {label}:
                                         </strong>
-                                        {detail
-                                          .join(":")
-                                          .split(
-                                            /(kgateway|FOSSology|FOSSASIA Eventyay|Extralit|React JSON Schema Form)/,
-                                          )
-                                          .map((part, partIndex) =>
-                                            /^(kgateway|FOSSology|FOSSASIA Eventyay|Extralit|React JSON Schema Form)$/.test(
-                                              part,
-                                            ) ? (
-                                              <strong
-                                                key={partIndex}
-                                                className="font-semibold text-zinc-800 dark:text-zinc-200"
-                                              >
-                                                {part}
-                                              </strong>
-                                            ) : (
-                                              part
-                                            ),
-                                          )}
+                                        {detail.join(":")}
                                       </>
                                     ) : (
                                       point.trim()
@@ -460,7 +471,15 @@ export default function AllExperiencePage() {
 
         {/* Bottom Separator */}
         <div className="relative mt-8">
-          <div className="absolute left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none" style={{ maskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)', WebkitMaskImage: 'repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)' }} />
+          <div
+            className="absolute left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none"
+            style={{
+              maskImage:
+                "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
+              WebkitMaskImage:
+                "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
+            }}
+          />
           <div className="absolute -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-[-1px] pointer-events-none z-20" />
           <div className="absolute -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-[-1px] pointer-events-none z-20" />
         </div>

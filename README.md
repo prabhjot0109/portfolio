@@ -1,8 +1,8 @@
-# Prabhjot Singh Assi — Portfolio
+# Prabhjot Singh Assi Portfolio
 
 A minimal, fast, and interactive developer portfolio built with **Next.js 16**, **React 19**, **Tailwind CSS v4**, and **TypeScript**.
 
-It showcases my work, experience, open-source contributions, skills, and writing — with a dark/light theme, smooth motion, and a command palette for quick navigation.
+It showcases my work, experience, open-source contributions, skills, and writing with a dark/light theme, smooth motion, and a command palette for quick navigation.
 
 ---
 
@@ -19,67 +19,10 @@ It showcases my work, experience, open-source contributions, skills, and writing
 
 ---
 
-## Features
-
-- Responsive, grid-based layout with blueprint-style micro-details
-- Dark and light mode with system preference detection
-- Command palette (`Cmd/Ctrl + K`) for quick navigation
-- Interactive GitHub contribution graph
-- Project showcase with detail pages
-- Experience timeline
-- Open-source contributions section
-- Skills and technologies grid
-- Blog listing
-- Contact and resume pages
-- Sound-engineered micro-interactions
-
----
-
-## Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) 20 or later
-- npm / yarn / pnpm / bun
-
-### Install dependencies
-
-```bash
-npm install
-```
-
-### Run the development server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Build for production
-
-```bash
-npm run build
-```
-
-### Start the production server
-
-```bash
-npm start
-```
-
-### Lint
-
-```bash
-npm run lint
-```
-
----
-
 ## Project Structure
 
 ```text
-Portfolio-v2-
+portfolio
 ├── src/
 │   ├── app/                 # Next.js App Router pages
 │   ├── components/          # React components & UI primitives
@@ -88,18 +31,9 @@ Portfolio-v2-
 │   └── lib/                 # Utility functions and sound engine
 ├── public/                  # Static assets
 ├── next.config.ts           # Next.js configuration
-├── tailwind.config.ts       # Tailwind CSS configuration
 ├── tsconfig.json            # TypeScript configuration
 └── package.json
 ```
-
----
-
-## Deployment
-
-This site is optimized for deployment on [Vercel](https://vercel.com/). Connect your GitHub repository to Vercel and deploy with zero configuration.
-
-For other platforms, use the static or Node.js output mode configured in `next.config.ts`.
 
 ---
 

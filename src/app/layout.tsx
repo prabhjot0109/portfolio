@@ -19,13 +19,15 @@ const dotoFont = Doto({
   variable: "--font-doto",
   subsets: ["latin"],
   weight: ["400", "700", "900"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://prabhjotsinghassi.vercel.app"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://prabhjot0109.vercel.app",
+  ),
   title: "Prabhjot Singh Assi",
-  description:
-    "AI Engineer building Gen AI systems at scale.",
+  description: "AI Engineer building Gen AI systems at scale.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -35,15 +37,16 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Prabhjot Singh Assi",
-    description:
-      "AI Engineer building Gen AI systems at scale.",
-    url: "https://prabhjotsinghassi.vercel.app",
+    description: "AI Engineer building Gen AI systems at scale.",
+    url: "https://prabhjot0109.vercel.app",
     siteName: "Prabhjot Singh Assi",
     images: [
       {
         url: "/og-image.jpg",
+        secureUrl: "/og-image.jpg",
         width: 1200,
         height: 630,
+        type: "image/jpeg",
         alt: "Prabhjot Singh Assi – AI Engineer",
       },
     ],
@@ -55,6 +58,7 @@ export const metadata: Metadata = {
     title: "Prabhjot Singh Assi",
     description: "AI Engineer building Gen AI systems at scale.",
     creator: "@prabhjotnovus",
+    site: "@prabhjotnovus",
     images: ["/og-image.jpg"],
   },
 };
@@ -63,7 +67,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Prabhjot Singh Assi",
-  "url": "https://prabhjotsinghassi.vercel.app",
+  "url": "https://prabhjot0109.vercel.app",
   "jobTitle": "AI Engineer",
   "description": "AI Engineer building Gen AI systems at scale.",
   "sameAs": [
@@ -116,5 +120,4 @@ export default function RootLayout({
     </html>
   );
 }
-
 

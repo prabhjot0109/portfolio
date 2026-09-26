@@ -61,6 +61,20 @@ export async function generateMetadata({
       title: post.title,
       description: post.description,
       type: "article",
+      images: [
+        {
+          url: "/og-image.jpg",
+          width: 1024,
+          height: 576,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: ["/og-image.jpg"],
     },
   };
 }
@@ -245,6 +259,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
       <RightNavbar />
       <BlueprintFrame />
 
+      {/* Cell 1: Dot Matrix Background */}
       <div className="absolute left-0 right-0 top-0 h-[22vh] pointer-events-auto -z-0 md:left-[30%] md:right-[30%]">
         <FooterBackground />
         <div className="absolute bottom-3 right-2 z-10 pointer-events-auto">

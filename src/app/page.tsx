@@ -1,23 +1,21 @@
 import { ThemeToggle } from "@/components/theme-toggle";
 import { GithubGraph } from "@/components/GithubGraph";
-import { CurrentTime } from "@/components/CurrentTime";
 import { ProjectsGrid } from "@/components/ProjectsGrid";
 import { ExperienceList } from "@/components/ExperienceList";
 import { OpenSourceContributions } from "@/components/OpenSourceContributions";
 import { AchievementsList } from "@/components/AchievementsList";
+import { EducationList } from "@/components/EducationList";
 import { ResearchList } from "@/components/ResearchList";
 import { BlogList } from "@/components/BlogList";
 import { Highlights } from "@/components/Highlights";
 import { FooterBackground } from "@/components/FooterBackground";
+import Link from "next/link";
 import { RightNavbar } from "@/components/RightNavbar";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { CommandMenu } from "@/components/command-menu";
-import { PortfolioSpotlight } from "@/components/PortfolioSpotlight";
-import { InteractiveParticles } from "@/components/ui/interactive-particles";
-import Link from "next/link";
 import SoftPillButton from "@/components/pixel-perfect/soft-pill-button";
 import SocialHoverCard from "@/components/pixel-perfect/social-hover-card";
-import { BannerParticles } from "@/components/BannerParticles";
+import { TopHeroBanner } from "@/components/TopHeroBanner";
 import { FileText } from "lucide-react";
 import Image from "next/image";
 
@@ -63,9 +61,6 @@ const skills = [
 export default function Home() {
   return (
     <div className="min-h-screen w-full bg-white dark:bg-black relative overflow-x-hidden transition-colors duration-300">
-      {/* Interactive Cursor Spotlight Grid */}
-      <PortfolioSpotlight />
-
       {/* Right Side Blueprint Navigation */}
       <RightNavbar />
 
@@ -131,34 +126,8 @@ export default function Home() {
         />
       ))}
 
-      {/* Cell 1: Banner */}
-      <div className="absolute left-0 right-0 md:left-[30%] md:right-[30%] top-0 h-[22vh] -z-0 pointer-events-auto overflow-hidden bg-white dark:bg-black shadow-[0_4px_12px_rgba(2,6,23,0.04)] dark:shadow-[0_4px_12px_rgba(2,6,23,0.10)]">
-        <Image
-          src="/space_light.webp"
-          alt="Space Light Banner"
-          fill
-          fetchPriority="high"
-          sizes="(min-width: 768px) 40vw, 100vw"
-          quality={100}
-          className="object-cover object-center dark:hidden"
-        />
-        <Image
-          src="/space.webp"
-          alt="Space Dark Banner"
-          fill
-          fetchPriority="high"
-          sizes="(min-width: 768px) 40vw, 100vw"
-          quality={100}
-          className="hidden object-cover object-center dark:block"
-        />
-        <BannerParticles />
-        <div className="absolute inset-x-0 bottom-0 h-10 pointer-events-none z-[5] bg-gradient-to-t from-white/90 to-transparent dark:from-black/50 dark:to-transparent" />
-        <div className="absolute left-0 top-0 bottom-0 w-8 pointer-events-none z-20 bg-gradient-to-r from-white/90 to-transparent dark:from-black/40 dark:to-transparent" />
-        <div className="absolute right-0 top-0 bottom-0 w-8 pointer-events-none z-20 bg-gradient-to-l from-white/90 to-transparent dark:from-black/40 dark:to-transparent" />
-        <div className="absolute bottom-3 right-2 z-10 pointer-events-auto">
-          <CurrentTime />
-        </div>
-      </div>
+      {/* Cell 1: Top Hero Banner with Flowing Particles */}
+      <TopHeroBanner />
 
       {/* Cell 2: Profile Section - 112px height to wrap the framed image (13px gap top/bottom) */}
       <div className="absolute left-0 right-0 md:left-[30%] md:right-[30%] top-[22vh] h-[112px] flex items-center px-4 z-50">
@@ -546,25 +515,105 @@ export default function Home() {
             <div className="absolute bottom-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
           </div>
 
-          <AchievementsList />
+          <AchievementsList limit={4} />
+
+          {/* View All Button */}
+          <div className="py-4 px-4 -mx-4 flex justify-center relative hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors cursor-pointer rounded-b-lg mt-0">
+            <div
+              className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none"
+              style={{
+                maskImage:
+                  "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
+                WebkitMaskImage:
+                  "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
+              }}
+            />
+            {/* Bottom Line Intersections */}
+            <div className="absolute bottom-0 left-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
+            <div className="absolute bottom-0 right-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
+
+            <Link href="/achievements" className="relative group block mt-0">
+              <div className="absolute -inset-[5px] border border-black/5 dark:border-white/5 rounded-[11px] pointer-events-none transition-colors duration-300 group-hover:border-black/10 dark:group-hover:border-white/10" />
+              <div className="relative flex items-center gap-1.5 px-4 py-2 bg-zinc-50 hover:bg-zinc-100 dark:bg-[#09090b] dark:hover:bg-[#121214] text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-[6px] text-[13px] font-medium transition-all duration-300 border border-black/5 dark:border-white/5 shadow-sm shadow-black/20 dark:shadow-lg dark:shadow-black/80">
+                View All
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-300 transition-colors"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            </Link>
+          </div>
+        </div>
+
+        {/* Education */}
+        <div
+          id="education"
+          className="flex flex-col relative z-10 scroll-mt-24"
+        >
+          <div className="py-2 relative mt-1">
+            <h2 className="text-[18px] font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
+              Education
+            </h2>
+
+            {/* Horizontal line below heading */}
+            <div
+              className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none"
+              style={{
+                maskImage:
+                  "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
+                WebkitMaskImage:
+                  "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
+              }}
+            />
+            {/* Intersections */}
+            <div className="absolute bottom-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
+            <div className="absolute bottom-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
+          </div>
+
+          <EducationList />
+
+          {/* View All Button */}
+          <div className="py-4 px-4 -mx-4 flex justify-center relative hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors cursor-pointer rounded-b-lg mt-0">
+            <div
+              className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none"
+              style={{
+                maskImage:
+                  "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
+                WebkitMaskImage:
+                  "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
+              }}
+            />
+            {/* Bottom Line Intersections */}
+            <div className="absolute bottom-0 left-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
+            <div className="absolute bottom-0 right-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
+
+            <Link href="/education" className="relative group block mt-0">
+              <div className="absolute -inset-[5px] border border-black/5 dark:border-white/5 rounded-[11px] pointer-events-none transition-colors duration-300 group-hover:border-black/10 dark:group-hover:border-white/10" />
+              <div className="relative flex items-center gap-1.5 px-4 py-2 bg-zinc-50 hover:bg-zinc-100 dark:bg-[#09090b] dark:hover:bg-[#121214] text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-[6px] text-[13px] font-medium transition-all duration-300 border border-black/5 dark:border-white/5 shadow-sm shadow-black/20 dark:shadow-lg dark:shadow-black/80">
+                View All
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-300 transition-colors"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            </Link>
+          </div>
         </div>
 
         {/* Research & Publications */}
-        <div id="research" className="mt-6 flex flex-col relative scroll-mt-24">
-          {/* Top full-width line */}
-          <div
-            className="absolute top-0 left-[-100vw] right-[-100vw] h-0 border-t border-black/30 dark:border-white/[0.15] pointer-events-none"
-            style={{
-              maskImage:
-                "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
-              WebkitMaskImage:
-                "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
-            }}
-          />
-          {/* Top Line Intersections */}
-          <div className="absolute top-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20" />
-          <div className="absolute top-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 -translate-y-1/2 pointer-events-none z-20" />
-
+        <div id="research" className="flex flex-col relative z-10 scroll-mt-24">
           <div className="py-2 relative mt-1">
             <h2 className="text-[18px] font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
               Research & Publications
@@ -772,8 +821,8 @@ export default function Home() {
 
           <Highlights />
 
-          {/* Bottom line */}
-          <div className="relative mt-4 pb-4">
+          {/* View All Button */}
+          <div className="py-4 px-4 -mx-4 flex justify-center relative hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors cursor-pointer rounded-b-lg mt-0">
             <div
               className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none"
               style={{
@@ -783,8 +832,26 @@ export default function Home() {
                   "repeating-linear-gradient(to right, black 0, black 1px, transparent 1px, transparent 6px)",
               }}
             />
-            <div className="absolute bottom-0 -left-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
-            <div className="absolute bottom-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
+            {/* Bottom Line Intersections */}
+            <div className="absolute bottom-0 left-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] -translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
+            <div className="absolute bottom-0 right-0 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
+
+            <Link href="/highlights" className="relative group block mt-0">
+              <div className="absolute -inset-[5px] border border-black/5 dark:border-white/5 rounded-[11px] pointer-events-none transition-colors duration-300 group-hover:border-black/10 dark:group-hover:border-white/10" />
+              <div className="relative flex items-center gap-1.5 px-4 py-2 bg-zinc-50 hover:bg-zinc-100 dark:bg-[#09090b] dark:hover:bg-[#121214] text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 rounded-[6px] text-[13px] font-medium transition-all duration-300 border border-black/5 dark:border-white/5 shadow-sm shadow-black/20 dark:shadow-lg dark:shadow-black/80">
+                View All
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-3.5 h-3.5 text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-300 transition-colors"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            </Link>
           </div>
         </div>
 

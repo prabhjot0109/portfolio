@@ -15,20 +15,27 @@ const iconComponents = {
   Crown,
 };
 
-export function AchievementsList() {
+export function AchievementsList({
+  limit,
+  isFullPage = false,
+}: {
+  limit?: number;
+  isFullPage?: boolean;
+}) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const items = limit ? majorAchievements.slice(0, limit) : majorAchievements;
 
   return (
     <div className="block">
-      {majorAchievements.map((item: Achievement, idx: number) => {
+      {items.map((item: Achievement, idx: number) => {
         const isOpen = openIdx === idx;
-        const isLast = idx === majorAchievements.length - 1;
+        const isLast = idx === items.length - 1;
         const IconComponent = iconComponents[item.iconName] || Trophy;
 
         return (
           <div key={item.id} className="group relative">
-            {/* Dashed bottom border for all items except the last one */}
-            {!isLast && (
+            {/* Dashed bottom border for all items except when isFullPage && isLast */}
+            {(!isLast || !isFullPage) && (
               <div
                 className="absolute bottom-0 left-[-16px] right-[-16px] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none z-10"
                 style={{
@@ -40,8 +47,8 @@ export function AchievementsList() {
               />
             )}
 
-            {/* Special full-width dashed line and intersection dots for the last item */}
-            {isLast && (
+            {/* Special full-width dashed line and intersection dots only for the last item on full page */}
+            {isLast && isFullPage && (
               <>
                 <div
                   className="absolute bottom-0 left-[-100vw] right-[-100vw] h-0 border-b border-black/30 dark:border-white/[0.15] pointer-events-none z-10"

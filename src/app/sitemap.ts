@@ -4,7 +4,7 @@ import { projectsData } from "@/data/projectsData";
 import { researchPapers } from "@/data/researchData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://prabhjotsinghassi.vercel.app";
+  const baseUrl = "https://prabhjot0109.vercel.app";
 
   const staticRoutes = [
     "",
